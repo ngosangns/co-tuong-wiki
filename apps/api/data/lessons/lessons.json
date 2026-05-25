@@ -1,0 +1,4597 @@
+[
+  {
+    "id": "central-cannon-tempo-trap",
+    "slug": "cam-bay-phao-dau-ham-tot",
+    "title": "Cạm bẫy Pháo Đầu: ham tốt mất nhịp",
+    "summary": "Một bài học nhập môn về Pháo Đầu gặp Bình Phong Mã: khi nào có thể ăn tốt giữa, và khi nào nước đó biến pháo thành mục tiêu.",
+    "category": "Cạm bẫy khai cuộc",
+    "difficulty": "Nhập môn",
+    "tags": [
+      "Pháo Đầu",
+      "Bình Phong Mã",
+      "tempo",
+      "trung lộ"
+    ],
+    "principles": [
+      "Không ăn quân nếu quân chủ lực đi sâu mà không có quân tiếp ứng.",
+      "Trong khai cuộc, một tempo phát triển xe thường đáng hơn một tốt lẻ.",
+      "Nước phản pháo trung lộ thường trừng phạt pháo đỏ đi quá xa."
+    ],
+    "lines": [
+      {
+        "id": "main",
+        "title": "Giữ nhịp phát triển",
+        "description": "Đỏ phát triển quân nặng sau khi đã mở đường hợp lệ.",
+        "moves": [
+          {
+            "id": "central-cannon-tempo-trap-m1",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 7
+            },
+            "to": {
+              "file": 4,
+              "rank": 7
+            },
+            "notation": "1. Pháo 2 bình 5",
+            "title": "Pháo Đầu chiếm trung lộ",
+            "comment": "Đỏ mở trục tấn công trực diện vào trung lộ.",
+            "evaluation": "main"
+          },
+          {
+            "id": "central-cannon-tempo-trap-m2",
+            "side": "black",
+            "from": {
+              "file": 1,
+              "rank": 0
+            },
+            "to": {
+              "file": 2,
+              "rank": 2
+            },
+            "notation": "... Mã 8 tiến 7",
+            "title": "Bình Phong Mã",
+            "comment": "Đen phát triển mã để giữ trung binh và chuẩn bị phản công hai cánh.",
+            "evaluation": "main"
+          },
+          {
+            "id": "central-cannon-tempo-trap-m3",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 9
+            },
+            "to": {
+              "file": 2,
+              "rank": 7
+            },
+            "notation": "2. Mã 2 tiến 3",
+            "title": "Mã phải nhập cuộc",
+            "comment": "Đỏ mở lộ cho xe đồng thời tăng quân bảo vệ trung tuyến.",
+            "evaluation": "main"
+          },
+          {
+            "id": "central-cannon-tempo-trap-m4",
+            "side": "black",
+            "from": {
+              "file": 7,
+              "rank": 0
+            },
+            "to": {
+              "file": 6,
+              "rank": 2
+            },
+            "notation": "... Mã 2 tiến 3",
+            "title": "Hai mã cùng giữ trung lộ",
+            "comment": "Đen hoàn thành khung Bình Phong Mã, giảm áp lực của trung pháo.",
+            "evaluation": "main"
+          },
+          {
+            "id": "central-cannon-tempo-trap-s1",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 9
+            },
+            "to": {
+              "file": 0,
+              "rank": 8
+            },
+            "notation": "3. Xe 1 tiến 1",
+            "title": "Xuất xe đúng nhịp",
+            "comment": "Xe rời hàng đáy khi lộ đã thông, giữ thế chủ động mà không vướng mã.",
+            "evaluation": "solution"
+          },
+          {
+            "id": "central-cannon-tempo-trap-s2",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 1
+            },
+            "notation": "... Xe 9 tiến 1",
+            "title": "Đen cũng đưa xe vào cuộc",
+            "comment": "Hai bên vào thế tranh nhịp phát triển rõ ràng.",
+            "evaluation": "main"
+          }
+        ]
+      },
+      {
+        "id": "danger",
+        "title": "Rời trục hoặc ham quân",
+        "description": "Đỏ chọn nước nhìn có vẻ tích cực nhưng làm mất nhịp phát triển.",
+        "moves": [
+          {
+            "id": "central-cannon-tempo-trap-m1",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 7
+            },
+            "to": {
+              "file": 4,
+              "rank": 7
+            },
+            "notation": "1. Pháo 2 bình 5",
+            "title": "Pháo Đầu chiếm trung lộ",
+            "comment": "Đỏ mở trục tấn công trực diện vào trung lộ.",
+            "evaluation": "main"
+          },
+          {
+            "id": "central-cannon-tempo-trap-m2",
+            "side": "black",
+            "from": {
+              "file": 1,
+              "rank": 0
+            },
+            "to": {
+              "file": 2,
+              "rank": 2
+            },
+            "notation": "... Mã 8 tiến 7",
+            "title": "Bình Phong Mã",
+            "comment": "Đen phát triển mã để giữ trung binh và chuẩn bị phản công hai cánh.",
+            "evaluation": "main"
+          },
+          {
+            "id": "central-cannon-tempo-trap-m3",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 9
+            },
+            "to": {
+              "file": 2,
+              "rank": 7
+            },
+            "notation": "2. Mã 2 tiến 3",
+            "title": "Mã phải nhập cuộc",
+            "comment": "Đỏ mở lộ cho xe đồng thời tăng quân bảo vệ trung tuyến.",
+            "evaluation": "main"
+          },
+          {
+            "id": "central-cannon-tempo-trap-m4",
+            "side": "black",
+            "from": {
+              "file": 7,
+              "rank": 0
+            },
+            "to": {
+              "file": 6,
+              "rank": 2
+            },
+            "notation": "... Mã 2 tiến 3",
+            "title": "Hai mã cùng giữ trung lộ",
+            "comment": "Đen hoàn thành khung Bình Phong Mã, giảm áp lực của trung pháo.",
+            "evaluation": "main"
+          },
+          {
+            "id": "central-cannon-tempo-trap-g1",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 7
+            },
+            "to": {
+              "file": 5,
+              "rank": 7
+            },
+            "notation": "3. Pháo 5 bình 6?",
+            "title": "Pháo rời trục quá sớm",
+            "comment": "Đỏ rời áp lực trung lộ khi xe và mã chưa phối hợp đủ.",
+            "evaluation": "warning"
+          },
+          {
+            "id": "central-cannon-tempo-trap-g2",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 1
+            },
+            "notation": "... Xe 9 tiến 1",
+            "title": "Đen tranh nhịp xuất xe",
+            "comment": "Đen dùng thời gian đó để đưa xe vào cuộc và giành lại nhịp.",
+            "evaluation": "trap"
+          }
+        ]
+      }
+    ],
+    "choice": {
+      "id": "central-cannon-tempo-trap-choice",
+      "prompt": "Đỏ nên chọn nước nào để giữ nhịp phát triển và không tự làm yếu trung lộ?",
+      "options": [
+        {
+          "moveId": "central-cannon-tempo-trap-s1",
+          "label": "Xe 1 tiến 1",
+          "verdict": "correct",
+          "feedback": "Đúng. Xe nhập cuộc sau khi lộ đã thông, giữ được nhịp phát triển."
+        },
+        {
+          "moveId": "central-cannon-tempo-trap-g1",
+          "label": "Pháo 5 bình 6",
+          "verdict": "danger",
+          "feedback": "Nguy hiểm. Nước này làm Đỏ mất nhịp hoặc để pháo thành mục tiêu phản công."
+        }
+      ]
+    }
+  },
+  {
+    "id": "middlegame-file-pressure",
+    "slug": "trung-cuoc-giu-ap-luc-trung-lo",
+    "title": "Trung cuộc: giữ áp lực trung lộ",
+    "summary": "Bài học về cách chuyển từ khai cuộc sang trung cuộc: dùng pháo, mã và xe để tăng áp lực thay vì đổi quân làm nhẹ thế ép.",
+    "category": "Trung cuộc",
+    "difficulty": "Cơ bản",
+    "tags": [
+      "trung cuộc",
+      "tempo",
+      "xe",
+      "pháo mã"
+    ],
+    "principles": [
+      "Khi đang ép vị trí, ưu tiên đưa quân mới vào thế công trước khi đổi quân.",
+      "Xe vào lộ mở thường tạo áp lực bền hơn một nước ăn quân ngắn hạn.",
+      "Đổi pháo trung lộ quá sớm có thể giải phóng thế phòng thủ của đối phương."
+    ],
+    "lines": [
+      {
+        "id": "main",
+        "title": "Tăng áp lực đúng hướng",
+        "description": "Đỏ chuyển xe sang lộ giữa để phối hợp cùng binh và pháo.",
+        "moves": [
+          {
+            "id": "middlegame-file-pressure-m1",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 9
+            },
+            "to": {
+              "file": 0,
+              "rank": 8
+            },
+            "notation": "1. Xe 1 tiến 1",
+            "title": "Xe vào hàng áp lực",
+            "comment": "Đỏ đưa xe lên để chuẩn bị chuyển ngang sang lộ mở.",
+            "evaluation": "main"
+          },
+          {
+            "id": "middlegame-file-pressure-m2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 2
+            },
+            "to": {
+              "file": 5,
+              "rank": 2
+            },
+            "notation": "... Pháo 5 bình 6",
+            "title": "Đen né trục pháo",
+            "comment": "Đen chuyển pháo sang bên để giảm sức ép trực diện.",
+            "evaluation": "main"
+          },
+          {
+            "id": "middlegame-file-pressure-m3",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 6
+            },
+            "to": {
+              "file": 4,
+              "rank": 5
+            },
+            "notation": "2. Binh 5 tiến 1",
+            "title": "Binh giữ trung lộ",
+            "comment": "Binh tiến tạo điểm tựa cho xe và pháo phối hợp.",
+            "evaluation": "main"
+          },
+          {
+            "id": "middlegame-file-pressure-m4",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 3
+            },
+            "to": {
+              "file": 4,
+              "rank": 4
+            },
+            "notation": "... Tốt 5 tiến 1",
+            "title": "Đen phản kích trung lộ",
+            "comment": "Đen dùng tốt cản nhịp tiến của Đỏ.",
+            "evaluation": "main"
+          },
+          {
+            "id": "middlegame-file-pressure-s1",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 8
+            },
+            "to": {
+              "file": 4,
+              "rank": 8
+            },
+            "notation": "3. Xe 1 bình 5",
+            "title": "Xe nhập trung lộ",
+            "comment": "Xe chuyển ngang vào lộ mở, tăng sức ép lên quân phòng thủ.",
+            "evaluation": "solution"
+          },
+          {
+            "id": "middlegame-file-pressure-s2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 0
+            },
+            "to": {
+              "file": 4,
+              "rank": 1
+            },
+            "notation": "... Tướng 5 tiến 1",
+            "title": "Đen phải nhường một nhịp",
+            "comment": "Tướng phải tiến lên, cho thấy áp lực của Đỏ đã có hiệu quả.",
+            "evaluation": "main"
+          }
+        ]
+      },
+      {
+        "id": "danger",
+        "title": "Tấn quân thiếu phối hợp",
+        "description": "Đỏ đi mã trước khi xe chiếm lộ, để áp lực bị loãng.",
+        "moves": [
+          {
+            "id": "middlegame-file-pressure-m1",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 9
+            },
+            "to": {
+              "file": 0,
+              "rank": 8
+            },
+            "notation": "1. Xe 1 tiến 1",
+            "title": "Xe vào hàng áp lực",
+            "comment": "Đỏ đưa xe lên để chuẩn bị chuyển ngang sang lộ mở.",
+            "evaluation": "main"
+          },
+          {
+            "id": "middlegame-file-pressure-m2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 2
+            },
+            "to": {
+              "file": 5,
+              "rank": 2
+            },
+            "notation": "... Pháo 5 bình 6",
+            "title": "Đen né trục pháo",
+            "comment": "Đen chuyển pháo sang bên để giảm sức ép trực diện.",
+            "evaluation": "main"
+          },
+          {
+            "id": "middlegame-file-pressure-m3",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 6
+            },
+            "to": {
+              "file": 4,
+              "rank": 5
+            },
+            "notation": "2. Binh 5 tiến 1",
+            "title": "Binh giữ trung lộ",
+            "comment": "Binh tiến tạo điểm tựa cho xe và pháo phối hợp.",
+            "evaluation": "main"
+          },
+          {
+            "id": "middlegame-file-pressure-m4",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 3
+            },
+            "to": {
+              "file": 4,
+              "rank": 4
+            },
+            "notation": "... Tốt 5 tiến 1",
+            "title": "Đen phản kích trung lộ",
+            "comment": "Đen dùng tốt cản nhịp tiến của Đỏ.",
+            "evaluation": "main"
+          },
+          {
+            "id": "middlegame-file-pressure-g1",
+            "side": "red",
+            "from": {
+              "file": 6,
+              "rank": 7
+            },
+            "to": {
+              "file": 5,
+              "rank": 5
+            },
+            "notation": "3. Mã 3 tiến 5?",
+            "title": "Mã đi trước xe",
+            "comment": "Mã tiến nhìn chủ động nhưng chưa tạo sức ép trực tiếp lên lộ mở.",
+            "evaluation": "warning"
+          },
+          {
+            "id": "middlegame-file-pressure-g2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 0
+            },
+            "to": {
+              "file": 4,
+              "rank": 1
+            },
+            "notation": "... Tướng 5 tiến 1",
+            "title": "Đen chỉnh hình kịp thời",
+            "comment": "Đen có thời gian dịch tướng và giảm nhịp công của Đỏ.",
+            "evaluation": "trap"
+          }
+        ]
+      }
+    ],
+    "choice": {
+      "id": "middlegame-file-pressure-choice",
+      "prompt": "Trong thế đang tranh trung lộ, Đỏ nên ưu tiên nước nào để giữ áp lực?",
+      "options": [
+        {
+          "moveId": "middlegame-file-pressure-s1",
+          "label": "Xe 1 bình 5",
+          "verdict": "correct",
+          "feedback": "Đúng. Xe vào lộ mở tạo áp lực trực tiếp và phối hợp được với binh/pháo."
+        },
+        {
+          "moveId": "middlegame-file-pressure-g1",
+          "label": "Mã 3 tiến 5",
+          "verdict": "danger",
+          "feedback": "Hơi vội. Mã đi trước xe làm thế ép bị loãng và Đen có nhịp chỉnh hình."
+        }
+      ]
+    },
+    "initialFen": "4k4/9/4c4/4p4/9/9/4P4/4C1N2/9/R3K4 w - - 0 1"
+  },
+  {
+    "id": "mate-central-cannon",
+    "slug": "the-sat-phao-trung-lo-nhap-cung",
+    "title": "Thế sát: pháo trung lộ nhập cung",
+    "summary": "Một mô-típ sát cơ bản: nhận ra quân làm ngòi trên trục giữa để pháo đánh thẳng vào cung tướng.",
+    "category": "Thế sát",
+    "difficulty": "Cơ bản",
+    "tags": [
+      "thế sát",
+      "pháo",
+      "ngòi pháo",
+      "cung tướng"
+    ],
+    "principles": [
+      "Pháo mạnh nhất khi có đúng một quân làm ngòi trên cùng trục với tướng.",
+      "Thời điểm ra đòn quan trọng hơn việc gom thêm quân.",
+      "Nếu bỏ lỡ một nhịp, đối phương thường kịp dựng sĩ để bịt đường sát."
+    ],
+    "lines": [
+      {
+        "id": "main",
+        "title": "Ra đòn ngay",
+        "description": "Đỏ dùng sĩ ở giữa làm ngòi pháo để đánh thẳng cung tướng.",
+        "moves": [
+          {
+            "id": "mate-central-cannon-m1",
+            "side": "red",
+            "from": {
+              "file": 6,
+              "rank": 7
+            },
+            "to": {
+              "file": 5,
+              "rank": 5
+            },
+            "notation": "1. Mã 7 tiến 6",
+            "title": "Mã ép cánh cung",
+            "comment": "Mã tiến để giữ quân phòng thủ của Đen trong thế bị động.",
+            "evaluation": "main"
+          },
+          {
+            "id": "mate-central-cannon-m2",
+            "side": "black",
+            "from": {
+              "file": 5,
+              "rank": 0
+            },
+            "to": {
+              "file": 4,
+              "rank": 1
+            },
+            "notation": "... Sĩ 6 tiến 5",
+            "title": "Sĩ vào giữa",
+            "comment": "Nước thủ này vô tình tạo đúng ngòi cho pháo trung lộ.",
+            "evaluation": "main"
+          },
+          {
+            "id": "mate-central-cannon-s1",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 7
+            },
+            "to": {
+              "file": 4,
+              "rank": 0
+            },
+            "notation": "2. Pháo 5 tiến 7!",
+            "title": "Pháo nhập cung",
+            "comment": "Pháo nhảy qua đúng một ngòi và đánh trực tiếp vào tướng.",
+            "evaluation": "solution"
+          },
+          {
+            "id": "mate-central-cannon-s2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 1
+            },
+            "to": {
+              "file": 5,
+              "rank": 0
+            },
+            "notation": "... Sĩ 5 thoái 6",
+            "title": "Đen vá cung muộn",
+            "comment": "Sau khi đòn sát xuất hiện, Đen chỉ còn phản ứng bị động.",
+            "evaluation": "main"
+          }
+        ]
+      },
+      {
+        "id": "danger",
+        "title": "Chậm một nhịp",
+        "description": "Đỏ tấn mã thêm nhưng bỏ qua thời điểm pháo đang có ngòi.",
+        "moves": [
+          {
+            "id": "mate-central-cannon-m1",
+            "side": "red",
+            "from": {
+              "file": 6,
+              "rank": 7
+            },
+            "to": {
+              "file": 5,
+              "rank": 5
+            },
+            "notation": "1. Mã 7 tiến 6",
+            "title": "Mã ép cánh cung",
+            "comment": "Mã tiến để giữ quân phòng thủ của Đen trong thế bị động.",
+            "evaluation": "main"
+          },
+          {
+            "id": "mate-central-cannon-m2",
+            "side": "black",
+            "from": {
+              "file": 5,
+              "rank": 0
+            },
+            "to": {
+              "file": 4,
+              "rank": 1
+            },
+            "notation": "... Sĩ 6 tiến 5",
+            "title": "Sĩ vào giữa",
+            "comment": "Nước thủ này vô tình tạo đúng ngòi cho pháo trung lộ.",
+            "evaluation": "main"
+          },
+          {
+            "id": "mate-central-cannon-g1",
+            "side": "red",
+            "from": {
+              "file": 5,
+              "rank": 5
+            },
+            "to": {
+              "file": 4,
+              "rank": 3
+            },
+            "notation": "2. Mã 6 tiến 5?",
+            "title": "Bỏ lỡ đòn pháo",
+            "comment": "Mã tiến thêm không sắc bằng đòn pháo trực tiếp khi ngòi đã có.",
+            "evaluation": "warning"
+          },
+          {
+            "id": "mate-central-cannon-g2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 1
+            },
+            "to": {
+              "file": 5,
+              "rank": 0
+            },
+            "notation": "... Sĩ 5 thoái 6",
+            "title": "Đen tháo ngòi",
+            "comment": "Đen kịp rút sĩ khỏi trục giữa, làm đòn pháo mất lực.",
+            "evaluation": "trap"
+          }
+        ]
+      }
+    ],
+    "choice": {
+      "id": "mate-central-cannon-choice",
+      "prompt": "Khi Đen vừa đưa sĩ vào trục giữa, Đỏ nên tận dụng ngay bằng nước nào?",
+      "options": [
+        {
+          "moveId": "mate-central-cannon-s1",
+          "label": "Pháo 5 tiến 7",
+          "verdict": "correct",
+          "feedback": "Đúng. Có đúng một ngòi trên trục giữa, pháo phải ra đòn ngay."
+        },
+        {
+          "moveId": "mate-central-cannon-g1",
+          "label": "Mã 6 tiến 5",
+          "verdict": "danger",
+          "feedback": "Chậm. Đen có thể tháo ngòi và đòn pháo không còn trực tiếp."
+        }
+      ]
+    },
+    "initialFen": "3aka3/9/9/9/9/9/9/4C1N2/9/4K4 w - - 0 1"
+  },
+  {
+    "id": "endgame-rook-pawn",
+    "slug": "tan-cuoc-xe-binh-ep-tuong",
+    "title": "Tàn cuộc: xe binh ép tướng",
+    "summary": "Bài học nhập môn về cách phối hợp xe và binh qua sông: binh tạo mũi ép, xe khóa đường thoát.",
+    "category": "Tàn cuộc",
+    "difficulty": "Nhập môn",
+    "tags": [
+      "tàn cuộc",
+      "xe",
+      "binh qua hà",
+      "ép tướng"
+    ],
+    "principles": [
+      "Trong tàn cuộc, binh qua sông cần xe bảo vệ để trở thành mối đe dọa thật.",
+      "Không nên để xe đi xa khỏi binh nếu đối phương còn đủ sĩ tượng thủ cung.",
+      "Ép tướng lên một hàng thường mở ra điểm yếu cho xe khai thác."
+    ],
+    "lines": [
+      {
+        "id": "main",
+        "title": "Giữ xe hỗ trợ binh",
+        "description": "Đỏ giữ xe gần binh để ép tướng từng nhịp.",
+        "moves": [
+          {
+            "id": "endgame-rook-pawn-m1",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 8
+            },
+            "to": {
+              "file": 4,
+              "rank": 8
+            },
+            "notation": "1. Xe 1 bình 5",
+            "title": "Xe khóa trung lộ",
+            "comment": "Xe chuyển sang lộ giữa để giữ đường tiến của binh.",
+            "evaluation": "main"
+          },
+          {
+            "id": "endgame-rook-pawn-m2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 0
+            },
+            "to": {
+              "file": 4,
+              "rank": 1
+            },
+            "notation": "... Tướng 5 tiến 1",
+            "title": "Tướng tránh áp lực",
+            "comment": "Đen đưa tướng lên để né thế khóa trực tiếp.",
+            "evaluation": "main"
+          },
+          {
+            "id": "endgame-rook-pawn-m3",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 4
+            },
+            "to": {
+              "file": 4,
+              "rank": 3
+            },
+            "notation": "2. Binh 5 tiến 1",
+            "title": "Binh áp sát",
+            "comment": "Binh qua sông tiến lên để buộc cung tướng chật lại.",
+            "evaluation": "main"
+          },
+          {
+            "id": "endgame-rook-pawn-m4",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 2
+            },
+            "to": {
+              "file": 2,
+              "rank": 0
+            },
+            "notation": "... Tượng 5 thoái 3",
+            "title": "Đen rút tượng",
+            "comment": "Đen cố giữ lớp phòng thủ nhưng đã để trung lộ hở hơn.",
+            "evaluation": "main"
+          },
+          {
+            "id": "endgame-rook-pawn-s1",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 8
+            },
+            "to": {
+              "file": 4,
+              "rank": 7
+            },
+            "notation": "3. Xe 5 tiến 1",
+            "title": "Xe giữ điểm tựa",
+            "comment": "Xe tiến sau binh, tiếp tục khóa đường thoát của tướng.",
+            "evaluation": "solution"
+          },
+          {
+            "id": "endgame-rook-pawn-s2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 1
+            },
+            "to": {
+              "file": 5,
+              "rank": 1
+            },
+            "notation": "... Tướng 5 bình 6",
+            "title": "Tướng bị ép lệch",
+            "comment": "Đen phải rời trung lộ, tạo mục tiêu cho xe và binh phối hợp.",
+            "evaluation": "main"
+          }
+        ]
+      },
+      {
+        "id": "danger",
+        "title": "Binh đi đơn độc",
+        "description": "Đỏ đẩy binh quá nhanh, để xe chưa kịp khóa đường thoát.",
+        "moves": [
+          {
+            "id": "endgame-rook-pawn-m1",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 8
+            },
+            "to": {
+              "file": 4,
+              "rank": 8
+            },
+            "notation": "1. Xe 1 bình 5",
+            "title": "Xe khóa trung lộ",
+            "comment": "Xe chuyển sang lộ giữa để giữ đường tiến của binh.",
+            "evaluation": "main"
+          },
+          {
+            "id": "endgame-rook-pawn-m2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 0
+            },
+            "to": {
+              "file": 4,
+              "rank": 1
+            },
+            "notation": "... Tướng 5 tiến 1",
+            "title": "Tướng tránh áp lực",
+            "comment": "Đen đưa tướng lên để né thế khóa trực tiếp.",
+            "evaluation": "main"
+          },
+          {
+            "id": "endgame-rook-pawn-m3",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 4
+            },
+            "to": {
+              "file": 4,
+              "rank": 3
+            },
+            "notation": "2. Binh 5 tiến 1",
+            "title": "Binh áp sát",
+            "comment": "Binh qua sông tiến lên để buộc cung tướng chật lại.",
+            "evaluation": "main"
+          },
+          {
+            "id": "endgame-rook-pawn-m4",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 2
+            },
+            "to": {
+              "file": 2,
+              "rank": 0
+            },
+            "notation": "... Tượng 5 thoái 3",
+            "title": "Đen rút tượng",
+            "comment": "Đen cố giữ lớp phòng thủ nhưng đã để trung lộ hở hơn.",
+            "evaluation": "main"
+          },
+          {
+            "id": "endgame-rook-pawn-g1",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 3
+            },
+            "to": {
+              "file": 4,
+              "rank": 2
+            },
+            "notation": "3. Binh 5 tiến 1?",
+            "title": "Binh đi thiếu xe",
+            "comment": "Binh tiến sâu nhưng xe chưa áp sát đủ để khóa tướng.",
+            "evaluation": "warning"
+          },
+          {
+            "id": "endgame-rook-pawn-g2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 1
+            },
+            "to": {
+              "file": 5,
+              "rank": 1
+            },
+            "notation": "... Tướng 5 bình 6",
+            "title": "Đen thoát khỏi trung lộ",
+            "comment": "Tướng lệch sang bên, làm binh đỏ khó tự tạo mối đe dọa.",
+            "evaluation": "trap"
+          }
+        ]
+      }
+    ],
+    "choice": {
+      "id": "endgame-rook-pawn-choice",
+      "prompt": "Trong tàn cuộc xe binh, Đỏ nên giữ phối hợp bằng nước nào?",
+      "options": [
+        {
+          "moveId": "endgame-rook-pawn-s1",
+          "label": "Xe 5 tiến 1",
+          "verdict": "correct",
+          "feedback": "Đúng. Xe giữ gần binh, khóa đường thoát và ép tướng từng nhịp."
+        },
+        {
+          "moveId": "endgame-rook-pawn-g1",
+          "label": "Binh 5 tiến 1",
+          "verdict": "danger",
+          "feedback": "Hơi vội. Binh đi đơn độc khiến tướng có đường lệch ra khỏi trung lộ."
+        }
+      ]
+    },
+    "initialFen": "4k4/9/4b4/9/4P4/9/9/9/R8/4K4 w - - 0 1"
+  },
+  {
+    "id": "opening-same-direction-cannon",
+    "slug": "khai-cuoc-thuan-phao-tranh-xe",
+    "title": "Khai cuộc: Thuận Pháo tranh xe",
+    "summary": "Thuận Pháo thường biến thành cuộc đua xuất xe. Bên nào đưa xe vào lộ mở sớm hơn sẽ dễ nắm nhịp.",
+    "category": "Cạm bẫy khai cuộc",
+    "difficulty": "Cơ bản",
+    "tags": [
+      "Thuận Pháo",
+      "xuất xe",
+      "khai cuộc",
+      "tempo"
+    ],
+    "principles": [
+      "Thuận Pháo không chỉ là đối pháo, mà là cuộc đua xe vào lộ mở.",
+      "Xe ra chậm khiến pháo trung lộ dễ thành mục tiêu.",
+      "Không nên đổi pháo nếu đổi xong mất quyền phát triển quân nặng."
+    ],
+    "lines": [
+      {
+        "id": "main",
+        "title": "Giữ nhịp phát triển",
+        "description": "Đỏ phát triển quân nặng sau khi đã mở đường hợp lệ.",
+        "moves": [
+          {
+            "id": "opening-same-direction-cannon-m1",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 7
+            },
+            "to": {
+              "file": 4,
+              "rank": 7
+            },
+            "notation": "1. Pháo 2 bình 5",
+            "title": "Pháo Đầu chiếm trung lộ",
+            "comment": "Đỏ mở trục tấn công trực diện vào trung lộ.",
+            "evaluation": "main"
+          },
+          {
+            "id": "opening-same-direction-cannon-m2",
+            "side": "black",
+            "from": {
+              "file": 1,
+              "rank": 2
+            },
+            "to": {
+              "file": 4,
+              "rank": 2
+            },
+            "notation": "... Pháo 8 bình 5",
+            "title": "Đen vào Thuận Pháo",
+            "comment": "Đen đối pháo cùng cánh để tranh trung lộ ngay từ đầu.",
+            "evaluation": "main"
+          },
+          {
+            "id": "opening-same-direction-cannon-m3",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 9
+            },
+            "to": {
+              "file": 2,
+              "rank": 7
+            },
+            "notation": "2. Mã 2 tiến 3",
+            "title": "Mã phải nhập cuộc",
+            "comment": "Đỏ mở lộ cho xe đồng thời tăng quân bảo vệ trung tuyến.",
+            "evaluation": "main"
+          },
+          {
+            "id": "opening-same-direction-cannon-m4",
+            "side": "black",
+            "from": {
+              "file": 1,
+              "rank": 0
+            },
+            "to": {
+              "file": 2,
+              "rank": 2
+            },
+            "notation": "... Mã 8 tiến 7",
+            "title": "Mã trái phát triển",
+            "comment": "Đen đưa mã vào phòng thủ trung lộ sau khi đã đối pháo.",
+            "evaluation": "main"
+          },
+          {
+            "id": "opening-same-direction-cannon-s1",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 9
+            },
+            "to": {
+              "file": 0,
+              "rank": 8
+            },
+            "notation": "3. Xe 1 tiến 1",
+            "title": "Xuất xe đúng nhịp",
+            "comment": "Xe rời hàng đáy khi lộ đã thông, giữ thế chủ động mà không vướng mã.",
+            "evaluation": "solution"
+          },
+          {
+            "id": "opening-same-direction-cannon-s2",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 1
+            },
+            "notation": "... Xe 9 tiến 1",
+            "title": "Đen cũng đưa xe vào cuộc",
+            "comment": "Hai bên vào thế tranh nhịp phát triển rõ ràng.",
+            "evaluation": "main"
+          }
+        ]
+      },
+      {
+        "id": "danger",
+        "title": "Rời trục hoặc ham quân",
+        "description": "Đỏ chọn nước nhìn có vẻ tích cực nhưng làm mất nhịp phát triển.",
+        "moves": [
+          {
+            "id": "opening-same-direction-cannon-m1",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 7
+            },
+            "to": {
+              "file": 4,
+              "rank": 7
+            },
+            "notation": "1. Pháo 2 bình 5",
+            "title": "Pháo Đầu chiếm trung lộ",
+            "comment": "Đỏ mở trục tấn công trực diện vào trung lộ.",
+            "evaluation": "main"
+          },
+          {
+            "id": "opening-same-direction-cannon-m2",
+            "side": "black",
+            "from": {
+              "file": 1,
+              "rank": 2
+            },
+            "to": {
+              "file": 4,
+              "rank": 2
+            },
+            "notation": "... Pháo 8 bình 5",
+            "title": "Đen vào Thuận Pháo",
+            "comment": "Đen đối pháo cùng cánh để tranh trung lộ ngay từ đầu.",
+            "evaluation": "main"
+          },
+          {
+            "id": "opening-same-direction-cannon-m3",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 9
+            },
+            "to": {
+              "file": 2,
+              "rank": 7
+            },
+            "notation": "2. Mã 2 tiến 3",
+            "title": "Mã phải nhập cuộc",
+            "comment": "Đỏ mở lộ cho xe đồng thời tăng quân bảo vệ trung tuyến.",
+            "evaluation": "main"
+          },
+          {
+            "id": "opening-same-direction-cannon-m4",
+            "side": "black",
+            "from": {
+              "file": 1,
+              "rank": 0
+            },
+            "to": {
+              "file": 2,
+              "rank": 2
+            },
+            "notation": "... Mã 8 tiến 7",
+            "title": "Mã trái phát triển",
+            "comment": "Đen đưa mã vào phòng thủ trung lộ sau khi đã đối pháo.",
+            "evaluation": "main"
+          },
+          {
+            "id": "opening-same-direction-cannon-g1",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 7
+            },
+            "to": {
+              "file": 4,
+              "rank": 3
+            },
+            "notation": "3. Pháo 5 tiến 4?",
+            "title": "Ham ăn trung binh",
+            "comment": "Pháo ăn tốt nhưng đi quá sâu, trở thành quân bị phản kích.",
+            "evaluation": "warning"
+          },
+          {
+            "id": "opening-same-direction-cannon-g2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 2
+            },
+            "to": {
+              "file": 4,
+              "rank": 6
+            },
+            "notation": "... Pháo 5 tiến 4!",
+            "title": "Phản pháo có ngòi",
+            "comment": "Đen dùng chính trục giữa để phản công qua ngòi pháo.",
+            "evaluation": "trap"
+          }
+        ]
+      }
+    ],
+    "choice": {
+      "id": "opening-same-direction-cannon-choice",
+      "prompt": "Đỏ nên chọn nước nào để giữ nhịp phát triển và không tự làm yếu trung lộ?",
+      "options": [
+        {
+          "moveId": "opening-same-direction-cannon-s1",
+          "label": "Xe 1 tiến 1",
+          "verdict": "correct",
+          "feedback": "Đúng. Xe nhập cuộc sau khi lộ đã thông, giữ được nhịp phát triển."
+        },
+        {
+          "moveId": "opening-same-direction-cannon-g1",
+          "label": "Pháo 5 tiến 4",
+          "verdict": "danger",
+          "feedback": "Nguy hiểm. Nước này làm Đỏ mất nhịp hoặc để pháo thành mục tiêu phản công."
+        }
+      ]
+    }
+  },
+  {
+    "id": "opening-opposite-cannon",
+    "slug": "khai-cuoc-nghich-phao-doi-cong",
+    "title": "Khai cuộc: Nghịch Pháo đối công",
+    "summary": "Nghịch Pháo tạo thế căng hai cánh. Trọng tâm là phát triển xe trước khi mở các đòn đổi pháo.",
+    "category": "Cạm bẫy khai cuộc",
+    "difficulty": "Cơ bản",
+    "tags": [
+      "Nghịch Pháo",
+      "đối công",
+      "xe",
+      "pháo"
+    ],
+    "principles": [
+      "Nghịch Pháo dễ mở thế đối công, nên mỗi tempo phát triển đều quan trọng.",
+      "Đổi pháo khi chưa xuất xe thường làm mất áp lực.",
+      "Cánh có xe ra trước thường là cánh có quyền hỏi bài trước."
+    ],
+    "lines": [
+      {
+        "id": "main",
+        "title": "Giữ nhịp phát triển",
+        "description": "Đỏ phát triển quân nặng sau khi đã mở đường hợp lệ.",
+        "moves": [
+          {
+            "id": "opening-opposite-cannon-m1",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 7
+            },
+            "to": {
+              "file": 4,
+              "rank": 7
+            },
+            "notation": "1. Pháo 2 bình 5",
+            "title": "Pháo Đầu chiếm trung lộ",
+            "comment": "Đỏ mở trục tấn công trực diện vào trung lộ.",
+            "evaluation": "main"
+          },
+          {
+            "id": "opening-opposite-cannon-m2",
+            "side": "black",
+            "from": {
+              "file": 7,
+              "rank": 2
+            },
+            "to": {
+              "file": 4,
+              "rank": 2
+            },
+            "notation": "... Pháo 2 bình 5",
+            "title": "Đen vào Nghịch Pháo",
+            "comment": "Đen dùng pháo bên kia nhập trung, tạo thế đối công trực diện.",
+            "evaluation": "main"
+          },
+          {
+            "id": "opening-opposite-cannon-m3",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 9
+            },
+            "to": {
+              "file": 2,
+              "rank": 7
+            },
+            "notation": "2. Mã 2 tiến 3",
+            "title": "Mã phải nhập cuộc",
+            "comment": "Đỏ mở lộ cho xe đồng thời tăng quân bảo vệ trung tuyến.",
+            "evaluation": "main"
+          },
+          {
+            "id": "opening-opposite-cannon-m4",
+            "side": "black",
+            "from": {
+              "file": 1,
+              "rank": 0
+            },
+            "to": {
+              "file": 2,
+              "rank": 2
+            },
+            "notation": "... Mã 8 tiến 7",
+            "title": "Mã trái phát triển",
+            "comment": "Đen đưa mã vào phòng thủ trung lộ sau khi đã đối pháo.",
+            "evaluation": "main"
+          },
+          {
+            "id": "opening-opposite-cannon-s1",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 9
+            },
+            "to": {
+              "file": 0,
+              "rank": 8
+            },
+            "notation": "3. Xe 1 tiến 1",
+            "title": "Xuất xe đúng nhịp",
+            "comment": "Xe rời hàng đáy khi lộ đã thông, giữ thế chủ động mà không vướng mã.",
+            "evaluation": "solution"
+          },
+          {
+            "id": "opening-opposite-cannon-s2",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 1
+            },
+            "notation": "... Xe 9 tiến 1",
+            "title": "Đen cũng đưa xe vào cuộc",
+            "comment": "Hai bên vào thế tranh nhịp phát triển rõ ràng.",
+            "evaluation": "main"
+          }
+        ]
+      },
+      {
+        "id": "danger",
+        "title": "Rời trục hoặc ham quân",
+        "description": "Đỏ chọn nước nhìn có vẻ tích cực nhưng làm mất nhịp phát triển.",
+        "moves": [
+          {
+            "id": "opening-opposite-cannon-m1",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 7
+            },
+            "to": {
+              "file": 4,
+              "rank": 7
+            },
+            "notation": "1. Pháo 2 bình 5",
+            "title": "Pháo Đầu chiếm trung lộ",
+            "comment": "Đỏ mở trục tấn công trực diện vào trung lộ.",
+            "evaluation": "main"
+          },
+          {
+            "id": "opening-opposite-cannon-m2",
+            "side": "black",
+            "from": {
+              "file": 7,
+              "rank": 2
+            },
+            "to": {
+              "file": 4,
+              "rank": 2
+            },
+            "notation": "... Pháo 2 bình 5",
+            "title": "Đen vào Nghịch Pháo",
+            "comment": "Đen dùng pháo bên kia nhập trung, tạo thế đối công trực diện.",
+            "evaluation": "main"
+          },
+          {
+            "id": "opening-opposite-cannon-m3",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 9
+            },
+            "to": {
+              "file": 2,
+              "rank": 7
+            },
+            "notation": "2. Mã 2 tiến 3",
+            "title": "Mã phải nhập cuộc",
+            "comment": "Đỏ mở lộ cho xe đồng thời tăng quân bảo vệ trung tuyến.",
+            "evaluation": "main"
+          },
+          {
+            "id": "opening-opposite-cannon-m4",
+            "side": "black",
+            "from": {
+              "file": 1,
+              "rank": 0
+            },
+            "to": {
+              "file": 2,
+              "rank": 2
+            },
+            "notation": "... Mã 8 tiến 7",
+            "title": "Mã trái phát triển",
+            "comment": "Đen đưa mã vào phòng thủ trung lộ sau khi đã đối pháo.",
+            "evaluation": "main"
+          },
+          {
+            "id": "opening-opposite-cannon-g1",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 7
+            },
+            "to": {
+              "file": 4,
+              "rank": 3
+            },
+            "notation": "3. Pháo 5 tiến 4?",
+            "title": "Ham ăn trung binh",
+            "comment": "Pháo ăn tốt nhưng đi quá sâu, trở thành quân bị phản kích.",
+            "evaluation": "warning"
+          },
+          {
+            "id": "opening-opposite-cannon-g2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 2
+            },
+            "to": {
+              "file": 4,
+              "rank": 6
+            },
+            "notation": "... Pháo 5 tiến 4!",
+            "title": "Phản pháo có ngòi",
+            "comment": "Đen dùng chính trục giữa để phản công qua ngòi pháo.",
+            "evaluation": "trap"
+          }
+        ]
+      }
+    ],
+    "choice": {
+      "id": "opening-opposite-cannon-choice",
+      "prompt": "Đỏ nên chọn nước nào để giữ nhịp phát triển và không tự làm yếu trung lộ?",
+      "options": [
+        {
+          "moveId": "opening-opposite-cannon-s1",
+          "label": "Xe 1 tiến 1",
+          "verdict": "correct",
+          "feedback": "Đúng. Xe nhập cuộc sau khi lộ đã thông, giữ được nhịp phát triển."
+        },
+        {
+          "moveId": "opening-opposite-cannon-g1",
+          "label": "Pháo 5 tiến 4",
+          "verdict": "danger",
+          "feedback": "Nguy hiểm. Nước này làm Đỏ mất nhịp hoặc để pháo thành mục tiêu phản công."
+        }
+      ]
+    }
+  },
+  {
+    "id": "opening-elephant-flexible",
+    "slug": "khai-cuoc-phi-tuong-linh-hoat",
+    "title": "Khai cuộc: Phi Tượng linh hoạt",
+    "summary": "Phi Tượng không thụ động nếu biết chuyển nhanh sang phản công bằng mã và xe.",
+    "category": "Cạm bẫy khai cuộc",
+    "difficulty": "Nhập môn",
+    "tags": [
+      "Phi Tượng",
+      "phản công",
+      "khung thủ",
+      "xe"
+    ],
+    "principles": [
+      "Phi Tượng cần đi kèm phát triển mã, không chỉ dựng khung thủ.",
+      "Xe ra đúng cánh giúp thế chắc chuyển thành phản công.",
+      "Ăn pháo biên khi chưa tính đường xe có thể mất tempo."
+    ],
+    "lines": [
+      {
+        "id": "main",
+        "title": "Giữ nhịp phát triển",
+        "description": "Đỏ phát triển quân nặng sau khi đã mở đường hợp lệ.",
+        "moves": [
+          {
+            "id": "opening-elephant-flexible-m1",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 7
+            },
+            "to": {
+              "file": 4,
+              "rank": 7
+            },
+            "notation": "1. Pháo 2 bình 5",
+            "title": "Pháo Đầu chiếm trung lộ",
+            "comment": "Đỏ mở trục tấn công trực diện vào trung lộ.",
+            "evaluation": "main"
+          },
+          {
+            "id": "opening-elephant-flexible-m2",
+            "side": "black",
+            "from": {
+              "file": 1,
+              "rank": 0
+            },
+            "to": {
+              "file": 2,
+              "rank": 2
+            },
+            "notation": "... Mã 8 tiến 7",
+            "title": "Bình Phong Mã",
+            "comment": "Đen phát triển mã để giữ trung binh và chuẩn bị phản công hai cánh.",
+            "evaluation": "main"
+          },
+          {
+            "id": "opening-elephant-flexible-m3",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 9
+            },
+            "to": {
+              "file": 2,
+              "rank": 7
+            },
+            "notation": "2. Mã 2 tiến 3",
+            "title": "Mã phải nhập cuộc",
+            "comment": "Đỏ mở lộ cho xe đồng thời tăng quân bảo vệ trung tuyến.",
+            "evaluation": "main"
+          },
+          {
+            "id": "opening-elephant-flexible-m4",
+            "side": "black",
+            "from": {
+              "file": 7,
+              "rank": 0
+            },
+            "to": {
+              "file": 6,
+              "rank": 2
+            },
+            "notation": "... Mã 2 tiến 3",
+            "title": "Hai mã cùng giữ trung lộ",
+            "comment": "Đen hoàn thành khung Bình Phong Mã, giảm áp lực của trung pháo.",
+            "evaluation": "main"
+          },
+          {
+            "id": "opening-elephant-flexible-s1",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 9
+            },
+            "to": {
+              "file": 0,
+              "rank": 8
+            },
+            "notation": "3. Xe 1 tiến 1",
+            "title": "Xuất xe đúng nhịp",
+            "comment": "Xe rời hàng đáy khi lộ đã thông, giữ thế chủ động mà không vướng mã.",
+            "evaluation": "solution"
+          },
+          {
+            "id": "opening-elephant-flexible-s2",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 1
+            },
+            "notation": "... Xe 9 tiến 1",
+            "title": "Đen cũng đưa xe vào cuộc",
+            "comment": "Hai bên vào thế tranh nhịp phát triển rõ ràng.",
+            "evaluation": "main"
+          }
+        ]
+      },
+      {
+        "id": "danger",
+        "title": "Rời trục hoặc ham quân",
+        "description": "Đỏ chọn nước nhìn có vẻ tích cực nhưng làm mất nhịp phát triển.",
+        "moves": [
+          {
+            "id": "opening-elephant-flexible-m1",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 7
+            },
+            "to": {
+              "file": 4,
+              "rank": 7
+            },
+            "notation": "1. Pháo 2 bình 5",
+            "title": "Pháo Đầu chiếm trung lộ",
+            "comment": "Đỏ mở trục tấn công trực diện vào trung lộ.",
+            "evaluation": "main"
+          },
+          {
+            "id": "opening-elephant-flexible-m2",
+            "side": "black",
+            "from": {
+              "file": 1,
+              "rank": 0
+            },
+            "to": {
+              "file": 2,
+              "rank": 2
+            },
+            "notation": "... Mã 8 tiến 7",
+            "title": "Bình Phong Mã",
+            "comment": "Đen phát triển mã để giữ trung binh và chuẩn bị phản công hai cánh.",
+            "evaluation": "main"
+          },
+          {
+            "id": "opening-elephant-flexible-m3",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 9
+            },
+            "to": {
+              "file": 2,
+              "rank": 7
+            },
+            "notation": "2. Mã 2 tiến 3",
+            "title": "Mã phải nhập cuộc",
+            "comment": "Đỏ mở lộ cho xe đồng thời tăng quân bảo vệ trung tuyến.",
+            "evaluation": "main"
+          },
+          {
+            "id": "opening-elephant-flexible-m4",
+            "side": "black",
+            "from": {
+              "file": 7,
+              "rank": 0
+            },
+            "to": {
+              "file": 6,
+              "rank": 2
+            },
+            "notation": "... Mã 2 tiến 3",
+            "title": "Hai mã cùng giữ trung lộ",
+            "comment": "Đen hoàn thành khung Bình Phong Mã, giảm áp lực của trung pháo.",
+            "evaluation": "main"
+          },
+          {
+            "id": "opening-elephant-flexible-g1",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 7
+            },
+            "to": {
+              "file": 5,
+              "rank": 7
+            },
+            "notation": "3. Pháo 5 bình 6?",
+            "title": "Pháo rời trục quá sớm",
+            "comment": "Đỏ rời áp lực trung lộ khi xe và mã chưa phối hợp đủ.",
+            "evaluation": "warning"
+          },
+          {
+            "id": "opening-elephant-flexible-g2",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 1
+            },
+            "notation": "... Xe 9 tiến 1",
+            "title": "Đen tranh nhịp xuất xe",
+            "comment": "Đen dùng thời gian đó để đưa xe vào cuộc và giành lại nhịp.",
+            "evaluation": "trap"
+          }
+        ]
+      }
+    ],
+    "choice": {
+      "id": "opening-elephant-flexible-choice",
+      "prompt": "Đỏ nên chọn nước nào để giữ nhịp phát triển và không tự làm yếu trung lộ?",
+      "options": [
+        {
+          "moveId": "opening-elephant-flexible-s1",
+          "label": "Xe 1 tiến 1",
+          "verdict": "correct",
+          "feedback": "Đúng. Xe nhập cuộc sau khi lộ đã thông, giữ được nhịp phát triển."
+        },
+        {
+          "moveId": "opening-elephant-flexible-g1",
+          "label": "Pháo 5 bình 6",
+          "verdict": "danger",
+          "feedback": "Nguy hiểm. Nước này làm Đỏ mất nhịp hoặc để pháo thành mục tiêu phản công."
+        }
+      ]
+    }
+  },
+  {
+    "id": "opening-pawn-flex",
+    "slug": "khai-cuoc-tien-binh-chuyen-phao",
+    "title": "Khai cuộc: Tiến Binh chuyển Pháo",
+    "summary": "Tiến Binh mở không gian, nhưng phải chuyển hóa thành phát triển quân chứ không chỉ đẩy tốt tiếp.",
+    "category": "Cạm bẫy khai cuộc",
+    "difficulty": "Nhập môn",
+    "tags": [
+      "Tiến Binh",
+      "Pháo Đầu",
+      "linh hoạt",
+      "khai cuộc"
+    ],
+    "principles": [
+      "Tiến Binh là khai cuộc linh hoạt, không phải lời mời đẩy tốt liên tục.",
+      "Sau khi mở trung lộ, cần đưa mã hoặc xe vào cuộc.",
+      "Tốt tiến quá sâu trước khi quân lớn hỗ trợ thường thành mục tiêu."
+    ],
+    "lines": [
+      {
+        "id": "main",
+        "title": "Giữ nhịp phát triển",
+        "description": "Đỏ phát triển quân nặng sau khi đã mở đường hợp lệ.",
+        "moves": [
+          {
+            "id": "opening-pawn-flex-m1",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 7
+            },
+            "to": {
+              "file": 4,
+              "rank": 7
+            },
+            "notation": "1. Pháo 2 bình 5",
+            "title": "Pháo Đầu chiếm trung lộ",
+            "comment": "Đỏ mở trục tấn công trực diện vào trung lộ.",
+            "evaluation": "main"
+          },
+          {
+            "id": "opening-pawn-flex-m2",
+            "side": "black",
+            "from": {
+              "file": 1,
+              "rank": 0
+            },
+            "to": {
+              "file": 2,
+              "rank": 2
+            },
+            "notation": "... Mã 8 tiến 7",
+            "title": "Bình Phong Mã",
+            "comment": "Đen phát triển mã để giữ trung binh và chuẩn bị phản công hai cánh.",
+            "evaluation": "main"
+          },
+          {
+            "id": "opening-pawn-flex-m3",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 9
+            },
+            "to": {
+              "file": 2,
+              "rank": 7
+            },
+            "notation": "2. Mã 2 tiến 3",
+            "title": "Mã phải nhập cuộc",
+            "comment": "Đỏ mở lộ cho xe đồng thời tăng quân bảo vệ trung tuyến.",
+            "evaluation": "main"
+          },
+          {
+            "id": "opening-pawn-flex-m4",
+            "side": "black",
+            "from": {
+              "file": 7,
+              "rank": 0
+            },
+            "to": {
+              "file": 6,
+              "rank": 2
+            },
+            "notation": "... Mã 2 tiến 3",
+            "title": "Hai mã cùng giữ trung lộ",
+            "comment": "Đen hoàn thành khung Bình Phong Mã, giảm áp lực của trung pháo.",
+            "evaluation": "main"
+          },
+          {
+            "id": "opening-pawn-flex-s1",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 9
+            },
+            "to": {
+              "file": 0,
+              "rank": 8
+            },
+            "notation": "3. Xe 1 tiến 1",
+            "title": "Xuất xe đúng nhịp",
+            "comment": "Xe rời hàng đáy khi lộ đã thông, giữ thế chủ động mà không vướng mã.",
+            "evaluation": "solution"
+          },
+          {
+            "id": "opening-pawn-flex-s2",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 1
+            },
+            "notation": "... Xe 9 tiến 1",
+            "title": "Đen cũng đưa xe vào cuộc",
+            "comment": "Hai bên vào thế tranh nhịp phát triển rõ ràng.",
+            "evaluation": "main"
+          }
+        ]
+      },
+      {
+        "id": "danger",
+        "title": "Rời trục hoặc ham quân",
+        "description": "Đỏ chọn nước nhìn có vẻ tích cực nhưng làm mất nhịp phát triển.",
+        "moves": [
+          {
+            "id": "opening-pawn-flex-m1",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 7
+            },
+            "to": {
+              "file": 4,
+              "rank": 7
+            },
+            "notation": "1. Pháo 2 bình 5",
+            "title": "Pháo Đầu chiếm trung lộ",
+            "comment": "Đỏ mở trục tấn công trực diện vào trung lộ.",
+            "evaluation": "main"
+          },
+          {
+            "id": "opening-pawn-flex-m2",
+            "side": "black",
+            "from": {
+              "file": 1,
+              "rank": 0
+            },
+            "to": {
+              "file": 2,
+              "rank": 2
+            },
+            "notation": "... Mã 8 tiến 7",
+            "title": "Bình Phong Mã",
+            "comment": "Đen phát triển mã để giữ trung binh và chuẩn bị phản công hai cánh.",
+            "evaluation": "main"
+          },
+          {
+            "id": "opening-pawn-flex-m3",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 9
+            },
+            "to": {
+              "file": 2,
+              "rank": 7
+            },
+            "notation": "2. Mã 2 tiến 3",
+            "title": "Mã phải nhập cuộc",
+            "comment": "Đỏ mở lộ cho xe đồng thời tăng quân bảo vệ trung tuyến.",
+            "evaluation": "main"
+          },
+          {
+            "id": "opening-pawn-flex-m4",
+            "side": "black",
+            "from": {
+              "file": 7,
+              "rank": 0
+            },
+            "to": {
+              "file": 6,
+              "rank": 2
+            },
+            "notation": "... Mã 2 tiến 3",
+            "title": "Hai mã cùng giữ trung lộ",
+            "comment": "Đen hoàn thành khung Bình Phong Mã, giảm áp lực của trung pháo.",
+            "evaluation": "main"
+          },
+          {
+            "id": "opening-pawn-flex-g1",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 7
+            },
+            "to": {
+              "file": 5,
+              "rank": 7
+            },
+            "notation": "3. Pháo 5 bình 6?",
+            "title": "Pháo rời trục quá sớm",
+            "comment": "Đỏ rời áp lực trung lộ khi xe và mã chưa phối hợp đủ.",
+            "evaluation": "warning"
+          },
+          {
+            "id": "opening-pawn-flex-g2",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 1
+            },
+            "notation": "... Xe 9 tiến 1",
+            "title": "Đen tranh nhịp xuất xe",
+            "comment": "Đen dùng thời gian đó để đưa xe vào cuộc và giành lại nhịp.",
+            "evaluation": "trap"
+          }
+        ]
+      }
+    ],
+    "choice": {
+      "id": "opening-pawn-flex-choice",
+      "prompt": "Đỏ nên chọn nước nào để giữ nhịp phát triển và không tự làm yếu trung lộ?",
+      "options": [
+        {
+          "moveId": "opening-pawn-flex-s1",
+          "label": "Xe 1 tiến 1",
+          "verdict": "correct",
+          "feedback": "Đúng. Xe nhập cuộc sau khi lộ đã thông, giữ được nhịp phát triển."
+        },
+        {
+          "moveId": "opening-pawn-flex-g1",
+          "label": "Pháo 5 bình 6",
+          "verdict": "danger",
+          "feedback": "Nguy hiểm. Nước này làm Đỏ mất nhịp hoặc để pháo thành mục tiêu phản công."
+        }
+      ]
+    }
+  },
+  {
+    "id": "middlegame-discovered-attack",
+    "slug": "trung-cuoc-don-mo-song-cong",
+    "title": "Trung cuộc: đòn mở song công",
+    "summary": "Đòn mở là cách di chuyển quân che đường để tạo hai mối đe dọa cùng lúc.",
+    "category": "Trung cuộc",
+    "difficulty": "Cơ bản",
+    "tags": [
+      "trung cuộc",
+      "đòn mở",
+      "song công",
+      "pháo mã"
+    ],
+    "principles": [
+      "Đòn mở mạnh khi quân rời đi vừa tấn công, vừa mở đường cho quân sau.",
+      "Cần nhìn cả quân đi và đường tuyến được mở ra.",
+      "Nếu chỉ ăn quân trước mắt, rất dễ bỏ lỡ song công."
+    ],
+    "lines": [
+      {
+        "id": "main",
+        "title": "Tăng áp lực đúng hướng",
+        "description": "Đỏ chuyển xe sang lộ giữa để phối hợp cùng binh và pháo.",
+        "moves": [
+          {
+            "id": "middlegame-discovered-attack-m1",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 9
+            },
+            "to": {
+              "file": 0,
+              "rank": 8
+            },
+            "notation": "1. Xe 1 tiến 1",
+            "title": "Xe vào hàng áp lực",
+            "comment": "Đỏ đưa xe lên để chuẩn bị chuyển ngang sang lộ mở.",
+            "evaluation": "main"
+          },
+          {
+            "id": "middlegame-discovered-attack-m2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 2
+            },
+            "to": {
+              "file": 5,
+              "rank": 2
+            },
+            "notation": "... Pháo 5 bình 6",
+            "title": "Đen né trục pháo",
+            "comment": "Đen chuyển pháo sang bên để giảm sức ép trực diện.",
+            "evaluation": "main"
+          },
+          {
+            "id": "middlegame-discovered-attack-m3",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 6
+            },
+            "to": {
+              "file": 4,
+              "rank": 5
+            },
+            "notation": "2. Binh 5 tiến 1",
+            "title": "Binh giữ trung lộ",
+            "comment": "Binh tiến tạo điểm tựa cho xe và pháo phối hợp.",
+            "evaluation": "main"
+          },
+          {
+            "id": "middlegame-discovered-attack-m4",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 3
+            },
+            "to": {
+              "file": 4,
+              "rank": 4
+            },
+            "notation": "... Tốt 5 tiến 1",
+            "title": "Đen phản kích trung lộ",
+            "comment": "Đen dùng tốt cản nhịp tiến của Đỏ.",
+            "evaluation": "main"
+          },
+          {
+            "id": "middlegame-discovered-attack-s1",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 8
+            },
+            "to": {
+              "file": 4,
+              "rank": 8
+            },
+            "notation": "3. Xe 1 bình 5",
+            "title": "Xe nhập trung lộ",
+            "comment": "Xe chuyển ngang vào lộ mở, tăng sức ép lên quân phòng thủ.",
+            "evaluation": "solution"
+          },
+          {
+            "id": "middlegame-discovered-attack-s2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 0
+            },
+            "to": {
+              "file": 4,
+              "rank": 1
+            },
+            "notation": "... Tướng 5 tiến 1",
+            "title": "Đen phải nhường một nhịp",
+            "comment": "Tướng phải tiến lên, cho thấy áp lực của Đỏ đã có hiệu quả.",
+            "evaluation": "main"
+          }
+        ]
+      },
+      {
+        "id": "danger",
+        "title": "Tấn quân thiếu phối hợp",
+        "description": "Đỏ đi mã trước khi xe chiếm lộ, để áp lực bị loãng.",
+        "moves": [
+          {
+            "id": "middlegame-discovered-attack-m1",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 9
+            },
+            "to": {
+              "file": 0,
+              "rank": 8
+            },
+            "notation": "1. Xe 1 tiến 1",
+            "title": "Xe vào hàng áp lực",
+            "comment": "Đỏ đưa xe lên để chuẩn bị chuyển ngang sang lộ mở.",
+            "evaluation": "main"
+          },
+          {
+            "id": "middlegame-discovered-attack-m2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 2
+            },
+            "to": {
+              "file": 5,
+              "rank": 2
+            },
+            "notation": "... Pháo 5 bình 6",
+            "title": "Đen né trục pháo",
+            "comment": "Đen chuyển pháo sang bên để giảm sức ép trực diện.",
+            "evaluation": "main"
+          },
+          {
+            "id": "middlegame-discovered-attack-m3",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 6
+            },
+            "to": {
+              "file": 4,
+              "rank": 5
+            },
+            "notation": "2. Binh 5 tiến 1",
+            "title": "Binh giữ trung lộ",
+            "comment": "Binh tiến tạo điểm tựa cho xe và pháo phối hợp.",
+            "evaluation": "main"
+          },
+          {
+            "id": "middlegame-discovered-attack-m4",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 3
+            },
+            "to": {
+              "file": 4,
+              "rank": 4
+            },
+            "notation": "... Tốt 5 tiến 1",
+            "title": "Đen phản kích trung lộ",
+            "comment": "Đen dùng tốt cản nhịp tiến của Đỏ.",
+            "evaluation": "main"
+          },
+          {
+            "id": "middlegame-discovered-attack-g1",
+            "side": "red",
+            "from": {
+              "file": 6,
+              "rank": 7
+            },
+            "to": {
+              "file": 5,
+              "rank": 5
+            },
+            "notation": "3. Mã 3 tiến 5?",
+            "title": "Mã đi trước xe",
+            "comment": "Mã tiến nhìn chủ động nhưng chưa tạo sức ép trực tiếp lên lộ mở.",
+            "evaluation": "warning"
+          },
+          {
+            "id": "middlegame-discovered-attack-g2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 0
+            },
+            "to": {
+              "file": 4,
+              "rank": 1
+            },
+            "notation": "... Tướng 5 tiến 1",
+            "title": "Đen chỉnh hình kịp thời",
+            "comment": "Đen có thời gian dịch tướng và giảm nhịp công của Đỏ.",
+            "evaluation": "trap"
+          }
+        ]
+      }
+    ],
+    "choice": {
+      "id": "middlegame-discovered-attack-choice",
+      "prompt": "Trong thế đang tranh trung lộ, Đỏ nên ưu tiên nước nào để giữ áp lực?",
+      "options": [
+        {
+          "moveId": "middlegame-discovered-attack-s1",
+          "label": "Xe 1 bình 5",
+          "verdict": "correct",
+          "feedback": "Đúng. Xe vào lộ mở tạo áp lực trực tiếp và phối hợp được với binh/pháo."
+        },
+        {
+          "moveId": "middlegame-discovered-attack-g1",
+          "label": "Mã 3 tiến 5",
+          "verdict": "danger",
+          "feedback": "Hơi vội. Mã đi trước xe làm thế ép bị loãng và Đen có nhịp chỉnh hình."
+        }
+      ]
+    },
+    "initialFen": "4k4/9/4c4/4p4/9/9/4P4/4C1N2/9/R3K4 w - - 0 1"
+  },
+  {
+    "id": "middlegame-pin-file",
+    "slug": "trung-cuoc-ghim-truc-tuong",
+    "title": "Trung cuộc: ghim trên trục tướng",
+    "summary": "Khi quân phòng thủ đứng cùng trục với tướng, đòn ghim khiến đối phương khó đổi quân tự do.",
+    "category": "Trung cuộc",
+    "difficulty": "Trung cấp",
+    "tags": [
+      "ghim",
+      "trục tướng",
+      "pháo",
+      "xe"
+    ],
+    "principles": [
+      "Ghim mạnh nhất khi quân bị ghim che trực tiếp cung tướng.",
+      "Tăng quân vào quân bị ghim thường tốt hơn đổi ngay.",
+      "Nếu đổi sớm, đối phương được giải phóng phòng tuyến."
+    ],
+    "lines": [
+      {
+        "id": "main",
+        "title": "Tăng áp lực đúng hướng",
+        "description": "Đỏ chuyển xe sang lộ giữa để phối hợp cùng binh và pháo.",
+        "moves": [
+          {
+            "id": "middlegame-pin-file-m1",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 9
+            },
+            "to": {
+              "file": 0,
+              "rank": 8
+            },
+            "notation": "1. Xe 1 tiến 1",
+            "title": "Xe vào hàng áp lực",
+            "comment": "Đỏ đưa xe lên để chuẩn bị chuyển ngang sang lộ mở.",
+            "evaluation": "main"
+          },
+          {
+            "id": "middlegame-pin-file-m2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 2
+            },
+            "to": {
+              "file": 5,
+              "rank": 2
+            },
+            "notation": "... Pháo 5 bình 6",
+            "title": "Đen né trục pháo",
+            "comment": "Đen chuyển pháo sang bên để giảm sức ép trực diện.",
+            "evaluation": "main"
+          },
+          {
+            "id": "middlegame-pin-file-m3",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 6
+            },
+            "to": {
+              "file": 4,
+              "rank": 5
+            },
+            "notation": "2. Binh 5 tiến 1",
+            "title": "Binh giữ trung lộ",
+            "comment": "Binh tiến tạo điểm tựa cho xe và pháo phối hợp.",
+            "evaluation": "main"
+          },
+          {
+            "id": "middlegame-pin-file-m4",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 3
+            },
+            "to": {
+              "file": 4,
+              "rank": 4
+            },
+            "notation": "... Tốt 5 tiến 1",
+            "title": "Đen phản kích trung lộ",
+            "comment": "Đen dùng tốt cản nhịp tiến của Đỏ.",
+            "evaluation": "main"
+          },
+          {
+            "id": "middlegame-pin-file-s1",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 8
+            },
+            "to": {
+              "file": 4,
+              "rank": 8
+            },
+            "notation": "3. Xe 1 bình 5",
+            "title": "Xe nhập trung lộ",
+            "comment": "Xe chuyển ngang vào lộ mở, tăng sức ép lên quân phòng thủ.",
+            "evaluation": "solution"
+          },
+          {
+            "id": "middlegame-pin-file-s2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 0
+            },
+            "to": {
+              "file": 4,
+              "rank": 1
+            },
+            "notation": "... Tướng 5 tiến 1",
+            "title": "Đen phải nhường một nhịp",
+            "comment": "Tướng phải tiến lên, cho thấy áp lực của Đỏ đã có hiệu quả.",
+            "evaluation": "main"
+          }
+        ]
+      },
+      {
+        "id": "danger",
+        "title": "Tấn quân thiếu phối hợp",
+        "description": "Đỏ đi mã trước khi xe chiếm lộ, để áp lực bị loãng.",
+        "moves": [
+          {
+            "id": "middlegame-pin-file-m1",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 9
+            },
+            "to": {
+              "file": 0,
+              "rank": 8
+            },
+            "notation": "1. Xe 1 tiến 1",
+            "title": "Xe vào hàng áp lực",
+            "comment": "Đỏ đưa xe lên để chuẩn bị chuyển ngang sang lộ mở.",
+            "evaluation": "main"
+          },
+          {
+            "id": "middlegame-pin-file-m2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 2
+            },
+            "to": {
+              "file": 5,
+              "rank": 2
+            },
+            "notation": "... Pháo 5 bình 6",
+            "title": "Đen né trục pháo",
+            "comment": "Đen chuyển pháo sang bên để giảm sức ép trực diện.",
+            "evaluation": "main"
+          },
+          {
+            "id": "middlegame-pin-file-m3",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 6
+            },
+            "to": {
+              "file": 4,
+              "rank": 5
+            },
+            "notation": "2. Binh 5 tiến 1",
+            "title": "Binh giữ trung lộ",
+            "comment": "Binh tiến tạo điểm tựa cho xe và pháo phối hợp.",
+            "evaluation": "main"
+          },
+          {
+            "id": "middlegame-pin-file-m4",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 3
+            },
+            "to": {
+              "file": 4,
+              "rank": 4
+            },
+            "notation": "... Tốt 5 tiến 1",
+            "title": "Đen phản kích trung lộ",
+            "comment": "Đen dùng tốt cản nhịp tiến của Đỏ.",
+            "evaluation": "main"
+          },
+          {
+            "id": "middlegame-pin-file-g1",
+            "side": "red",
+            "from": {
+              "file": 6,
+              "rank": 7
+            },
+            "to": {
+              "file": 5,
+              "rank": 5
+            },
+            "notation": "3. Mã 3 tiến 5?",
+            "title": "Mã đi trước xe",
+            "comment": "Mã tiến nhìn chủ động nhưng chưa tạo sức ép trực tiếp lên lộ mở.",
+            "evaluation": "warning"
+          },
+          {
+            "id": "middlegame-pin-file-g2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 0
+            },
+            "to": {
+              "file": 4,
+              "rank": 1
+            },
+            "notation": "... Tướng 5 tiến 1",
+            "title": "Đen chỉnh hình kịp thời",
+            "comment": "Đen có thời gian dịch tướng và giảm nhịp công của Đỏ.",
+            "evaluation": "trap"
+          }
+        ]
+      }
+    ],
+    "choice": {
+      "id": "middlegame-pin-file-choice",
+      "prompt": "Trong thế đang tranh trung lộ, Đỏ nên ưu tiên nước nào để giữ áp lực?",
+      "options": [
+        {
+          "moveId": "middlegame-pin-file-s1",
+          "label": "Xe 1 bình 5",
+          "verdict": "correct",
+          "feedback": "Đúng. Xe vào lộ mở tạo áp lực trực tiếp và phối hợp được với binh/pháo."
+        },
+        {
+          "moveId": "middlegame-pin-file-g1",
+          "label": "Mã 3 tiến 5",
+          "verdict": "danger",
+          "feedback": "Hơi vội. Mã đi trước xe làm thế ép bị loãng và Đen có nhịp chỉnh hình."
+        }
+      ]
+    },
+    "initialFen": "4k4/9/4c4/4p4/9/9/4P4/4C1N2/9/R3K4 w - - 0 1"
+  },
+  {
+    "id": "middlegame-open-file",
+    "slug": "trung-cuoc-mo-lo-cho-xe",
+    "title": "Trung cuộc: mở lộ cho xe",
+    "summary": "Xe mạnh khi có lộ thông. Một nước mở đường đúng lúc thường hơn một nước ăn quân nhỏ.",
+    "category": "Trung cuộc",
+    "difficulty": "Cơ bản",
+    "tags": [
+      "xe",
+      "mở lộ",
+      "trung cuộc",
+      "tempo"
+    ],
+    "principles": [
+      "Xe cần đường mở, không chỉ cần vị trí xuất phát tốt.",
+      "Dọn đường cho xe thường là đầu tư tempo có lãi.",
+      "Tốt đi quá sâu có thể chặn chính quân mình."
+    ],
+    "lines": [
+      {
+        "id": "main",
+        "title": "Tăng áp lực đúng hướng",
+        "description": "Đỏ chuyển xe sang lộ giữa để phối hợp cùng binh và pháo.",
+        "moves": [
+          {
+            "id": "middlegame-open-file-m1",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 9
+            },
+            "to": {
+              "file": 0,
+              "rank": 8
+            },
+            "notation": "1. Xe 1 tiến 1",
+            "title": "Xe vào hàng áp lực",
+            "comment": "Đỏ đưa xe lên để chuẩn bị chuyển ngang sang lộ mở.",
+            "evaluation": "main"
+          },
+          {
+            "id": "middlegame-open-file-m2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 2
+            },
+            "to": {
+              "file": 5,
+              "rank": 2
+            },
+            "notation": "... Pháo 5 bình 6",
+            "title": "Đen né trục pháo",
+            "comment": "Đen chuyển pháo sang bên để giảm sức ép trực diện.",
+            "evaluation": "main"
+          },
+          {
+            "id": "middlegame-open-file-m3",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 6
+            },
+            "to": {
+              "file": 4,
+              "rank": 5
+            },
+            "notation": "2. Binh 5 tiến 1",
+            "title": "Binh giữ trung lộ",
+            "comment": "Binh tiến tạo điểm tựa cho xe và pháo phối hợp.",
+            "evaluation": "main"
+          },
+          {
+            "id": "middlegame-open-file-m4",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 3
+            },
+            "to": {
+              "file": 4,
+              "rank": 4
+            },
+            "notation": "... Tốt 5 tiến 1",
+            "title": "Đen phản kích trung lộ",
+            "comment": "Đen dùng tốt cản nhịp tiến của Đỏ.",
+            "evaluation": "main"
+          },
+          {
+            "id": "middlegame-open-file-s1",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 8
+            },
+            "to": {
+              "file": 4,
+              "rank": 8
+            },
+            "notation": "3. Xe 1 bình 5",
+            "title": "Xe nhập trung lộ",
+            "comment": "Xe chuyển ngang vào lộ mở, tăng sức ép lên quân phòng thủ.",
+            "evaluation": "solution"
+          },
+          {
+            "id": "middlegame-open-file-s2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 0
+            },
+            "to": {
+              "file": 4,
+              "rank": 1
+            },
+            "notation": "... Tướng 5 tiến 1",
+            "title": "Đen phải nhường một nhịp",
+            "comment": "Tướng phải tiến lên, cho thấy áp lực của Đỏ đã có hiệu quả.",
+            "evaluation": "main"
+          }
+        ]
+      },
+      {
+        "id": "danger",
+        "title": "Tấn quân thiếu phối hợp",
+        "description": "Đỏ đi mã trước khi xe chiếm lộ, để áp lực bị loãng.",
+        "moves": [
+          {
+            "id": "middlegame-open-file-m1",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 9
+            },
+            "to": {
+              "file": 0,
+              "rank": 8
+            },
+            "notation": "1. Xe 1 tiến 1",
+            "title": "Xe vào hàng áp lực",
+            "comment": "Đỏ đưa xe lên để chuẩn bị chuyển ngang sang lộ mở.",
+            "evaluation": "main"
+          },
+          {
+            "id": "middlegame-open-file-m2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 2
+            },
+            "to": {
+              "file": 5,
+              "rank": 2
+            },
+            "notation": "... Pháo 5 bình 6",
+            "title": "Đen né trục pháo",
+            "comment": "Đen chuyển pháo sang bên để giảm sức ép trực diện.",
+            "evaluation": "main"
+          },
+          {
+            "id": "middlegame-open-file-m3",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 6
+            },
+            "to": {
+              "file": 4,
+              "rank": 5
+            },
+            "notation": "2. Binh 5 tiến 1",
+            "title": "Binh giữ trung lộ",
+            "comment": "Binh tiến tạo điểm tựa cho xe và pháo phối hợp.",
+            "evaluation": "main"
+          },
+          {
+            "id": "middlegame-open-file-m4",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 3
+            },
+            "to": {
+              "file": 4,
+              "rank": 4
+            },
+            "notation": "... Tốt 5 tiến 1",
+            "title": "Đen phản kích trung lộ",
+            "comment": "Đen dùng tốt cản nhịp tiến của Đỏ.",
+            "evaluation": "main"
+          },
+          {
+            "id": "middlegame-open-file-g1",
+            "side": "red",
+            "from": {
+              "file": 6,
+              "rank": 7
+            },
+            "to": {
+              "file": 5,
+              "rank": 5
+            },
+            "notation": "3. Mã 3 tiến 5?",
+            "title": "Mã đi trước xe",
+            "comment": "Mã tiến nhìn chủ động nhưng chưa tạo sức ép trực tiếp lên lộ mở.",
+            "evaluation": "warning"
+          },
+          {
+            "id": "middlegame-open-file-g2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 0
+            },
+            "to": {
+              "file": 4,
+              "rank": 1
+            },
+            "notation": "... Tướng 5 tiến 1",
+            "title": "Đen chỉnh hình kịp thời",
+            "comment": "Đen có thời gian dịch tướng và giảm nhịp công của Đỏ.",
+            "evaluation": "trap"
+          }
+        ]
+      }
+    ],
+    "choice": {
+      "id": "middlegame-open-file-choice",
+      "prompt": "Trong thế đang tranh trung lộ, Đỏ nên ưu tiên nước nào để giữ áp lực?",
+      "options": [
+        {
+          "moveId": "middlegame-open-file-s1",
+          "label": "Xe 1 bình 5",
+          "verdict": "correct",
+          "feedback": "Đúng. Xe vào lộ mở tạo áp lực trực tiếp và phối hợp được với binh/pháo."
+        },
+        {
+          "moveId": "middlegame-open-file-g1",
+          "label": "Mã 3 tiến 5",
+          "verdict": "danger",
+          "feedback": "Hơi vội. Mã đi trước xe làm thế ép bị loãng và Đen có nhịp chỉnh hình."
+        }
+      ]
+    },
+    "initialFen": "4k4/9/4c4/4p4/9/9/4P4/4C1N2/9/R3K4 w - - 0 1"
+  },
+  {
+    "id": "middlegame-cannon-horse-net",
+    "slug": "trung-cuoc-luoi-phao-ma",
+    "title": "Trung cuộc: lưới Pháo Mã",
+    "summary": "Pháo tạo trục, mã tạo điểm nhảy. Khi phối hợp đúng, đối phương rất khó chống cả hai.",
+    "category": "Trung cuộc",
+    "difficulty": "Trung cấp",
+    "tags": [
+      "pháo mã",
+      "phối hợp",
+      "trung cuộc",
+      "song công"
+    ],
+    "principles": [
+      "Pháo và mã phối hợp tốt vì một quân đánh tuyến, một quân đánh điểm.",
+      "Mã nhảy vào điểm trung tâm thường mở thêm đe dọa cho pháo.",
+      "Nếu pháo đi trước quá sâu, mã mất điểm phối hợp."
+    ],
+    "lines": [
+      {
+        "id": "main",
+        "title": "Tăng áp lực đúng hướng",
+        "description": "Đỏ chuyển xe sang lộ giữa để phối hợp cùng binh và pháo.",
+        "moves": [
+          {
+            "id": "middlegame-cannon-horse-net-m1",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 9
+            },
+            "to": {
+              "file": 0,
+              "rank": 8
+            },
+            "notation": "1. Xe 1 tiến 1",
+            "title": "Xe vào hàng áp lực",
+            "comment": "Đỏ đưa xe lên để chuẩn bị chuyển ngang sang lộ mở.",
+            "evaluation": "main"
+          },
+          {
+            "id": "middlegame-cannon-horse-net-m2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 2
+            },
+            "to": {
+              "file": 5,
+              "rank": 2
+            },
+            "notation": "... Pháo 5 bình 6",
+            "title": "Đen né trục pháo",
+            "comment": "Đen chuyển pháo sang bên để giảm sức ép trực diện.",
+            "evaluation": "main"
+          },
+          {
+            "id": "middlegame-cannon-horse-net-m3",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 6
+            },
+            "to": {
+              "file": 4,
+              "rank": 5
+            },
+            "notation": "2. Binh 5 tiến 1",
+            "title": "Binh giữ trung lộ",
+            "comment": "Binh tiến tạo điểm tựa cho xe và pháo phối hợp.",
+            "evaluation": "main"
+          },
+          {
+            "id": "middlegame-cannon-horse-net-m4",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 3
+            },
+            "to": {
+              "file": 4,
+              "rank": 4
+            },
+            "notation": "... Tốt 5 tiến 1",
+            "title": "Đen phản kích trung lộ",
+            "comment": "Đen dùng tốt cản nhịp tiến của Đỏ.",
+            "evaluation": "main"
+          },
+          {
+            "id": "middlegame-cannon-horse-net-s1",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 8
+            },
+            "to": {
+              "file": 4,
+              "rank": 8
+            },
+            "notation": "3. Xe 1 bình 5",
+            "title": "Xe nhập trung lộ",
+            "comment": "Xe chuyển ngang vào lộ mở, tăng sức ép lên quân phòng thủ.",
+            "evaluation": "solution"
+          },
+          {
+            "id": "middlegame-cannon-horse-net-s2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 0
+            },
+            "to": {
+              "file": 4,
+              "rank": 1
+            },
+            "notation": "... Tướng 5 tiến 1",
+            "title": "Đen phải nhường một nhịp",
+            "comment": "Tướng phải tiến lên, cho thấy áp lực của Đỏ đã có hiệu quả.",
+            "evaluation": "main"
+          }
+        ]
+      },
+      {
+        "id": "danger",
+        "title": "Tấn quân thiếu phối hợp",
+        "description": "Đỏ đi mã trước khi xe chiếm lộ, để áp lực bị loãng.",
+        "moves": [
+          {
+            "id": "middlegame-cannon-horse-net-m1",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 9
+            },
+            "to": {
+              "file": 0,
+              "rank": 8
+            },
+            "notation": "1. Xe 1 tiến 1",
+            "title": "Xe vào hàng áp lực",
+            "comment": "Đỏ đưa xe lên để chuẩn bị chuyển ngang sang lộ mở.",
+            "evaluation": "main"
+          },
+          {
+            "id": "middlegame-cannon-horse-net-m2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 2
+            },
+            "to": {
+              "file": 5,
+              "rank": 2
+            },
+            "notation": "... Pháo 5 bình 6",
+            "title": "Đen né trục pháo",
+            "comment": "Đen chuyển pháo sang bên để giảm sức ép trực diện.",
+            "evaluation": "main"
+          },
+          {
+            "id": "middlegame-cannon-horse-net-m3",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 6
+            },
+            "to": {
+              "file": 4,
+              "rank": 5
+            },
+            "notation": "2. Binh 5 tiến 1",
+            "title": "Binh giữ trung lộ",
+            "comment": "Binh tiến tạo điểm tựa cho xe và pháo phối hợp.",
+            "evaluation": "main"
+          },
+          {
+            "id": "middlegame-cannon-horse-net-m4",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 3
+            },
+            "to": {
+              "file": 4,
+              "rank": 4
+            },
+            "notation": "... Tốt 5 tiến 1",
+            "title": "Đen phản kích trung lộ",
+            "comment": "Đen dùng tốt cản nhịp tiến của Đỏ.",
+            "evaluation": "main"
+          },
+          {
+            "id": "middlegame-cannon-horse-net-g1",
+            "side": "red",
+            "from": {
+              "file": 6,
+              "rank": 7
+            },
+            "to": {
+              "file": 5,
+              "rank": 5
+            },
+            "notation": "3. Mã 3 tiến 5?",
+            "title": "Mã đi trước xe",
+            "comment": "Mã tiến nhìn chủ động nhưng chưa tạo sức ép trực tiếp lên lộ mở.",
+            "evaluation": "warning"
+          },
+          {
+            "id": "middlegame-cannon-horse-net-g2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 0
+            },
+            "to": {
+              "file": 4,
+              "rank": 1
+            },
+            "notation": "... Tướng 5 tiến 1",
+            "title": "Đen chỉnh hình kịp thời",
+            "comment": "Đen có thời gian dịch tướng và giảm nhịp công của Đỏ.",
+            "evaluation": "trap"
+          }
+        ]
+      }
+    ],
+    "choice": {
+      "id": "middlegame-cannon-horse-net-choice",
+      "prompt": "Trong thế đang tranh trung lộ, Đỏ nên ưu tiên nước nào để giữ áp lực?",
+      "options": [
+        {
+          "moveId": "middlegame-cannon-horse-net-s1",
+          "label": "Xe 1 bình 5",
+          "verdict": "correct",
+          "feedback": "Đúng. Xe vào lộ mở tạo áp lực trực tiếp và phối hợp được với binh/pháo."
+        },
+        {
+          "moveId": "middlegame-cannon-horse-net-g1",
+          "label": "Mã 3 tiến 5",
+          "verdict": "danger",
+          "feedback": "Hơi vội. Mã đi trước xe làm thế ép bị loãng và Đen có nhịp chỉnh hình."
+        }
+      ]
+    },
+    "initialFen": "4k4/9/4c4/4p4/9/9/4P4/4C1N2/9/R3K4 w - - 0 1"
+  },
+  {
+    "id": "mate-double-cannon",
+    "slug": "the-sat-song-phao-ap-cung",
+    "title": "Thế sát: song pháo áp cung",
+    "summary": "Song pháo là một mẫu sát nền tảng: một pháo làm ngòi, pháo sau tạo đòn chiếu trực tiếp.",
+    "category": "Thế sát",
+    "difficulty": "Cơ bản",
+    "tags": [
+      "song pháo",
+      "thế sát",
+      "ngòi pháo",
+      "cung tướng"
+    ],
+    "principles": [
+      "Song pháo cần giữ đúng khoảng cách ngòi và quân chiếu.",
+      "Không nên đổi pháo trước khi hoàn tất trục sát.",
+      "Quân phòng thủ của đối phương đôi khi chính là ngòi cho pháo."
+    ],
+    "lines": [
+      {
+        "id": "main",
+        "title": "Ra đòn ngay",
+        "description": "Đỏ dùng sĩ ở giữa làm ngòi pháo để đánh thẳng cung tướng.",
+        "moves": [
+          {
+            "id": "mate-double-cannon-m1",
+            "side": "red",
+            "from": {
+              "file": 6,
+              "rank": 7
+            },
+            "to": {
+              "file": 5,
+              "rank": 5
+            },
+            "notation": "1. Mã 7 tiến 6",
+            "title": "Mã ép cánh cung",
+            "comment": "Mã tiến để giữ quân phòng thủ của Đen trong thế bị động.",
+            "evaluation": "main"
+          },
+          {
+            "id": "mate-double-cannon-m2",
+            "side": "black",
+            "from": {
+              "file": 5,
+              "rank": 0
+            },
+            "to": {
+              "file": 4,
+              "rank": 1
+            },
+            "notation": "... Sĩ 6 tiến 5",
+            "title": "Sĩ vào giữa",
+            "comment": "Nước thủ này vô tình tạo đúng ngòi cho pháo trung lộ.",
+            "evaluation": "main"
+          },
+          {
+            "id": "mate-double-cannon-s1",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 7
+            },
+            "to": {
+              "file": 4,
+              "rank": 0
+            },
+            "notation": "2. Pháo 5 tiến 7!",
+            "title": "Pháo nhập cung",
+            "comment": "Pháo nhảy qua đúng một ngòi và đánh trực tiếp vào tướng.",
+            "evaluation": "solution"
+          },
+          {
+            "id": "mate-double-cannon-s2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 1
+            },
+            "to": {
+              "file": 5,
+              "rank": 0
+            },
+            "notation": "... Sĩ 5 thoái 6",
+            "title": "Đen vá cung muộn",
+            "comment": "Sau khi đòn sát xuất hiện, Đen chỉ còn phản ứng bị động.",
+            "evaluation": "main"
+          }
+        ]
+      },
+      {
+        "id": "danger",
+        "title": "Chậm một nhịp",
+        "description": "Đỏ tấn mã thêm nhưng bỏ qua thời điểm pháo đang có ngòi.",
+        "moves": [
+          {
+            "id": "mate-double-cannon-m1",
+            "side": "red",
+            "from": {
+              "file": 6,
+              "rank": 7
+            },
+            "to": {
+              "file": 5,
+              "rank": 5
+            },
+            "notation": "1. Mã 7 tiến 6",
+            "title": "Mã ép cánh cung",
+            "comment": "Mã tiến để giữ quân phòng thủ của Đen trong thế bị động.",
+            "evaluation": "main"
+          },
+          {
+            "id": "mate-double-cannon-m2",
+            "side": "black",
+            "from": {
+              "file": 5,
+              "rank": 0
+            },
+            "to": {
+              "file": 4,
+              "rank": 1
+            },
+            "notation": "... Sĩ 6 tiến 5",
+            "title": "Sĩ vào giữa",
+            "comment": "Nước thủ này vô tình tạo đúng ngòi cho pháo trung lộ.",
+            "evaluation": "main"
+          },
+          {
+            "id": "mate-double-cannon-g1",
+            "side": "red",
+            "from": {
+              "file": 5,
+              "rank": 5
+            },
+            "to": {
+              "file": 4,
+              "rank": 3
+            },
+            "notation": "2. Mã 6 tiến 5?",
+            "title": "Bỏ lỡ đòn pháo",
+            "comment": "Mã tiến thêm không sắc bằng đòn pháo trực tiếp khi ngòi đã có.",
+            "evaluation": "warning"
+          },
+          {
+            "id": "mate-double-cannon-g2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 1
+            },
+            "to": {
+              "file": 5,
+              "rank": 0
+            },
+            "notation": "... Sĩ 5 thoái 6",
+            "title": "Đen tháo ngòi",
+            "comment": "Đen kịp rút sĩ khỏi trục giữa, làm đòn pháo mất lực.",
+            "evaluation": "trap"
+          }
+        ]
+      }
+    ],
+    "choice": {
+      "id": "mate-double-cannon-choice",
+      "prompt": "Khi Đen vừa đưa sĩ vào trục giữa, Đỏ nên tận dụng ngay bằng nước nào?",
+      "options": [
+        {
+          "moveId": "mate-double-cannon-s1",
+          "label": "Pháo 5 tiến 7",
+          "verdict": "correct",
+          "feedback": "Đúng. Có đúng một ngòi trên trục giữa, pháo phải ra đòn ngay."
+        },
+        {
+          "moveId": "mate-double-cannon-g1",
+          "label": "Mã 6 tiến 5",
+          "verdict": "danger",
+          "feedback": "Chậm. Đen có thể tháo ngòi và đòn pháo không còn trực tiếp."
+        }
+      ]
+    },
+    "initialFen": "3aka3/9/9/9/9/9/9/4C1N2/9/4K4 w - - 0 1"
+  },
+  {
+    "id": "mate-horse-cannon",
+    "slug": "the-sat-ma-phao-kep-cung",
+    "title": "Thế sát: Mã Pháo kẹp cung",
+    "summary": "Mã khống chế điểm thoát, pháo đánh tuyến. Đây là một dạng phối hợp sát rất hay gặp.",
+    "category": "Thế sát",
+    "difficulty": "Trung cấp",
+    "tags": [
+      "mã pháo",
+      "thế sát",
+      "khống chế",
+      "chiếu bí"
+    ],
+    "principles": [
+      "Mã dùng để khóa ô thoát, pháo dùng để chiếu trên tuyến.",
+      "Đưa mã vào trước thường làm đòn pháo sắc hơn.",
+      "Nếu pháo đi một mình, tướng đối phương thường còn đường chạy."
+    ],
+    "lines": [
+      {
+        "id": "main",
+        "title": "Ra đòn ngay",
+        "description": "Đỏ dùng sĩ ở giữa làm ngòi pháo để đánh thẳng cung tướng.",
+        "moves": [
+          {
+            "id": "mate-horse-cannon-m1",
+            "side": "red",
+            "from": {
+              "file": 6,
+              "rank": 7
+            },
+            "to": {
+              "file": 5,
+              "rank": 5
+            },
+            "notation": "1. Mã 7 tiến 6",
+            "title": "Mã ép cánh cung",
+            "comment": "Mã tiến để giữ quân phòng thủ của Đen trong thế bị động.",
+            "evaluation": "main"
+          },
+          {
+            "id": "mate-horse-cannon-m2",
+            "side": "black",
+            "from": {
+              "file": 5,
+              "rank": 0
+            },
+            "to": {
+              "file": 4,
+              "rank": 1
+            },
+            "notation": "... Sĩ 6 tiến 5",
+            "title": "Sĩ vào giữa",
+            "comment": "Nước thủ này vô tình tạo đúng ngòi cho pháo trung lộ.",
+            "evaluation": "main"
+          },
+          {
+            "id": "mate-horse-cannon-s1",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 7
+            },
+            "to": {
+              "file": 4,
+              "rank": 0
+            },
+            "notation": "2. Pháo 5 tiến 7!",
+            "title": "Pháo nhập cung",
+            "comment": "Pháo nhảy qua đúng một ngòi và đánh trực tiếp vào tướng.",
+            "evaluation": "solution"
+          },
+          {
+            "id": "mate-horse-cannon-s2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 1
+            },
+            "to": {
+              "file": 5,
+              "rank": 0
+            },
+            "notation": "... Sĩ 5 thoái 6",
+            "title": "Đen vá cung muộn",
+            "comment": "Sau khi đòn sát xuất hiện, Đen chỉ còn phản ứng bị động.",
+            "evaluation": "main"
+          }
+        ]
+      },
+      {
+        "id": "danger",
+        "title": "Chậm một nhịp",
+        "description": "Đỏ tấn mã thêm nhưng bỏ qua thời điểm pháo đang có ngòi.",
+        "moves": [
+          {
+            "id": "mate-horse-cannon-m1",
+            "side": "red",
+            "from": {
+              "file": 6,
+              "rank": 7
+            },
+            "to": {
+              "file": 5,
+              "rank": 5
+            },
+            "notation": "1. Mã 7 tiến 6",
+            "title": "Mã ép cánh cung",
+            "comment": "Mã tiến để giữ quân phòng thủ của Đen trong thế bị động.",
+            "evaluation": "main"
+          },
+          {
+            "id": "mate-horse-cannon-m2",
+            "side": "black",
+            "from": {
+              "file": 5,
+              "rank": 0
+            },
+            "to": {
+              "file": 4,
+              "rank": 1
+            },
+            "notation": "... Sĩ 6 tiến 5",
+            "title": "Sĩ vào giữa",
+            "comment": "Nước thủ này vô tình tạo đúng ngòi cho pháo trung lộ.",
+            "evaluation": "main"
+          },
+          {
+            "id": "mate-horse-cannon-g1",
+            "side": "red",
+            "from": {
+              "file": 5,
+              "rank": 5
+            },
+            "to": {
+              "file": 4,
+              "rank": 3
+            },
+            "notation": "2. Mã 6 tiến 5?",
+            "title": "Bỏ lỡ đòn pháo",
+            "comment": "Mã tiến thêm không sắc bằng đòn pháo trực tiếp khi ngòi đã có.",
+            "evaluation": "warning"
+          },
+          {
+            "id": "mate-horse-cannon-g2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 1
+            },
+            "to": {
+              "file": 5,
+              "rank": 0
+            },
+            "notation": "... Sĩ 5 thoái 6",
+            "title": "Đen tháo ngòi",
+            "comment": "Đen kịp rút sĩ khỏi trục giữa, làm đòn pháo mất lực.",
+            "evaluation": "trap"
+          }
+        ]
+      }
+    ],
+    "choice": {
+      "id": "mate-horse-cannon-choice",
+      "prompt": "Khi Đen vừa đưa sĩ vào trục giữa, Đỏ nên tận dụng ngay bằng nước nào?",
+      "options": [
+        {
+          "moveId": "mate-horse-cannon-s1",
+          "label": "Pháo 5 tiến 7",
+          "verdict": "correct",
+          "feedback": "Đúng. Có đúng một ngòi trên trục giữa, pháo phải ra đòn ngay."
+        },
+        {
+          "moveId": "mate-horse-cannon-g1",
+          "label": "Mã 6 tiến 5",
+          "verdict": "danger",
+          "feedback": "Chậm. Đen có thể tháo ngòi và đòn pháo không còn trực tiếp."
+        }
+      ]
+    },
+    "initialFen": "3aka3/9/9/9/9/9/9/4C1N2/9/4K4 w - - 0 1"
+  },
+  {
+    "id": "mate-rook-lock",
+    "slug": "the-sat-xe-khoa-hang",
+    "title": "Thế sát: xe khóa hàng",
+    "summary": "Xe khóa hàng ngang để giới hạn tướng, sau đó pháo hoặc mã tạo đòn kết thúc.",
+    "category": "Thế sát",
+    "difficulty": "Cơ bản",
+    "tags": [
+      "xe",
+      "khóa hàng",
+      "thế sát",
+      "áp cung"
+    ],
+    "principles": [
+      "Xe mạnh nhất trong thế sát khi nó cắt đường chạy của tướng.",
+      "Khóa hàng trước giúp các đòn pháo mã trở nên cưỡng bức hơn.",
+      "Nếu xe chưa vào cuộc, đòn sát thường thiếu lực giữ."
+    ],
+    "lines": [
+      {
+        "id": "main",
+        "title": "Ra đòn ngay",
+        "description": "Đỏ dùng sĩ ở giữa làm ngòi pháo để đánh thẳng cung tướng.",
+        "moves": [
+          {
+            "id": "mate-rook-lock-m1",
+            "side": "red",
+            "from": {
+              "file": 6,
+              "rank": 7
+            },
+            "to": {
+              "file": 5,
+              "rank": 5
+            },
+            "notation": "1. Mã 7 tiến 6",
+            "title": "Mã ép cánh cung",
+            "comment": "Mã tiến để giữ quân phòng thủ của Đen trong thế bị động.",
+            "evaluation": "main"
+          },
+          {
+            "id": "mate-rook-lock-m2",
+            "side": "black",
+            "from": {
+              "file": 5,
+              "rank": 0
+            },
+            "to": {
+              "file": 4,
+              "rank": 1
+            },
+            "notation": "... Sĩ 6 tiến 5",
+            "title": "Sĩ vào giữa",
+            "comment": "Nước thủ này vô tình tạo đúng ngòi cho pháo trung lộ.",
+            "evaluation": "main"
+          },
+          {
+            "id": "mate-rook-lock-s1",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 7
+            },
+            "to": {
+              "file": 4,
+              "rank": 0
+            },
+            "notation": "2. Pháo 5 tiến 7!",
+            "title": "Pháo nhập cung",
+            "comment": "Pháo nhảy qua đúng một ngòi và đánh trực tiếp vào tướng.",
+            "evaluation": "solution"
+          },
+          {
+            "id": "mate-rook-lock-s2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 1
+            },
+            "to": {
+              "file": 5,
+              "rank": 0
+            },
+            "notation": "... Sĩ 5 thoái 6",
+            "title": "Đen vá cung muộn",
+            "comment": "Sau khi đòn sát xuất hiện, Đen chỉ còn phản ứng bị động.",
+            "evaluation": "main"
+          }
+        ]
+      },
+      {
+        "id": "danger",
+        "title": "Chậm một nhịp",
+        "description": "Đỏ tấn mã thêm nhưng bỏ qua thời điểm pháo đang có ngòi.",
+        "moves": [
+          {
+            "id": "mate-rook-lock-m1",
+            "side": "red",
+            "from": {
+              "file": 6,
+              "rank": 7
+            },
+            "to": {
+              "file": 5,
+              "rank": 5
+            },
+            "notation": "1. Mã 7 tiến 6",
+            "title": "Mã ép cánh cung",
+            "comment": "Mã tiến để giữ quân phòng thủ của Đen trong thế bị động.",
+            "evaluation": "main"
+          },
+          {
+            "id": "mate-rook-lock-m2",
+            "side": "black",
+            "from": {
+              "file": 5,
+              "rank": 0
+            },
+            "to": {
+              "file": 4,
+              "rank": 1
+            },
+            "notation": "... Sĩ 6 tiến 5",
+            "title": "Sĩ vào giữa",
+            "comment": "Nước thủ này vô tình tạo đúng ngòi cho pháo trung lộ.",
+            "evaluation": "main"
+          },
+          {
+            "id": "mate-rook-lock-g1",
+            "side": "red",
+            "from": {
+              "file": 5,
+              "rank": 5
+            },
+            "to": {
+              "file": 4,
+              "rank": 3
+            },
+            "notation": "2. Mã 6 tiến 5?",
+            "title": "Bỏ lỡ đòn pháo",
+            "comment": "Mã tiến thêm không sắc bằng đòn pháo trực tiếp khi ngòi đã có.",
+            "evaluation": "warning"
+          },
+          {
+            "id": "mate-rook-lock-g2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 1
+            },
+            "to": {
+              "file": 5,
+              "rank": 0
+            },
+            "notation": "... Sĩ 5 thoái 6",
+            "title": "Đen tháo ngòi",
+            "comment": "Đen kịp rút sĩ khỏi trục giữa, làm đòn pháo mất lực.",
+            "evaluation": "trap"
+          }
+        ]
+      }
+    ],
+    "choice": {
+      "id": "mate-rook-lock-choice",
+      "prompt": "Khi Đen vừa đưa sĩ vào trục giữa, Đỏ nên tận dụng ngay bằng nước nào?",
+      "options": [
+        {
+          "moveId": "mate-rook-lock-s1",
+          "label": "Pháo 5 tiến 7",
+          "verdict": "correct",
+          "feedback": "Đúng. Có đúng một ngòi trên trục giữa, pháo phải ra đòn ngay."
+        },
+        {
+          "moveId": "mate-rook-lock-g1",
+          "label": "Mã 6 tiến 5",
+          "verdict": "danger",
+          "feedback": "Chậm. Đen có thể tháo ngòi và đòn pháo không còn trực tiếp."
+        }
+      ]
+    },
+    "initialFen": "3aka3/9/9/9/9/9/9/4C1N2/9/4K4 w - - 0 1"
+  },
+  {
+    "id": "mate-back-rank-net",
+    "slug": "the-sat-khoa-cung-hang-day",
+    "title": "Thế sát: khóa cung hàng đáy",
+    "summary": "Khi sĩ tượng tự chặn cung, nước chiếu đúng tuyến có thể biến hàng đáy thành bẫy.",
+    "category": "Thế sát",
+    "difficulty": "Trung cấp",
+    "tags": [
+      "khóa cung",
+      "hàng đáy",
+      "pháo",
+      "tướng"
+    ],
+    "principles": [
+      "Quân phòng thủ có thể vô tình chặn đường thoát của chính tướng.",
+      "Đòn sát hàng đáy cần nhận ra ô thoát nào đã bị khóa.",
+      "Chậm một nhịp thường cho đối phương mở lại cung."
+    ],
+    "lines": [
+      {
+        "id": "main",
+        "title": "Ra đòn ngay",
+        "description": "Đỏ dùng sĩ ở giữa làm ngòi pháo để đánh thẳng cung tướng.",
+        "moves": [
+          {
+            "id": "mate-back-rank-net-m1",
+            "side": "red",
+            "from": {
+              "file": 6,
+              "rank": 7
+            },
+            "to": {
+              "file": 5,
+              "rank": 5
+            },
+            "notation": "1. Mã 7 tiến 6",
+            "title": "Mã ép cánh cung",
+            "comment": "Mã tiến để giữ quân phòng thủ của Đen trong thế bị động.",
+            "evaluation": "main"
+          },
+          {
+            "id": "mate-back-rank-net-m2",
+            "side": "black",
+            "from": {
+              "file": 5,
+              "rank": 0
+            },
+            "to": {
+              "file": 4,
+              "rank": 1
+            },
+            "notation": "... Sĩ 6 tiến 5",
+            "title": "Sĩ vào giữa",
+            "comment": "Nước thủ này vô tình tạo đúng ngòi cho pháo trung lộ.",
+            "evaluation": "main"
+          },
+          {
+            "id": "mate-back-rank-net-s1",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 7
+            },
+            "to": {
+              "file": 4,
+              "rank": 0
+            },
+            "notation": "2. Pháo 5 tiến 7!",
+            "title": "Pháo nhập cung",
+            "comment": "Pháo nhảy qua đúng một ngòi và đánh trực tiếp vào tướng.",
+            "evaluation": "solution"
+          },
+          {
+            "id": "mate-back-rank-net-s2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 1
+            },
+            "to": {
+              "file": 5,
+              "rank": 0
+            },
+            "notation": "... Sĩ 5 thoái 6",
+            "title": "Đen vá cung muộn",
+            "comment": "Sau khi đòn sát xuất hiện, Đen chỉ còn phản ứng bị động.",
+            "evaluation": "main"
+          }
+        ]
+      },
+      {
+        "id": "danger",
+        "title": "Chậm một nhịp",
+        "description": "Đỏ tấn mã thêm nhưng bỏ qua thời điểm pháo đang có ngòi.",
+        "moves": [
+          {
+            "id": "mate-back-rank-net-m1",
+            "side": "red",
+            "from": {
+              "file": 6,
+              "rank": 7
+            },
+            "to": {
+              "file": 5,
+              "rank": 5
+            },
+            "notation": "1. Mã 7 tiến 6",
+            "title": "Mã ép cánh cung",
+            "comment": "Mã tiến để giữ quân phòng thủ của Đen trong thế bị động.",
+            "evaluation": "main"
+          },
+          {
+            "id": "mate-back-rank-net-m2",
+            "side": "black",
+            "from": {
+              "file": 5,
+              "rank": 0
+            },
+            "to": {
+              "file": 4,
+              "rank": 1
+            },
+            "notation": "... Sĩ 6 tiến 5",
+            "title": "Sĩ vào giữa",
+            "comment": "Nước thủ này vô tình tạo đúng ngòi cho pháo trung lộ.",
+            "evaluation": "main"
+          },
+          {
+            "id": "mate-back-rank-net-g1",
+            "side": "red",
+            "from": {
+              "file": 5,
+              "rank": 5
+            },
+            "to": {
+              "file": 4,
+              "rank": 3
+            },
+            "notation": "2. Mã 6 tiến 5?",
+            "title": "Bỏ lỡ đòn pháo",
+            "comment": "Mã tiến thêm không sắc bằng đòn pháo trực tiếp khi ngòi đã có.",
+            "evaluation": "warning"
+          },
+          {
+            "id": "mate-back-rank-net-g2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 1
+            },
+            "to": {
+              "file": 5,
+              "rank": 0
+            },
+            "notation": "... Sĩ 5 thoái 6",
+            "title": "Đen tháo ngòi",
+            "comment": "Đen kịp rút sĩ khỏi trục giữa, làm đòn pháo mất lực.",
+            "evaluation": "trap"
+          }
+        ]
+      }
+    ],
+    "choice": {
+      "id": "mate-back-rank-net-choice",
+      "prompt": "Khi Đen vừa đưa sĩ vào trục giữa, Đỏ nên tận dụng ngay bằng nước nào?",
+      "options": [
+        {
+          "moveId": "mate-back-rank-net-s1",
+          "label": "Pháo 5 tiến 7",
+          "verdict": "correct",
+          "feedback": "Đúng. Có đúng một ngòi trên trục giữa, pháo phải ra đòn ngay."
+        },
+        {
+          "moveId": "mate-back-rank-net-g1",
+          "label": "Mã 6 tiến 5",
+          "verdict": "danger",
+          "feedback": "Chậm. Đen có thể tháo ngòi và đòn pháo không còn trực tiếp."
+        }
+      ]
+    },
+    "initialFen": "3aka3/9/9/9/9/9/9/4C1N2/9/4K4 w - - 0 1"
+  },
+  {
+    "id": "endgame-rook-vs-advisors",
+    "slug": "tan-cuoc-xe-pha-si-tuong",
+    "title": "Tàn cuộc: xe phá sĩ tượng",
+    "summary": "Xe cần chiếm hàng và buộc tướng dịch chuyển, không nên chỉ chạy theo ăn quân phòng thủ.",
+    "category": "Tàn cuộc",
+    "difficulty": "Cơ bản",
+    "tags": [
+      "tàn cuộc",
+      "xe",
+      "sĩ tượng",
+      "ép tướng"
+    ],
+    "principles": [
+      "Xe thắng bằng cắt đường tướng trước, ăn quân sau.",
+      "Ép tướng lên hàng bất lợi thường quan trọng hơn bắt một sĩ.",
+      "Nếu xe đi săn quân phòng thủ quá sớm, đối phương có thời gian dựng lại cung."
+    ],
+    "lines": [
+      {
+        "id": "main",
+        "title": "Giữ xe hỗ trợ binh",
+        "description": "Đỏ giữ xe gần binh để ép tướng từng nhịp.",
+        "moves": [
+          {
+            "id": "endgame-rook-vs-advisors-m1",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 8
+            },
+            "to": {
+              "file": 4,
+              "rank": 8
+            },
+            "notation": "1. Xe 1 bình 5",
+            "title": "Xe khóa trung lộ",
+            "comment": "Xe chuyển sang lộ giữa để giữ đường tiến của binh.",
+            "evaluation": "main"
+          },
+          {
+            "id": "endgame-rook-vs-advisors-m2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 0
+            },
+            "to": {
+              "file": 4,
+              "rank": 1
+            },
+            "notation": "... Tướng 5 tiến 1",
+            "title": "Tướng tránh áp lực",
+            "comment": "Đen đưa tướng lên để né thế khóa trực tiếp.",
+            "evaluation": "main"
+          },
+          {
+            "id": "endgame-rook-vs-advisors-m3",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 4
+            },
+            "to": {
+              "file": 4,
+              "rank": 3
+            },
+            "notation": "2. Binh 5 tiến 1",
+            "title": "Binh áp sát",
+            "comment": "Binh qua sông tiến lên để buộc cung tướng chật lại.",
+            "evaluation": "main"
+          },
+          {
+            "id": "endgame-rook-vs-advisors-m4",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 2
+            },
+            "to": {
+              "file": 2,
+              "rank": 0
+            },
+            "notation": "... Tượng 5 thoái 3",
+            "title": "Đen rút tượng",
+            "comment": "Đen cố giữ lớp phòng thủ nhưng đã để trung lộ hở hơn.",
+            "evaluation": "main"
+          },
+          {
+            "id": "endgame-rook-vs-advisors-s1",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 8
+            },
+            "to": {
+              "file": 4,
+              "rank": 7
+            },
+            "notation": "3. Xe 5 tiến 1",
+            "title": "Xe giữ điểm tựa",
+            "comment": "Xe tiến sau binh, tiếp tục khóa đường thoát của tướng.",
+            "evaluation": "solution"
+          },
+          {
+            "id": "endgame-rook-vs-advisors-s2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 1
+            },
+            "to": {
+              "file": 5,
+              "rank": 1
+            },
+            "notation": "... Tướng 5 bình 6",
+            "title": "Tướng bị ép lệch",
+            "comment": "Đen phải rời trung lộ, tạo mục tiêu cho xe và binh phối hợp.",
+            "evaluation": "main"
+          }
+        ]
+      },
+      {
+        "id": "danger",
+        "title": "Binh đi đơn độc",
+        "description": "Đỏ đẩy binh quá nhanh, để xe chưa kịp khóa đường thoát.",
+        "moves": [
+          {
+            "id": "endgame-rook-vs-advisors-m1",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 8
+            },
+            "to": {
+              "file": 4,
+              "rank": 8
+            },
+            "notation": "1. Xe 1 bình 5",
+            "title": "Xe khóa trung lộ",
+            "comment": "Xe chuyển sang lộ giữa để giữ đường tiến của binh.",
+            "evaluation": "main"
+          },
+          {
+            "id": "endgame-rook-vs-advisors-m2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 0
+            },
+            "to": {
+              "file": 4,
+              "rank": 1
+            },
+            "notation": "... Tướng 5 tiến 1",
+            "title": "Tướng tránh áp lực",
+            "comment": "Đen đưa tướng lên để né thế khóa trực tiếp.",
+            "evaluation": "main"
+          },
+          {
+            "id": "endgame-rook-vs-advisors-m3",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 4
+            },
+            "to": {
+              "file": 4,
+              "rank": 3
+            },
+            "notation": "2. Binh 5 tiến 1",
+            "title": "Binh áp sát",
+            "comment": "Binh qua sông tiến lên để buộc cung tướng chật lại.",
+            "evaluation": "main"
+          },
+          {
+            "id": "endgame-rook-vs-advisors-m4",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 2
+            },
+            "to": {
+              "file": 2,
+              "rank": 0
+            },
+            "notation": "... Tượng 5 thoái 3",
+            "title": "Đen rút tượng",
+            "comment": "Đen cố giữ lớp phòng thủ nhưng đã để trung lộ hở hơn.",
+            "evaluation": "main"
+          },
+          {
+            "id": "endgame-rook-vs-advisors-g1",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 3
+            },
+            "to": {
+              "file": 4,
+              "rank": 2
+            },
+            "notation": "3. Binh 5 tiến 1?",
+            "title": "Binh đi thiếu xe",
+            "comment": "Binh tiến sâu nhưng xe chưa áp sát đủ để khóa tướng.",
+            "evaluation": "warning"
+          },
+          {
+            "id": "endgame-rook-vs-advisors-g2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 1
+            },
+            "to": {
+              "file": 5,
+              "rank": 1
+            },
+            "notation": "... Tướng 5 bình 6",
+            "title": "Đen thoát khỏi trung lộ",
+            "comment": "Tướng lệch sang bên, làm binh đỏ khó tự tạo mối đe dọa.",
+            "evaluation": "trap"
+          }
+        ]
+      }
+    ],
+    "choice": {
+      "id": "endgame-rook-vs-advisors-choice",
+      "prompt": "Trong tàn cuộc xe binh, Đỏ nên giữ phối hợp bằng nước nào?",
+      "options": [
+        {
+          "moveId": "endgame-rook-vs-advisors-s1",
+          "label": "Xe 5 tiến 1",
+          "verdict": "correct",
+          "feedback": "Đúng. Xe giữ gần binh, khóa đường thoát và ép tướng từng nhịp."
+        },
+        {
+          "moveId": "endgame-rook-vs-advisors-g1",
+          "label": "Binh 5 tiến 1",
+          "verdict": "danger",
+          "feedback": "Hơi vội. Binh đi đơn độc khiến tướng có đường lệch ra khỏi trung lộ."
+        }
+      ]
+    },
+    "initialFen": "4k4/9/4b4/9/4P4/9/9/9/R8/4K4 w - - 0 1"
+  },
+  {
+    "id": "endgame-cannon-needs-screen",
+    "slug": "tan-cuoc-phao-can-ngoi",
+    "title": "Tàn cuộc: pháo cần ngòi",
+    "summary": "Pháo yếu đi khi bàn cờ thưa quân. Muốn phát huy pháo, phải giữ hoặc tạo ngòi đúng lúc.",
+    "category": "Tàn cuộc",
+    "difficulty": "Cơ bản",
+    "tags": [
+      "tàn cuộc",
+      "pháo",
+      "ngòi pháo",
+      "binh"
+    ],
+    "principles": [
+      "Pháo trong tàn cuộc cần ngòi, nếu không chỉ còn như xe yếu.",
+      "Binh qua sông có thể vừa ép tướng vừa làm ngòi pháo.",
+      "Đổi hết quân che chắn đôi khi làm pháo mất sức."
+    ],
+    "lines": [
+      {
+        "id": "main",
+        "title": "Giữ xe hỗ trợ binh",
+        "description": "Đỏ giữ xe gần binh để ép tướng từng nhịp.",
+        "moves": [
+          {
+            "id": "endgame-cannon-needs-screen-m1",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 8
+            },
+            "to": {
+              "file": 4,
+              "rank": 8
+            },
+            "notation": "1. Xe 1 bình 5",
+            "title": "Xe khóa trung lộ",
+            "comment": "Xe chuyển sang lộ giữa để giữ đường tiến của binh.",
+            "evaluation": "main"
+          },
+          {
+            "id": "endgame-cannon-needs-screen-m2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 0
+            },
+            "to": {
+              "file": 4,
+              "rank": 1
+            },
+            "notation": "... Tướng 5 tiến 1",
+            "title": "Tướng tránh áp lực",
+            "comment": "Đen đưa tướng lên để né thế khóa trực tiếp.",
+            "evaluation": "main"
+          },
+          {
+            "id": "endgame-cannon-needs-screen-m3",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 4
+            },
+            "to": {
+              "file": 4,
+              "rank": 3
+            },
+            "notation": "2. Binh 5 tiến 1",
+            "title": "Binh áp sát",
+            "comment": "Binh qua sông tiến lên để buộc cung tướng chật lại.",
+            "evaluation": "main"
+          },
+          {
+            "id": "endgame-cannon-needs-screen-m4",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 2
+            },
+            "to": {
+              "file": 2,
+              "rank": 0
+            },
+            "notation": "... Tượng 5 thoái 3",
+            "title": "Đen rút tượng",
+            "comment": "Đen cố giữ lớp phòng thủ nhưng đã để trung lộ hở hơn.",
+            "evaluation": "main"
+          },
+          {
+            "id": "endgame-cannon-needs-screen-s1",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 8
+            },
+            "to": {
+              "file": 4,
+              "rank": 7
+            },
+            "notation": "3. Xe 5 tiến 1",
+            "title": "Xe giữ điểm tựa",
+            "comment": "Xe tiến sau binh, tiếp tục khóa đường thoát của tướng.",
+            "evaluation": "solution"
+          },
+          {
+            "id": "endgame-cannon-needs-screen-s2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 1
+            },
+            "to": {
+              "file": 5,
+              "rank": 1
+            },
+            "notation": "... Tướng 5 bình 6",
+            "title": "Tướng bị ép lệch",
+            "comment": "Đen phải rời trung lộ, tạo mục tiêu cho xe và binh phối hợp.",
+            "evaluation": "main"
+          }
+        ]
+      },
+      {
+        "id": "danger",
+        "title": "Binh đi đơn độc",
+        "description": "Đỏ đẩy binh quá nhanh, để xe chưa kịp khóa đường thoát.",
+        "moves": [
+          {
+            "id": "endgame-cannon-needs-screen-m1",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 8
+            },
+            "to": {
+              "file": 4,
+              "rank": 8
+            },
+            "notation": "1. Xe 1 bình 5",
+            "title": "Xe khóa trung lộ",
+            "comment": "Xe chuyển sang lộ giữa để giữ đường tiến của binh.",
+            "evaluation": "main"
+          },
+          {
+            "id": "endgame-cannon-needs-screen-m2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 0
+            },
+            "to": {
+              "file": 4,
+              "rank": 1
+            },
+            "notation": "... Tướng 5 tiến 1",
+            "title": "Tướng tránh áp lực",
+            "comment": "Đen đưa tướng lên để né thế khóa trực tiếp.",
+            "evaluation": "main"
+          },
+          {
+            "id": "endgame-cannon-needs-screen-m3",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 4
+            },
+            "to": {
+              "file": 4,
+              "rank": 3
+            },
+            "notation": "2. Binh 5 tiến 1",
+            "title": "Binh áp sát",
+            "comment": "Binh qua sông tiến lên để buộc cung tướng chật lại.",
+            "evaluation": "main"
+          },
+          {
+            "id": "endgame-cannon-needs-screen-m4",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 2
+            },
+            "to": {
+              "file": 2,
+              "rank": 0
+            },
+            "notation": "... Tượng 5 thoái 3",
+            "title": "Đen rút tượng",
+            "comment": "Đen cố giữ lớp phòng thủ nhưng đã để trung lộ hở hơn.",
+            "evaluation": "main"
+          },
+          {
+            "id": "endgame-cannon-needs-screen-g1",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 3
+            },
+            "to": {
+              "file": 4,
+              "rank": 2
+            },
+            "notation": "3. Binh 5 tiến 1?",
+            "title": "Binh đi thiếu xe",
+            "comment": "Binh tiến sâu nhưng xe chưa áp sát đủ để khóa tướng.",
+            "evaluation": "warning"
+          },
+          {
+            "id": "endgame-cannon-needs-screen-g2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 1
+            },
+            "to": {
+              "file": 5,
+              "rank": 1
+            },
+            "notation": "... Tướng 5 bình 6",
+            "title": "Đen thoát khỏi trung lộ",
+            "comment": "Tướng lệch sang bên, làm binh đỏ khó tự tạo mối đe dọa.",
+            "evaluation": "trap"
+          }
+        ]
+      }
+    ],
+    "choice": {
+      "id": "endgame-cannon-needs-screen-choice",
+      "prompt": "Trong tàn cuộc xe binh, Đỏ nên giữ phối hợp bằng nước nào?",
+      "options": [
+        {
+          "moveId": "endgame-cannon-needs-screen-s1",
+          "label": "Xe 5 tiến 1",
+          "verdict": "correct",
+          "feedback": "Đúng. Xe giữ gần binh, khóa đường thoát và ép tướng từng nhịp."
+        },
+        {
+          "moveId": "endgame-cannon-needs-screen-g1",
+          "label": "Binh 5 tiến 1",
+          "verdict": "danger",
+          "feedback": "Hơi vội. Binh đi đơn độc khiến tướng có đường lệch ra khỏi trung lộ."
+        }
+      ]
+    },
+    "initialFen": "4k4/9/4b4/9/4P4/9/9/9/R8/4K4 w - - 0 1"
+  },
+  {
+    "id": "endgame-horse-pawn",
+    "slug": "tan-cuoc-ma-binh-phoi-hop",
+    "title": "Tàn cuộc: mã binh phối hợp",
+    "summary": "Mã cần binh khóa ô chạy. Binh cần mã bảo vệ để không bị tướng hoặc sĩ chặn lại.",
+    "category": "Tàn cuộc",
+    "difficulty": "Trung cấp",
+    "tags": [
+      "mã binh",
+      "tàn cuộc",
+      "khóa ô",
+      "ép cung"
+    ],
+    "principles": [
+      "Mã khống chế ô chéo, binh ép trực diện.",
+      "Binh tiến đúng lúc làm tướng đối phương mất điểm đứng.",
+      "Nếu mã đi xa trước, binh dễ bị chặn và thế thắng trôi mất."
+    ],
+    "lines": [
+      {
+        "id": "main",
+        "title": "Giữ xe hỗ trợ binh",
+        "description": "Đỏ giữ xe gần binh để ép tướng từng nhịp.",
+        "moves": [
+          {
+            "id": "endgame-horse-pawn-m1",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 8
+            },
+            "to": {
+              "file": 4,
+              "rank": 8
+            },
+            "notation": "1. Xe 1 bình 5",
+            "title": "Xe khóa trung lộ",
+            "comment": "Xe chuyển sang lộ giữa để giữ đường tiến của binh.",
+            "evaluation": "main"
+          },
+          {
+            "id": "endgame-horse-pawn-m2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 0
+            },
+            "to": {
+              "file": 4,
+              "rank": 1
+            },
+            "notation": "... Tướng 5 tiến 1",
+            "title": "Tướng tránh áp lực",
+            "comment": "Đen đưa tướng lên để né thế khóa trực tiếp.",
+            "evaluation": "main"
+          },
+          {
+            "id": "endgame-horse-pawn-m3",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 4
+            },
+            "to": {
+              "file": 4,
+              "rank": 3
+            },
+            "notation": "2. Binh 5 tiến 1",
+            "title": "Binh áp sát",
+            "comment": "Binh qua sông tiến lên để buộc cung tướng chật lại.",
+            "evaluation": "main"
+          },
+          {
+            "id": "endgame-horse-pawn-m4",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 2
+            },
+            "to": {
+              "file": 2,
+              "rank": 0
+            },
+            "notation": "... Tượng 5 thoái 3",
+            "title": "Đen rút tượng",
+            "comment": "Đen cố giữ lớp phòng thủ nhưng đã để trung lộ hở hơn.",
+            "evaluation": "main"
+          },
+          {
+            "id": "endgame-horse-pawn-s1",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 8
+            },
+            "to": {
+              "file": 4,
+              "rank": 7
+            },
+            "notation": "3. Xe 5 tiến 1",
+            "title": "Xe giữ điểm tựa",
+            "comment": "Xe tiến sau binh, tiếp tục khóa đường thoát của tướng.",
+            "evaluation": "solution"
+          },
+          {
+            "id": "endgame-horse-pawn-s2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 1
+            },
+            "to": {
+              "file": 5,
+              "rank": 1
+            },
+            "notation": "... Tướng 5 bình 6",
+            "title": "Tướng bị ép lệch",
+            "comment": "Đen phải rời trung lộ, tạo mục tiêu cho xe và binh phối hợp.",
+            "evaluation": "main"
+          }
+        ]
+      },
+      {
+        "id": "danger",
+        "title": "Binh đi đơn độc",
+        "description": "Đỏ đẩy binh quá nhanh, để xe chưa kịp khóa đường thoát.",
+        "moves": [
+          {
+            "id": "endgame-horse-pawn-m1",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 8
+            },
+            "to": {
+              "file": 4,
+              "rank": 8
+            },
+            "notation": "1. Xe 1 bình 5",
+            "title": "Xe khóa trung lộ",
+            "comment": "Xe chuyển sang lộ giữa để giữ đường tiến của binh.",
+            "evaluation": "main"
+          },
+          {
+            "id": "endgame-horse-pawn-m2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 0
+            },
+            "to": {
+              "file": 4,
+              "rank": 1
+            },
+            "notation": "... Tướng 5 tiến 1",
+            "title": "Tướng tránh áp lực",
+            "comment": "Đen đưa tướng lên để né thế khóa trực tiếp.",
+            "evaluation": "main"
+          },
+          {
+            "id": "endgame-horse-pawn-m3",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 4
+            },
+            "to": {
+              "file": 4,
+              "rank": 3
+            },
+            "notation": "2. Binh 5 tiến 1",
+            "title": "Binh áp sát",
+            "comment": "Binh qua sông tiến lên để buộc cung tướng chật lại.",
+            "evaluation": "main"
+          },
+          {
+            "id": "endgame-horse-pawn-m4",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 2
+            },
+            "to": {
+              "file": 2,
+              "rank": 0
+            },
+            "notation": "... Tượng 5 thoái 3",
+            "title": "Đen rút tượng",
+            "comment": "Đen cố giữ lớp phòng thủ nhưng đã để trung lộ hở hơn.",
+            "evaluation": "main"
+          },
+          {
+            "id": "endgame-horse-pawn-g1",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 3
+            },
+            "to": {
+              "file": 4,
+              "rank": 2
+            },
+            "notation": "3. Binh 5 tiến 1?",
+            "title": "Binh đi thiếu xe",
+            "comment": "Binh tiến sâu nhưng xe chưa áp sát đủ để khóa tướng.",
+            "evaluation": "warning"
+          },
+          {
+            "id": "endgame-horse-pawn-g2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 1
+            },
+            "to": {
+              "file": 5,
+              "rank": 1
+            },
+            "notation": "... Tướng 5 bình 6",
+            "title": "Đen thoát khỏi trung lộ",
+            "comment": "Tướng lệch sang bên, làm binh đỏ khó tự tạo mối đe dọa.",
+            "evaluation": "trap"
+          }
+        ]
+      }
+    ],
+    "choice": {
+      "id": "endgame-horse-pawn-choice",
+      "prompt": "Trong tàn cuộc xe binh, Đỏ nên giữ phối hợp bằng nước nào?",
+      "options": [
+        {
+          "moveId": "endgame-horse-pawn-s1",
+          "label": "Xe 5 tiến 1",
+          "verdict": "correct",
+          "feedback": "Đúng. Xe giữ gần binh, khóa đường thoát và ép tướng từng nhịp."
+        },
+        {
+          "moveId": "endgame-horse-pawn-g1",
+          "label": "Binh 5 tiến 1",
+          "verdict": "danger",
+          "feedback": "Hơi vội. Binh đi đơn độc khiến tướng có đường lệch ra khỏi trung lộ."
+        }
+      ]
+    },
+    "initialFen": "4k4/9/4b4/9/4P4/9/9/9/R8/4K4 w - - 0 1"
+  },
+  {
+    "id": "endgame-soldier-river",
+    "slug": "tan-cuoc-binh-qua-ha",
+    "title": "Tàn cuộc: binh qua hà",
+    "summary": "Binh qua sông không được phong cấp, nên giá trị của nó nằm ở việc chiếm điểm và ép tướng.",
+    "category": "Tàn cuộc",
+    "difficulty": "Nhập môn",
+    "tags": [
+      "binh qua hà",
+      "tàn cuộc",
+      "ép điểm",
+      "tempo"
+    ],
+    "principles": [
+      "Binh qua sông cần được hỗ trợ, không tự thắng nếu đi một mình.",
+      "Mỗi nước binh nên tạo thêm điểm ép hoặc mở đường cho quân mạnh.",
+      "Đẩy binh sâu mà không có xe mã phía sau thường chỉ đổi lấy tempo của đối thủ."
+    ],
+    "lines": [
+      {
+        "id": "main",
+        "title": "Giữ xe hỗ trợ binh",
+        "description": "Đỏ giữ xe gần binh để ép tướng từng nhịp.",
+        "moves": [
+          {
+            "id": "endgame-soldier-river-m1",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 8
+            },
+            "to": {
+              "file": 4,
+              "rank": 8
+            },
+            "notation": "1. Xe 1 bình 5",
+            "title": "Xe khóa trung lộ",
+            "comment": "Xe chuyển sang lộ giữa để giữ đường tiến của binh.",
+            "evaluation": "main"
+          },
+          {
+            "id": "endgame-soldier-river-m2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 0
+            },
+            "to": {
+              "file": 4,
+              "rank": 1
+            },
+            "notation": "... Tướng 5 tiến 1",
+            "title": "Tướng tránh áp lực",
+            "comment": "Đen đưa tướng lên để né thế khóa trực tiếp.",
+            "evaluation": "main"
+          },
+          {
+            "id": "endgame-soldier-river-m3",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 4
+            },
+            "to": {
+              "file": 4,
+              "rank": 3
+            },
+            "notation": "2. Binh 5 tiến 1",
+            "title": "Binh áp sát",
+            "comment": "Binh qua sông tiến lên để buộc cung tướng chật lại.",
+            "evaluation": "main"
+          },
+          {
+            "id": "endgame-soldier-river-m4",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 2
+            },
+            "to": {
+              "file": 2,
+              "rank": 0
+            },
+            "notation": "... Tượng 5 thoái 3",
+            "title": "Đen rút tượng",
+            "comment": "Đen cố giữ lớp phòng thủ nhưng đã để trung lộ hở hơn.",
+            "evaluation": "main"
+          },
+          {
+            "id": "endgame-soldier-river-s1",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 8
+            },
+            "to": {
+              "file": 4,
+              "rank": 7
+            },
+            "notation": "3. Xe 5 tiến 1",
+            "title": "Xe giữ điểm tựa",
+            "comment": "Xe tiến sau binh, tiếp tục khóa đường thoát của tướng.",
+            "evaluation": "solution"
+          },
+          {
+            "id": "endgame-soldier-river-s2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 1
+            },
+            "to": {
+              "file": 5,
+              "rank": 1
+            },
+            "notation": "... Tướng 5 bình 6",
+            "title": "Tướng bị ép lệch",
+            "comment": "Đen phải rời trung lộ, tạo mục tiêu cho xe và binh phối hợp.",
+            "evaluation": "main"
+          }
+        ]
+      },
+      {
+        "id": "danger",
+        "title": "Binh đi đơn độc",
+        "description": "Đỏ đẩy binh quá nhanh, để xe chưa kịp khóa đường thoát.",
+        "moves": [
+          {
+            "id": "endgame-soldier-river-m1",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 8
+            },
+            "to": {
+              "file": 4,
+              "rank": 8
+            },
+            "notation": "1. Xe 1 bình 5",
+            "title": "Xe khóa trung lộ",
+            "comment": "Xe chuyển sang lộ giữa để giữ đường tiến của binh.",
+            "evaluation": "main"
+          },
+          {
+            "id": "endgame-soldier-river-m2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 0
+            },
+            "to": {
+              "file": 4,
+              "rank": 1
+            },
+            "notation": "... Tướng 5 tiến 1",
+            "title": "Tướng tránh áp lực",
+            "comment": "Đen đưa tướng lên để né thế khóa trực tiếp.",
+            "evaluation": "main"
+          },
+          {
+            "id": "endgame-soldier-river-m3",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 4
+            },
+            "to": {
+              "file": 4,
+              "rank": 3
+            },
+            "notation": "2. Binh 5 tiến 1",
+            "title": "Binh áp sát",
+            "comment": "Binh qua sông tiến lên để buộc cung tướng chật lại.",
+            "evaluation": "main"
+          },
+          {
+            "id": "endgame-soldier-river-m4",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 2
+            },
+            "to": {
+              "file": 2,
+              "rank": 0
+            },
+            "notation": "... Tượng 5 thoái 3",
+            "title": "Đen rút tượng",
+            "comment": "Đen cố giữ lớp phòng thủ nhưng đã để trung lộ hở hơn.",
+            "evaluation": "main"
+          },
+          {
+            "id": "endgame-soldier-river-g1",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 3
+            },
+            "to": {
+              "file": 4,
+              "rank": 2
+            },
+            "notation": "3. Binh 5 tiến 1?",
+            "title": "Binh đi thiếu xe",
+            "comment": "Binh tiến sâu nhưng xe chưa áp sát đủ để khóa tướng.",
+            "evaluation": "warning"
+          },
+          {
+            "id": "endgame-soldier-river-g2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 1
+            },
+            "to": {
+              "file": 5,
+              "rank": 1
+            },
+            "notation": "... Tướng 5 bình 6",
+            "title": "Đen thoát khỏi trung lộ",
+            "comment": "Tướng lệch sang bên, làm binh đỏ khó tự tạo mối đe dọa.",
+            "evaluation": "trap"
+          }
+        ]
+      }
+    ],
+    "choice": {
+      "id": "endgame-soldier-river-choice",
+      "prompt": "Trong tàn cuộc xe binh, Đỏ nên giữ phối hợp bằng nước nào?",
+      "options": [
+        {
+          "moveId": "endgame-soldier-river-s1",
+          "label": "Xe 5 tiến 1",
+          "verdict": "correct",
+          "feedback": "Đúng. Xe giữ gần binh, khóa đường thoát và ép tướng từng nhịp."
+        },
+        {
+          "moveId": "endgame-soldier-river-g1",
+          "label": "Binh 5 tiến 1",
+          "verdict": "danger",
+          "feedback": "Hơi vội. Binh đi đơn độc khiến tướng có đường lệch ra khỏi trung lộ."
+        }
+      ]
+    },
+    "initialFen": "4k4/9/4b4/9/4P4/9/9/9/R8/4K4 w - - 0 1"
+  }
+]

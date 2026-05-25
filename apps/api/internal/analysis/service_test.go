@@ -1,0 +1,81 @@
+package analysis
+
+import (
+	"context"
+	"errors"
+	"os"
+	"path/filepath"
+	"testing"
+)
+
+func TestAnalyzeRequiresConfiguredUCIEngine(t *testing.T) {
+	t.Setenv("ENGINE_KIND", "uci")
+	t.Setenv("ENGINE_PATH", "")
+
+	_, err := Analyze(context.Background(), Request{FEN: "9/9/9/9/9/9/9/9/9/9 w - - 0 1", SideToMove: "red"})
+	if !errors.Is(err, ErrEngineUnavailable) {
+		t.Fatalf("error = %v, want ErrEngineUnavailable", err)
+	}
+}
+
+func TestAnalyzeUsesUCIEngineOutput(t *testing.T) {
+	enginePath := writeFakeUCIEngine(t)
+	t.Setenv("ENGINE_KIND", "uci")
+	t.Setenv("ENGINE_PATH", enginePath)
+
+	response, err := Analyze(context.Background(), Request{
+		FEN:        "9/9/9/9/9/9/9/9/9/9 w - - 0 1",
+		SideToMove: "black",
+		TimeMS:     20,
+	})
+	if err != nil {
+		t.Fatalf("Analyze returned error: %v", err)
+	}
+
+	if response.Source != "uci" {
+		t.Fatalf("source = %q, want uci", response.Source)
+	}
+	if response.Depth != 7 {
+		t.Fatalf("depth = %d, want 7", response.Depth)
+	}
+	if response.Score.CP != -86 {
+		t.Fatalf("score = %d, want -86 from red perspective when black is to move", response.Score.CP)
+	}
+	if response.BestMove == nil || response.BestMove.Notation != "h2e2" {
+		t.Fatalf("bestMove = %#v, want h2e2", response.BestMove)
+	}
+	if len(response.PrincipalVariation) != 2 {
+		t.Fatalf("pv length = %d, want 2", len(response.PrincipalVariation))
+	}
+}
+
+func writeFakeUCIEngine(t *testing.T) string {
+	t.Helper()
+
+	path := filepath.Join(t.TempDir(), "fake-uci.sh")
+	script := `#!/bin/sh
+while IFS= read -r line; do
+  case "$line" in
+    uci)
+      echo "id name fake-uci"
+      echo "uciok"
+      ;;
+    isready)
+      echo "readyok"
+      ;;
+    go*)
+      echo "info depth 7 score cp 86 pv h2e2 h9g7"
+      echo "bestmove h2e2"
+      ;;
+    quit)
+      exit 0
+      ;;
+  esac
+done
+`
+
+	if err := os.WriteFile(path, []byte(script), 0o755); err != nil {
+		t.Fatalf("write fake engine: %v", err)
+	}
+	return path
+}

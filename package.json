@@ -1,0 +1,11 @@
+{
+  "name": "co-tuong-wiki",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev:web": "npm --prefix apps/web run dev",
+    "dev:api": "ENGINE_KIND=uci ENGINE_PATH=/Users/ngosangns/Github/Pikafish/src/pikafish go run ./apps/api/cmd/server",
+    "build:web": "npm --prefix apps/web run build",
+    "test:api": "go test ./apps/api/..."
+  }
+}
