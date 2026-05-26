@@ -87,13 +87,16 @@ function formatXiangqiMove(move: EngineEvaluation['bestMove']) {
 }
 
 const scoreLabel = computed(() => {
-  const score = props.evaluation?.score.cp ?? 0
+  if (!props.evaluation) return 'Chưa phân tích'
 
+  const score = props.evaluation.score.cp
   if (Math.abs(score) < 60) return 'Cân bằng'
   return score > 0 ? `Đỏ +${Math.round(score)}` : `Đen +${Math.abs(Math.round(score))}`
 })
 
 const scoreTone = computed(() => {
+  if (!props.evaluation) return 'equal'
+
   const score = props.evaluation?.score.cp ?? 0
 
   if (Math.abs(score) < 60) return 'equal'
@@ -118,6 +121,7 @@ const statusLabel = computed(() => {
 })
 
 const isAnalyzing = computed(() => props.status === 'analyzing')
+const hasEvaluation = computed(() => props.status !== 'error' && !isAnalyzing.value && Boolean(props.evaluation))
 </script>
 
 <template>
@@ -135,12 +139,12 @@ const isAnalyzing = computed(() => props.status === 'analyzing')
         <Gauge :size="18" aria-hidden="true" />
         <span>{{ isAnalyzing ? 'Đang phân tích' : scoreLabel }}</span>
       </div>
-      <div v-if="!isAnalyzing" class="score-track" aria-hidden="true">
+      <div v-if="hasEvaluation" class="score-track" aria-hidden="true">
         <span :style="{ width: scorePercent }"></span>
       </div>
     </div>
 
-    <div v-if="!isAnalyzing" class="engine-grid">
+    <div v-if="hasEvaluation" class="engine-grid">
       <div>
         <span>Best move</span>
         <strong>{{ bestMoveLabel }}</strong>

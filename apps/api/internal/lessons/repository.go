@@ -19,12 +19,24 @@ func DefaultDataPath() string {
 		return fromEnv
 	}
 
+	return defaultLessonsDataPath("lessons.json")
+}
+
+func DefaultCombinedDataPath() string {
+	if fromEnv := os.Getenv("COMBINED_LESSON_FILE"); fromEnv != "" {
+		return fromEnv
+	}
+
+	return defaultLessonsDataPath("combined-lesson.json")
+}
+
+func defaultLessonsDataPath(fileName string) string {
 	_, sourceFile, _, _ := runtime.Caller(0)
 	apiRoot := filepath.Clean(filepath.Join(filepath.Dir(sourceFile), "..", ".."))
 	candidates := []string{
-		filepath.Join(apiRoot, "data", "lessons", "lessons.json"),
-		filepath.Join("apps", "api", "data", "lessons", "lessons.json"),
-		filepath.Join("data", "lessons", "lessons.json"),
+		filepath.Join(apiRoot, "data", "lessons", fileName),
+		filepath.Join("apps", "api", "data", "lessons", fileName),
+		filepath.Join("data", "lessons", fileName),
 	}
 
 	for _, candidate := range candidates {
@@ -34,6 +46,23 @@ func DefaultDataPath() string {
 	}
 
 	return candidates[0]
+}
+
+func LoadLesson(path string) (Lesson, error) {
+	data, err := os.ReadFile(path)
+	if err != nil {
+		return Lesson{}, err
+	}
+
+	var lesson Lesson
+	if err := json.Unmarshal(data, &lesson); err != nil {
+		return Lesson{}, err
+	}
+	if lesson.ID == "" {
+		return Lesson{}, errors.New("lesson id is required")
+	}
+
+	return lesson, nil
 }
 
 func LoadRepository(path string) (*Repository, error) {

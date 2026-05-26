@@ -68,8 +68,6 @@ function pieceStyle(piece: Piece) {
           </span>
         </span>
       </div>
-      <div class="river-label left">Sở Hà</div>
-      <div class="river-label right">Hán Giới</div>
     </div>
     <div class="board-file-labels board-file-labels-bottom" aria-label="Cột bên Đỏ">
       <span v-for="label in redFileLabels" :key="`red-file-${label}`">{{ label }}</span>

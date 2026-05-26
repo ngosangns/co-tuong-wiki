@@ -12,7 +12,8 @@ export function useLessonPlayer(lessonSource: MaybeRefOrGetter<Lesson>) {
   const activeLine = computed(() => lesson.value.lines.find((line) => line.id === activeLineId.value) ?? lesson.value.lines[0])
   const activeMoves = computed(() => activeLine.value?.moves ?? [])
   const visibleMoves = computed(() => activeMoves.value.slice(0, activeMoveIndex.value))
-  const initialLessonBoard = computed(() => (lesson.value.initialFen ? boardFromXiangqiFen(lesson.value.initialFen) : initialBoard))
+  const activeInitialFen = computed(() => activeLine.value?.initialFen ?? lesson.value.initialFen)
+  const initialLessonBoard = computed(() => (activeInitialFen.value ? boardFromXiangqiFen(activeInitialFen.value) : initialBoard))
   const board = computed(() => replayMoves(initialLessonBoard.value, visibleMoves.value))
   const currentMove = computed(() => activeMoves.value[activeMoveIndex.value - 1])
 
@@ -46,11 +47,11 @@ export function useLessonPlayer(lessonSource: MaybeRefOrGetter<Lesson>) {
 
   function chooseMove(moveId: string) {
     const option = lesson.value.choice.options.find((item) => item.moveId === moveId) ?? null
-    const matchingLine = lesson.value.lines.find((line) => line.moves.some((move) => move.id === moveId))
+    const matchingLine = lesson.value.lines.find((line) => line.moves?.some((move) => move.id === moveId))
 
     if (matchingLine) {
       activeLineId.value = matchingLine.id
-      activeMoveIndex.value = matchingLine.moves.findIndex((move) => move.id === moveId) + 1
+      activeMoveIndex.value = (matchingLine.moves?.findIndex((move) => move.id === moveId) ?? -1) + 1
     }
 
     selectedChoice.value = option

@@ -26,9 +26,10 @@ type Choice struct {
 }
 
 type Line struct {
-	ID    string `json:"id"`
-	Title string `json:"title"`
-	Moves []Move `json:"moves"`
+	ID         string `json:"id"`
+	Title      string `json:"title"`
+	InitialFEN string `json:"initialFen,omitempty"`
+	Moves      []Move `json:"moves"`
 }
 
 type Lesson struct {

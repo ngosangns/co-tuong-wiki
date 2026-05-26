@@ -1,0 +1,799 @@
+[
+  {
+    "id": "05c5eba5-9fd2-4b39-9a3c-069f3e8c9697",
+    "title": "default",
+    "category": "Ván chọn lọc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "wxf",
+      "file": "/Users/ngosangns/Github/co-tuong-wiki/data/external/xiangqi-book-example/setups/default.wxf",
+      "result": null
+    },
+    "lines": [
+      {
+        "id": "0609f42c-d63c-48e4-ba3c-f58f6573e033",
+        "title": "Biến chính",
+        "moves": []
+      }
+    ],
+    "initialFen": "rheakaehr/9/1c5c1/p1p1p1p1p/9/9/P1P1P1P1P/1C5C1/9/RHEAKAEHR w"
+  },
+  {
+    "id": "b4015c30-9a94-4f65-bcd5-6d3d107b9c27",
+    "title": "demo",
+    "category": "Ván chọn lọc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "wxf",
+      "file": "/Users/ngosangns/Github/co-tuong-wiki/data/external/xiangqi-book-example/setups/demo.wxf",
+      "result": null
+    },
+    "lines": [
+      {
+        "id": "870e4d34-21f2-42f5-9abf-b7968d1fd635",
+        "title": "Biến chính",
+        "moves": []
+      }
+    ],
+    "initialFen": "4kaer1/4a2c1/2h1e1h2/3Rp1C1p/2C6/5rP2/1pP1P3P/8E/9/1cEAKA1R1 b"
+  },
+  {
+    "id": "332da089-f01f-49ad-9f2f-1035efef8aa1",
+    "title": "demo-with-history-playok",
+    "category": "Ván chọn lọc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "wxf",
+      "file": "/Users/ngosangns/Github/co-tuong-wiki/data/external/xiangqi-setup/doc/demo-with-history-playok.wxf",
+      "result": "0-1"
+    },
+    "lines": [
+      {
+        "id": "c1b1ea0d-e771-4e17-97a4-da8c33d39302",
+        "title": "Biến chính",
+        "moves": [
+          {
+            "id": "854f4146-6c3f-435d-9ebb-c286d979381b",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: P3+1"
+          },
+          {
+            "id": "d071f841-269e-4f61-b15e-6579e38bb982",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: c8.7"
+          },
+          {
+            "id": "f15427f6-78db-4c3d-863d-375062a5746a",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: E7+5"
+          },
+          {
+            "id": "bfc51d88-ac63-44d0-b5a5-020c3045e7d1",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: c2.5"
+          },
+          {
+            "id": "c6d646af-a54f-4901-b410-6b622d06745f",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: H2+3"
+          },
+          {
+            "id": "00c2aa01-ed94-4705-8324-bd6d198c4e9c",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: h2+3"
+          },
+          {
+            "id": "23e2a7f4-79d4-46db-8bd5-5c79d69f17d7",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: H8+6"
+          },
+          {
+            "id": "6e03f736-c026-4324-944c-5b7b6a75c762",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: r1.2"
+          },
+          {
+            "id": "fcd1b578-fdc5-4ee9-ba28-0c4e176a355b",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: H3+4"
+          },
+          {
+            "id": "74e32b6e-9686-4fd5-b981-0a45442aa68d",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: h8+9"
+          },
+          {
+            "id": "7faa0a8d-7a1d-4a1f-8e27-9d5e03a37a04",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: C2+4"
+          },
+          {
+            "id": "8b70221b-f5fd-48b5-aa42-ab587e07f2d1",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: r9+1"
+          },
+          {
+            "id": "cd49c089-ab48-4b61-a524-b1437d1cafb4",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: C2.5"
+          },
+          {
+            "id": "501e1714-a7c8-41fe-9e46-69c6c7c6fe39",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: a4+5"
+          },
+          {
+            "id": "308b2967-5443-4de3-aa9e-eea33aa88468",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: C5-1"
+          },
+          {
+            "id": "8f817057-7550-4c6d-9176-723981afaedd",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: r9.6"
+          },
+          {
+            "id": "f08b7f5c-377e-49aa-a2d2-0f089e8d032c",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: H4+6"
+          },
+          {
+            "id": "ae2ad7e0-b177-452e-8a35-8889ed86e28a",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: r6+3"
+          },
+          {
+            "id": "c5e08ff4-a756-452e-804f-f3f0795607d3",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: H++7"
+          },
+          {
+            "id": "0b0d7af6-ab6c-4a82-9ef0-3bf2743728b1",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: c7.3"
+          },
+          {
+            "id": "4770edb4-3658-42d7-ac62-95bec0bf4407",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: C5-1"
+          },
+          {
+            "id": "18240dba-c992-452d-9cf9-b65d606aba82",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: r6.4"
+          },
+          {
+            "id": "df57456f-353a-4a76-8e1e-4aac7111f59c",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: R9+1"
+          },
+          {
+            "id": "316be184-b97b-462d-8a08-d9284ee1d158",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: c3.4"
+          },
+          {
+            "id": "1b8bb391-46b4-4141-aa13-16e91fa8ff7e",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: R1.2"
+          },
+          {
+            "id": "7b19e6e9-4e5b-43f3-bd70-ff20fe422a79",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: c4+6"
+          },
+          {
+            "id": "dd2a61a5-7fe4-48d4-9135-6c36b362440d",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: R9.8"
+          },
+          {
+            "id": "3a30a9f5-e5de-4bb3-bd42-d5a95a89cf51",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: c4-2"
+          },
+          {
+            "id": "22078da0-f0fa-4e49-a72f-8f7a691f8781",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: R2+7"
+          },
+          {
+            "id": "de01650b-116f-435c-9a05-71e61ecb77a3",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: c4.9"
+          },
+          {
+            "id": "ff6d4918-250c-4e67-9228-ab0369722166",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: C5+2"
+          },
+          {
+            "id": "0881cebd-e9be-4a38-9084-84a96fb42a80",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: r4+3"
+          },
+          {
+            "id": "1125a1c0-b2c8-4fb5-87c3-efa2609460fb",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: C5.1"
+          },
+          {
+            "id": "9b0f3752-a7c0-4ae6-a892-c7903a87d688",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: r2+7"
+          },
+          {
+            "id": "fa01e6d8-f32e-4357-bb24-f3c5d60fb0a3",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: R8+1"
+          },
+          {
+            "id": "2809092c-3b1a-4f55-bf06-af57b8571141",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: r4.2"
+          },
+          {
+            "id": "6bba25c8-ce6a-41ae-9abb-7d6a76820731",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: C1.7"
+          },
+          {
+            "id": "128ec7ee-c0f5-4a48-9c05-68d5fc8191b8",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: c9+3"
+          },
+          {
+            "id": "89ba9e08-f267-4306-8858-8c542ac19ee2",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: R2.1"
+          },
+          {
+            "id": "6a52bdff-7fc9-4263-aab0-9b6ed3a011a9",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: e7+9"
+          },
+          {
+            "id": "5cfc3874-81bb-4080-b0a0-725794f04258",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: P7+1"
+          },
+          {
+            "id": "4a8ca289-7930-4181-82ac-d74ce2e7fc3e",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: r2.5"
+          },
+          {
+            "id": "e27536b0-f1cf-4b62-86a0-c49d70d5835f",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: A6+5"
+          },
+          {
+            "id": "7c1908ce-05a7-4d41-ad68-ab5a40cb348f",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: r5+1"
+          },
+          {
+            "id": "34e913da-c9c4-4d6b-be80-f9cb25bae04e",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: K5.6"
+          },
+          {
+            "id": "c4a43bd2-d7f5-4c39-b5fb-4499c3994523",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: r5-2"
+          },
+          {
+            "id": "b37bb0a6-d205-4dc1-9b51-cd2c1f25a0a4",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: C7.8"
+          },
+          {
+            "id": "902f2908-5562-465b-ab6c-94899062891e",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: c9.6"
+          },
+          {
+            "id": "ddab869d-db8f-4bf9-b713-6263f497459f",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: C8+3"
+          },
+          {
+            "id": "d0b47f43-2558-46f7-82ef-90d73fac2c33",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: a5-4"
+          },
+          {
+            "id": "ecf2d7d6-1b13-439b-9282-fc7c9ad55b7c",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: P7+1"
+          },
+          {
+            "id": "4a426010-39ae-4663-a11c-611548c73547",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: c5.4"
+          },
+          {
+            "id": "363230da-cafc-4a65-8a86-b7ffea4d2555",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: P7+1"
+          },
+          {
+            "id": "c13e5e19-9c38-49ed-bd33-07c13f37c822",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": "Raw WXF: r5.4"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "f245163e-3c9b-4b33-a618-05bf382d2cd1",
+    "title": "demo",
+    "category": "Ván chọn lọc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "wxf",
+      "file": "/Users/ngosangns/Github/co-tuong-wiki/data/external/xiangqi-setup/doc/demo.wxf",
+      "result": null
+    },
+    "lines": [
+      {
+        "id": "a84baab8-a706-44f8-9700-ccba4796817c",
+        "title": "Biến chính",
+        "moves": []
+      }
+    ],
+    "initialFen": "4kaer1/4a2c1/2h1e1h2/3Rp1C1p/2C6/5rP2/1pP1P3P/8E/9/1cEAKA1R1 b"
+  },
+  {
+    "id": "911cc634-dae4-47c1-86e2-36318c24ceee",
+    "title": "initial",
+    "category": "Ván chọn lọc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "wxf",
+      "file": "/Users/ngosangns/Github/co-tuong-wiki/data/external/xiangqi-setup/doc/initial.wxf",
+      "result": null
+    },
+    "lines": [
+      {
+        "id": "6da1a3d3-9df5-4156-9799-1414affb621f",
+        "title": "Biến chính",
+        "moves": []
+      }
+    ],
+    "initialFen": "rheakaehr/9/1c5c1/p1p1p1p1p/9/9/P1P1P1P1P/1C5C1/9/RHEAKAEHR r"
+  }
+]

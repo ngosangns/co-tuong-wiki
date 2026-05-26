@@ -7,6 +7,12 @@ import (
 	"time"
 )
 
+const (
+	defaultEngineTimeMS = 2000
+	maxEngineTimeMS     = 10000
+	engineTimeoutSlack  = 3 * time.Second
+)
+
 type Config struct {
 	Kind          string
 	Path          string
@@ -21,11 +27,11 @@ func ConfigFromEnv() Config {
 	return Config{
 		Kind:          strings.ToLower(env("ENGINE_KIND", "uci")),
 		Path:          os.Getenv("ENGINE_PATH"),
-		DefaultTimeMS: envInt("ENGINE_DEFAULT_TIME_MS", 500),
-		MaxTimeMS:     envInt("ENGINE_MAX_TIME_MS", 2000),
+		DefaultTimeMS: envInt("ENGINE_DEFAULT_TIME_MS", defaultEngineTimeMS),
+		MaxTimeMS:     envInt("ENGINE_MAX_TIME_MS", maxEngineTimeMS),
 		DefaultDepth:  envInt("ENGINE_DEFAULT_DEPTH", 8),
 		MaxDepth:      envInt("ENGINE_MAX_DEPTH", 12),
-		TimeoutSlack:  time.Second,
+		TimeoutSlack:  engineTimeoutSlack,
 	}
 }
 

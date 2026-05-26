@@ -53,6 +53,7 @@ var fenKinds = map[rune]string{
 	'k': "general",
 	'a': "advisor",
 	'b': "elephant",
+	'e': "elephant",
 	'n': "horse",
 	'h': "horse",
 	'r': "chariot",

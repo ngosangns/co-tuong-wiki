@@ -26,6 +26,7 @@ export function useMoveEvaluation(source: MoveEvaluationSource) {
   const errorMessage = ref('')
 
   const nextMove = computed(() => source.activeMoves.value[source.activeMoveIndex.value])
+  const hasPendingMove = computed(() => source.activeMoveIndex.value < source.activeMoves.value.length)
   const sideToMove = computed(() => inferSideToMove(source.activeMoves.value, source.activeMoveIndex.value))
   const fen = computed(() => {
     if (!sideToMove.value) return ''
@@ -33,19 +34,21 @@ export function useMoveEvaluation(source: MoveEvaluationSource) {
   })
 
   watch(
-    [fen, nextMove],
-    ([nextFen], _previous, onCleanup) => {
+    [fen, nextMove, hasPendingMove],
+    ([nextFen, _nextMove, shouldAnalyze], _previous, onCleanup) => {
       const analysisSide = sideToMove.value
 
-      if (!nextFen || !analysisSide) {
+      if (!shouldAnalyze || !nextFen || !analysisSide) {
         status.value = 'idle'
         evaluation.value = null
+        errorMessage.value = ''
         return
       }
 
       const controller = new AbortController()
       const timer = window.setTimeout(async () => {
         status.value = 'analyzing'
+        evaluation.value = null
         errorMessage.value = ''
 
         try {
@@ -67,6 +70,7 @@ export function useMoveEvaluation(source: MoveEvaluationSource) {
           if (controller.signal.aborted) return
 
           status.value = 'error'
+          evaluation.value = null
           errorMessage.value = error instanceof Error ? error.message : 'Không thể đánh giá vị trí hiện tại.'
         }
       }, 180)

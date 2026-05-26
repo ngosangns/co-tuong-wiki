@@ -13,6 +13,8 @@ dist
 dist-ssr
 *.local
 apps/api/server
+__pycache__/
+*.py[cod]
 
 # Editor directories and files
 .vscode/*

@@ -1,0 +1,301 @@
+[
+  {
+    "id": "eeccd535-ba59-441a-8831-21c3bb1f8423",
+    "title": "炮二平五对屏风马 - 实战对局完整复盘（第九章示例）",
+    "category": "Ván chọn lọc",
+    "difficulty": "Cao cấp",
+    "source": {
+      "type": "md-book",
+      "file": "../../data/external/xiangqi-book/09-实战对局.md",
+      "book": "中国象棋入门到提高",
+      "chapter": "09-实战对局"
+    },
+    "lines": [
+      {
+        "id": "be276b23-46fc-4cbb-addd-67dff7f79d44",
+        "title": "主变 + 关键分析",
+        "moves": [
+          {
+            "id": "0605a65e-3e6d-467e-b867-b255bbaf8daf",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 4
+            },
+            "to": {
+              "file": 4,
+              "rank": 4
+            },
+            "comment": "原文: 炮二平五 | 炮二平五"
+          },
+          {
+            "id": "4fb5b515-96d4-4b94-8f86-97063f7152a8",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 4
+            },
+            "to": {
+              "file": 2,
+              "rank": 5
+            },
+            "comment": "原文: 马二进三 | 马二进三"
+          },
+          {
+            "id": "b16919a0-03a5-4661-ab09-c05caf02a702",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 4
+            },
+            "to": {
+              "file": 1,
+              "rank": 4
+            },
+            "comment": "原文: 车一平二 | 车一平二"
+          },
+          {
+            "id": "bb23e5c0-c2b0-4332-8344-30b66c1b04d4",
+            "side": "red",
+            "from": {
+              "file": 6,
+              "rank": 4
+            },
+            "to": {
+              "file": 0,
+              "rank": 5
+            },
+            "comment": "原文: 兵七进一 | 兵七进一"
+          },
+          {
+            "id": "5791406f-5038-4037-a365-cc6f8fa8ca51",
+            "side": "red",
+            "from": {
+              "file": 7,
+              "rank": 4
+            },
+            "to": {
+              "file": 6,
+              "rank": 5
+            },
+            "comment": "原文: 马八进七 | 马八进七"
+          },
+          {
+            "id": "f2bff21c-7c53-475a-8e01-3fcf3223365f",
+            "side": "red",
+            "from": {
+              "file": 7,
+              "rank": 4
+            },
+            "to": {
+              "file": 8,
+              "rank": 4
+            },
+            "comment": "原文: 炮八平九 | 炮八平九"
+          }
+        ]
+      }
+    ],
+    "summary": "Ván đấu minh họa đầy đủ từ khai cuộc đến trung cuộc và công vương, được phân tích chi tiết trong sách."
+  },
+  {
+    "id": "54423d62-0e88-4878-8177-79c3857bc968",
+    "title": "00-前言",
+    "category": "Lý thuyết",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "md-book",
+      "file": "../../data/external/xiangqi-book/00-前言.md",
+      "book": "中国象棋入门到提高",
+      "chapter": "00-前言"
+    },
+    "lines": [
+      {
+        "id": "ced66714-789b-4acc-97fa-4b5020def1e3",
+        "title": "Nội dung lý thuyết",
+        "moves": []
+      }
+    ],
+    "summary": "Kiến thức cốt lõi từ chương 00-前言."
+  },
+  {
+    "id": "eac5baf5-0302-4030-ba3d-765c3cbf1531",
+    "title": "Giá trị quân cờ và vận dụng quân lực",
+    "category": "Lý thuyết cơ bản",
+    "difficulty": "Nhập môn",
+    "source": {
+      "type": "md-book",
+      "file": "../../data/external/xiangqi-book/01-棋子价值.md",
+      "book": "中国象棋入门到提高",
+      "chapter": "01-棋子价值"
+    },
+    "lines": [
+      {
+        "id": "4124cfd0-31de-43f9-8a70-85565feae7bc",
+        "title": "Nội dung lý thuyết",
+        "moves": []
+      }
+    ],
+    "summary": "Kiến thức cốt lõi từ chương 01-棋子价值."
+  },
+  {
+    "id": "5e4930cf-e44b-4654-80e3-fe16ae88adc9",
+    "title": "Chiến thuật cơ bản",
+    "category": "Chiến thuật",
+    "difficulty": "Nhập môn",
+    "source": {
+      "type": "md-book",
+      "file": "../../data/external/xiangqi-book/02-基本战术.md",
+      "book": "中国象棋入门到提高",
+      "chapter": "02-基本战术"
+    },
+    "lines": [
+      {
+        "id": "6331d7d2-dfd4-4295-9ff1-f8e42566186c",
+        "title": "Nội dung lý thuyết",
+        "moves": []
+      }
+    ],
+    "summary": "Kiến thức cốt lõi từ chương 02-基本战术."
+  },
+  {
+    "id": "91820a70-58b3-4eb2-8918-b05e94ddfdd4",
+    "title": "Sát pháp cơ bản",
+    "category": "Thế sát",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "md-book",
+      "file": "../../data/external/xiangqi-book/03-基本杀法.md",
+      "book": "中国象棋入门到提高",
+      "chapter": "03-基本杀法"
+    },
+    "lines": [
+      {
+        "id": "c0385dff-e65d-4a93-af66-b0157b284f7e",
+        "title": "Nội dung lý thuyết",
+        "moves": []
+      }
+    ],
+    "summary": "Kiến thức cốt lõi từ chương 03-基本杀法."
+  },
+  {
+    "id": "c8271aec-9299-4896-9c53-cb3664f01a90",
+    "title": "Tàn cuộc thực dụng",
+    "category": "Tàn cuộc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "md-book",
+      "file": "../../data/external/xiangqi-book/04-实用残局.md",
+      "book": "中国象棋入门到提高",
+      "chapter": "04-实用残局"
+    },
+    "lines": [
+      {
+        "id": "a944eb96-2266-4202-ac6e-6adc029be6cc",
+        "title": "Nội dung lý thuyết",
+        "moves": []
+      }
+    ],
+    "summary": "Kiến thức cốt lõi từ chương 04-实用残局."
+  },
+  {
+    "id": "68b416a2-aa23-491e-94e7-8adaa2aac2ce",
+    "title": "Nguyên lý khai cuộc",
+    "category": "Khai cuộc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "md-book",
+      "file": "../../data/external/xiangqi-book/05-开局原理.md",
+      "book": "中国象棋入门到提高",
+      "chapter": "05-开局原理"
+    },
+    "lines": [
+      {
+        "id": "0b45f4d3-7042-429a-998a-0997541dbaa0",
+        "title": "Nội dung lý thuyết",
+        "moves": []
+      }
+    ],
+    "summary": "Kiến thức cốt lõi từ chương 05-开局原理."
+  },
+  {
+    "id": "41710bb9-d3e6-42ae-87a1-5c11eff82541",
+    "title": "Các khai cuộc phổ biến",
+    "category": "Khai cuộc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "md-book",
+      "file": "../../data/external/xiangqi-book/06-常见开局.md",
+      "book": "中国象棋入门到提高",
+      "chapter": "06-常见开局"
+    },
+    "lines": [
+      {
+        "id": "c8c019fb-a977-4de9-87d0-0501434710c8",
+        "title": "Nội dung lý thuyết",
+        "moves": []
+      }
+    ],
+    "summary": "Kiến thức cốt lõi từ chương 06-常见开局."
+  },
+  {
+    "id": "f97e29ed-c1b6-4793-819a-40a594925167",
+    "title": "Chiến lược trung cuộc",
+    "category": "Trung cuộc",
+    "difficulty": "Cao cấp",
+    "source": {
+      "type": "md-book",
+      "file": "../../data/external/xiangqi-book/07-中局策略.md",
+      "book": "中国象棋入门到提高",
+      "chapter": "07-中局策略"
+    },
+    "lines": [
+      {
+        "id": "d367adde-04ca-4d00-bceb-9ad872f8ccfe",
+        "title": "Nội dung lý thuyết",
+        "moves": []
+      }
+    ],
+    "summary": "Kiến thức cốt lõi từ chương 07-中局策略."
+  },
+  {
+    "id": "a573c994-8f37-4c1e-85af-edc175a95ee4",
+    "title": "Bài tập",
+    "category": "Bài tập",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "md-book",
+      "file": "../../data/external/xiangqi-book/08-练习题.md",
+      "book": "中国象棋入门到提高",
+      "chapter": "08-练习题"
+    },
+    "lines": [
+      {
+        "id": "8b3a5afd-ecfb-4211-a6d4-bdbc52ad6601",
+        "title": "Nội dung lý thuyết",
+        "moves": []
+      }
+    ],
+    "summary": "Kiến thức cốt lõi từ chương 08-练习题."
+  },
+  {
+    "id": "025b4f6e-f28a-4e98-a400-6adc3f3d14c9",
+    "title": "99-术语对照",
+    "category": "Lý thuyết",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "md-book",
+      "file": "../../data/external/xiangqi-book/99-术语对照.md",
+      "book": "中国象棋入门到提高",
+      "chapter": "99-术语对照"
+    },
+    "lines": [
+      {
+        "id": "367f1d54-f532-4b1b-88a0-50985a20027e",
+        "title": "Nội dung lý thuyết",
+        "moves": []
+      }
+    ],
+    "summary": "Kiến thức cốt lõi từ chương 99-术语对照."
+  }
+]

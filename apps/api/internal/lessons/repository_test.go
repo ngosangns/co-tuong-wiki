@@ -15,8 +15,8 @@ func TestLoadRepository(t *testing.T) {
 		t.Fatalf("load repository: %v", err)
 	}
 
-	if got := len(repository.List("", "", "")); got != 811 {
-		t.Fatalf("expected 811 lessons, got %d", got)
+	if got := len(repository.List("", "", "")); got != 6261 {
+		t.Fatalf("expected 6261 lessons, got %d", got)
 	}
 
 	if !hasLessonTitle(repository.lessons, "Pháo Đầu đối Bình Phong Mã - ham quân mất nhịp") {

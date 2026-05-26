@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { BookOpen, ChevronDown, ChevronLeft, ChevronRight, CircleAlert, Lightbulb, Search, ShieldCheck } from '@lucide/vue'
+import { BookOpen, ChevronDown, ChevronLeft, ChevronRight, CircleAlert, GitBranch, Lightbulb, Search, ShieldCheck } from '@lucide/vue'
 import { computed, onMounted, ref } from 'vue'
+import CombinedLessonPage from './components/CombinedLessonPage.vue'
 import EvaluationPanel from './components/EvaluationPanel.vue'
 import MoveGraph from './components/MoveGraph.vue'
 import XiangqiBoard from './components/XiangqiBoard.vue'
@@ -39,13 +40,14 @@ const {
 const lesson = computed(() => activeLesson.value ?? emptyLesson)
 const player = useLessonPlayer(lesson)
 const moveEvaluation = useMoveEvaluation(player)
-const isPrinciplesExpanded = ref(false)
+const isPrinciplesExpanded = ref(true)
+const isCombinedPage = ref(window.location.pathname.replace(/\/$/, '') === '/combined')
 const principleCount = computed(() => lessonPrincipleGroups.reduce((count, group) => count + group.items.length, 0))
 
 const choicePromptPly = computed(() => {
   const choiceMoveIds = new Set(lesson.value.choice.options.map((option) => option.moveId))
   const optionIndexes = lesson.value.lines
-    .flatMap((line) => line.moves.map((move, index) => (choiceMoveIds.has(move.id) ? index : -1)))
+    .flatMap((line) => (line.moves ?? []).map((move, index) => (choiceMoveIds.has(move.id) ? index : -1)))
     .filter((index) => index >= 0)
 
   return optionIndexes.length ? Math.min(...optionIndexes) : -1
@@ -55,7 +57,7 @@ const visibleChoiceOptions = computed(() => {
   if (choicePromptPly.value < 0) return []
 
   const moveIdsAtPrompt = new Set(
-    lesson.value.lines.map((line) => line.moves[choicePromptPly.value]?.id).filter((moveId): moveId is string => Boolean(moveId)),
+    lesson.value.lines.map((line) => line.moves?.[choicePromptPly.value]?.id).filter((moveId): moveId is string => Boolean(moveId)),
   )
 
   return lesson.value.choice.options.filter((option) => moveIdsAtPrompt.has(option.moveId))
@@ -77,12 +79,15 @@ function lessonsForCategory(category: string) {
 }
 
 onMounted(() => {
-  loadCatalog()
+  if (!isCombinedPage.value) {
+    loadCatalog()
+  }
 })
 </script>
 
 <template>
-  <main>
+  <CombinedLessonPage v-if="isCombinedPage" />
+  <main v-else>
     <div v-if="errorMessage || isLoading" class="app-status" role="status">
       {{ errorMessage || 'Đang tải dữ liệu bài học...' }}
     </div>
@@ -101,6 +106,11 @@ onMounted(() => {
           <Search :size="18" aria-hidden="true" />
           <input type="search" placeholder="Tìm khai cuộc, cạm bẫy..." />
         </label>
+
+        <a class="combined-nav-link" href="/combined">
+          <GitBranch :size="18" aria-hidden="true" />
+          <span>Tổng hợp toàn bộ lesson</span>
+        </a>
 
         <section class="topic-list" aria-label="Chủ đề và bài học">
           <div v-for="category in categoryStats" :key="category.name" class="topic-group">

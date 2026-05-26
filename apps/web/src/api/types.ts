@@ -14,7 +14,11 @@ export interface LessonChoice {
 export interface LessonLine {
   id: string
   title: string
-  moves: LessonMove[]
+  initialFen?: string
+  phase?: LessonPhase
+  pieceCount?: number
+  moveCount?: number
+  moves?: LessonMove[]
 }
 
 export interface LessonSummary {
@@ -30,4 +34,29 @@ export interface Lesson extends LessonSummary {
   choice: LessonChoice
 }
 
+export interface CombinedLineMoveWindow {
+  lineId: string
+  phase?: LessonPhase
+  pieceCount?: number
+  from: number
+  moves: LessonMove[]
+  totalMoves: number
+}
+
+export interface CombinedStepMoveWindow {
+  from: number
+  limit: number
+  lines: CombinedLineMoveWindow[]
+}
+
+export interface CombinedNextStepsRequest {
+  phase: LessonPhase
+  initialFen: string
+  from: number
+  limit?: number
+  prefix: LessonMove[]
+}
+
 export type AnalyzeResponse = EngineEvaluation
+
+export type LessonPhase = 'opening' | 'middlegame' | 'endgame'

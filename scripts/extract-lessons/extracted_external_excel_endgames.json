@@ -1,0 +1,1237 @@
+[
+  {
+    "id": "61d6f953-1528-4463-bcc0-04c8d317c811",
+    "title": "炮 vs 卒卒卒象 (KCKBPPP)",
+    "category": "Tàn cuộc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "excel",
+      "file": "../../data/external/chinese-chess-dataset/象棋残局.xlsx",
+      "material": "KCKBPPP",
+      "original_name": "炮 vs 卒卒卒象"
+    },
+    "lines": [
+      {
+        "id": "8e7ae6d4-844f-4cda-84e0-e85a19074572",
+        "title": "Đỏ tiên thủ",
+        "moves": []
+      },
+      {
+        "id": "c03ef569-1596-4b9e-a540-4492d2a76605",
+        "title": "Vị trí khác",
+        "moves": []
+      }
+    ],
+    "initialFen": "9/9/4bk3/9/9/9/9/4ppp2/9/4K3C w"
+  },
+  {
+    "id": "0ea5dd85-a6c7-4379-8eb2-9d4a061a8d16",
+    "title": "炮 vs 卒卒卒士 (KCKAPPP)",
+    "category": "Tàn cuộc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "excel",
+      "file": "../../data/external/chinese-chess-dataset/象棋残局.xlsx",
+      "material": "KCKAPPP",
+      "original_name": "炮 vs 卒卒卒士"
+    },
+    "lines": [
+      {
+        "id": "613b619e-d17c-4a27-9769-94b69b767cf3",
+        "title": "Đỏ tiên thủ",
+        "moves": []
+      },
+      {
+        "id": "109f1f0e-1f12-4e6d-899d-06bad7230099",
+        "title": "Vị trí khác",
+        "moves": []
+      }
+    ],
+    "initialFen": "9/9/4ka3/9/4p4/9/9/9/9/3K2Cpp w"
+  },
+  {
+    "id": "1818f6cb-7034-4a49-9fd9-cb51585e45c9",
+    "title": "炮 vs 卒卒卒士象 (KCKABPPP)",
+    "category": "Tàn cuộc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "excel",
+      "file": "../../data/external/chinese-chess-dataset/象棋残局.xlsx",
+      "material": "KCKABPPP",
+      "original_name": "炮 vs 卒卒卒士象"
+    },
+    "lines": [
+      {
+        "id": "ea236e73-c2fe-4093-867e-5f24214db4cc",
+        "title": "Đỏ tiên thủ",
+        "moves": []
+      },
+      {
+        "id": "38f69d9c-eabf-4a5a-a54a-228d810428d0",
+        "title": "Vị trí khác",
+        "moves": []
+      }
+    ],
+    "initialFen": "9/9/4ka3/9/4p1b2/9/9/9/9/3K2Cpp w"
+  },
+  {
+    "id": "cc2337b8-fd16-48bb-935a-ba7ff098aa12",
+    "title": "炮 vs 卒卒卒象象 (KCKBBPPP)",
+    "category": "Tàn cuộc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "excel",
+      "file": "../../data/external/chinese-chess-dataset/象棋残局.xlsx",
+      "material": "KCKBBPPP",
+      "original_name": "炮 vs 卒卒卒象象"
+    },
+    "lines": [
+      {
+        "id": "9730b4e7-475b-4db3-963c-f250c0f380e0",
+        "title": "Đỏ tiên thủ",
+        "moves": []
+      },
+      {
+        "id": "49ed27cf-a41b-4585-9725-91c75cfe7d6d",
+        "title": "Vị trí khác",
+        "moves": []
+      }
+    ],
+    "initialFen": "9/9/4bk3/9/6b2/9/9/4ppp2/9/4K3C w"
+  },
+  {
+    "id": "d518cb2d-2da0-49ce-8d49-a5e3b6bf28d5",
+    "title": "炮 vs 卒卒卒士象象 (KCKABBPPP)",
+    "category": "Tàn cuộc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "excel",
+      "file": "../../data/external/chinese-chess-dataset/象棋残局.xlsx",
+      "material": "KCKABBPPP",
+      "original_name": "炮 vs 卒卒卒士象象"
+    },
+    "lines": [
+      {
+        "id": "724752b1-5a8d-4266-a503-8b7679eaa914",
+        "title": "Đỏ tiên thủ",
+        "moves": []
+      },
+      {
+        "id": "80b329c3-735e-4ca9-81db-62b40bb3d5e4",
+        "title": "Vị trí khác",
+        "moves": []
+      }
+    ],
+    "initialFen": "9/9/4ka3/9/2b1p1b2/9/9/9/9/3K2Cpp w"
+  },
+  {
+    "id": "c43ee203-540c-4a6e-a66b-5d1f120c7428",
+    "title": "炮 vs 卒卒卒 (KCKPPP)",
+    "category": "Tàn cuộc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "excel",
+      "file": "../../data/external/chinese-chess-dataset/象棋残局.xlsx",
+      "material": "KCKPPP",
+      "original_name": "炮 vs 卒卒卒"
+    },
+    "lines": [
+      {
+        "id": "36b15758-20b5-4304-aa16-9ec29502cea0",
+        "title": "Đỏ tiên thủ",
+        "moves": []
+      }
+    ],
+    "initialFen": "5k3/9/9/6p1C/8p/9/9/4K3p/9/9 b"
+  },
+  {
+    "id": "5da51e34-d693-4777-9dd6-e0985651b3bb",
+    "title": "炮 vs 卒卒卒士士象 (KCKAABPPP)",
+    "category": "Tàn cuộc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "excel",
+      "file": "../../data/external/chinese-chess-dataset/象棋残局.xlsx",
+      "material": "KCKAABPPP",
+      "original_name": "炮 vs 卒卒卒士士象"
+    },
+    "lines": [
+      {
+        "id": "6d52bcb8-858e-4002-8012-e54ed416d1cf",
+        "title": "Đỏ tiên thủ",
+        "moves": []
+      },
+      {
+        "id": "98496953-3e24-452e-8e69-332e25c62c73",
+        "title": "Vị trí khác",
+        "moves": []
+      }
+    ],
+    "initialFen": "9/4a4/3ak4/4p4/2b6/9/9/2p1K2p1/9/2C6 w"
+  },
+  {
+    "id": "a59ff2ff-1aff-4b7d-ab7d-b264950f39a7",
+    "title": "炮 vs 卒卒卒士士 (KCKAAPPP)",
+    "category": "Tàn cuộc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "excel",
+      "file": "../../data/external/chinese-chess-dataset/象棋残局.xlsx",
+      "material": "KCKAAPPP",
+      "original_name": "炮 vs 卒卒卒士士"
+    },
+    "lines": [
+      {
+        "id": "53a9a862-2142-409c-a917-f9c1b2cc830f",
+        "title": "Đỏ tiên thủ",
+        "moves": []
+      },
+      {
+        "id": "94c9e7da-6cf5-45b7-9a65-196c8be0160b",
+        "title": "Đen tiên thủ",
+        "moves": []
+      }
+    ],
+    "initialFen": "9/4a4/3ak4/9/4p4/9/2C6/3pK4/7p1/9 w"
+  },
+  {
+    "id": "d761ebea-baa4-44e7-9123-8060ada68582",
+    "title": "炮 vs 卒卒卒士士象象 (KCKAABBPPP)",
+    "category": "Tàn cuộc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "excel",
+      "file": "../../data/external/chinese-chess-dataset/象棋残局.xlsx",
+      "material": "KCKAABBPPP",
+      "original_name": "炮 vs 卒卒卒士士象象"
+    },
+    "lines": [
+      {
+        "id": "e73ff92b-550c-4df4-8ad7-06cb4047993d",
+        "title": "Đỏ tiên thủ",
+        "moves": []
+      },
+      {
+        "id": "9cb58fa9-d80d-4c6d-86a8-3adbedcafb51",
+        "title": "Vị trí khác",
+        "moves": []
+      }
+    ],
+    "initialFen": "9/4a4/b2ak4/4p4/6b2/9/9/2p1K2p1/9/C8 w"
+  },
+  {
+    "id": "464843e3-92bb-479c-9f91-e32a8c464b21",
+    "title": "马 vs 卒卒卒象象 (KNKBBPPP)",
+    "category": "Tàn cuộc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "excel",
+      "file": "../../data/external/chinese-chess-dataset/象棋残局.xlsx",
+      "material": "KNKBBPPP",
+      "original_name": "马 vs 卒卒卒象象"
+    },
+    "lines": [
+      {
+        "id": "2a4f648e-9105-4db0-9b59-3b4cbbcaa283",
+        "title": "Đỏ tiên thủ",
+        "moves": []
+      },
+      {
+        "id": "788e6744-7656-43ec-8f2e-af1d5e38b1ba",
+        "title": "Đen tiên thủ",
+        "moves": []
+      }
+    ],
+    "initialFen": "9/4k4/4b3b/2p5p/9/9/7N1/4K4/9/4p4 b"
+  },
+  {
+    "id": "d51fc4ff-672d-4679-bc86-b1f9ea0ef5b3",
+    "title": "马 vs 卒卒卒士象象 (KNKABBPPP)",
+    "category": "Tàn cuộc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "excel",
+      "file": "../../data/external/chinese-chess-dataset/象棋残局.xlsx",
+      "material": "KNKABBPPP",
+      "original_name": "马 vs 卒卒卒士象象"
+    },
+    "lines": [
+      {
+        "id": "37a2496e-f89b-4aa9-8467-a2e156c4deba",
+        "title": "Đỏ tiên thủ",
+        "moves": []
+      },
+      {
+        "id": "9c5af3af-ea9e-428f-911d-583ceb009426",
+        "title": "Đen tiên thủ",
+        "moves": []
+      }
+    ],
+    "initialFen": "3a2b2/3k5/9/4p4/6b2/7p1/5N3/9/8p/5K3 b"
+  },
+  {
+    "id": "43a61287-8ff8-4bc6-8a99-be5aa438163b",
+    "title": "马 vs 卒卒卒象 (KNKBPPP)",
+    "category": "Tàn cuộc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "excel",
+      "file": "../../data/external/chinese-chess-dataset/象棋残局.xlsx",
+      "material": "KNKBPPP",
+      "original_name": "马 vs 卒卒卒象"
+    },
+    "lines": [
+      {
+        "id": "05872a50-176c-45f0-8e15-c5bd2d5bcc1f",
+        "title": "Đỏ tiên thủ",
+        "moves": []
+      },
+      {
+        "id": "af2e5a09-84a9-47a2-aa25-1751a57125a2",
+        "title": "Vị trí khác",
+        "moves": []
+      }
+    ],
+    "initialFen": "6b2/9/5k1N1/6p1p/9/9/9/9/4K4/4p4 w"
+  },
+  {
+    "id": "b68de9ed-ce5b-491f-be32-58ee4e74ac6d",
+    "title": "马 vs 卒卒卒士象 (KNKABPPP)",
+    "category": "Tàn cuộc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "excel",
+      "file": "../../data/external/chinese-chess-dataset/象棋残局.xlsx",
+      "material": "KNKABPPP",
+      "original_name": "马 vs 卒卒卒士象"
+    },
+    "lines": [
+      {
+        "id": "b3637355-5bfd-4e68-adc8-f2129e5fc150",
+        "title": "Đỏ tiên thủ",
+        "moves": []
+      },
+      {
+        "id": "223c540f-bd46-420f-9d7e-c35f4f3329f7",
+        "title": "Đen tiên thủ",
+        "moves": []
+      }
+    ],
+    "initialFen": "5ab2/9/5k3/8p/6p2/9/5N1p1/9/9/4K4 w"
+  },
+  {
+    "id": "06d847e4-181c-46d7-bfc3-0fdafb37ab1e",
+    "title": "马 vs 卒卒卒士士象象 (KNKAABBPPP)",
+    "category": "Tàn cuộc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "excel",
+      "file": "../../data/external/chinese-chess-dataset/象棋残局.xlsx",
+      "material": "KNKAABBPPP",
+      "original_name": "马 vs 卒卒卒士士象象"
+    },
+    "lines": [
+      {
+        "id": "d1d54b17-ecbd-4766-b9b7-6eb51e4ff425",
+        "title": "Đỏ tiên thủ",
+        "moves": []
+      },
+      {
+        "id": "c554b844-0916-45d0-905c-38a5fb45032d",
+        "title": "Vị trí khác",
+        "moves": []
+      }
+    ],
+    "initialFen": "9/4a4/4ka3/9/2b3b2/9/6N2/9/9/3K2ppp w"
+  },
+  {
+    "id": "769c16d9-4eb6-4c50-8cf7-e0f14e645506",
+    "title": "马 vs 卒卒卒士士象 (KNKAABPPP)",
+    "category": "Tàn cuộc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "excel",
+      "file": "../../data/external/chinese-chess-dataset/象棋残局.xlsx",
+      "material": "KNKAABPPP",
+      "original_name": "马 vs 卒卒卒士士象"
+    },
+    "lines": [
+      {
+        "id": "78cfe3ba-6313-46b7-821c-bfc3e5442ae8",
+        "title": "Đỏ tiên thủ",
+        "moves": []
+      },
+      {
+        "id": "340058ae-9b67-466a-b7f0-145f6b6b51f5",
+        "title": "Vị trí khác",
+        "moves": []
+      }
+    ],
+    "initialFen": "9/4a4/4ka3/9/6b2/9/6N2/9/9/3K2ppp w"
+  },
+  {
+    "id": "7694e909-4eea-4b1f-8b23-c2a1576134d3",
+    "title": "马 vs 卒卒卒士 (KNKAPPP)",
+    "category": "Tàn cuộc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "excel",
+      "file": "../../data/external/chinese-chess-dataset/象棋残局.xlsx",
+      "material": "KNKAPPP",
+      "original_name": "马 vs 卒卒卒士"
+    },
+    "lines": [
+      {
+        "id": "71574900-f249-4b8f-953c-114292a8a5ba",
+        "title": "Đỏ tiên thủ",
+        "moves": []
+      },
+      {
+        "id": "33cf51a5-a2f8-4e66-afa9-1fa6a984b807",
+        "title": "Vị trí khác",
+        "moves": []
+      }
+    ],
+    "initialFen": "5a3/8N/5k3/8p/6p2/9/7p1/9/9/4K4 w"
+  },
+  {
+    "id": "4f1548e0-b844-4bed-b776-96ee6b1319b9",
+    "title": "马 vs 卒卒卒 (KNKPPP)",
+    "category": "Tàn cuộc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "excel",
+      "file": "../../data/external/chinese-chess-dataset/象棋残局.xlsx",
+      "material": "KNKPPP",
+      "original_name": "马 vs 卒卒卒"
+    },
+    "lines": [
+      {
+        "id": "1480bd8f-fbe3-44cc-a9f0-a577eff33b29",
+        "title": "Đỏ tiên thủ",
+        "moves": []
+      },
+      {
+        "id": "278594fd-b4cf-4263-8b72-edd400b0f764",
+        "title": "Đen tiên thủ",
+        "moves": []
+      }
+    ],
+    "initialFen": "9/4k4/9/4p4/6p2/4N4/9/9/9/4pK3 w"
+  },
+  {
+    "id": "2d0136ba-aff1-4a76-bffc-1f52a9e45dac",
+    "title": "马 vs 卒卒卒士士 (KNKAAPPP)",
+    "category": "Tàn cuộc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "excel",
+      "file": "../../data/external/chinese-chess-dataset/象棋残局.xlsx",
+      "material": "KNKAAPPP",
+      "original_name": "马 vs 卒卒卒士士"
+    },
+    "lines": [
+      {
+        "id": "3a75f064-e04b-4fcb-92be-438fe4e5fda3",
+        "title": "Đỏ tiên thủ",
+        "moves": []
+      },
+      {
+        "id": "3e7ac72f-b57f-4b8c-a93e-ab39a77b832e",
+        "title": "Vị trí khác",
+        "moves": []
+      }
+    ],
+    "initialFen": "9/4a4/4ka3/9/9/9/6N2/9/9/3K2ppp w"
+  },
+  {
+    "id": "a64900fc-014f-438e-9bd7-bda8a194abdb",
+    "title": "车 vs 马马炮士士 (KRKAANNC)",
+    "category": "Tàn cuộc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "excel",
+      "file": "../../data/external/chinese-chess-dataset/象棋残局.xlsx",
+      "material": "KRKAANNC",
+      "original_name": "车 vs 马马炮士士"
+    },
+    "lines": [
+      {
+        "id": "2d602ffb-1408-4008-816a-ed74f55822d4",
+        "title": "Đỏ tiên thủ",
+        "moves": []
+      },
+      {
+        "id": "9fce316e-f000-40de-9491-4010c8dd23e1",
+        "title": "Vị trí khác",
+        "moves": []
+      }
+    ],
+    "initialFen": "n2a5/5k3/3a5/9/9/9/9/5c3/9/3K3Rn w"
+  },
+  {
+    "id": "ffdbb687-24ef-4b90-bce0-b83ddb4b9d23",
+    "title": "炮兵 vs 马卒 (KCPKNP)",
+    "category": "Tàn cuộc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "excel",
+      "file": "../../data/external/chinese-chess-dataset/象棋残局.xlsx",
+      "material": "KCPKNP",
+      "original_name": "炮兵 vs 马卒"
+    },
+    "lines": [
+      {
+        "id": "dee9d1d2-8859-4f1d-b046-513f93ffbea5",
+        "title": "Đỏ tiên thủ",
+        "moves": []
+      },
+      {
+        "id": "4c5e7777-5c9d-48bd-8ca1-b82aadee6136",
+        "title": "Vị trí khác",
+        "moves": []
+      }
+    ],
+    "initialFen": "9/9/5kn2/9/6P1C/9/9/7p1/3K5/9 w"
+  },
+  {
+    "id": "6bd22702-c391-43b0-9834-6de4382f1752",
+    "title": "车 vs 马马炮象象 (KRKBBNNC)",
+    "category": "Tàn cuộc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "excel",
+      "file": "../../data/external/chinese-chess-dataset/象棋残局.xlsx",
+      "material": "KRKBBNNC",
+      "original_name": "车 vs 马马炮象象"
+    },
+    "lines": [
+      {
+        "id": "9b301146-c205-4db4-8653-26909fa1dbae",
+        "title": "Đỏ tiên thủ",
+        "moves": []
+      },
+      {
+        "id": "625050fb-e7cd-49a7-ab97-f74ca6af3657",
+        "title": "Đen tiên thủ",
+        "moves": []
+      }
+    ],
+    "initialFen": "n8/9/b4k3/9/6b2/6n2/9/3K5/8R/3c5 w"
+  },
+  {
+    "id": "111162b9-2c12-406b-8f61-a797e7f911d9",
+    "title": "炮兵 vs 卒卒卒象 (KCPKBPPP)",
+    "category": "Tàn cuộc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "excel",
+      "file": "../../data/external/chinese-chess-dataset/象棋残局.xlsx",
+      "material": "KCPKBPPP",
+      "original_name": "炮兵 vs 卒卒卒象"
+    },
+    "lines": [
+      {
+        "id": "b91fefb0-33a1-45bc-bc3a-f49f9d275142",
+        "title": "Đỏ tiên thủ",
+        "moves": []
+      },
+      {
+        "id": "dd7f5822-1d82-48c4-a083-c3ce73815dd8",
+        "title": "Vị trí khác",
+        "moves": []
+      }
+    ],
+    "initialFen": "9/9/3k5/8C/2b6/P8/9/p3K3p/8p/9 w"
+  },
+  {
+    "id": "217729fa-9ec3-464f-a456-e0202b4fb41d",
+    "title": "车炮 vs 车卒卒 (KRCKRPP)",
+    "category": "Tàn cuộc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "excel",
+      "file": "../../data/external/chinese-chess-dataset/象棋残局.xlsx",
+      "material": "KRCKRPP",
+      "original_name": "车炮 vs 车卒卒"
+    },
+    "lines": [
+      {
+        "id": "11feeddf-3247-4773-8861-5a1b34e10453",
+        "title": "Đỏ tiên thủ",
+        "moves": []
+      },
+      {
+        "id": "400afb56-9fa5-44f5-bdf9-8803f0caebe7",
+        "title": "Vị trí khác",
+        "moves": []
+      }
+    ],
+    "initialFen": "4r4/4k4/9/4pC3/9/6p2/9/9/9/2R2K3 w"
+  },
+  {
+    "id": "23f4fc92-40c3-49ba-b2f7-e21ad50f16d9",
+    "title": "车 vs 马马炮士 (KRKANNC)",
+    "category": "Tàn cuộc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "excel",
+      "file": "../../data/external/chinese-chess-dataset/象棋残局.xlsx",
+      "material": "KRKANNC",
+      "original_name": "车 vs 马马炮士"
+    },
+    "lines": [
+      {
+        "id": "8b2238db-e11d-4907-9da9-49995a63e142",
+        "title": "Đỏ tiên thủ",
+        "moves": []
+      },
+      {
+        "id": "2d72fb90-90df-4fef-b183-6a391fd00258",
+        "title": "Vị trí khác",
+        "moves": []
+      }
+    ],
+    "initialFen": "9/3n5/4ka3/9/9/8n/1c7/5K3/7R1/9 w"
+  },
+  {
+    "id": "adfee09f-8d26-4282-8465-45013f11dbc5",
+    "title": "炮兵 vs 卒卒卒士 (KCPKAPPP)",
+    "category": "Tàn cuộc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "excel",
+      "file": "../../data/external/chinese-chess-dataset/象棋残局.xlsx",
+      "material": "KCPKAPPP",
+      "original_name": "炮兵 vs 卒卒卒士"
+    },
+    "lines": [
+      {
+        "id": "70e5efd0-0004-4c9e-adb0-ee3e243dd1d7",
+        "title": "Đỏ tiên thủ",
+        "moves": []
+      },
+      {
+        "id": "410833da-a31d-4768-a4b8-5dccc3e28c8d",
+        "title": "Đen tiên thủ",
+        "moves": []
+      }
+    ],
+    "initialFen": "5k2C/9/3a5/8p/9/9/8P/3p5/9/3K4p w"
+  },
+  {
+    "id": "f1a6b4c4-ae2c-4c06-beb4-cb1ed6d38962",
+    "title": "车炮 vs 车马 (KRCKRN)",
+    "category": "Tàn cuộc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "excel",
+      "file": "../../data/external/chinese-chess-dataset/象棋残局.xlsx",
+      "material": "KRCKRN",
+      "original_name": "车炮 vs 车马"
+    },
+    "lines": [
+      {
+        "id": "bef8addb-68ef-4f07-914b-13a6b9f4c67a",
+        "title": "Đỏ tiên thủ",
+        "moves": []
+      },
+      {
+        "id": "493e44c8-bae2-4ba0-9fb9-06fddade0a4e",
+        "title": "Vị trí khác",
+        "moves": []
+      }
+    ],
+    "initialFen": "2r6/3k5/3n5/9/9/9/9/9/5K3/6C1R w"
+  },
+  {
+    "id": "e88b396c-6636-4ede-a518-56c8dc657215",
+    "title": "车士 vs 马马炮士 (KARKANNC)",
+    "category": "Tàn cuộc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "excel",
+      "file": "../../data/external/chinese-chess-dataset/象棋残局.xlsx",
+      "material": "KARKANNC",
+      "original_name": "车士 vs 马马炮士"
+    },
+    "lines": [
+      {
+        "id": "e9f71819-1420-4e7e-845b-68a2da93fe33",
+        "title": "Đỏ tiên thủ",
+        "moves": []
+      },
+      {
+        "id": "42d93631-5b53-4dea-9b27-995928c442bb",
+        "title": "Vị trí khác",
+        "moves": []
+      }
+    ],
+    "initialFen": "3ak4/4n4/9/8R/9/9/9/3A5/3c3n1/5K3 w"
+  },
+  {
+    "id": "bfb29169-4a93-4e54-ab83-e82c7dba43fe",
+    "title": "炮兵 vs 卒卒卒士士 (KCPKAAPPP)",
+    "category": "Tàn cuộc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "excel",
+      "file": "../../data/external/chinese-chess-dataset/象棋残局.xlsx",
+      "material": "KCPKAAPPP",
+      "original_name": "炮兵 vs 卒卒卒士士"
+    },
+    "lines": [
+      {
+        "id": "afd2218e-aa58-4e7f-83bb-48f0d17c6bbf",
+        "title": "Đỏ tiên thủ",
+        "moves": []
+      },
+      {
+        "id": "a53107d6-ee98-4a67-a227-deb358d4d7d2",
+        "title": "Vị trí khác",
+        "moves": []
+      }
+    ],
+    "initialFen": "3a5/4a3C/3k5/4p4/2P6/9/9/8p/8p/4K4 w"
+  },
+  {
+    "id": "dac756bf-ead5-48ff-82ab-ca7d6c0ef1bb",
+    "title": "车 vs 马马炮象 (KRKBNNC)",
+    "category": "Tàn cuộc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "excel",
+      "file": "../../data/external/chinese-chess-dataset/象棋残局.xlsx",
+      "material": "KRKBNNC",
+      "original_name": "车 vs 马马炮象"
+    },
+    "lines": [
+      {
+        "id": "2a1ffabf-a0c9-43cd-8840-58e5c4a51fab",
+        "title": "Đỏ tiên thủ",
+        "moves": []
+      },
+      {
+        "id": "777c2f71-0ed3-4176-89a1-42e2016049a6",
+        "title": "Vị trí khác",
+        "moves": []
+      }
+    ],
+    "initialFen": "8n/9/4k4/9/6b2/9/9/5K2n/5R3/7c1 w"
+  },
+  {
+    "id": "fa84d9eb-459c-4767-adaf-fef7005d5654",
+    "title": "车 vs 马炮炮士士 (KRKAANCC)",
+    "category": "Tàn cuộc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "excel",
+      "file": "../../data/external/chinese-chess-dataset/象棋残局.xlsx",
+      "material": "KRKAANCC",
+      "original_name": "车 vs 马炮炮士士"
+    },
+    "lines": [
+      {
+        "id": "6493e22a-f8f8-42d4-8ba4-983d76cb7a12",
+        "title": "Đỏ tiên thủ",
+        "moves": []
+      },
+      {
+        "id": "e6ef9394-8a94-4cb2-a121-ada6e39dfc8e",
+        "title": "Đen tiên thủ",
+        "moves": []
+      }
+    ],
+    "initialFen": "4ka3/4a4/7cc/9/9/n8/9/3K5/9/2R6 w"
+  },
+  {
+    "id": "134ed098-aa3a-4597-9e87-38a457097db3",
+    "title": "车相 vs 马马炮士 (KBRKANNC)",
+    "category": "Tàn cuộc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "excel",
+      "file": "../../data/external/chinese-chess-dataset/象棋残局.xlsx",
+      "material": "KBRKANNC",
+      "original_name": "车相 vs 马马炮士"
+    },
+    "lines": [
+      {
+        "id": "b9e19428-c95d-48b0-987a-677aa0ad1f9a",
+        "title": "Đỏ tiên thủ",
+        "moves": []
+      },
+      {
+        "id": "c98432a4-6b75-41db-86ae-436f21c9f298",
+        "title": "Đen tiên thủ",
+        "moves": []
+      }
+    ],
+    "initialFen": "9/9/4ka3/n8/9/9/9/2c2K1RB/9/8n w"
+  },
+  {
+    "id": "54bc57d1-0734-4e35-89f3-721a02de13fa",
+    "title": "炮兵 vs 卒卒卒 (KCPKPPP)",
+    "category": "Tàn cuộc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "excel",
+      "file": "../../data/external/chinese-chess-dataset/象棋残局.xlsx",
+      "material": "KCPKPPP",
+      "original_name": "炮兵 vs 卒卒卒"
+    },
+    "lines": [
+      {
+        "id": "ee0b862a-4ecf-49be-b050-1a72cdebf5ea",
+        "title": "Đỏ tiên thủ",
+        "moves": []
+      },
+      {
+        "id": "a6efdc73-e6eb-4186-a2d2-241bd9124f87",
+        "title": "Đen tiên thủ",
+        "moves": []
+      }
+    ],
+    "initialFen": "4k4/9/9/4p4/2P6/9/9/5Cp2/8p/4K4 w"
+  },
+  {
+    "id": "a1b26afe-da70-4044-8ee7-7d88f295c8a8",
+    "title": "兵兵兵 vs 卒卒卒 (KPPPKPPP)",
+    "category": "Tàn cuộc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "excel",
+      "file": "../../data/external/chinese-chess-dataset/象棋残局.xlsx",
+      "material": "KPPPKPPP",
+      "original_name": "兵兵兵 vs 卒卒卒"
+    },
+    "lines": [
+      {
+        "id": "9539e614-65aa-4817-9bd7-c720f569f5ef",
+        "title": "Đỏ tiên thủ",
+        "moves": []
+      },
+      {
+        "id": "5b226048-d5e9-4b68-83d4-d8ffe8f48bda",
+        "title": "Đen tiên thủ",
+        "moves": []
+      }
+    ],
+    "initialFen": "9/9/P4k3/8p/9/5p3/6P1P/9/9/3K4p w"
+  },
+  {
+    "id": "612ba93c-aa87-40f9-b227-7e90c7d190cc",
+    "title": "车 vs 马炮炮象象 (KRKBBNCC)",
+    "category": "Tàn cuộc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "excel",
+      "file": "../../data/external/chinese-chess-dataset/象棋残局.xlsx",
+      "material": "KRKBBNCC",
+      "original_name": "车 vs 马炮炮象象"
+    },
+    "lines": [
+      {
+        "id": "930e9aef-a155-4995-b713-9835e1bab9dc",
+        "title": "Đỏ tiên thủ",
+        "moves": []
+      },
+      {
+        "id": "6ebb4383-90c7-4347-abd2-deab1addae12",
+        "title": "Vị trí khác",
+        "moves": []
+      }
+    ],
+    "initialFen": "2b6/5k3/5n3/6R2/6b2/9/7c1/8c/5K3/9 w"
+  },
+  {
+    "id": "ea615027-3602-427b-992e-9fc4b89eb446",
+    "title": "车相相 vs 马马炮士 (KBBRKANNC)",
+    "category": "Tàn cuộc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "excel",
+      "file": "../../data/external/chinese-chess-dataset/象棋残局.xlsx",
+      "material": "KBBRKANNC",
+      "original_name": "车相相 vs 马马炮士"
+    },
+    "lines": [
+      {
+        "id": "f50d2418-f67a-40cd-ac50-77f8436e8ad0",
+        "title": "Đỏ tiên thủ",
+        "moves": []
+      },
+      {
+        "id": "1803d688-98cd-46f7-a2f6-8930dc01f3e6",
+        "title": "Vị trí khác",
+        "moves": []
+      }
+    ],
+    "initialFen": "3a5/4k4/9/9/9/7c1/9/Bn3K3/8n/5RB2 w"
+  },
+  {
+    "id": "1907ed95-0757-4641-82da-ed977b636da8",
+    "title": "马士 vs 卒卒卒象象 (KANKBBPPP)",
+    "category": "Tàn cuộc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "excel",
+      "file": "../../data/external/chinese-chess-dataset/象棋残局.xlsx",
+      "material": "KANKBBPPP",
+      "original_name": "马士 vs 卒卒卒象象"
+    },
+    "lines": [
+      {
+        "id": "f212d6e8-945b-4710-909b-eeb3b3b270a7",
+        "title": "Đỏ tiên thủ",
+        "moves": []
+      }
+    ],
+    "initialFen": "9/6N2/3k4b/p5p1p/6b2/9/9/5A3/9/5K3 b"
+  },
+  {
+    "id": "f546a279-2a7c-4651-b3c1-783461343b5f",
+    "title": "车士 vs 马炮炮士士 (KARKAANCC)",
+    "category": "Tàn cuộc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "excel",
+      "file": "../../data/external/chinese-chess-dataset/象棋残局.xlsx",
+      "material": "KARKAANCC",
+      "original_name": "车士 vs 马炮炮士士"
+    },
+    "lines": [
+      {
+        "id": "956d0fc6-7d5c-463a-af9c-2cf0b7a38e06",
+        "title": "Đỏ tiên thủ",
+        "moves": []
+      },
+      {
+        "id": "23ff28f0-a73e-4630-969b-84fd6d3a9a06",
+        "title": "Đen tiên thủ",
+        "moves": []
+      }
+    ],
+    "initialFen": "8n/9/3aka2R/9/9/9/7c1/3A1Kc2/9/9 w"
+  },
+  {
+    "id": "3882102f-9b4f-4cae-adee-65305dc56762",
+    "title": "炮 vs 卒卒象 (KCKBPP)",
+    "category": "Tàn cuộc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "excel",
+      "file": "../../data/external/chinese-chess-dataset/象棋残局.xlsx",
+      "material": "KCKBPP",
+      "original_name": "炮 vs 卒卒象"
+    },
+    "lines": [
+      {
+        "id": "6b78204f-fec5-4d3c-9316-7424a5aa381a",
+        "title": "Đỏ tiên thủ",
+        "moves": []
+      }
+    ],
+    "initialFen": "9/9/5k1Cb/9/8p/9/9/8p/9/4K4 b"
+  },
+  {
+    "id": "bc26361a-64d7-40ac-a46b-bbdda9822221",
+    "title": "马士 vs 卒卒卒士象象 (KANKABBPPP)",
+    "category": "Tàn cuộc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "excel",
+      "file": "../../data/external/chinese-chess-dataset/象棋残局.xlsx",
+      "material": "KANKABBPPP",
+      "original_name": "马士 vs 卒卒卒士象象"
+    },
+    "lines": [
+      {
+        "id": "2407397d-6da6-4a47-9b80-58c434cc46a9",
+        "title": "Đỏ tiên thủ",
+        "moves": []
+      },
+      {
+        "id": "e9351e8a-0780-4ce6-a969-72de9bcf2ba1",
+        "title": "Vị trí khác",
+        "moves": []
+      }
+    ],
+    "initialFen": "5ab2/9/5k3/8p/6b2/9/5N1p1/4K4/4A4/4p4 w"
+  },
+  {
+    "id": "56d0df5b-87c7-46c1-9685-63733fb788c6",
+    "title": "炮 vs 卒卒象象 (KCKBBPP)",
+    "category": "Tàn cuộc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "excel",
+      "file": "../../data/external/chinese-chess-dataset/象棋残局.xlsx",
+      "material": "KCKBBPP",
+      "original_name": "炮 vs 卒卒象象"
+    },
+    "lines": [
+      {
+        "id": "05373daf-eac3-4401-8939-42de04611de6",
+        "title": "Đỏ tiên thủ",
+        "moves": []
+      },
+      {
+        "id": "57ca7cc4-57be-4b28-bc04-4db4de4a138f",
+        "title": "Đen tiên thủ",
+        "moves": []
+      }
+    ],
+    "initialFen": "9/9/5kC1b/6p2/6b2/9/9/8p/9/4K4 b"
+  },
+  {
+    "id": "af11f404-94c4-4829-a411-e3b5ee1d1619",
+    "title": "炮 vs 卒卒士 (KCKAPP)",
+    "category": "Tàn cuộc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "excel",
+      "file": "../../data/external/chinese-chess-dataset/象棋残局.xlsx",
+      "material": "KCKAPP",
+      "original_name": "炮 vs 卒卒士"
+    },
+    "lines": [
+      {
+        "id": "9264a648-4b95-4cfa-bcee-51583d26f05c",
+        "title": "Đỏ tiên thủ",
+        "moves": []
+      },
+      {
+        "id": "1d588f5c-7567-4c9c-bd83-b0f94a6cec56",
+        "title": "Vị trí khác",
+        "moves": []
+      }
+    ],
+    "initialFen": "9/9/4ka3/9/4p4/9/9/9/9/3K3Cp w"
+  },
+  {
+    "id": "a7523225-23b0-493a-8eaa-fbf8c0b4c99e",
+    "title": "炮 vs 卒卒士象 (KCKABPP)",
+    "category": "Tàn cuộc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "excel",
+      "file": "../../data/external/chinese-chess-dataset/象棋残局.xlsx",
+      "material": "KCKABPP",
+      "original_name": "炮 vs 卒卒士象"
+    },
+    "lines": [
+      {
+        "id": "1170c715-00ec-45f5-a2f3-bdafa31688c3",
+        "title": "Đỏ tiên thủ",
+        "moves": []
+      },
+      {
+        "id": "ed6fb5c1-d53b-4aa9-872e-a17e90e89c26",
+        "title": "Vị trí khác",
+        "moves": []
+      }
+    ],
+    "initialFen": "9/9/4ka3/9/4p1b2/9/9/9/9/3K3Cp w"
+  },
+  {
+    "id": "c4f6c448-865e-4f71-a93b-48b70fa4f6d2",
+    "title": "炮 vs 卒卒士象象 (KCKABBPP)",
+    "category": "Tàn cuộc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "excel",
+      "file": "../../data/external/chinese-chess-dataset/象棋残局.xlsx",
+      "material": "KCKABBPP",
+      "original_name": "炮 vs 卒卒士象象"
+    },
+    "lines": [
+      {
+        "id": "eb392161-918d-4398-a463-cd46bd4aefcc",
+        "title": "Đỏ tiên thủ",
+        "moves": []
+      },
+      {
+        "id": "c0803c17-ffb4-47b1-a5e6-7195766a014b",
+        "title": "Vị trí khác",
+        "moves": []
+      }
+    ],
+    "initialFen": "9/9/4ka3/9/2b1p1b2/9/9/9/9/3K3Cp w"
+  },
+  {
+    "id": "ce244377-2dfc-4392-9a3a-6efe33d95a8b",
+    "title": "马士 vs 卒卒卒象 (KANKBPPP)",
+    "category": "Tàn cuộc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "excel",
+      "file": "../../data/external/chinese-chess-dataset/象棋残局.xlsx",
+      "material": "KANKBPPP",
+      "original_name": "马士 vs 卒卒卒象"
+    },
+    "lines": [
+      {
+        "id": "8a48470e-8a80-4ce2-a211-0006920cb723",
+        "title": "Đỏ tiên thủ",
+        "moves": []
+      },
+      {
+        "id": "9e1eb884-5e95-41f9-b0a6-5ffa1f01e612",
+        "title": "Vị trí khác",
+        "moves": []
+      }
+    ],
+    "initialFen": "9/9/3k5/4N1p2/2b6/4p4/9/5K3/4A4/4p4 w"
+  },
+  {
+    "id": "44596886-a652-407c-b289-c3a5af5a6050",
+    "title": "车士士 vs 马马炮 (KAARKNNC)",
+    "category": "Tàn cuộc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "excel",
+      "file": "../../data/external/chinese-chess-dataset/象棋残局.xlsx",
+      "material": "KAARKNNC",
+      "original_name": "车士士 vs 马马炮"
+    },
+    "lines": [
+      {
+        "id": "41563560-a4f3-46c0-857a-1d78d4dd7c9d",
+        "title": "Đỏ tiên thủ",
+        "moves": []
+      },
+      {
+        "id": "db440f4d-f129-4a9b-917b-114ee3e2a390",
+        "title": "Vị trí khác",
+        "moves": []
+      }
+    ],
+    "initialFen": "5k3/9/7n1/9/9/4R4/4c4/4nA3/9/3A1K3 w"
+  },
+  {
+    "id": "3e004d57-e7ef-4898-adbe-e178a5c2aa6b",
+    "title": "马士 vs 卒卒卒士象 (KANKABPPP)",
+    "category": "Tàn cuộc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "excel",
+      "file": "../../data/external/chinese-chess-dataset/象棋残局.xlsx",
+      "material": "KANKABPPP",
+      "original_name": "马士 vs 卒卒卒士象"
+    },
+    "lines": [
+      {
+        "id": "af11f6cf-e344-4f4b-9dca-3b077d7d39e8",
+        "title": "Đỏ tiên thủ",
+        "moves": []
+      },
+      {
+        "id": "f0723ac9-c11c-4c82-a0d5-366bbe9a326b",
+        "title": "Vị trí khác",
+        "moves": []
+      }
+    ],
+    "initialFen": "5ab2/9/5k3/8p/9/9/5N1p1/4K4/4A4/4p4 w"
+  },
+  {
+    "id": "119cbcf7-6cf0-4dab-b918-a0e2b1c0be75",
+    "title": "炮士 vs 卒卒卒象象 (KACKBBPPP)",
+    "category": "Tàn cuộc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "excel",
+      "file": "../../data/external/chinese-chess-dataset/象棋残局.xlsx",
+      "material": "KACKBBPPP",
+      "original_name": "炮士 vs 卒卒卒象象"
+    },
+    "lines": [
+      {
+        "id": "891c201b-de64-4c95-b52a-1669c8aeb7af",
+        "title": "Đỏ tiên thủ",
+        "moves": []
+      },
+      {
+        "id": "0dca7892-da02-44f0-a4c5-d5986bfc2767",
+        "title": "Đen tiên thủ",
+        "moves": []
+      }
+    ],
+    "initialFen": "2b3b1C/5k3/9/9/9/9/8p/p3KA2p/9/9 w"
+  },
+  {
+    "id": "4bf69562-28ec-4389-b37a-60584431c412",
+    "title": "炮 vs 卒卒士士象 (KCKAABPP)",
+    "category": "Tàn cuộc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "excel",
+      "file": "../../data/external/chinese-chess-dataset/象棋残局.xlsx",
+      "material": "KCKAABPP",
+      "original_name": "炮 vs 卒卒士士象"
+    },
+    "lines": [
+      {
+        "id": "1c587762-8223-4987-86cd-beade17b93f7",
+        "title": "Đỏ tiên thủ",
+        "moves": []
+      },
+      {
+        "id": "07bf77de-a867-47ec-96f9-7ba73283a17d",
+        "title": "Vị trí khác",
+        "moves": []
+      }
+    ],
+    "initialFen": "9/4a4/3ak4/4p4/6b2/9/9/4K2p1/9/8C w"
+  },
+  {
+    "id": "9954e166-1121-4f97-b0a5-7d8ca84fb9ed",
+    "title": "炮 vs 卒卒士士象象 (KCKAABBPP)",
+    "category": "Tàn cuộc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "excel",
+      "file": "../../data/external/chinese-chess-dataset/象棋残局.xlsx",
+      "material": "KCKAABBPP",
+      "original_name": "炮 vs 卒卒士士象象"
+    },
+    "lines": [
+      {
+        "id": "09d1d3f3-4363-4efc-8313-73738c63bf97",
+        "title": "Đỏ tiên thủ",
+        "moves": []
+      },
+      {
+        "id": "fc1e93e5-a2a7-473b-89cf-5d7b7b54d0ca",
+        "title": "Vị trí khác",
+        "moves": []
+      }
+    ],
+    "initialFen": "9/4a4/3ak3b/4p4/6b2/9/9/4K2p1/9/8C w"
+  },
+  {
+    "id": "9b9d4423-54be-4863-a9f3-dd1f473ed69a",
+    "title": "炮 vs 卒卒士士 (KCKAAPP)",
+    "category": "Tàn cuộc",
+    "difficulty": "Trung cấp",
+    "source": {
+      "type": "excel",
+      "file": "../../data/external/chinese-chess-dataset/象棋残局.xlsx",
+      "material": "KCKAAPP",
+      "original_name": "炮 vs 卒卒士士"
+    },
+    "lines": [
+      {
+        "id": "0f60ea87-928b-49f6-a3a1-a4122f14a1d3",
+        "title": "Đỏ tiên thủ",
+        "moves": []
+      },
+      {
+        "id": "6deff586-45f3-4d62-aba7-8ce3706532eb",
+        "title": "Vị trí khác",
+        "moves": []
+      }
+    ],
+    "initialFen": "9/4a4/3ak4/4p4/9/9/9/4K2p1/9/8C w"
+  }
+]

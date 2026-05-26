@@ -19,6 +19,24 @@ func TestAnalyzeRequiresConfiguredUCIEngine(t *testing.T) {
 	}
 }
 
+func TestConfigFromEnvUsesLargerEngineTimeWindow(t *testing.T) {
+	t.Setenv("ENGINE_KIND", "")
+	t.Setenv("ENGINE_PATH", "")
+	t.Setenv("ENGINE_DEFAULT_TIME_MS", "")
+	t.Setenv("ENGINE_MAX_TIME_MS", "")
+
+	config := ConfigFromEnv()
+	if config.DefaultTimeMS != 2000 {
+		t.Fatalf("DefaultTimeMS = %d, want 2000", config.DefaultTimeMS)
+	}
+	if config.MaxTimeMS != 10000 {
+		t.Fatalf("MaxTimeMS = %d, want 10000", config.MaxTimeMS)
+	}
+	if config.TimeoutSlack != 3*time.Second {
+		t.Fatalf("TimeoutSlack = %s, want 3s", config.TimeoutSlack)
+	}
+}
+
 func TestAnalyzeUsesUCIEngineOutput(t *testing.T) {
 	enginePath := writeFakeUCIEngine(t)
 	t.Setenv("ENGINE_KIND", "uci")
