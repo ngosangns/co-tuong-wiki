@@ -52,7 +52,7 @@ func (s *Server) routes() {
 
 	s.mux.HandleFunc("GET /api/lessons", func(w http.ResponseWriter, r *http.Request) {
 		query := r.URL.Query()
-		writeJSON(w, http.StatusOK, s.repository.List(query.Get("category"), query.Get("q"), query.Get("tag"), query.Get("difficulty")))
+		writeJSON(w, http.StatusOK, s.repository.List(query.Get("category"), query.Get("q"), query.Get("difficulty")))
 	})
 
 	s.mux.HandleFunc("GET /api/lessons/{id}", func(w http.ResponseWriter, r *http.Request) {
@@ -76,15 +76,22 @@ func (s *Server) routes() {
 		}
 		response, err := analysis.Analyze(r.Context(), request)
 		if err != nil {
-			status := http.StatusBadGateway
-			if errors.Is(err, analysis.ErrEngineUnavailable) {
-				status = http.StatusServiceUnavailable
-			}
-			writeError(w, status, err.Error())
+			status, message := analyzeErrorResponse(err)
+			writeError(w, status, message)
 			return
 		}
 		writeJSON(w, http.StatusOK, response)
 	})
+}
+
+func analyzeErrorResponse(err error) (int, string) {
+	if errors.Is(err, analysis.ErrEngineUnavailable) {
+		return http.StatusServiceUnavailable, "Engine phân tích chưa được cấu hình."
+	}
+	if errors.Is(err, analysis.ErrEngineTimeout) {
+		return http.StatusGatewayTimeout, "Engine phân tích quá lâu, vui lòng thử lại với thời gian hoặc độ sâu thấp hơn."
+	}
+	return http.StatusBadGateway, "Engine không thể phân tích vị trí hiện tại."
 }
 
 func writeJSON(w http.ResponseWriter, status int, value any) {

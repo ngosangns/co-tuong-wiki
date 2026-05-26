@@ -8,7 +8,10 @@ import (
 	"time"
 )
 
-var ErrEngineUnavailable = errors.New("strong xiangqi engine is not configured")
+var (
+	ErrEngineUnavailable = errors.New("strong xiangqi engine is not configured")
+	ErrEngineTimeout     = errors.New("engine analysis timed out")
+)
 
 type Analyzer interface {
 	Analyze(ctx context.Context, request Request) (Response, error)

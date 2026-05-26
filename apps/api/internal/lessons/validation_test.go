@@ -85,11 +85,11 @@ func TestLessonMovesReplayLegally(t *testing.T) {
 				moveIDs[move.ID] = true
 
 				if err := validateMove(board, move); err != nil {
-					t.Fatalf("%s/%s move %d %q: %v", lesson.ID, line.ID, index+1, move.Notation, err)
+					t.Fatalf("%s/%s move %d %s: %v", lesson.ID, line.ID, index+1, moveCoordinates(move), err)
 				}
 				board = applyTestMove(board, move)
 				if generalsFace(board) {
-					t.Fatalf("%s/%s move %d %q: generals face each other", lesson.ID, line.ID, index+1, move.Notation)
+					t.Fatalf("%s/%s move %d %s: generals face each other", lesson.ID, line.ID, index+1, moveCoordinates(move))
 				}
 			}
 		}
@@ -100,6 +100,10 @@ func TestLessonMovesReplayLegally(t *testing.T) {
 			}
 		}
 	}
+}
+
+func moveCoordinates(move Move) string {
+	return fmt.Sprintf("(%d,%d)->(%d,%d)", move.From.File, move.From.Rank, move.To.File, move.To.Rank)
 }
 
 func lessonInitialBoard(lesson Lesson) ([]testPiece, error) {

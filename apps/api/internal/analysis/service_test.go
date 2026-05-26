@@ -6,6 +6,7 @@ import (
 	"os"
 	"path/filepath"
 	"testing"
+	"time"
 )
 
 func TestAnalyzeRequiresConfiguredUCIEngine(t *testing.T) {
@@ -49,6 +50,25 @@ func TestAnalyzeUsesUCIEngineOutput(t *testing.T) {
 	}
 }
 
+func TestUCIAnalyzerReturnsEngineTimeout(t *testing.T) {
+	enginePath := writeSlowUCIEngine(t)
+	analyzer := NewUCIAnalyzer(Config{Path: enginePath})
+	ctx, cancel := context.WithTimeout(context.Background(), 20*time.Millisecond)
+	defer cancel()
+
+	_, err := analyzer.Analyze(ctx, Request{
+		FEN:        "9/9/9/9/9/9/9/9/9/9 w - - 0 1",
+		SideToMove: "red",
+		TimeMS:     1,
+	})
+	if !errors.Is(err, ErrEngineTimeout) {
+		t.Fatalf("error = %v, want ErrEngineTimeout", err)
+	}
+	if !errors.Is(err, context.DeadlineExceeded) {
+		t.Fatalf("error = %v, want wrapped context deadline", err)
+	}
+}
+
 func writeFakeUCIEngine(t *testing.T) string {
 	t.Helper()
 
@@ -76,6 +96,36 @@ done
 
 	if err := os.WriteFile(path, []byte(script), 0o755); err != nil {
 		t.Fatalf("write fake engine: %v", err)
+	}
+	return path
+}
+
+func writeSlowUCIEngine(t *testing.T) string {
+	t.Helper()
+
+	path := filepath.Join(t.TempDir(), "slow-uci.sh")
+	script := `#!/bin/sh
+while IFS= read -r line; do
+  case "$line" in
+    uci)
+      echo "id name slow-uci"
+      echo "uciok"
+      ;;
+    isready)
+      echo "readyok"
+      ;;
+    go*)
+      sleep 1
+      ;;
+    quit)
+      exit 0
+      ;;
+  esac
+done
+`
+
+	if err := os.WriteFile(path, []byte(script), 0o755); err != nil {
+		t.Fatalf("write slow engine: %v", err)
 	}
 	return path
 }

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import type { BoardState, Coordinate, LessonMove } from '../core/xiangqi'
-import { pieceAt, sameSquare } from '../core/xiangqi'
+import type { BoardState, Coordinate, LessonMove, Piece } from '../core/xiangqi'
+import { sameSquare } from '../core/xiangqi'
 
 const props = defineProps<{
   board: BoardState
@@ -12,8 +12,6 @@ const ranks = Array.from({ length: 10 }, (_, rank) => rank)
 const files = Array.from({ length: 9 }, (_, file) => file)
 const redFileLabels = files.map((file) => String(file + 1))
 const blackFileLabels = files.map((file) => String(9 - file))
-const redRankLabels = ranks.map((rank) => String(9 - rank))
-const blackRankLabels = ranks.map((rank) => String(rank))
 
 const currentFrom = computed(() => props.currentMove?.from)
 const currentTo = computed(() => props.currentMove?.to)
@@ -23,8 +21,6 @@ function squareState(coordinate: Coordinate) {
   const isTo = currentTo.value ? sameSquare(coordinate, currentTo.value) : false
 
   return {
-    coordinate,
-    piece: pieceAt(props.board, coordinate),
     isFrom,
     isTo,
     isPalace:
@@ -34,15 +30,18 @@ function squareState(coordinate: Coordinate) {
     isRiverBorder: coordinate.rank === 4,
   }
 }
+
+function pieceStyle(piece: Piece) {
+  return {
+    transform: `translate(${piece.position.file * 100}%, ${piece.position.rank * 100}%)`,
+  }
+}
 </script>
 
 <template>
   <div class="xiangqi-board-shell" aria-label="Bàn cờ tướng">
     <div class="board-file-labels board-file-labels-top" aria-label="Cột bên Đen">
       <span v-for="label in blackFileLabels" :key="`black-file-${label}`">{{ label }}</span>
-    </div>
-    <div class="board-rank-labels board-rank-labels-left" aria-label="Hàng theo bên Đỏ">
-      <span v-for="label in redRankLabels" :key="`red-rank-${label}`">{{ label }}</span>
     </div>
     <div class="xiangqi-board">
       <div class="board-grid">
@@ -59,22 +58,18 @@ function squareState(coordinate: Coordinate) {
             }"
             type="button"
             :aria-label="`Ô Đỏ ${file + 1}-${9 - rank}, Đen ${9 - file}-${rank}`"
-          >
-            <span
-              v-if="squareState({ file, rank }).piece"
-              class="piece"
-              :class="squareState({ file, rank }).piece?.side"
-            >
-              {{ squareState({ file, rank }).piece?.label }}
-            </span>
-          </button>
+          ></button>
         </template>
+      </div>
+      <div class="board-piece-layer" aria-hidden="true">
+        <span v-for="piece in board" :key="piece.id" class="piece-slot" :style="pieceStyle(piece)">
+          <span class="piece" :class="piece.side">
+            {{ piece.label }}
+          </span>
+        </span>
       </div>
       <div class="river-label left">Sở Hà</div>
       <div class="river-label right">Hán Giới</div>
-    </div>
-    <div class="board-rank-labels board-rank-labels-right" aria-label="Hàng theo bên Đen">
-      <span v-for="label in blackRankLabels" :key="`black-rank-${label}`">{{ label }}</span>
     </div>
     <div class="board-file-labels board-file-labels-bottom" aria-label="Cột bên Đỏ">
       <span v-for="label in redFileLabels" :key="`red-file-${label}`">{{ label }}</span>

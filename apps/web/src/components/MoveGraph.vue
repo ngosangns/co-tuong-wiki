@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { computed, nextTick, ref, watch } from 'vue'
 import type { LessonLine } from '../api/types'
-import type { LessonMove } from '../core/xiangqi'
+import { applyMove, initialBoard, pieceAt } from '../core/xiangqi'
+import type { BoardState, LessonMove, PieceKind, Side } from '../core/xiangqi'
+import { boardFromXiangqiFen } from '../engine/fen'
 
 const graphLayout = {
   nodeWidth: 132,
@@ -16,6 +18,7 @@ const props = defineProps<{
   lines: LessonLine[]
   activeLineId: string
   activeMoveIndex: number
+  initialFen?: string
 }>()
 
 const emit = defineEmits<{
@@ -72,6 +75,7 @@ interface GraphNode {
   line: LessonLine
   move: LessonMove
   moveIndex: number
+  boardBefore: BoardState | null
   row: number
   x: number
   y: number
@@ -95,6 +99,7 @@ interface GraphPathNode {
   line: LessonLine
   move: LessonMove
   moveIndex: number
+  boardBefore: BoardState | null
   lineIds: string[]
 }
 
@@ -130,6 +135,49 @@ function moveGraphKey(move: LessonMove, moveIndex: number) {
   return [moveIndex, move.side, move.from.file, move.from.rank, move.to.file, move.to.rank, move.id].join(':')
 }
 
+const pieceNames: Record<PieceKind, string> = {
+  general: 'Tướng',
+  advisor: 'Sĩ',
+  elephant: 'Tượng',
+  horse: 'Mã',
+  chariot: 'Xe',
+  cannon: 'Pháo',
+  soldier: 'Tốt',
+}
+
+function sideFileNumber(side: Side, file: number) {
+  return side === 'red' ? file + 1 : 9 - file
+}
+
+function directionLabel(side: Side, fromRank: number, toRank: number) {
+  if (fromRank === toRank) return 'bình'
+  const isForward = side === 'red' ? toRank < fromRank : toRank > fromRank
+  return isForward ? 'tiến' : 'thoái'
+}
+
+function formatParsedMoveNotation(move: LessonMove, boardBefore: BoardState | null) {
+  const piece = boardBefore ? pieceAt(boardBefore, move.from) : null
+  if (!piece) return `(${move.from.file},${move.from.rank}) -> (${move.to.file},${move.to.rank})`
+
+  const verb = directionLabel(move.side, move.from.rank, move.to.rank)
+  const fromFile = sideFileNumber(move.side, move.from.file)
+  const toFile = sideFileNumber(move.side, move.to.file)
+  const distance = Math.abs(move.to.rank - move.from.rank)
+  const usesStepCount =
+    move.from.file === move.to.file &&
+    verb !== 'bình' &&
+    ['chariot', 'cannon', 'general', 'soldier'].includes(piece.kind)
+  const target = usesStepCount ? distance : toFile
+
+  return `${pieceNames[piece.kind]} ${fromFile} ${verb} ${target}`
+}
+
+function formatMoveNotation(move: LessonMove, moveIndex: number, boardBefore: BoardState | null) {
+  const moveNumber = Math.floor(moveIndex / 2) + 1
+  const notation = formatParsedMoveNotation(move, boardBefore)
+  return moveIndex % 2 === 0 ? `${moveNumber}. ${notation}` : `${moveNumber}... ${notation}`
+}
+
 const graphPaths = computed(() => {
   const membership = new Map<string, Set<string>>()
 
@@ -142,18 +190,30 @@ const graphPaths = computed(() => {
     })
   })
 
-  return props.lines.map((line) =>
-    line.moves.map<GraphPathNode>((move, index) => {
+  const firstBoard = props.initialFen ? boardFromXiangqiFen(props.initialFen) : initialBoard
+
+  return props.lines.map((line) => {
+    let board = firstBoard
+
+    return line.moves.map<GraphPathNode>((move, index) => {
       const key = moveGraphKey(move, index)
+      const boardBefore = board
+      try {
+        board = applyMove(board, move)
+      } catch {
+        board = boardBefore
+      }
+
       return {
         key,
         line,
         move,
         moveIndex: index,
+        boardBefore,
         lineIds: Array.from(membership.get(key) ?? []),
       }
-    }),
-  )
+    })
+  })
 })
 
 const graphNodes = computed<GraphNode[]>(() => {
@@ -167,6 +227,7 @@ const graphNodes = computed<GraphNode[]>(() => {
         line: pathNode.line,
         move: pathNode.move,
         moveIndex: index,
+        boardBefore: pathNode.boardBefore,
         row: 0,
         x: nodeX(index),
         y: nodeY(0),
@@ -186,6 +247,7 @@ const graphNodes = computed<GraphNode[]>(() => {
         line: pathNode.line,
         move: pathNode.move,
         moveIndex,
+        boardBefore: pathNode.boardBefore,
         row,
         x: nodeX(moveIndex),
         y: nodeY(row),
@@ -197,6 +259,12 @@ const graphNodes = computed<GraphNode[]>(() => {
   })
 
   return nodes
+})
+
+const activeBoardBeforeMove = computed(() => {
+  if (!activeLine.value || props.activeMoveIndex <= 0) return null
+  const activePath = graphPaths.value.find((path) => path[0]?.line.id === activeLine.value?.id)
+  return activePath?.[props.activeMoveIndex - 1]?.boardBefore ?? null
 })
 
 const graphEdges = computed<GraphEdge[]>(() => {
@@ -292,9 +360,6 @@ watch(() => [props.activeLineId, props.activeMoveIndex], keepActiveNodeVisible)
         <h3>Cây nước đi</h3>
         <p>{{ graphStats }}</p>
       </div>
-      <button type="button" class="graph-fit-button" title="Đưa nước đang chọn vào khung nhìn" @click="keepActiveNodeVisible">
-        Fit
-      </button>
     </header>
 
     <div class="graph-layout">
@@ -312,7 +377,6 @@ watch(() => [props.activeLineId, props.activeMoveIndex], keepActiveNodeVisible)
             @click="emit('selectLine', line.id)"
           >
             <span>{{ line.title }}</span>
-            <small>{{ line.description }}</small>
           </button>
 
           <svg class="graph-edges" :viewBox="`0 0 ${graphMapWidth} ${graphMapHeight}`" aria-hidden="true">
@@ -339,8 +403,8 @@ watch(() => [props.activeLineId, props.activeMoveIndex], keepActiveNodeVisible)
           >
             <span class="graph-step-index">{{ node.moveIndex + 1 }}</span>
             <span class="graph-step-copy">
-              <strong>{{ node.move.notation }}</strong>
-              <small>{{ node.move.title }}</small>
+              <strong>{{ formatMoveNotation(node.move, node.moveIndex, node.boardBefore) }}</strong>
+              <small>{{ node.move.comment }}</small>
             </span>
           </button>
         </div>
@@ -348,8 +412,8 @@ watch(() => [props.activeLineId, props.activeMoveIndex], keepActiveNodeVisible)
 
       <aside class="graph-details">
         <span>{{ moveSideLabel(activeMove) }}</span>
-        <strong>{{ activeMove?.notation ?? 'Bắt đầu' }}</strong>
-        <p>{{ activeMove?.title ?? 'Chọn một node hoặc bấm Nước kế để theo dõi biến hóa.' }}</p>
+        <strong>{{ activeMove ? formatMoveNotation(activeMove, activeMoveIndex - 1, activeBoardBeforeMove) : 'Bắt đầu' }}</strong>
+        <p>{{ activeMove?.comment ?? 'Chọn một node hoặc bấm Nước kế để theo dõi biến hóa.' }}</p>
         <button v-if="activeLine" type="button" @click="emit('selectLine', activeLine.id)">
           {{ activeLine.title }}
         </button>

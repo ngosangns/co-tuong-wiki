@@ -90,7 +90,7 @@ func (analyzer UCIAnalyzer) runSearch(ctx context.Context, stdin io.Writer, stdo
 	for {
 		select {
 		case <-ctx.Done():
-			return uciSearchResult{}, ctx.Err()
+			return uciSearchResult{}, engineContextError(ctx.Err())
 		case err := <-errs:
 			return uciSearchResult{}, err
 		case line, ok := <-lines:
@@ -169,7 +169,7 @@ func waitForLine(ctx context.Context, lines <-chan string, errs <-chan error, ma
 	for {
 		select {
 		case <-ctx.Done():
-			return ctx.Err()
+			return engineContextError(ctx.Err())
 		case err := <-errs:
 			return err
 		case line, ok := <-lines:
@@ -181,6 +181,14 @@ func waitForLine(ctx context.Context, lines <-chan string, errs <-chan error, ma
 			}
 		}
 	}
+}
+
+func engineContextError(err error) error {
+	if errors.Is(err, context.DeadlineExceeded) {
+		// Convert low-level context deadlines into the engine error contract used by callers.
+		return fmt.Errorf("%w: %w", ErrEngineTimeout, err)
+	}
+	return err
 }
 
 func writeEngineCommand(writer io.Writer, command string) error {

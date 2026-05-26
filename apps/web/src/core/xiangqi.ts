@@ -20,10 +20,7 @@ export interface LessonMove {
   side: Side
   from: Coordinate
   to: Coordinate
-  notation: string
-  title: string
   comment: string
-  evaluation?: 'main' | 'trap' | 'solution' | 'warning'
 }
 
 export type BoardState = Piece[]
@@ -71,7 +68,7 @@ export function applyMove(board: BoardState, move: LessonMove): BoardState {
   const movingPiece = board.find((piece) => sameSquare(piece.position, move.from) && piece.side === move.side)
 
   if (!movingPiece) {
-    throw new Error(`Cannot replay move "${move.notation}" because no ${move.side} piece is on the source square.`)
+    throw new Error(`Cannot replay move from (${move.from.file},${move.from.rank}) to (${move.to.file},${move.to.rank}).`)
   }
 
   // Replay data is curated lesson content, so this only applies captures and movement.

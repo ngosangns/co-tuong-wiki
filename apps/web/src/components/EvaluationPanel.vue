@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { Activity, Gauge, Lightbulb, TrendingDown, TrendingUp } from '@lucide/vue'
+import { Activity, Gauge } from '@lucide/vue'
 import { computed } from 'vue'
-import { engineNotationToMove, lessonMoveToEngineNotation } from '../engine/fen'
+import { engineNotationToMove } from '../engine/fen'
 import { pieceAt } from '../core/xiangqi'
 import type { BoardState, Coordinate, LessonMove, Piece, PieceKind } from '../core/xiangqi'
 import type { EngineEvaluation, EngineMove, EngineStatus } from '../engine/types'
@@ -110,22 +110,14 @@ const bestMoveLabel = computed(() => {
   return formatXiangqiMove(props.evaluation?.bestMove)
 })
 
-const lessonMoveQuality = computed(() => {
-  if (!props.nextMove || !props.evaluation?.bestMove) return 'Chọn một bước còn nước kế tiếp để so sánh.'
-
-  const lessonNotation = lessonMoveToEngineNotation(props.nextMove)
-  if (lessonNotation === props.evaluation.bestMove.notation) return 'Nước trong bài trùng với gợi ý engine.'
-  if (props.nextMove.evaluation === 'trap') return 'Bài học đang minh họa một bẫy, điểm engine chỉ dùng để đối chiếu.'
-  if (props.nextMove.evaluation === 'warning') return 'Nước kế tiếp là cảnh báo trong bài, nên đọc cùng phần phân tích.'
-  return 'Engine đề xuất hướng khác; dùng như một góc nhìn phụ.'
-})
-
 const statusLabel = computed(() => {
   if (props.status === 'analyzing') return 'Đang phân tích'
   if (props.status === 'error') return 'Lỗi phân tích'
   if (props.evaluation) return props.evaluation.source === 'wukong' ? 'Wukong sẵn sàng' : 'UCI sẵn sàng'
   return 'Chờ vị trí'
 })
+
+const isAnalyzing = computed(() => props.status === 'analyzing')
 </script>
 
 <template>
@@ -141,14 +133,14 @@ const statusLabel = computed(() => {
     <div class="score-card" :class="scoreTone">
       <div class="score-copy">
         <Gauge :size="18" aria-hidden="true" />
-        <span>{{ scoreLabel }}</span>
+        <span>{{ isAnalyzing ? 'Đang phân tích' : scoreLabel }}</span>
       </div>
-      <div class="score-track" aria-hidden="true">
+      <div v-if="!isAnalyzing" class="score-track" aria-hidden="true">
         <span :style="{ width: scorePercent }"></span>
       </div>
     </div>
 
-    <div class="engine-grid">
+    <div v-if="!isAnalyzing" class="engine-grid">
       <div>
         <span>Best move</span>
         <strong>{{ bestMoveLabel }}</strong>
@@ -160,14 +152,5 @@ const statusLabel = computed(() => {
     </div>
 
     <p v-if="status === 'error'" class="engine-note danger">{{ errorMessage }}</p>
-    <p v-else class="engine-note">
-      <Lightbulb :size="16" aria-hidden="true" />
-      {{ lessonMoveQuality }}
-    </p>
-
-    <div v-if="evaluation" class="engine-source">
-      <component :is="evaluation.score.cp >= 0 ? TrendingUp : TrendingDown" :size="15" aria-hidden="true" />
-      <span>{{ evaluation.message }}</span>
-    </div>
   </section>
 </template>

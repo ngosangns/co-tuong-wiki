@@ -2,11 +2,11 @@
 
 ## Meta
 
-- Synced commit: `unborn-HEAD`
-- Synced at: `2026-05-25T09:34:39Z`
-- Scope: lesson APIs, UCI engine analysis backend, frontend engine source label, planning docs for strong engine evaluation
+- Synced commit: `HEAD`
+- Synced at: `2026-05-26T06:37:53Z`
+- Scope: lesson catalog API, compact lesson payload, lesson routing, board playback UI, UCI engine timeout handling, docs index
 - Status: synced
 
 ## Notes
 
-The repository has no committed `HEAD` yet, so this sync state tracks the current working tree scope rather than a commit SHA.
+Docs describe the current repository `HEAD` plus the worktree changes included in the active sync commit.

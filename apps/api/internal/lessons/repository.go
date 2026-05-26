@@ -6,7 +6,6 @@ import (
 	"os"
 	"path/filepath"
 	"runtime"
-	"slices"
 	"strings"
 )
 
@@ -66,10 +65,9 @@ func LoadRepository(path string) (*Repository, error) {
 	return repo, nil
 }
 
-func (r *Repository) List(category string, query string, tag string, difficulty string) []Summary {
+func (r *Repository) List(category string, query string, difficulty string) []Summary {
 	category = strings.TrimSpace(strings.ToLower(category))
 	query = strings.TrimSpace(strings.ToLower(query))
-	tag = strings.TrimSpace(strings.ToLower(tag))
 	difficulty = strings.TrimSpace(strings.ToLower(difficulty))
 
 	summaries := make([]Summary, 0, len(r.lessons))
@@ -80,20 +78,14 @@ func (r *Repository) List(category string, query string, tag string, difficulty 
 		if difficulty != "" && strings.ToLower(lesson.Difficulty) != difficulty {
 			continue
 		}
-		if tag != "" && !containsFold(lesson.Tags, tag) {
-			continue
-		}
 		if query != "" && !lessonMatchesQuery(lesson, query) {
 			continue
 		}
 		summaries = append(summaries, Summary{
 			ID:         lesson.ID,
-			Slug:       lesson.Slug,
 			Title:      lesson.Title,
-			Summary:    lesson.Summary,
 			Category:   lesson.Category,
 			Difficulty: lesson.Difficulty,
-			Tags:       lesson.Tags,
 		})
 	}
 
@@ -120,20 +112,11 @@ func (r *Repository) Categories() []string {
 	return categories
 }
 
-func containsFold(values []string, target string) bool {
-	return slices.ContainsFunc(values, func(value string) bool {
-		return strings.ToLower(value) == target
-	})
-}
-
 func lessonMatchesQuery(lesson Lesson, query string) bool {
 	haystack := strings.ToLower(strings.Join([]string{
 		lesson.Title,
-		lesson.Summary,
 		lesson.Category,
 		lesson.Difficulty,
-		strings.Join(lesson.Tags, " "),
-		strings.Join(lesson.Principles, " "),
 	}, " "))
 
 	return strings.Contains(haystack, query)

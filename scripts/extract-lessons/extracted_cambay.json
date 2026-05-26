@@ -1,0 +1,6008 @@
+[
+  {
+    "id": "f8d0b138-b48c-513c-ae6c-45974b9315b6",
+    "slug": "022-22五七炮对单提马",
+    "title": "022-22五七炮对单提马",
+    "category": "Cạm bẫy khai cuộc",
+    "difficulty": "Cao cấp",
+    "lines": [
+      {
+        "id": "fb7c34c3-62b2-59bb-9153-be3f1b8a8548",
+        "title": "Biến chính",
+        "moves": [
+          {
+            "id": "2e733772-5aa7-59b8-a114-c3920ec07c10",
+            "side": "red",
+            "from": {
+              "file": 7,
+              "rank": 7
+            },
+            "to": {
+              "file": 4,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "d72a2e9a-bf0a-55f7-b62f-ed91749dfe41",
+            "side": "black",
+            "from": {
+              "file": 1,
+              "rank": 0
+            },
+            "to": {
+              "file": 2,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "32263dc4-62aa-57a7-8faf-a21bd4221cf5",
+            "side": "red",
+            "from": {
+              "file": 7,
+              "rank": 9
+            },
+            "to": {
+              "file": 6,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "8295e249-70ba-5e93-99eb-ef02d007e565",
+            "side": "black",
+            "from": {
+              "file": 8,
+              "rank": 0
+            },
+            "to": {
+              "file": 8,
+              "rank": 1
+            },
+            "comment": ""
+          },
+          {
+            "id": "73eabb92-f37a-5f31-b3a1-48cc57af24bd",
+            "side": "red",
+            "from": {
+              "file": 8,
+              "rank": 9
+            },
+            "to": {
+              "file": 7,
+              "rank": 9
+            },
+            "comment": ""
+          },
+          {
+            "id": "7cf50e27-f145-57d8-9a76-ca0d2f0446b0",
+            "side": "black",
+            "from": {
+              "file": 7,
+              "rank": 0
+            },
+            "to": {
+              "file": 8,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "4c1d2f46-d898-5bac-a4ef-1c73fb0c0eb0",
+            "side": "red",
+            "from": {
+              "file": 2,
+              "rank": 6
+            },
+            "to": {
+              "file": 2,
+              "rank": 5
+            },
+            "comment": ""
+          },
+          {
+            "id": "4e22889f-03d0-54df-8c53-3dda0089cf90",
+            "side": "black",
+            "from": {
+              "file": 7,
+              "rank": 2
+            },
+            "to": {
+              "file": 6,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "08b728e6-b003-56b1-8d82-19d8bd6902af",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 7
+            },
+            "to": {
+              "file": 2,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "8285dee7-ec50-512a-a025-af1b9f0fc130",
+            "side": "black",
+            "from": {
+              "file": 2,
+              "rank": 0
+            },
+            "to": {
+              "file": 4,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "23f6d9d1-413f-5f82-8056-48beb4beaf57",
+            "side": "red",
+            "from": {
+              "file": 7,
+              "rank": 9
+            },
+            "to": {
+              "file": 7,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "f951033c-9b21-5b9c-bc6d-8719d1eaa9af",
+            "side": "black",
+            "from": {
+              "file": 8,
+              "rank": 1
+            },
+            "to": {
+              "file": 3,
+              "rank": 1
+            },
+            "comment": "至此黑方已布下陷阱，准备弃炮诱车。"
+          },
+          {
+            "id": "a213082d-5f35-5e25-88de-acb0dfa71012",
+            "side": "red",
+            "from": {
+              "file": 7,
+              "rank": 2
+            },
+            "to": {
+              "file": 6,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "821cc51d-2364-59d4-8856-743901bf8f7f",
+            "side": "black",
+            "from": {
+              "file": 2,
+              "rank": 2
+            },
+            "to": {
+              "file": 4,
+              "rank": 1
+            },
+            "comment": ""
+          },
+          {
+            "id": "1328d904-e9c1-5dcd-9aca-53034f17e607",
+            "side": "red",
+            "from": {
+              "file": 6,
+              "rank": 2
+            },
+            "to": {
+              "file": 8,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "3e42a1f9-b38a-58ee-bc40-b6d6221c9039",
+            "side": "black",
+            "from": {
+              "file": 1,
+              "rank": 2
+            },
+            "to": {
+              "file": 8,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "ad42b788-6927-5a02-9935-177f3f3fba3e",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 7
+            },
+            "to": {
+              "file": 4,
+              "rank": 3
+            },
+            "comment": ""
+          },
+          {
+            "id": "ac4b0111-95df-5220-a56a-5d9e53bdfc1d",
+            "side": "black",
+            "from": {
+              "file": 3,
+              "rank": 1
+            },
+            "to": {
+              "file": 3,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "f6700943-e36c-5911-8b6b-ab5cc211a763",
+            "side": "red",
+            "from": {
+              "file": 6,
+              "rank": 7
+            },
+            "to": {
+              "file": 4,
+              "rank": 8
+            },
+            "comment": ""
+          },
+          {
+            "id": "eea5799c-48a5-5c95-bcf7-883ab00f16da",
+            "side": "black",
+            "from": {
+              "file": 8,
+              "rank": 2
+            },
+            "to": {
+              "file": 8,
+              "rank": 6
+            },
+            "comment": ""
+          },
+          {
+            "id": "2e4ccda5-8005-5dda-ac6b-d520b7030d18",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 6
+            },
+            "to": {
+              "file": 4,
+              "rank": 5
+            },
+            "comment": ""
+          },
+          {
+            "id": "4c4b17ff-d7b0-5f7d-9aa1-96c9ed20aefb",
+            "side": "black",
+            "from": {
+              "file": 8,
+              "rank": 6
+            },
+            "to": {
+              "file": 8,
+              "rank": 9
+            },
+            "comment": ""
+          },
+          {
+            "id": "1bccc55d-002a-5932-9c0a-31dc31dc0a16",
+            "side": "red",
+            "from": {
+              "file": 2,
+              "rank": 9
+            },
+            "to": {
+              "file": 4,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "c8f2d1ce-df7b-5f9b-9151-a7bd7ca7115f",
+            "side": "black",
+            "from": {
+              "file": 3,
+              "rank": 7
+            },
+            "to": {
+              "file": 3,
+              "rank": 3
+            },
+            "comment": ""
+          },
+          {
+            "id": "b8904968-83ea-50b9-86d6-6208a02abebb",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 5
+            },
+            "to": {
+              "file": 4,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "ca9880ec-bb8f-535f-8d16-28bf8d4e2faf",
+            "side": "black",
+            "from": {
+              "file": 6,
+              "rank": 3
+            },
+            "to": {
+              "file": 6,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "35c25f7d-7ca7-5682-8eed-421fc9015a76",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 8
+            },
+            "to": {
+              "file": 6,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "41a62eff-7bbc-5026-bb79-fa48601eafba",
+            "side": "black",
+            "from": {
+              "file": 8,
+              "rank": 9
+            },
+            "to": {
+              "file": 8,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "d9b9804e-299b-57b8-b6f0-510af6026c83",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 3
+            },
+            "to": {
+              "file": 2,
+              "rank": 3
+            },
+            "comment": ""
+          },
+          {
+            "id": "9a4f0f6d-ba21-5893-8372-f90edb3bd71f",
+            "side": "black",
+            "from": {
+              "file": 8,
+              "rank": 4
+            },
+            "to": {
+              "file": 4,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "b40fca26-1d85-58f9-8c4a-88ee5c04b613",
+            "side": "red",
+            "from": {
+              "file": 3,
+              "rank": 9
+            },
+            "to": {
+              "file": 4,
+              "rank": 8
+            },
+            "comment": ""
+          },
+          {
+            "id": "80deda5f-ba6e-5928-af67-c54129a5d4e2",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 1,
+              "rank": 0
+            },
+            "comment": ""
+          },
+          {
+            "id": "46c0262a-14b6-5432-a902-bafbf8e6b00a",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 9
+            },
+            "to": {
+              "file": 0,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "1be6c810-c3a2-549e-970e-28a9778171bd",
+            "side": "black",
+            "from": {
+              "file": 1,
+              "rank": 0
+            },
+            "to": {
+              "file": 1,
+              "rank": 7
+            },
+            "comment": "黑方先手。"
+          }
+        ]
+      }
+    ],
+    "choice": {
+      "prompt": "Bạn đánh giá nước đi nào tốt nhất trong ván cờ này?",
+      "options": [
+        {
+          "moveId": "2e733772-5aa7-59b8-a114-c3920ec07c10",
+          "label": "Theo biến chính",
+          "verdict": "correct",
+          "feedback": "Đây là biến chính của ván cờ."
+        }
+      ]
+    }
+  },
+  {
+    "id": "a86dac1b-ea43-5287-bd0c-8da1df135138",
+    "slug": "036-36过宫炮巡河车对中炮横车",
+    "title": "036-36过宫炮巡河车对中炮横车",
+    "category": "Cạm bẫy khai cuộc",
+    "difficulty": "Cao cấp",
+    "lines": [
+      {
+        "id": "986ed990-2e48-5cc3-acc8-ead5119d07f9",
+        "title": "Biến chính",
+        "moves": [
+          {
+            "id": "c8d56d35-c2e4-592c-aafe-9958ee8594ef",
+            "side": "red",
+            "from": {
+              "file": 7,
+              "rank": 7
+            },
+            "to": {
+              "file": 3,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "c08dc8e5-69ed-5a6f-a312-784bae362c23",
+            "side": "black",
+            "from": {
+              "file": 7,
+              "rank": 2
+            },
+            "to": {
+              "file": 4,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "d5aa9b60-5aa7-54b2-860a-69e61a4b4eb0",
+            "side": "red",
+            "from": {
+              "file": 7,
+              "rank": 9
+            },
+            "to": {
+              "file": 6,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "c54fac71-1f24-5ed8-ac9f-a3b829d2a604",
+            "side": "black",
+            "from": {
+              "file": 7,
+              "rank": 0
+            },
+            "to": {
+              "file": 6,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "ce3fa5b9-d490-5b12-a11e-1c2d7d9ce952",
+            "side": "red",
+            "from": {
+              "file": 8,
+              "rank": 9
+            },
+            "to": {
+              "file": 7,
+              "rank": 9
+            },
+            "comment": ""
+          },
+          {
+            "id": "e8643555-ee19-5c6a-9f97-cf2919bc28cc",
+            "side": "black",
+            "from": {
+              "file": 8,
+              "rank": 0
+            },
+            "to": {
+              "file": 8,
+              "rank": 1
+            },
+            "comment": ""
+          },
+          {
+            "id": "98305786-13c8-5608-a8e3-57a97ea9779b",
+            "side": "red",
+            "from": {
+              "file": 7,
+              "rank": 9
+            },
+            "to": {
+              "file": 7,
+              "rank": 5
+            },
+            "comment": ""
+          },
+          {
+            "id": "5e752fce-9012-5963-9ea5-e3de8c21f0f8",
+            "side": "black",
+            "from": {
+              "file": 8,
+              "rank": 1
+            },
+            "to": {
+              "file": 3,
+              "rank": 1
+            },
+            "comment": ""
+          },
+          {
+            "id": "4b73f841-770c-50f9-9c73-cc22364962af",
+            "side": "red",
+            "from": {
+              "file": 3,
+              "rank": 9
+            },
+            "to": {
+              "file": 4,
+              "rank": 8
+            },
+            "comment": ""
+          },
+          {
+            "id": "c7132a96-42fc-5635-bfa7-f096778a0033",
+            "side": "black",
+            "from": {
+              "file": 1,
+              "rank": 0
+            },
+            "to": {
+              "file": 2,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "2e222986-0527-5317-9664-5f92f88b9605",
+            "side": "red",
+            "from": {
+              "file": 7,
+              "rank": 5
+            },
+            "to": {
+              "file": 2,
+              "rank": 5
+            },
+            "comment": ""
+          },
+          {
+            "id": "b745b796-033f-50a4-995a-ba7605185dc2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 3
+            },
+            "to": {
+              "file": 4,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "5262c231-922a-5c84-a074-d8f1b40d4060",
+            "side": "red",
+            "from": {
+              "file": 2,
+              "rank": 5
+            },
+            "to": {
+              "file": 2,
+              "rank": 3
+            },
+            "comment": ""
+          },
+          {
+            "id": "b2b8b0d4-56e4-5445-866d-685cb92d6b56",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "703e18b7-8e35-5bd2-9ef0-9b7944728625",
+            "side": "red",
+            "from": {
+              "file": 3,
+              "rank": 7
+            },
+            "to": {
+              "file": 2,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "04d13ab7-9759-5aa2-9767-0d08c122a1ed",
+            "side": "black",
+            "from": {
+              "file": 3,
+              "rank": 1
+            },
+            "to": {
+              "file": 3,
+              "rank": 8
+            },
+            "comment": ""
+          },
+          {
+            "id": "5ee6f3c3-fe4f-50af-9d9c-cd2d85794060",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 9
+            },
+            "to": {
+              "file": 0,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "43d7e91d-fc56-5567-9c9b-17b931748ff1",
+            "side": "black",
+            "from": {
+              "file": 1,
+              "rank": 2
+            },
+            "to": {
+              "file": 1,
+              "rank": 6
+            },
+            "comment": ""
+          },
+          {
+            "id": "af05fc46-39cc-5a76-99c4-63a2b0e1727e",
+            "side": "red",
+            "from": {
+              "file": 2,
+              "rank": 3
+            },
+            "to": {
+              "file": 2,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "db1d2100-547f-532e-a1bf-43e63a7be310",
+            "side": "black",
+            "from": {
+              "file": 1,
+              "rank": 6
+            },
+            "to": {
+              "file": 4,
+              "rank": 6
+            },
+            "comment": ""
+          },
+          {
+            "id": "61f138df-83d5-5140-bf2d-1f92510a5291",
+            "side": "red",
+            "from": {
+              "file": 6,
+              "rank": 9
+            },
+            "to": {
+              "file": 4,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "cc12ff47-9bdc-5e2f-bcfc-1d971b4aa444",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 6
+            },
+            "to": {
+              "file": 0,
+              "rank": 6
+            },
+            "comment": ""
+          },
+          {
+            "id": "82a9704f-481e-5643-b710-ad068f1f526f",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 9
+            },
+            "to": {
+              "file": 1,
+              "rank": 9
+            },
+            "comment": ""
+          },
+          {
+            "id": "9d598601-75e4-50b0-a175-224c729c7cb5",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 6
+            },
+            "to": {
+              "file": 1,
+              "rank": 6
+            },
+            "comment": ""
+          },
+          {
+            "id": "16586785-4039-59f1-8006-8192eb4dce90",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 9
+            },
+            "to": {
+              "file": 0,
+              "rank": 9
+            },
+            "comment": ""
+          },
+          {
+            "id": "5b33900b-5160-50eb-8da8-6abcea8a034c",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 2
+            },
+            "to": {
+              "file": 2,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "b14e86fd-c9d5-5a30-a6ac-8644479b4eea",
+            "side": "red",
+            "from": {
+              "file": 2,
+              "rank": 7
+            },
+            "to": {
+              "file": 2,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "7c69a812-e5f7-5402-98d5-6c74ada58437",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 2
+            },
+            "to": {
+              "file": 4,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "33ca555c-bdc7-551c-a3bf-797f3e3b8cbf",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 8
+            },
+            "to": {
+              "file": 5,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "c61f3fdf-21a5-504a-a006-8c9a4b5c7be3",
+            "side": "black",
+            "from": {
+              "file": 1,
+              "rank": 6
+            },
+            "to": {
+              "file": 6,
+              "rank": 6
+            },
+            "comment": ""
+          },
+          {
+            "id": "cb6f716b-6031-5238-86f9-15b9a973cf95",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 7
+            },
+            "to": {
+              "file": 1,
+              "rank": 6
+            },
+            "comment": ""
+          },
+          {
+            "id": "ad91bfee-2894-5d8b-9eed-92b966988d9d",
+            "side": "black",
+            "from": {
+              "file": 6,
+              "rank": 6
+            },
+            "to": {
+              "file": 6,
+              "rank": 5
+            },
+            "comment": ""
+          },
+          {
+            "id": "6c1afd0c-5ed8-5374-addf-c017c92b09c5",
+            "side": "red",
+            "from": {
+              "file": 2,
+              "rank": 6
+            },
+            "to": {
+              "file": 2,
+              "rank": 5
+            },
+            "comment": ""
+          },
+          {
+            "id": "7a28851b-08f7-5be1-8979-f175760e37fc",
+            "side": "black",
+            "from": {
+              "file": 6,
+              "rank": 5
+            },
+            "to": {
+              "file": 4,
+              "rank": 5
+            },
+            "comment": ""
+          },
+          {
+            "id": "afc7715c-7528-5081-b41a-4581f84d8355",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 6
+            },
+            "to": {
+              "file": 4,
+              "rank": 6
+            },
+            "comment": ""
+          },
+          {
+            "id": "4f7ed823-a8a2-524f-9ee1-b9fe33751d7d",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 7
+            },
+            "to": {
+              "file": 6,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "dfac50ba-df28-5ce0-95f4-a0d351edc19c",
+            "side": "red",
+            "from": {
+              "file": 5,
+              "rank": 9
+            },
+            "to": {
+              "file": 4,
+              "rank": 8
+            },
+            "comment": ""
+          },
+          {
+            "id": "f7605e9b-f96b-50d5-950c-adf2e60501a5",
+            "side": "black",
+            "from": {
+              "file": 3,
+              "rank": 8
+            },
+            "to": {
+              "file": 3,
+              "rank": 6
+            },
+            "comment": ""
+          },
+          {
+            "id": "c23c7964-5c87-5a90-9423-8ceca17fc91f",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 6
+            },
+            "to": {
+              "file": 4,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "354ffe10-dac5-5cba-97c8-20817d8c5978",
+            "side": "black",
+            "from": {
+              "file": 6,
+              "rank": 7
+            },
+            "to": {
+              "file": 4,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "064db9b6-38f2-52dd-be88-d8b64561e9aa",
+            "side": "red",
+            "from": {
+              "file": 2,
+              "rank": 9
+            },
+            "to": {
+              "file": 4,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "e24a475d-bd61-5fa3-8335-837eef608c58",
+            "side": "black",
+            "from": {
+              "file": 3,
+              "rank": 6
+            },
+            "to": {
+              "file": 8,
+              "rank": 6
+            },
+            "comment": "伏杀得车，黑胜。"
+          }
+        ]
+      }
+    ],
+    "choice": {
+      "prompt": "Bạn đánh giá nước đi nào tốt nhất trong ván cờ này?",
+      "options": [
+        {
+          "moveId": "c8d56d35-c2e4-592c-aafe-9958ee8594ef",
+          "label": "Theo biến chính",
+          "verdict": "correct",
+          "feedback": "Đây là biến chính của ván cờ."
+        }
+      ]
+    }
+  },
+  {
+    "id": "87dea053-fbc2-52ce-9a0b-0e832cc5c553",
+    "slug": "010-10中炮骑河车攻单提马",
+    "title": "010-10中炮骑河车攻单提马",
+    "category": "Cạm bẫy khai cuộc",
+    "difficulty": "Cao cấp",
+    "lines": [
+      {
+        "id": "1ec50505-28d4-5c30-81f5-ee3ce3dbd31f",
+        "title": "Biến chính",
+        "moves": [
+          {
+            "id": "26e1ae3d-eb02-5de4-aacc-53d23eea716d",
+            "side": "red",
+            "from": {
+              "file": 7,
+              "rank": 7
+            },
+            "to": {
+              "file": 4,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "4fdd70da-fd33-5086-b59e-a845d3393223",
+            "side": "black",
+            "from": {
+              "file": 1,
+              "rank": 0
+            },
+            "to": {
+              "file": 2,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "2a6b6e04-e1a3-5a84-a163-192c05c80fca",
+            "side": "red",
+            "from": {
+              "file": 7,
+              "rank": 9
+            },
+            "to": {
+              "file": 6,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "b6cd945c-1c4b-580b-af96-961009c7a33a",
+            "side": "black",
+            "from": {
+              "file": 7,
+              "rank": 0
+            },
+            "to": {
+              "file": 8,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "3d9e6bb1-f315-5f8d-8664-5ec059e75c3a",
+            "side": "red",
+            "from": {
+              "file": 8,
+              "rank": 9
+            },
+            "to": {
+              "file": 7,
+              "rank": 9
+            },
+            "comment": ""
+          },
+          {
+            "id": "75d73d5e-2712-5768-8b32-cfc029e8cbe8",
+            "side": "black",
+            "from": {
+              "file": 7,
+              "rank": 2
+            },
+            "to": {
+              "file": 5,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "22f7a848-b201-5da5-b9f9-e02792af87dc",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 6
+            },
+            "to": {
+              "file": 4,
+              "rank": 5
+            },
+            "comment": ""
+          },
+          {
+            "id": "da7c245e-e7e1-52f9-bf61-9f604bce018e",
+            "side": "black",
+            "from": {
+              "file": 2,
+              "rank": 0
+            },
+            "to": {
+              "file": 4,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "f31fb7bd-e445-5f20-94f7-9c424baf22db",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 5
+            },
+            "to": {
+              "file": 4,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "5b437bcb-8d0d-5770-a045-ab358487e0ff",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 3
+            },
+            "to": {
+              "file": 4,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "f7dc2782-b637-582d-b75e-ef00059421ab",
+            "side": "red",
+            "from": {
+              "file": 7,
+              "rank": 9
+            },
+            "to": {
+              "file": 7,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "a14e2b91-a3f5-5f15-a453-1dfea1fc6fed",
+            "side": "black",
+            "from": {
+              "file": 3,
+              "rank": 0
+            },
+            "to": {
+              "file": 4,
+              "rank": 1
+            },
+            "comment": ""
+          },
+          {
+            "id": "dc39ec25-dbb1-577e-8a1d-272bfc655d77",
+            "side": "red",
+            "from": {
+              "file": 7,
+              "rank": 4
+            },
+            "to": {
+              "file": 4,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "ab206f01-5291-5885-9c31-2351d35c4927",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 3,
+              "rank": 0
+            },
+            "comment": ""
+          },
+          {
+            "id": "8b5c27c7-7dab-5054-a0d4-e6c53a1a4677",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 9
+            },
+            "to": {
+              "file": 2,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "b7f98db5-1c89-515c-b090-b0d7ea34f779",
+            "side": "black",
+            "from": {
+              "file": 5,
+              "rank": 2
+            },
+            "to": {
+              "file": 5,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "e453563e-e249-5cf2-bce4-2bab20db23e8",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 7
+            },
+            "to": {
+              "file": 0,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "b47822d4-6c77-5d57-b4ca-18fde8884689",
+            "side": "black",
+            "from": {
+              "file": 5,
+              "rank": 7
+            },
+            "to": {
+              "file": 2,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "95a534f5-e8f2-5a1b-9001-ea521a717ac0",
+            "side": "red",
+            "from": {
+              "file": 6,
+              "rank": 7
+            },
+            "to": {
+              "file": 4,
+              "rank": 6
+            },
+            "comment": ""
+          },
+          {
+            "id": "04dbaf2f-bb10-5cf8-a604-a63eda3966e5",
+            "side": "black",
+            "from": {
+              "file": 3,
+              "rank": 0
+            },
+            "to": {
+              "file": 3,
+              "rank": 6
+            },
+            "comment": ""
+          },
+          {
+            "id": "67018dc1-e10a-53d2-be49-6b7c0d2611aa",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 9
+            },
+            "to": {
+              "file": 1,
+              "rank": 9
+            },
+            "comment": ""
+          },
+          {
+            "id": "dcc8b529-8cb3-50d9-8ffe-48e929f3ace6",
+            "side": "black",
+            "from": {
+              "file": 1,
+              "rank": 2
+            },
+            "to": {
+              "file": 0,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "04eb34b0-b9bb-5d4b-9833-867f24a0594c",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 9
+            },
+            "to": {
+              "file": 1,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "079ed652-6652-56de-b88b-71be02a2b810",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 2
+            },
+            "to": {
+              "file": 0,
+              "rank": 6
+            },
+            "comment": ""
+          },
+          {
+            "id": "f298e3b7-1103-5f70-b761-008bf4e94036",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 6
+            },
+            "to": {
+              "file": 3,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "bd55df2c-7d4f-59e2-be91-75fb80840080",
+            "side": "black",
+            "from": {
+              "file": 2,
+              "rank": 2
+            },
+            "to": {
+              "file": 3,
+              "rank": 0
+            },
+            "comment": ""
+          },
+          {
+            "id": "ed7a0822-32d2-5d52-b407-9915d0543cad",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 7
+            },
+            "to": {
+              "file": 0,
+              "rank": 3
+            },
+            "comment": ""
+          },
+          {
+            "id": "6a8390e7-6990-5914-8594-02ec733ffa72",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 6
+            },
+            "to": {
+              "file": 0,
+              "rank": 9
+            },
+            "comment": ""
+          },
+          {
+            "id": "58796e48-b620-5027-b149-661497be8fff",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 3
+            },
+            "to": {
+              "file": 0,
+              "rank": 0
+            },
+            "comment": ""
+          },
+          {
+            "id": "e6df01da-c35a-5f94-a98f-2e505ae89cb1",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 2
+            },
+            "to": {
+              "file": 2,
+              "rank": 0
+            },
+            "comment": ""
+          },
+          {
+            "id": "9e8ba842-c78f-5b33-b00d-183c32079080",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 4
+            },
+            "to": {
+              "file": 4,
+              "rank": 1
+            },
+            "comment": "??!"
+          },
+          {
+            "id": "9ac3dc67-57db-55dd-b53c-556b8f7481a9",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 0
+            },
+            "to": {
+              "file": 4,
+              "rank": 1
+            },
+            "comment": ""
+          },
+          {
+            "id": "e0cc3551-194b-5595-aa85-03a844ab7982",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 2
+            },
+            "to": {
+              "file": 1,
+              "rank": 1
+            },
+            "comment": ""
+          },
+          {
+            "id": "a4b7d55a-beb0-56d3-ab18-cd19c8b54345",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 1
+            },
+            "to": {
+              "file": 4,
+              "rank": 0
+            },
+            "comment": ""
+          },
+          {
+            "id": "07f04bbd-9e18-5900-b01a-51166cd6a2bb",
+            "side": "red",
+            "from": {
+              "file": 3,
+              "rank": 4
+            },
+            "to": {
+              "file": 4,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "0f67acae-f4d5-50b1-8394-2ffc34df087a",
+            "side": "black",
+            "from": {
+              "file": 5,
+              "rank": 0
+            },
+            "to": {
+              "file": 4,
+              "rank": 1
+            },
+            "comment": ""
+          },
+          {
+            "id": "cdf02082-516e-570c-aa84-bd2c971358aa",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 1
+            },
+            "to": {
+              "file": 4,
+              "rank": 1
+            },
+            "comment": ""
+          },
+          {
+            "id": "8c41bf96-8bbf-5fc6-bfd0-f96caa598c94",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 0
+            },
+            "to": {
+              "file": 5,
+              "rank": 0
+            },
+            "comment": ""
+          },
+          {
+            "id": "a53c90b4-8b5f-5d3e-999b-79ce933bc2c6",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 1
+            },
+            "to": {
+              "file": 7,
+              "rank": 1
+            },
+            "comment": ""
+          }
+        ]
+      }
+    ],
+    "choice": {
+      "prompt": "Bạn đánh giá nước đi nào tốt nhất trong ván cờ này?",
+      "options": [
+        {
+          "moveId": "26e1ae3d-eb02-5de4-aacc-53d23eea716d",
+          "label": "Theo biến chính",
+          "verdict": "correct",
+          "feedback": "Đây là biến chính của ván cờ."
+        }
+      ]
+    }
+  },
+  {
+    "id": "08fe1a92-c75e-5984-bfa7-3d2e41c07985",
+    "slug": "080-中炮过河车对屏风马分炮兑车",
+    "title": "080-中炮过河车对屏风马分炮兑车",
+    "category": "Cạm bẫy khai cuộc",
+    "difficulty": "Cao cấp",
+    "lines": [
+      {
+        "id": "c4ceeb8e-6ff1-5c59-baa3-a9dcc90814bf",
+        "title": "Biến chính",
+        "moves": [
+          {
+            "id": "69e94d84-f322-5101-a2f3-3913c17694bd",
+            "side": "red",
+            "from": {
+              "file": 7,
+              "rank": 7
+            },
+            "to": {
+              "file": 4,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "a62b7f6a-504d-54a1-80a2-de3de6737ea4",
+            "side": "black",
+            "from": {
+              "file": 7,
+              "rank": 0
+            },
+            "to": {
+              "file": 6,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "6abb6aed-89cf-5bd9-b25e-0018d3a4eaf2",
+            "side": "red",
+            "from": {
+              "file": 7,
+              "rank": 9
+            },
+            "to": {
+              "file": 6,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "b5afab4c-7a59-5f58-ab35-57f6343f4521",
+            "side": "black",
+            "from": {
+              "file": 8,
+              "rank": 0
+            },
+            "to": {
+              "file": 7,
+              "rank": 0
+            },
+            "comment": ""
+          },
+          {
+            "id": "721c7481-25ad-59a1-9891-9338fc1494e7",
+            "side": "red",
+            "from": {
+              "file": 8,
+              "rank": 9
+            },
+            "to": {
+              "file": 7,
+              "rank": 9
+            },
+            "comment": ""
+          },
+          {
+            "id": "b092dd0e-5dbc-5a30-b03a-b57c3fca8a26",
+            "side": "black",
+            "from": {
+              "file": 1,
+              "rank": 0
+            },
+            "to": {
+              "file": 2,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "cdc20009-f5d8-5996-b19f-a0b07abb3db8",
+            "side": "red",
+            "from": {
+              "file": 2,
+              "rank": 6
+            },
+            "to": {
+              "file": 2,
+              "rank": 5
+            },
+            "comment": ""
+          },
+          {
+            "id": "e3dc0915-a774-5d22-bff3-ad39dcbf677c",
+            "side": "black",
+            "from": {
+              "file": 6,
+              "rank": 3
+            },
+            "to": {
+              "file": 6,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "5fc4d2b5-12b0-5372-9c4f-c518ed4750c4",
+            "side": "red",
+            "from": {
+              "file": 7,
+              "rank": 9
+            },
+            "to": {
+              "file": 7,
+              "rank": 3
+            },
+            "comment": ""
+          },
+          {
+            "id": "50bcd768-d32c-5f30-a118-6d165b9ec613",
+            "side": "black",
+            "from": {
+              "file": 7,
+              "rank": 2
+            },
+            "to": {
+              "file": 8,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "b355e4ca-1bf3-511c-bb09-20d64e8b193a",
+            "side": "red",
+            "from": {
+              "file": 7,
+              "rank": 3
+            },
+            "to": {
+              "file": 6,
+              "rank": 3
+            },
+            "comment": ""
+          },
+          {
+            "id": "9e23735a-4579-548c-aa30-4c1d9047ff68",
+            "side": "black",
+            "from": {
+              "file": 8,
+              "rank": 2
+            },
+            "to": {
+              "file": 8,
+              "rank": 1
+            },
+            "comment": ""
+          },
+          {
+            "id": "4ec9dbfb-bfe7-5e2e-b922-877175c656ef",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 6
+            },
+            "to": {
+              "file": 4,
+              "rank": 5
+            },
+            "comment": ""
+          },
+          {
+            "id": "6dbb82e2-b1ec-5bc9-befd-002dcb468d59",
+            "side": "black",
+            "from": {
+              "file": 3,
+              "rank": 0
+            },
+            "to": {
+              "file": 4,
+              "rank": 1
+            },
+            "comment": ""
+          },
+          {
+            "id": "5df100b9-18d0-59bb-aaf3-d2caa06c5e10",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 5
+            },
+            "to": {
+              "file": 4,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "cdf28771-d14f-5d1f-8b9a-8cb3312c242f",
+            "side": "black",
+            "from": {
+              "file": 8,
+              "rank": 1
+            },
+            "to": {
+              "file": 6,
+              "rank": 1
+            },
+            "comment": ""
+          },
+          {
+            "id": "b05a8174-d871-56e0-8ea6-742e09244e6c",
+            "side": "red",
+            "from": {
+              "file": 6,
+              "rank": 3
+            },
+            "to": {
+              "file": 5,
+              "rank": 3
+            },
+            "comment": ""
+          },
+          {
+            "id": "ec9204f7-1977-5010-99a8-159df4229784",
+            "side": "black",
+            "from": {
+              "file": 6,
+              "rank": 4
+            },
+            "to": {
+              "file": 6,
+              "rank": 5
+            },
+            "comment": ""
+          },
+          {
+            "id": "08af7cca-7fbd-5c4f-aed6-ce80b41a487d",
+            "side": "red",
+            "from": {
+              "file": 6,
+              "rank": 7
+            },
+            "to": {
+              "file": 4,
+              "rank": 6
+            },
+            "comment": ""
+          },
+          {
+            "id": "9e395b6f-4c44-59fa-8e3d-9c22678fc023",
+            "side": "black",
+            "from": {
+              "file": 6,
+              "rank": 5
+            },
+            "to": {
+              "file": 6,
+              "rank": 6
+            },
+            "comment": ""
+          },
+          {
+            "id": "3868e6ce-cf8c-566d-9b98-b1059407268f",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 6
+            },
+            "to": {
+              "file": 3,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "c21fdd72-9a64-5b9c-9548-34fb6a39d086",
+            "side": "black",
+            "from": {
+              "file": 7,
+              "rank": 0
+            },
+            "to": {
+              "file": 7,
+              "rank": 8
+            },
+            "comment": ""
+          },
+          {
+            "id": "ee44456f-9409-5ff1-990a-4a51265345c4",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 9
+            },
+            "to": {
+              "file": 2,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "0f7f3a22-cc75-5909-8a01-62ade2f96fb5",
+            "side": "black",
+            "from": {
+              "file": 2,
+              "rank": 0
+            },
+            "to": {
+              "file": 4,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "7fe1353a-bace-55eb-9189-3ed2747d6294",
+            "side": "red",
+            "from": {
+              "file": 3,
+              "rank": 4
+            },
+            "to": {
+              "file": 2,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "0995e4e6-4814-50f8-953d-bd4f923d7e29",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 2,
+              "rank": 0
+            },
+            "comment": ""
+          },
+          {
+            "id": "bae45630-edaf-5575-9526-6752e5f27d86",
+            "side": "red",
+            "from": {
+              "file": 2,
+              "rank": 2
+            },
+            "to": {
+              "file": 4,
+              "rank": 1
+            },
+            "comment": ""
+          },
+          {
+            "id": "1613a045-32f5-5e10-8a74-10ec1881a585",
+            "side": "black",
+            "from": {
+              "file": 5,
+              "rank": 0
+            },
+            "to": {
+              "file": 4,
+              "rank": 1
+            },
+            "comment": ""
+          },
+          {
+            "id": "ec52f057-2ffd-5882-9a8e-ea0d3bae0008",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 4
+            },
+            "to": {
+              "file": 4,
+              "rank": 3
+            },
+            "comment": ""
+          },
+          {
+            "id": "890ad702-2c9b-5590-a277-76f6c8a6044a",
+            "side": "black",
+            "from": {
+              "file": 6,
+              "rank": 2
+            },
+            "to": {
+              "file": 4,
+              "rank": 3
+            },
+            "comment": ""
+          },
+          {
+            "id": "4fddc25a-8d57-5da0-9e97-76d18eaf9b12",
+            "side": "red",
+            "from": {
+              "file": 5,
+              "rank": 3
+            },
+            "to": {
+              "file": 4,
+              "rank": 3
+            },
+            "comment": ""
+          },
+          {
+            "id": "d135135a-ae23-5d30-9c16-8e889cdc1402",
+            "side": "black",
+            "from": {
+              "file": 6,
+              "rank": 1
+            },
+            "to": {
+              "file": 6,
+              "rank": 9
+            },
+            "comment": ""
+          },
+          {
+            "id": "1f6ebb33-90e5-5924-9bf1-82cb466a5a46",
+            "side": "red",
+            "from": {
+              "file": 5,
+              "rank": 9
+            },
+            "to": {
+              "file": 4,
+              "rank": 8
+            },
+            "comment": ""
+          },
+          {
+            "id": "ddc400c2-9d55-5a51-8626-023cfb82afaa",
+            "side": "black",
+            "from": {
+              "file": 2,
+              "rank": 0
+            },
+            "to": {
+              "file": 3,
+              "rank": 0
+            },
+            "comment": ""
+          },
+          {
+            "id": "95e4778c-d46d-5833-b416-f957426dced3",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 3
+            },
+            "to": {
+              "file": 5,
+              "rank": 3
+            },
+            "comment": ""
+          },
+          {
+            "id": "f7fa264d-4fa4-5542-9dbc-4fe3156c3e5a",
+            "side": "black",
+            "from": {
+              "file": 3,
+              "rank": 0
+            },
+            "to": {
+              "file": 3,
+              "rank": 6
+            },
+            "comment": ""
+          },
+          {
+            "id": "afeed020-cbbf-5432-a5a9-4567d532bd1e",
+            "side": "red",
+            "from": {
+              "file": 2,
+              "rank": 5
+            },
+            "to": {
+              "file": 2,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "a7fdc401-cf41-5e1a-99e3-9063813424d4",
+            "side": "black",
+            "from": {
+              "file": 7,
+              "rank": 8
+            },
+            "to": {
+              "file": 7,
+              "rank": 9
+            },
+            "comment": ""
+          },
+          {
+            "id": "965042f1-71fa-5e7a-a7b6-289cbe2a4a2d",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 9
+            },
+            "to": {
+              "file": 0,
+              "rank": 8
+            },
+            "comment": ""
+          },
+          {
+            "id": "38f83db2-4b4e-51d8-bbb9-14d6fd2637ec",
+            "side": "black",
+            "from": {
+              "file": 6,
+              "rank": 6
+            },
+            "to": {
+              "file": 5,
+              "rank": 6
+            },
+            "comment": ""
+          },
+          {
+            "id": "9d528627-7480-5449-ad0a-05936142fcb8",
+            "side": "red",
+            "from": {
+              "file": 2,
+              "rank": 7
+            },
+            "to": {
+              "file": 1,
+              "rank": 5
+            },
+            "comment": ""
+          },
+          {
+            "id": "debe19d5-e2da-5013-9db3-47dc2fed02d5",
+            "side": "black",
+            "from": {
+              "file": 6,
+              "rank": 9
+            },
+            "to": {
+              "file": 3,
+              "rank": 9
+            },
+            "comment": ""
+          },
+          {
+            "id": "15b44024-1caa-5a81-b97b-da80d771baaa",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 8
+            },
+            "to": {
+              "file": 5,
+              "rank": 9
+            },
+            "comment": ""
+          },
+          {
+            "id": "ed659179-83ed-5621-9654-ce63b70458df",
+            "side": "black",
+            "from": {
+              "file": 3,
+              "rank": 9
+            },
+            "to": {
+              "file": 5,
+              "rank": 9
+            },
+            "comment": ""
+          },
+          {
+            "id": "c0aa8322-37bd-54f5-8e8c-3325ccaa19d6",
+            "side": "red",
+            "from": {
+              "file": 5,
+              "rank": 3
+            },
+            "to": {
+              "file": 6,
+              "rank": 3
+            },
+            "comment": ""
+          },
+          {
+            "id": "32dc1f4a-78f2-5df0-a408-762b1739828d",
+            "side": "black",
+            "from": {
+              "file": 5,
+              "rank": 9
+            },
+            "to": {
+              "file": 2,
+              "rank": 9
+            },
+            "comment": ""
+          },
+          {
+            "id": "76e4041a-5d5c-5c5f-9988-39f44098b0f9",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 9
+            },
+            "to": {
+              "file": 4,
+              "rank": 8
+            },
+            "comment": ""
+          },
+          {
+            "id": "5ec82a13-7a95-5bdb-835c-e24cb8c34a11",
+            "side": "black",
+            "from": {
+              "file": 3,
+              "rank": 6
+            },
+            "to": {
+              "file": 4,
+              "rank": 6
+            },
+            "comment": "黑胜局已定。"
+          }
+        ]
+      }
+    ],
+    "choice": {
+      "prompt": "Bạn đánh giá nước đi nào tốt nhất trong ván cờ này?",
+      "options": [
+        {
+          "moveId": "69e94d84-f322-5101-a2f3-3913c17694bd",
+          "label": "Theo biến chính",
+          "verdict": "correct",
+          "feedback": "Đây là biến chính của ván cờ."
+        }
+      ]
+    }
+  },
+  {
+    "id": "756ef156-f0df-5ba2-953b-e85e0a6fc9bb",
+    "slug": "055-飞相对中炮局",
+    "title": "055-飞相对中炮局",
+    "category": "Cạm bẫy khai cuộc",
+    "difficulty": "Cao cấp",
+    "lines": [
+      {
+        "id": "71f1fad8-d2e6-5534-8056-f2392d96ae56",
+        "title": "Biến chính",
+        "moves": [
+          {
+            "id": "39ccc5e1-3000-5732-b36b-34c9e0720549",
+            "side": "red",
+            "from": {
+              "file": 6,
+              "rank": 9
+            },
+            "to": {
+              "file": 4,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "a3f2aba2-6a33-5cd4-97c3-665c428558e0",
+            "side": "black",
+            "from": {
+              "file": 7,
+              "rank": 2
+            },
+            "to": {
+              "file": 4,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "cbf5d5eb-c307-552d-b6a8-12bd13e31338",
+            "side": "red",
+            "from": {
+              "file": 7,
+              "rank": 9
+            },
+            "to": {
+              "file": 6,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "75f01e62-9e40-5742-8c7c-481eb2942493",
+            "side": "black",
+            "from": {
+              "file": 7,
+              "rank": 0
+            },
+            "to": {
+              "file": 6,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "15b7f639-0a87-50c4-ad57-df6e7bc9d605",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 9
+            },
+            "to": {
+              "file": 2,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "642e9737-3a52-5b48-83f3-98602fb74c47",
+            "side": "black",
+            "from": {
+              "file": 8,
+              "rank": 0
+            },
+            "to": {
+              "file": 7,
+              "rank": 0
+            },
+            "comment": ""
+          },
+          {
+            "id": "90dae880-8c9b-59ee-98b4-20862058f032",
+            "side": "red",
+            "from": {
+              "file": 8,
+              "rank": 9
+            },
+            "to": {
+              "file": 7,
+              "rank": 9
+            },
+            "comment": ""
+          },
+          {
+            "id": "a0c3e2a8-bc63-58f6-87c7-5b139a782a07",
+            "side": "black",
+            "from": {
+              "file": 7,
+              "rank": 0
+            },
+            "to": {
+              "file": 7,
+              "rank": 6
+            },
+            "comment": ""
+          },
+          {
+            "id": "89893ee3-1da8-5ef1-9bda-cbd0b105f850",
+            "side": "red",
+            "from": {
+              "file": 6,
+              "rank": 6
+            },
+            "to": {
+              "file": 6,
+              "rank": 5
+            },
+            "comment": ""
+          },
+          {
+            "id": "58135c87-dfa8-5d87-8890-9c266b5270d5",
+            "side": "black",
+            "from": {
+              "file": 7,
+              "rank": 6
+            },
+            "to": {
+              "file": 6,
+              "rank": 6
+            },
+            "comment": ""
+          },
+          {
+            "id": "4b3d89d0-525b-52c3-85cf-777cb27d1ed1",
+            "side": "red",
+            "from": {
+              "file": 7,
+              "rank": 9
+            },
+            "to": {
+              "file": 6,
+              "rank": 9
+            },
+            "comment": ""
+          },
+          {
+            "id": "733c0f5d-287c-5ef7-bfad-de940ceea6df",
+            "side": "black",
+            "from": {
+              "file": 1,
+              "rank": 0
+            },
+            "to": {
+              "file": 2,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "64bbb639-513b-531e-a0ef-132a770d78ed",
+            "side": "red",
+            "from": {
+              "file": 2,
+              "rank": 6
+            },
+            "to": {
+              "file": 2,
+              "rank": 5
+            },
+            "comment": ""
+          },
+          {
+            "id": "5f117e25-4582-57a9-a6e2-7f4cc8ca21a4",
+            "side": "black",
+            "from": {
+              "file": 6,
+              "rank": 6
+            },
+            "to": {
+              "file": 7,
+              "rank": 6
+            },
+            "comment": ""
+          },
+          {
+            "id": "e6620e8d-f860-52ff-b88d-c849cf5f87d1",
+            "side": "red",
+            "from": {
+              "file": 7,
+              "rank": 7
+            },
+            "to": {
+              "file": 8,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "e620e228-96fb-59f5-8159-0dce4d2ef1f7",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 3
+            },
+            "to": {
+              "file": 4,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "b722c3dc-64d0-5803-a3ef-f8fd812b0b4a",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 7
+            },
+            "to": {
+              "file": 1,
+              "rank": 6
+            },
+            "comment": ""
+          },
+          {
+            "id": "a5d1f98e-cef0-51a0-84b7-482f76dee1ac",
+            "side": "black",
+            "from": {
+              "file": 7,
+              "rank": 6
+            },
+            "to": {
+              "file": 7,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "88797d18-c1f5-506f-94ac-ef2d907ec58f",
+            "side": "red",
+            "from": {
+              "file": 8,
+              "rank": 7
+            },
+            "to": {
+              "file": 8,
+              "rank": 8
+            },
+            "comment": ""
+          },
+          {
+            "id": "f0664649-022a-545a-9940-7f6f61499840",
+            "side": "black",
+            "from": {
+              "file": 2,
+              "rank": 2
+            },
+            "to": {
+              "file": 4,
+              "rank": 3
+            },
+            "comment": ""
+          },
+          {
+            "id": "97a2e0a2-381e-55af-808b-6245cddf3815",
+            "side": "red",
+            "from": {
+              "file": 2,
+              "rank": 7
+            },
+            "to": {
+              "file": 3,
+              "rank": 5
+            },
+            "comment": ""
+          },
+          {
+            "id": "e9e87756-5b5e-5b4f-a8fb-0bca99e928c0",
+            "side": "black",
+            "from": {
+              "file": 2,
+              "rank": 3
+            },
+            "to": {
+              "file": 2,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "6692b16b-615a-5968-9538-1676ca5ee987",
+            "side": "red",
+            "from": {
+              "file": 6,
+              "rank": 7
+            },
+            "to": {
+              "file": 5,
+              "rank": 5
+            },
+            "comment": ""
+          },
+          {
+            "id": "1dc0d5ed-6db2-5f0a-ae8c-1b06345bc9d2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 3
+            },
+            "to": {
+              "file": 2,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "1439a31c-01ad-5445-b273-d68ff61c9cf4",
+            "side": "red",
+            "from": {
+              "file": 2,
+              "rank": 5
+            },
+            "to": {
+              "file": 2,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "1a5c6bef-1fd9-57ae-8249-2ae99e3a49a0",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 2
+            },
+            "to": {
+              "file": 4,
+              "rank": 6
+            },
+            "comment": ""
+          },
+          {
+            "id": "ecb4bc5f-5512-594e-bd46-5af7208b6371",
+            "side": "red",
+            "from": {
+              "file": 8,
+              "rank": 8
+            },
+            "to": {
+              "file": 4,
+              "rank": 8
+            },
+            "comment": ""
+          },
+          {
+            "id": "f8de08a3-ab47-57be-b943-d33e68202631",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 6
+            },
+            "to": {
+              "file": 4,
+              "rank": 8
+            },
+            "comment": ""
+          },
+          {
+            "id": "e329216d-df7c-5d2f-b1cb-1510fc1657d7",
+            "side": "red",
+            "from": {
+              "file": 2,
+              "rank": 4
+            },
+            "to": {
+              "file": 2,
+              "rank": 3
+            },
+            "comment": ""
+          },
+          {
+            "id": "6b876f47-df3a-5590-a1cd-c9c5f886b86d",
+            "side": "black",
+            "from": {
+              "file": 2,
+              "rank": 2
+            },
+            "to": {
+              "file": 4,
+              "rank": 1
+            },
+            "comment": ""
+          },
+          {
+            "id": "18528b2c-f151-57c5-9247-961a11a4a9a6",
+            "side": "red",
+            "from": {
+              "file": 3,
+              "rank": 5
+            },
+            "to": {
+              "file": 5,
+              "rank": 6
+            },
+            "comment": ""
+          },
+          {
+            "id": "3f6161e6-a3a7-5bd2-a0e1-e8b670f5e351",
+            "side": "black",
+            "from": {
+              "file": 7,
+              "rank": 7
+            },
+            "to": {
+              "file": 7,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "da46e026-c290-5317-9192-edc2932bc9a3",
+            "side": "red",
+            "from": {
+              "file": 5,
+              "rank": 5
+            },
+            "to": {
+              "file": 6,
+              "rank": 3
+            },
+            "comment": ""
+          },
+          {
+            "id": "90dbcce9-d8ce-516e-850c-2dd8c730f903",
+            "side": "black",
+            "from": {
+              "file": 7,
+              "rank": 4
+            },
+            "to": {
+              "file": 5,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "00b9e1a5-eaed-589a-91ef-489e23c9da15",
+            "side": "red",
+            "from": {
+              "file": 3,
+              "rank": 9
+            },
+            "to": {
+              "file": 4,
+              "rank": 8
+            },
+            "comment": ""
+          },
+          {
+            "id": "af077633-7aae-548f-a3f2-26f6f7f3cc6c",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 1
+            },
+            "to": {
+              "file": 5,
+              "rank": 3
+            },
+            "comment": ""
+          },
+          {
+            "id": "b99a99c9-6146-5996-8b61-01ced6266c5c",
+            "side": "red",
+            "from": {
+              "file": 5,
+              "rank": 6
+            },
+            "to": {
+              "file": 3,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "885f39f1-1b7a-57ce-b668-19a2420a4e4a",
+            "side": "black",
+            "from": {
+              "file": 2,
+              "rank": 0
+            },
+            "to": {
+              "file": 4,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "e81fc66d-1305-5791-b1a5-88b5fe613e0b",
+            "side": "red",
+            "from": {
+              "file": 6,
+              "rank": 9
+            },
+            "to": {
+              "file": 6,
+              "rank": 6
+            },
+            "comment": ""
+          },
+          {
+            "id": "ab1a7e00-676f-55d1-b60d-d09f687543e3",
+            "side": "black",
+            "from": {
+              "file": 5,
+              "rank": 3
+            },
+            "to": {
+              "file": 3,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "dd4eec57-37f5-591c-8caa-864ab484e251",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 6
+            },
+            "to": {
+              "file": 1,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "b40f8f46-6d45-57c3-8e1a-93c8ab69c0a0",
+            "side": "black",
+            "from": {
+              "file": 5,
+              "rank": 4
+            },
+            "to": {
+              "file": 5,
+              "rank": 3
+            },
+            "comment": ""
+          },
+          {
+            "id": "31b9cbf9-c7d3-5344-817a-076958102bcf",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 4
+            },
+            "to": {
+              "file": 4,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "6872c2b8-f490-5a2e-81f8-d1705efbed83",
+            "side": "black",
+            "from": {
+              "file": 3,
+              "rank": 0
+            },
+            "to": {
+              "file": 4,
+              "rank": 1
+            },
+            "comment": ""
+          },
+          {
+            "id": "11e09b21-e379-5462-a96b-31a09953cf1d",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 9
+            },
+            "to": {
+              "file": 1,
+              "rank": 9
+            },
+            "comment": ""
+          },
+          {
+            "id": "19615f39-afbd-56b4-997e-31d96e83b431",
+            "side": "black",
+            "from": {
+              "file": 5,
+              "rank": 3
+            },
+            "to": {
+              "file": 6,
+              "rank": 3
+            },
+            "comment": ""
+          },
+          {
+            "id": "b0aca80f-daf0-5dd0-b2e2-32b529d2d58b",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 9
+            },
+            "to": {
+              "file": 1,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "5c7dd68d-2ded-5563-bfaa-982a2324612f",
+            "side": "black",
+            "from": {
+              "file": 6,
+              "rank": 3
+            },
+            "to": {
+              "file": 2,
+              "rank": 3
+            },
+            "comment": ""
+          },
+          {
+            "id": "90f02b72-00ff-5778-b1cc-1c7195748c66",
+            "side": "red",
+            "from": {
+              "file": 6,
+              "rank": 5
+            },
+            "to": {
+              "file": 6,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "71d5976b-ed01-556f-bed6-b579518c0c61",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 3,
+              "rank": 0
+            },
+            "comment": ""
+          },
+          {
+            "id": "f962f4bd-15f5-53bf-b5e5-9c6ad9dad0b8",
+            "side": "red",
+            "from": {
+              "file": 3,
+              "rank": 7
+            },
+            "to": {
+              "file": 2,
+              "rank": 5
+            },
+            "comment": ""
+          },
+          {
+            "id": "1e61909c-d9e7-5bbe-a213-3e8c20e21d86",
+            "side": "black",
+            "from": {
+              "file": 2,
+              "rank": 3
+            },
+            "to": {
+              "file": 4,
+              "rank": 3
+            },
+            "comment": ""
+          },
+          {
+            "id": "568c4815-de3b-541e-90ec-880a5fd62436",
+            "side": "red",
+            "from": {
+              "file": 6,
+              "rank": 4
+            },
+            "to": {
+              "file": 6,
+              "rank": 3
+            },
+            "comment": ""
+          },
+          {
+            "id": "224241ee-875d-5624-84cf-bd70f941d8ba",
+            "side": "black",
+            "from": {
+              "file": 6,
+              "rank": 2
+            },
+            "to": {
+              "file": 7,
+              "rank": 0
+            },
+            "comment": ""
+          },
+          {
+            "id": "5bc127fb-ecab-5138-b55f-b9dac5906628",
+            "side": "red",
+            "from": {
+              "file": 6,
+              "rank": 3
+            },
+            "to": {
+              "file": 6,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "051d5657-d0bf-5cd4-bb6b-371e2a58fb2e",
+            "side": "black",
+            "from": {
+              "file": 6,
+              "rank": 0
+            },
+            "to": {
+              "file": 8,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "24ab8d8c-450b-561c-9d14-c43dc61ddba3",
+            "side": "red",
+            "from": {
+              "file": 6,
+              "rank": 2
+            },
+            "to": {
+              "file": 5,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "1a4df0f2-2f7e-5977-bf5c-2e27ab5f9ce9",
+            "side": "black",
+            "from": {
+              "file": 8,
+              "rank": 2
+            },
+            "to": {
+              "file": 6,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "771b3d53-6812-5240-bae5-f59bed55df17",
+            "side": "red",
+            "from": {
+              "file": 6,
+              "rank": 6
+            },
+            "to": {
+              "file": 7,
+              "rank": 6
+            },
+            "comment": ""
+          },
+          {
+            "id": "1b3c04f5-9e91-5811-a104-e9606a207efd",
+            "side": "black",
+            "from": {
+              "file": 7,
+              "rank": 0
+            },
+            "to": {
+              "file": 8,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "442149e1-7ca1-5de3-b397-c5e1835b3f23",
+            "side": "red",
+            "from": {
+              "file": 7,
+              "rank": 6
+            },
+            "to": {
+              "file": 7,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "92f1463c-ed24-5b93-9f5f-f36091d3b8cf",
+            "side": "black",
+            "from": {
+              "file": 3,
+              "rank": 0
+            },
+            "to": {
+              "file": 2,
+              "rank": 0
+            },
+            "comment": ""
+          },
+          {
+            "id": "ce84fd51-d86d-5021-b198-7e8e43eb0391",
+            "side": "red",
+            "from": {
+              "file": 5,
+              "rank": 2
+            },
+            "to": {
+              "file": 4,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "75db3512-55d2-525c-a75f-3f00027c0239",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 3
+            },
+            "to": {
+              "file": 4,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "c0c1ac4c-91fd-5e00-a6ab-98cde8682735",
+            "side": "red",
+            "from": {
+              "file": 7,
+              "rank": 2
+            },
+            "to": {
+              "file": 7,
+              "rank": 3
+            },
+            "comment": ""
+          },
+          {
+            "id": "699e8ca8-8b46-5aa9-b121-04d1bd36a4a7",
+            "side": "black",
+            "from": {
+              "file": 2,
+              "rank": 0
+            },
+            "to": {
+              "file": 3,
+              "rank": 0
+            },
+            "comment": ""
+          },
+          {
+            "id": "b9bbdf08-a0c0-5172-9c58-d38ef8546529",
+            "side": "red",
+            "from": {
+              "file": 7,
+              "rank": 3
+            },
+            "to": {
+              "file": 8,
+              "rank": 3
+            },
+            "comment": ""
+          },
+          {
+            "id": "2780d22d-9059-5bc4-8f57-77448e20a945",
+            "side": "black",
+            "from": {
+              "file": 8,
+              "rank": 2
+            },
+            "to": {
+              "file": 7,
+              "rank": 0
+            },
+            "comment": ""
+          },
+          {
+            "id": "02ceb80a-397a-5776-a87d-46ef075f4494",
+            "side": "red",
+            "from": {
+              "file": 8,
+              "rank": 3
+            },
+            "to": {
+              "file": 0,
+              "rank": 3
+            },
+            "comment": ""
+          },
+          {
+            "id": "2a7e59bb-3be1-50b9-86ab-ee2d29288116",
+            "side": "black",
+            "from": {
+              "file": 7,
+              "rank": 0
+            },
+            "to": {
+              "file": 5,
+              "rank": 1
+            },
+            "comment": ""
+          },
+          {
+            "id": "b6a455eb-4bb8-5383-80db-c8dab8cea3c5",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 3
+            },
+            "to": {
+              "file": 5,
+              "rank": 3
+            },
+            "comment": ""
+          },
+          {
+            "id": "fe609304-2936-5790-a02b-387ae499f9ed",
+            "side": "black",
+            "from": {
+              "file": 5,
+              "rank": 1
+            },
+            "to": {
+              "file": 7,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "aa85d65d-1262-519e-9ba0-f332d67c0b29",
+            "side": "red",
+            "from": {
+              "file": 5,
+              "rank": 3
+            },
+            "to": {
+              "file": 6,
+              "rank": 3
+            },
+            "comment": ""
+          },
+          {
+            "id": "c77531a6-31a8-5b3a-97f3-4f18fffcaa0e",
+            "side": "black",
+            "from": {
+              "file": 3,
+              "rank": 0
+            },
+            "to": {
+              "file": 2,
+              "rank": 0
+            },
+            "comment": ""
+          },
+          {
+            "id": "a1e97466-0e96-5b35-889b-06fb51fbb0e0",
+            "side": "red",
+            "from": {
+              "file": 6,
+              "rank": 3
+            },
+            "to": {
+              "file": 3,
+              "rank": 3
+            },
+            "comment": ""
+          },
+          {
+            "id": "aba25bcb-49f4-54c0-ab77-a8cb404fcac0",
+            "side": "black",
+            "from": {
+              "file": 2,
+              "rank": 0
+            },
+            "to": {
+              "file": 3,
+              "rank": 0
+            },
+            "comment": ""
+          },
+          {
+            "id": "604baf15-30f3-505b-a8a6-082f3a7e3e79",
+            "side": "red",
+            "from": {
+              "file": 3,
+              "rank": 3
+            },
+            "to": {
+              "file": 3,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "20d10674-1b66-50d6-b877-56ea9762dcaa",
+            "side": "black",
+            "from": {
+              "file": 3,
+              "rank": 0
+            },
+            "to": {
+              "file": 3,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "a1c4a529-1d6b-5bdf-9496-3d7606992e33",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 2
+            },
+            "to": {
+              "file": 1,
+              "rank": 0
+            },
+            "comment": ""
+          },
+          {
+            "id": "c5b7a28f-155e-595c-b080-4217323adfcb",
+            "side": "black",
+            "from": {
+              "file": 3,
+              "rank": 4
+            },
+            "to": {
+              "file": 3,
+              "rank": 0
+            },
+            "comment": ""
+          },
+          {
+            "id": "84b6752a-f652-57b7-bbb9-10287c4eee9a",
+            "side": "red",
+            "from": {
+              "file": 2,
+              "rank": 5
+            },
+            "to": {
+              "file": 1,
+              "rank": 3
+            },
+            "comment": "红方妙手弃车构成绝杀，一举克敌制胜！"
+          }
+        ]
+      }
+    ],
+    "choice": {
+      "prompt": "Bạn đánh giá nước đi nào tốt nhất trong ván cờ này?",
+      "options": [
+        {
+          "moveId": "39ccc5e1-3000-5732-b36b-34c9e0720549",
+          "label": "Theo biến chính",
+          "verdict": "correct",
+          "feedback": "Đây là biến chính của ván cờ."
+        }
+      ]
+    }
+  },
+  {
+    "id": "854faa87-4dda-5b0b-ac6b-a78bb9fb6dc7",
+    "slug": "081-顺炮横车对直车",
+    "title": "081-顺炮横车对直车",
+    "category": "Cạm bẫy khai cuộc",
+    "difficulty": "Cao cấp",
+    "lines": [
+      {
+        "id": "7297ada1-2794-5de7-9f57-a23ebdac3a8f",
+        "title": "Biến chính",
+        "moves": [
+          {
+            "id": "9737096c-96b2-5c0f-8f7b-d5f374480714",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 7
+            },
+            "to": {
+              "file": 4,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "33bf2bac-ab52-59ab-b2fd-34fa346873a1",
+            "side": "black",
+            "from": {
+              "file": 1,
+              "rank": 2
+            },
+            "to": {
+              "file": 4,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "c845da7a-15ba-51f3-ac65-ce5511d17a99",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 9
+            },
+            "to": {
+              "file": 2,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "929f9208-5eac-5099-b412-af450328ab22",
+            "side": "black",
+            "from": {
+              "file": 1,
+              "rank": 0
+            },
+            "to": {
+              "file": 2,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "03b08f90-1e6a-56df-97ab-3f7b5e164457",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 9
+            },
+            "to": {
+              "file": 0,
+              "rank": 8
+            },
+            "comment": ""
+          },
+          {
+            "id": "757309f2-de5e-5e75-b593-0245c1cc3213",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 1,
+              "rank": 0
+            },
+            "comment": ""
+          },
+          {
+            "id": "66df39b3-ef12-5124-b506-677aa01569c9",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 8
+            },
+            "to": {
+              "file": 5,
+              "rank": 8
+            },
+            "comment": ""
+          },
+          {
+            "id": "605c1309-f1a5-5fd0-978f-0da77ea725ec",
+            "side": "black",
+            "from": {
+              "file": 3,
+              "rank": 0
+            },
+            "to": {
+              "file": 4,
+              "rank": 1
+            },
+            "comment": ""
+          },
+          {
+            "id": "4d22466b-cf9d-5aa9-b030-5948e8d4f5f5",
+            "side": "red",
+            "from": {
+              "file": 5,
+              "rank": 8
+            },
+            "to": {
+              "file": 5,
+              "rank": 1
+            },
+            "comment": ""
+          },
+          {
+            "id": "398476a6-ef06-54cb-87e1-147875cd3139",
+            "side": "black",
+            "from": {
+              "file": 7,
+              "rank": 0
+            },
+            "to": {
+              "file": 8,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "45c3beb4-ba12-5220-a0a8-70e9a0569406",
+            "side": "red",
+            "from": {
+              "file": 6,
+              "rank": 6
+            },
+            "to": {
+              "file": 6,
+              "rank": 5
+            },
+            "comment": ""
+          },
+          {
+            "id": "3f61795b-5ffc-5b70-ba6e-49a9b2479471",
+            "side": "black",
+            "from": {
+              "file": 7,
+              "rank": 2
+            },
+            "to": {
+              "file": 5,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "0708d600-3afb-565b-8e97-eda55fd3bc24",
+            "side": "red",
+            "from": {
+              "file": 7,
+              "rank": 9
+            },
+            "to": {
+              "file": 6,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "55bcac18-975f-59b4-bafd-e735e936a702",
+            "side": "black",
+            "from": {
+              "file": 8,
+              "rank": 0
+            },
+            "to": {
+              "file": 7,
+              "rank": 0
+            },
+            "comment": ""
+          },
+          {
+            "id": "d5b97af2-d948-5bd6-8deb-8608e774676d",
+            "side": "red",
+            "from": {
+              "file": 7,
+              "rank": 7
+            },
+            "to": {
+              "file": 7,
+              "rank": 1
+            },
+            "comment": ""
+          },
+          {
+            "id": "4f8cdd84-e3bf-58a3-a9e8-de5749b5b811",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 2
+            },
+            "to": {
+              "file": 3,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "5c7deb4b-6dac-5094-b8d3-17553e3176ce",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 7
+            },
+            "to": {
+              "file": 4,
+              "rank": 3
+            },
+            "comment": ""
+          },
+          {
+            "id": "b2d1b658-613e-5d63-96a2-19ba5647368d",
+            "side": "black",
+            "from": {
+              "file": 3,
+              "rank": 2
+            },
+            "to": {
+              "file": 4,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "ac31a416-e60c-52be-94bd-e377fd6d90d6",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 3
+            },
+            "to": {
+              "file": 4,
+              "rank": 5
+            },
+            "comment": ""
+          },
+          {
+            "id": "d2b10d67-de49-56b5-8598-026633c3416b",
+            "side": "black",
+            "from": {
+              "file": 2,
+              "rank": 2
+            },
+            "to": {
+              "file": 4,
+              "rank": 3
+            },
+            "comment": ""
+          },
+          {
+            "id": "e0142254-12d2-5626-8eb9-daa0acbb6a3e",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 5
+            },
+            "to": {
+              "file": 4,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "6766d2c6-88bc-52ab-8f5b-80221f02db79",
+            "side": "black",
+            "from": {
+              "file": 2,
+              "rank": 0
+            },
+            "to": {
+              "file": 4,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "bae2b7a0-18c0-5f73-bf60-073f789e3568",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 6
+            },
+            "to": {
+              "file": 4,
+              "rank": 5
+            },
+            "comment": ""
+          },
+          {
+            "id": "9e2d0e13-6d90-5ea8-b4cb-3eeb9f2efcbe",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 2
+            },
+            "to": {
+              "file": 2,
+              "rank": 0
+            },
+            "comment": ""
+          },
+          {
+            "id": "6403afd4-d18e-5b1e-862d-862fd0f9f49b",
+            "side": "red",
+            "from": {
+              "file": 5,
+              "rank": 1
+            },
+            "to": {
+              "file": 5,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "f5ce7c01-2bab-5a8d-bff1-08988b4dbe49",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 1
+            },
+            "to": {
+              "file": 5,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "5c2aa6f6-172c-5ecf-aa99-e4ac5e2d652b",
+            "side": "red",
+            "from": {
+              "file": 7,
+              "rank": 1
+            },
+            "to": {
+              "file": 7,
+              "rank": 5
+            },
+            "comment": ""
+          },
+          {
+            "id": "00827bda-25cd-5178-bd92-5d876160d60f",
+            "side": "black",
+            "from": {
+              "file": 6,
+              "rank": 3
+            },
+            "to": {
+              "file": 6,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "8517e8e7-ece0-5dac-aab0-f3c1a2c6efc4",
+            "side": "red",
+            "from": {
+              "file": 2,
+              "rank": 7
+            },
+            "to": {
+              "file": 4,
+              "rank": 6
+            },
+            "comment": ""
+          },
+          {
+            "id": "f121f909-621a-541a-a6f0-46a54a9440f9",
+            "side": "black",
+            "from": {
+              "file": 8,
+              "rank": 2
+            },
+            "to": {
+              "file": 6,
+              "rank": 3
+            },
+            "comment": ""
+          },
+          {
+            "id": "e11ac954-6200-59d2-9385-5f77cca02c46",
+            "side": "red",
+            "from": {
+              "file": 6,
+              "rank": 5
+            },
+            "to": {
+              "file": 6,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "6bda2825-9ca1-5fff-bae3-b41f744d6a2e",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 3
+            },
+            "to": {
+              "file": 6,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "c0ef2b87-e3a6-5bd0-a9a4-c8f4e5f272b5",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 6
+            },
+            "to": {
+              "file": 6,
+              "rank": 5
+            },
+            "comment": ""
+          },
+          {
+            "id": "4dc10010-54a0-53b3-98ad-b551338b5b1d",
+            "side": "black",
+            "from": {
+              "file": 6,
+              "rank": 3
+            },
+            "to": {
+              "file": 8,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "571e7f8b-77ff-52fc-995c-80b1d87b6515",
+            "side": "red",
+            "from": {
+              "file": 6,
+              "rank": 5
+            },
+            "to": {
+              "file": 4,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "83d9382b-c638-52ec-bde6-b995ce97a85d",
+            "side": "black",
+            "from": {
+              "file": 8,
+              "rank": 4
+            },
+            "to": {
+              "file": 7,
+              "rank": 6
+            },
+            "comment": ""
+          },
+          {
+            "id": "94c7552a-d092-5970-9654-ef3ff9e53a0e",
+            "side": "red",
+            "from": {
+              "file": 7,
+              "rank": 5
+            },
+            "to": {
+              "file": 6,
+              "rank": 5
+            },
+            "comment": ""
+          },
+          {
+            "id": "793ca592-7dce-5ec3-82f7-19fd17d1d08d",
+            "side": "black",
+            "from": {
+              "file": 7,
+              "rank": 6
+            },
+            "to": {
+              "file": 5,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "0c919254-16a0-5591-9591-d720dfb79a80",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 9
+            },
+            "to": {
+              "file": 4,
+              "rank": 8
+            },
+            "comment": ""
+          },
+          {
+            "id": "66ee8b8c-7c42-5d66-b4ba-0caadefdd7bd",
+            "side": "black",
+            "from": {
+              "file": 7,
+              "rank": 0
+            },
+            "to": {
+              "file": 7,
+              "rank": 8
+            },
+            "comment": "黑胜。"
+          }
+        ]
+      }
+    ],
+    "choice": {
+      "prompt": "Bạn đánh giá nước đi nào tốt nhất trong ván cờ này?",
+      "options": [
+        {
+          "moveId": "9737096c-96b2-5c0f-8f7b-d5f374480714",
+          "label": "Theo biến chính",
+          "verdict": "correct",
+          "feedback": "Đây là biến chính của ván cờ."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ed4779f4-3225-52b6-ab8b-2a8e7043bd68",
+    "slug": "088-中炮过河车对屏风马平炮兑车",
+    "title": "088-中炮过河车对屏风马平炮兑车",
+    "category": "Cạm bẫy khai cuộc",
+    "difficulty": "Cao cấp",
+    "lines": [
+      {
+        "id": "8a214908-0f70-500d-837f-f0db5a86927b",
+        "title": "Biến chính",
+        "moves": [
+          {
+            "id": "d27abf02-1cb5-505d-969c-d96b7290b4b3",
+            "side": "red",
+            "from": {
+              "file": 7,
+              "rank": 7
+            },
+            "to": {
+              "file": 4,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "2d7428a2-3206-5fc5-bcf7-33a0cf364158",
+            "side": "black",
+            "from": {
+              "file": 7,
+              "rank": 0
+            },
+            "to": {
+              "file": 6,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "a94cb6f6-aee3-51d2-921d-277689fdc99a",
+            "side": "red",
+            "from": {
+              "file": 7,
+              "rank": 9
+            },
+            "to": {
+              "file": 6,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "03264532-8e79-5b0c-aeef-fc3759563a68",
+            "side": "black",
+            "from": {
+              "file": 8,
+              "rank": 0
+            },
+            "to": {
+              "file": 7,
+              "rank": 0
+            },
+            "comment": ""
+          },
+          {
+            "id": "c2563e1c-607e-5fcb-9267-0ae7a78229f6",
+            "side": "red",
+            "from": {
+              "file": 8,
+              "rank": 9
+            },
+            "to": {
+              "file": 7,
+              "rank": 9
+            },
+            "comment": ""
+          },
+          {
+            "id": "f1773419-c3cf-5b76-aa31-fead70a63be1",
+            "side": "black",
+            "from": {
+              "file": 6,
+              "rank": 3
+            },
+            "to": {
+              "file": 6,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "0acded16-9eda-5b26-ac3e-5dcf44ff2638",
+            "side": "red",
+            "from": {
+              "file": 7,
+              "rank": 9
+            },
+            "to": {
+              "file": 7,
+              "rank": 3
+            },
+            "comment": ""
+          },
+          {
+            "id": "1fc39467-fb97-5b51-88a7-6576c0700c92",
+            "side": "black",
+            "from": {
+              "file": 1,
+              "rank": 0
+            },
+            "to": {
+              "file": 2,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "23d89939-bc45-508c-bb3b-b6e568368d29",
+            "side": "red",
+            "from": {
+              "file": 2,
+              "rank": 6
+            },
+            "to": {
+              "file": 2,
+              "rank": 5
+            },
+            "comment": ""
+          },
+          {
+            "id": "9cf8d4f2-cda3-53da-a208-ccfca422374b",
+            "side": "black",
+            "from": {
+              "file": 7,
+              "rank": 2
+            },
+            "to": {
+              "file": 8,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "fb61e809-b9fa-545c-89da-0162205a8157",
+            "side": "red",
+            "from": {
+              "file": 7,
+              "rank": 3
+            },
+            "to": {
+              "file": 6,
+              "rank": 3
+            },
+            "comment": ""
+          },
+          {
+            "id": "f30b894c-0383-5a50-970e-80eb1f8b219d",
+            "side": "black",
+            "from": {
+              "file": 8,
+              "rank": 2
+            },
+            "to": {
+              "file": 8,
+              "rank": 1
+            },
+            "comment": ""
+          },
+          {
+            "id": "ae4fba9d-f9f3-5ea0-8ad9-28658137b0ea",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 9
+            },
+            "to": {
+              "file": 2,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "9eaf14d4-c2c2-5083-ba92-e13ad2b02413",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 1
+            },
+            "comment": ""
+          },
+          {
+            "id": "01391496-57dd-583d-b53d-e77ef2d30d9f",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 7
+            },
+            "to": {
+              "file": 0,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "8a18a8f8-ef8d-59f5-b052-9d4756dc4a2f",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 1
+            },
+            "to": {
+              "file": 5,
+              "rank": 1
+            },
+            "comment": ""
+          },
+          {
+            "id": "a54e2968-1285-5148-8ae4-adf25bcb3a2a",
+            "side": "red",
+            "from": {
+              "file": 2,
+              "rank": 7
+            },
+            "to": {
+              "file": 3,
+              "rank": 5
+            },
+            "comment": ""
+          },
+          {
+            "id": "06670287-069d-5178-874a-26d7e79c66ce",
+            "side": "black",
+            "from": {
+              "file": 8,
+              "rank": 1
+            },
+            "to": {
+              "file": 6,
+              "rank": 1
+            },
+            "comment": ""
+          },
+          {
+            "id": "73c64fa7-d225-5dcb-bec3-953c73244e46",
+            "side": "red",
+            "from": {
+              "file": 3,
+              "rank": 5
+            },
+            "to": {
+              "file": 4,
+              "rank": 3
+            },
+            "comment": ""
+          },
+          {
+            "id": "93675432-1c28-5116-bbf1-ba25d5458f07",
+            "side": "black",
+            "from": {
+              "file": 6,
+              "rank": 2
+            },
+            "to": {
+              "file": 4,
+              "rank": 3
+            },
+            "comment": ""
+          },
+          {
+            "id": "1bb9e867-4937-5046-97ee-ae4e032c8414",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 6
+            },
+            "to": {
+              "file": 4,
+              "rank": 5
+            },
+            "comment": ""
+          },
+          {
+            "id": "1fcc2870-6925-53c7-ad4b-4c30f19c4758",
+            "side": "black",
+            "from": {
+              "file": 5,
+              "rank": 0
+            },
+            "to": {
+              "file": 4,
+              "rank": 1
+            },
+            "comment": ""
+          },
+          {
+            "id": "9cf64a5a-22af-58a3-b7e6-38486432248d",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 5
+            },
+            "to": {
+              "file": 4,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "ee9ab91a-702c-5317-95ef-be1e1125e544",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 3
+            },
+            "to": {
+              "file": 6,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "cbe646e9-8fb0-54b2-af55-2e1d3c3ad687",
+            "side": "red",
+            "from": {
+              "file": 6,
+              "rank": 3
+            },
+            "to": {
+              "file": 2,
+              "rank": 3
+            },
+            "comment": ""
+          },
+          {
+            "id": "db4d3cfb-1156-580e-9567-959c024a7075",
+            "side": "black",
+            "from": {
+              "file": 5,
+              "rank": 1
+            },
+            "to": {
+              "file": 5,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "52d05a8b-a247-53f0-a0b4-7c7b603915ed",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 9
+            },
+            "to": {
+              "file": 1,
+              "rank": 9
+            },
+            "comment": ""
+          },
+          {
+            "id": "7b0e41b6-6b8b-5d86-b889-39a26f8d37e2",
+            "side": "black",
+            "from": {
+              "file": 1,
+              "rank": 2
+            },
+            "to": {
+              "file": 0,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "c6b21cda-f149-5100-add9-331e327d5e08",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 9
+            },
+            "to": {
+              "file": 1,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "05b853e9-53c9-59bd-994c-953aa3d0337d",
+            "side": "black",
+            "from": {
+              "file": 6,
+              "rank": 0
+            },
+            "to": {
+              "file": 4,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "fbfe41c5-67bf-5aeb-985c-f9c36d405124",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 2
+            },
+            "to": {
+              "file": 2,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "8c40050e-9611-5977-85b5-6c9a6592a270",
+            "side": "black",
+            "from": {
+              "file": 6,
+              "rank": 2
+            },
+            "to": {
+              "file": 7,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "04a3a540-4741-5e5c-b205-7ce3b4b4f154",
+            "side": "red",
+            "from": {
+              "file": 2,
+              "rank": 3
+            },
+            "to": {
+              "file": 6,
+              "rank": 3
+            },
+            "comment": ""
+          },
+          {
+            "id": "7ea937db-60ef-53f7-a2c7-3587a4183cb8",
+            "side": "black",
+            "from": {
+              "file": 7,
+              "rank": 4
+            },
+            "to": {
+              "file": 8,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "39de04e1-a1e1-5f8d-93a8-e8189114afb2",
+            "side": "red",
+            "from": {
+              "file": 6,
+              "rank": 3
+            },
+            "to": {
+              "file": 3,
+              "rank": 3
+            },
+            "comment": ""
+          },
+          {
+            "id": "2fc66b9c-f123-5c0a-8a9f-1181a3df4ce3",
+            "side": "black",
+            "from": {
+              "file": 6,
+              "rank": 1
+            },
+            "to": {
+              "file": 6,
+              "rank": 6
+            },
+            "comment": ""
+          },
+          {
+            "id": "4b0a7b1b-e934-52e0-9c52-27789669b486",
+            "side": "red",
+            "from": {
+              "file": 6,
+              "rank": 9
+            },
+            "to": {
+              "file": 8,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "02ced7ab-9f35-51b6-99ec-d3019dcf40fb",
+            "side": "black",
+            "from": {
+              "file": 6,
+              "rank": 4
+            },
+            "to": {
+              "file": 6,
+              "rank": 5
+            },
+            "comment": ""
+          },
+          {
+            "id": "af7de2fc-bf0b-5da1-88f2-3b6c36ec720c",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 4
+            },
+            "to": {
+              "file": 5,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "5385108b-c69b-5179-b3ef-fa9f9b4363ea",
+            "side": "black",
+            "from": {
+              "file": 5,
+              "rank": 2
+            },
+            "to": {
+              "file": 5,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "9e960f7f-3099-5fea-b5d7-eff782c6f2b5",
+            "side": "red",
+            "from": {
+              "file": 2,
+              "rank": 2
+            },
+            "to": {
+              "file": 2,
+              "rank": 0
+            },
+            "comment": "红方大占优势，余着从略。"
+          }
+        ]
+      }
+    ],
+    "choice": {
+      "prompt": "Bạn đánh giá nước đi nào tốt nhất trong ván cờ này?",
+      "options": [
+        {
+          "moveId": "d27abf02-1cb5-505d-969c-d96b7290b4b3",
+          "label": "Theo biến chính",
+          "verdict": "correct",
+          "feedback": "Đây là biến chính của ván cờ."
+        }
+      ]
+    }
+  },
+  {
+    "id": "3be8896f-18de-59b1-97f2-99ca8d510623",
+    "slug": "069-过官炮对起马局",
+    "title": "069-过官炮对起马局",
+    "category": "Cạm bẫy khai cuộc",
+    "difficulty": "Cao cấp",
+    "lines": [
+      {
+        "id": "afffc87e-ee85-5b85-9a18-f6b2aba34d18",
+        "title": "Biến chính",
+        "moves": [
+          {
+            "id": "6d10c054-3e5e-59d9-8294-556260d622aa",
+            "side": "red",
+            "from": {
+              "file": 7,
+              "rank": 7
+            },
+            "to": {
+              "file": 3,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "d52b5253-c8af-5448-9ed8-7d0f48829fb7",
+            "side": "black",
+            "from": {
+              "file": 7,
+              "rank": 0
+            },
+            "to": {
+              "file": 6,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "b157c888-420c-5724-acd7-e45e1a7f85b6",
+            "side": "red",
+            "from": {
+              "file": 7,
+              "rank": 9
+            },
+            "to": {
+              "file": 6,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "1486e7d7-709a-5351-a96a-3e5a454b7f1a",
+            "side": "black",
+            "from": {
+              "file": 8,
+              "rank": 0
+            },
+            "to": {
+              "file": 7,
+              "rank": 0
+            },
+            "comment": ""
+          },
+          {
+            "id": "4231690d-4606-5aac-ba08-f9fc03edb693",
+            "side": "red",
+            "from": {
+              "file": 8,
+              "rank": 9
+            },
+            "to": {
+              "file": 7,
+              "rank": 9
+            },
+            "comment": ""
+          },
+          {
+            "id": "8097e1f3-eeea-5e1f-a439-806594036a40",
+            "side": "black",
+            "from": {
+              "file": 7,
+              "rank": 2
+            },
+            "to": {
+              "file": 7,
+              "rank": 6
+            },
+            "comment": ""
+          },
+          {
+            "id": "f6d1bcf6-b9c0-5c8c-aad6-93a3cae01122",
+            "side": "red",
+            "from": {
+              "file": 6,
+              "rank": 6
+            },
+            "to": {
+              "file": 6,
+              "rank": 5
+            },
+            "comment": ""
+          },
+          {
+            "id": "f92241d8-3f8a-58df-84ae-38212475d18f",
+            "side": "black",
+            "from": {
+              "file": 7,
+              "rank": 6
+            },
+            "to": {
+              "file": 6,
+              "rank": 6
+            },
+            "comment": ""
+          },
+          {
+            "id": "803e18ee-372b-5eb7-9143-cc041716e6af",
+            "side": "red",
+            "from": {
+              "file": 6,
+              "rank": 9
+            },
+            "to": {
+              "file": 4,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "d6c04a18-e976-5ee9-b519-7ed88284e2f0",
+            "side": "black",
+            "from": {
+              "file": 7,
+              "rank": 0
+            },
+            "to": {
+              "file": 7,
+              "rank": 9
+            },
+            "comment": ""
+          },
+          {
+            "id": "7c636579-f8cf-50f4-b32f-470cc019ed5e",
+            "side": "red",
+            "from": {
+              "file": 6,
+              "rank": 7
+            },
+            "to": {
+              "file": 7,
+              "rank": 9
+            },
+            "comment": ""
+          },
+          {
+            "id": "5cfb8cda-5659-5ad7-869d-6a592979a00f",
+            "side": "black",
+            "from": {
+              "file": 1,
+              "rank": 2
+            },
+            "to": {
+              "file": 4,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "29006bd1-d33f-56ad-a180-be748b0df306",
+            "side": "red",
+            "from": {
+              "file": 7,
+              "rank": 9
+            },
+            "to": {
+              "file": 6,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "353b3fe6-6dcc-5c96-8f09-b085eec1e122",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "67f39265-1cb1-5713-93b1-78569694b873",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 9
+            },
+            "to": {
+              "file": 0,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "6dc9ce19-eed1-534c-9688-4cfa7c9826bd",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 2
+            },
+            "to": {
+              "file": 3,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "9b0e3681-b6f0-5fe5-b786-47a355b413f7",
+            "side": "red",
+            "from": {
+              "file": 3,
+              "rank": 9
+            },
+            "to": {
+              "file": 4,
+              "rank": 8
+            },
+            "comment": ""
+          },
+          {
+            "id": "21cf8e14-6933-5f9c-8087-76551acf3d78",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 3
+            },
+            "to": {
+              "file": 0,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "efdb7500-7fe6-5910-b15e-6224e58817d6",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 7
+            },
+            "to": {
+              "file": 1,
+              "rank": 1
+            },
+            "comment": ""
+          },
+          {
+            "id": "db9a2c87-4a8b-510b-a348-92a94403c24d",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 3
+            },
+            "to": {
+              "file": 4,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "883062a4-f2a9-5739-b67a-ed2a83be77a0",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 9
+            },
+            "to": {
+              "file": 1,
+              "rank": 9
+            },
+            "comment": ""
+          },
+          {
+            "id": "dd9e2297-2215-51d2-a021-5f8505f4cf05",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 4
+            },
+            "to": {
+              "file": 4,
+              "rank": 5
+            },
+            "comment": ""
+          },
+          {
+            "id": "1eb1aa03-1a05-538f-88b4-a6f0f1716d18",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 6
+            },
+            "to": {
+              "file": 4,
+              "rank": 5
+            },
+            "comment": ""
+          },
+          {
+            "id": "1377cf19-33df-5e72-b90f-0d3a146175e5",
+            "side": "black",
+            "from": {
+              "file": 6,
+              "rank": 2
+            },
+            "to": {
+              "file": 4,
+              "rank": 3
+            },
+            "comment": ""
+          },
+          {
+            "id": "bee94a7e-9278-5130-9ba1-a475cdd139b8",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 9
+            },
+            "to": {
+              "file": 1,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "9f923a54-f5bd-5294-a099-48538ce2999f",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 3
+            },
+            "to": {
+              "file": 5,
+              "rank": 5
+            },
+            "comment": ""
+          },
+          {
+            "id": "8b7ee02b-3c96-5e19-990b-66acdd20c6b8",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 4
+            },
+            "to": {
+              "file": 5,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "07850cb0-980c-5782-8f18-3e550c02feb4",
+            "side": "black",
+            "from": {
+              "file": 5,
+              "rank": 5
+            },
+            "to": {
+              "file": 4,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "07754311-003a-5263-845c-1060c462ea50",
+            "side": "red",
+            "from": {
+              "file": 5,
+              "rank": 4
+            },
+            "to": {
+              "file": 5,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "ebd28828-9c79-51b2-932c-d12321a3eda3",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 7
+            },
+            "to": {
+              "file": 5,
+              "rank": 5
+            },
+            "comment": ""
+          },
+          {
+            "id": "fc416323-592c-5b4d-8518-ad29aea2f731",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 1
+            },
+            "to": {
+              "file": 1,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "012b6c70-5cd9-50e1-a5f5-f23f16a4848d",
+            "side": "black",
+            "from": {
+              "file": 1,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "f09e6d2e-db5c-53ec-85f3-94331de0e2d6",
+            "side": "red",
+            "from": {
+              "file": 3,
+              "rank": 7
+            },
+            "to": {
+              "file": 3,
+              "rank": 9
+            },
+            "comment": ""
+          },
+          {
+            "id": "f004a799-fbcf-51ca-95ec-ebce7ebf046d",
+            "side": "black",
+            "from": {
+              "file": 5,
+              "rank": 5
+            },
+            "to": {
+              "file": 6,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "f8369e31-31d3-5050-977e-377a220e2cd0",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 7
+            },
+            "to": {
+              "file": 6,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "cd092eb6-9044-55f6-954b-97949db0ddb5",
+            "side": "black",
+            "from": {
+              "file": 6,
+              "rank": 6
+            },
+            "to": {
+              "file": 4,
+              "rank": 6
+            },
+            "comment": ""
+          },
+          {
+            "id": "449a896a-ac68-56da-85ae-67a4cdcb44f3",
+            "side": "red",
+            "from": {
+              "file": 2,
+              "rank": 9
+            },
+            "to": {
+              "file": 4,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "29b85ccd-a3ee-5077-9911-c22f0b6efe36",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 2
+            },
+            "to": {
+              "file": 1,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "c00040a2-c89f-542b-871e-04298b67dee7",
+            "side": "red",
+            "from": {
+              "file": 5,
+              "rank": 7
+            },
+            "to": {
+              "file": 5,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "3de0475d-5a4b-51bb-802a-24d55d4dbfaa",
+            "side": "black",
+            "from": {
+              "file": 1,
+              "rank": 4
+            },
+            "to": {
+              "file": 0,
+              "rank": 6
+            },
+            "comment": ""
+          },
+          {
+            "id": "f90d7787-5f61-505c-8d2b-b47f3dce94a8",
+            "side": "red",
+            "from": {
+              "file": 5,
+              "rank": 4
+            },
+            "to": {
+              "file": 0,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "8b45cd97-c6c8-54b5-9630-a35d069e99b2",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 6
+            },
+            "to": {
+              "file": 6,
+              "rank": 6
+            },
+            "comment": ""
+          },
+          {
+            "id": "3149e850-ec71-5728-9b34-9f71fe9a4cdb",
+            "side": "red",
+            "from": {
+              "file": 3,
+              "rank": 9
+            },
+            "to": {
+              "file": 3,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "5e6a2c0c-c35e-5478-92fc-6620e0a6841e",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 2
+            },
+            "to": {
+              "file": 4,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "eb6c3afe-c3cc-590c-8b94-048cef77d8ed",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 9
+            },
+            "to": {
+              "file": 3,
+              "rank": 9
+            },
+            "comment": ""
+          },
+          {
+            "id": "c14a1cc4-4199-5721-a164-fe1c577d4551",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 7
+            },
+            "to": {
+              "file": 4,
+              "rank": 6
+            },
+            "comment": ""
+          },
+          {
+            "id": "dc27b28b-8029-5a18-aade-d604487866b4",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 5
+            },
+            "to": {
+              "file": 4,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "633f6bad-119a-5e3f-bd4f-b86a5fe040c5",
+            "side": "black",
+            "from": {
+              "file": 3,
+              "rank": 2
+            },
+            "to": {
+              "file": 1,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "0e1dd327-fb64-5296-b1f1-eca51f08d01c",
+            "side": "red",
+            "from": {
+              "file": 3,
+              "rank": 4
+            },
+            "to": {
+              "file": 3,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "f6278ee0-d81c-5573-af14-d72d431dce2f",
+            "side": "black",
+            "from": {
+              "file": 1,
+              "rank": 2
+            },
+            "to": {
+              "file": 1,
+              "rank": 8
+            },
+            "comment": ""
+          },
+          {
+            "id": "1e9bcc9d-d939-5f60-a42f-bbaf8b62c82d",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 4
+            },
+            "to": {
+              "file": 3,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "778ec200-c57a-5083-b9bf-c4505b060782",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 6
+            },
+            "to": {
+              "file": 2,
+              "rank": 7
+            },
+            "comment": "绝杀无解！黑胜。"
+          }
+        ]
+      }
+    ],
+    "choice": {
+      "prompt": "Bạn đánh giá nước đi nào tốt nhất trong ván cờ này?",
+      "options": [
+        {
+          "moveId": "6d10c054-3e5e-59d9-8294-556260d622aa",
+          "label": "Theo biến chính",
+          "verdict": "correct",
+          "feedback": "Đây là biến chính của ván cờ."
+        }
+      ]
+    }
+  },
+  {
+    "id": "351e4af5-023e-5e11-8e89-ab6be5e138db",
+    "slug": "096-中炮过河车对屏风马",
+    "title": "096-中炮过河车对屏风马",
+    "category": "Cạm bẫy khai cuộc",
+    "difficulty": "Cao cấp",
+    "lines": [
+      {
+        "id": "f1020419-9f55-5be2-925a-6b26ac47b1f9",
+        "title": "Biến chính",
+        "moves": [
+          {
+            "id": "ff68d61b-f7f4-5f18-b89b-1ff109dc0b20",
+            "side": "red",
+            "from": {
+              "file": 7,
+              "rank": 7
+            },
+            "to": {
+              "file": 4,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "474ddca0-ff53-558d-9c0b-9c813ef1f908",
+            "side": "black",
+            "from": {
+              "file": 7,
+              "rank": 0
+            },
+            "to": {
+              "file": 6,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "2c41d67b-0968-5f6e-84fe-b8b20ab8a44d",
+            "side": "red",
+            "from": {
+              "file": 7,
+              "rank": 9
+            },
+            "to": {
+              "file": 6,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "cd519500-ea4d-5bee-9072-805e3dcbb72d",
+            "side": "black",
+            "from": {
+              "file": 8,
+              "rank": 0
+            },
+            "to": {
+              "file": 7,
+              "rank": 0
+            },
+            "comment": ""
+          },
+          {
+            "id": "013510e6-20b3-58ea-a0da-fa9bc8ea5cbf",
+            "side": "red",
+            "from": {
+              "file": 8,
+              "rank": 9
+            },
+            "to": {
+              "file": 7,
+              "rank": 9
+            },
+            "comment": ""
+          },
+          {
+            "id": "fe52aa45-ed0a-5e60-83a7-0b884b5a8693",
+            "side": "black",
+            "from": {
+              "file": 6,
+              "rank": 3
+            },
+            "to": {
+              "file": 6,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "762207a7-8ec3-5a20-adc6-cda210c9c345",
+            "side": "red",
+            "from": {
+              "file": 7,
+              "rank": 9
+            },
+            "to": {
+              "file": 7,
+              "rank": 3
+            },
+            "comment": ""
+          },
+          {
+            "id": "7e6e25e4-6c38-50d7-a702-2a59753b0268",
+            "side": "black",
+            "from": {
+              "file": 1,
+              "rank": 0
+            },
+            "to": {
+              "file": 2,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "613b2614-9540-500b-92b7-8eab829180b9",
+            "side": "red",
+            "from": {
+              "file": 2,
+              "rank": 6
+            },
+            "to": {
+              "file": 2,
+              "rank": 5
+            },
+            "comment": ""
+          },
+          {
+            "id": "feb437c0-a286-5ace-8187-2271b8f75033",
+            "side": "black",
+            "from": {
+              "file": 3,
+              "rank": 0
+            },
+            "to": {
+              "file": 4,
+              "rank": 1
+            },
+            "comment": ""
+          },
+          {
+            "id": "e0a32059-8d1f-5051-9877-2b97ae7177a1",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 9
+            },
+            "to": {
+              "file": 2,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "c02ef807-d16d-5e44-bfb5-b34a386da9d4",
+            "side": "black",
+            "from": {
+              "file": 2,
+              "rank": 0
+            },
+            "to": {
+              "file": 4,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "ac7cb5ad-9249-5e05-9ebb-aa2a05b4399a",
+            "side": "red",
+            "from": {
+              "file": 7,
+              "rank": 3
+            },
+            "to": {
+              "file": 6,
+              "rank": 3
+            },
+            "comment": ""
+          },
+          {
+            "id": "a95e0aa6-fc8c-5df4-ac7d-f15bbddf38fc",
+            "side": "black",
+            "from": {
+              "file": 1,
+              "rank": 2
+            },
+            "to": {
+              "file": 1,
+              "rank": 6
+            },
+            "comment": ""
+          },
+          {
+            "id": "d71423d3-9e92-573a-b6f9-ff84d5d2f175",
+            "side": "red",
+            "from": {
+              "file": 6,
+              "rank": 6
+            },
+            "to": {
+              "file": 6,
+              "rank": 5
+            },
+            "comment": ""
+          },
+          {
+            "id": "9dfab15a-7c47-548b-b1f7-bf2e5f419ca6",
+            "side": "black",
+            "from": {
+              "file": 6,
+              "rank": 4
+            },
+            "to": {
+              "file": 6,
+              "rank": 5
+            },
+            "comment": ""
+          },
+          {
+            "id": "27e2ca6e-b813-58e9-ba9f-63b40c43f715",
+            "side": "red",
+            "from": {
+              "file": 2,
+              "rank": 7
+            },
+            "to": {
+              "file": 3,
+              "rank": 5
+            },
+            "comment": ""
+          },
+          {
+            "id": "0614d457-6ff8-5bbb-ba16-766afc77ef82",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 3,
+              "rank": 0
+            },
+            "comment": ""
+          },
+          {
+            "id": "209337ca-79f4-5966-acf7-e4e732591115",
+            "side": "red",
+            "from": {
+              "file": 3,
+              "rank": 5
+            },
+            "to": {
+              "file": 5,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "e2630f28-c17b-50cc-8cdb-7ca156f31be9",
+            "side": "black",
+            "from": {
+              "file": 7,
+              "rank": 2
+            },
+            "to": {
+              "file": 7,
+              "rank": 6
+            },
+            "comment": ""
+          },
+          {
+            "id": "bdd18590-b844-546a-b4cf-79488e4e9e8c",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 6
+            },
+            "to": {
+              "file": 4,
+              "rank": 5
+            },
+            "comment": ""
+          },
+          {
+            "id": "de29895e-c758-57ae-bb96-cb56ee2e354d",
+            "side": "black",
+            "from": {
+              "file": 3,
+              "rank": 0
+            },
+            "to": {
+              "file": 3,
+              "rank": 6
+            },
+            "comment": ""
+          },
+          {
+            "id": "7071bfd6-5cf5-5bbf-951b-59cd8b228982",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 7
+            },
+            "to": {
+              "file": 4,
+              "rank": 6
+            },
+            "comment": ""
+          },
+          {
+            "id": "314e308f-b264-525b-b465-403be4bf6896",
+            "side": "black",
+            "from": {
+              "file": 7,
+              "rank": 0
+            },
+            "to": {
+              "file": 7,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "dd2fdff7-04dc-5c18-a22c-cff73c461a35",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 5
+            },
+            "to": {
+              "file": 4,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "4c867800-ab26-528e-b964-ed6c7f24353c",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 3
+            },
+            "to": {
+              "file": 4,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "ccc40a62-f46b-58f3-9563-0dfcbb8ae486",
+            "side": "red",
+            "from": {
+              "file": 6,
+              "rank": 7
+            },
+            "to": {
+              "file": 4,
+              "rank": 8
+            },
+            "comment": ""
+          },
+          {
+            "id": "15ff6379-a342-57cc-93dc-d3300b3133a9",
+            "side": "black",
+            "from": {
+              "file": 1,
+              "rank": 6
+            },
+            "to": {
+              "file": 4,
+              "rank": 6
+            },
+            "comment": ""
+          },
+          {
+            "id": "1299062c-faef-5949-b9ef-e4c6a75ab0c2",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 8
+            },
+            "to": {
+              "file": 3,
+              "rank": 6
+            },
+            "comment": ""
+          },
+          {
+            "id": "e38ceb4d-5128-54de-a562-a38e1d37c430",
+            "side": "black",
+            "from": {
+              "file": 7,
+              "rank": 4
+            },
+            "to": {
+              "file": 5,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "5fee6082-e9a6-5174-9bc7-3458aad2c924",
+            "side": "red",
+            "from": {
+              "file": 6,
+              "rank": 3
+            },
+            "to": {
+              "file": 6,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "50f0e3ab-94a4-5f8d-953e-efa37d59c6af",
+            "side": "black",
+            "from": {
+              "file": 7,
+              "rank": 6
+            },
+            "to": {
+              "file": 3,
+              "rank": 6
+            },
+            "comment": ""
+          },
+          {
+            "id": "707a1a3a-95d7-5900-abea-2007da863bdf",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 9
+            },
+            "to": {
+              "file": 1,
+              "rank": 9
+            },
+            "comment": ""
+          },
+          {
+            "id": "d6b18aeb-2179-557a-a851-17fd02377a77",
+            "side": "black",
+            "from": {
+              "file": 6,
+              "rank": 5
+            },
+            "to": {
+              "file": 5,
+              "rank": 5
+            },
+            "comment": ""
+          },
+          {
+            "id": "1d7daa95-4502-5a83-bbcb-f98e552968c3",
+            "side": "red",
+            "from": {
+              "file": 6,
+              "rank": 2
+            },
+            "to": {
+              "file": 6,
+              "rank": 3
+            },
+            "comment": ""
+          },
+          {
+            "id": "b97aaf26-8bfb-52dc-9d13-efa876eb05ab",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 4
+            },
+            "to": {
+              "file": 4,
+              "rank": 5
+            },
+            "comment": ""
+          },
+          {
+            "id": "49df1985-f8a7-5b93-9165-3240499308a0",
+            "side": "red",
+            "from": {
+              "file": 6,
+              "rank": 3
+            },
+            "to": {
+              "file": 3,
+              "rank": 3
+            },
+            "comment": ""
+          },
+          {
+            "id": "2dc96af0-1ba1-53d1-8560-e64402f6cd52",
+            "side": "black",
+            "from": {
+              "file": 3,
+              "rank": 6
+            },
+            "to": {
+              "file": 3,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "163effc4-30a0-5ef3-a5de-973b47548986",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 7
+            },
+            "to": {
+              "file": 1,
+              "rank": 0
+            },
+            "comment": ""
+          },
+          {
+            "id": "fee4b346-a713-5191-aa9e-63f91c3b9d17",
+            "side": "black",
+            "from": {
+              "file": 3,
+              "rank": 4
+            },
+            "to": {
+              "file": 4,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "c5bb5580-1bdf-51b6-afa1-150bd00b5b8d",
+            "side": "red",
+            "from": {
+              "file": 4,
+              "rank": 9
+            },
+            "to": {
+              "file": 4,
+              "rank": 8
+            },
+            "comment": ""
+          },
+          {
+            "id": "64bc2916-f1ad-5499-8887-5d35d1d73dd3",
+            "side": "black",
+            "from": {
+              "file": 4,
+              "rank": 6
+            },
+            "to": {
+              "file": 3,
+              "rank": 6
+            },
+            "comment": "至此，红方势必丢车，败局已定。"
+          }
+        ]
+      }
+    ],
+    "choice": {
+      "prompt": "Bạn đánh giá nước đi nào tốt nhất trong ván cờ này?",
+      "options": [
+        {
+          "moveId": "ff68d61b-f7f4-5f18-b89b-1ff109dc0b20",
+          "label": "Theo biến chính",
+          "verdict": "correct",
+          "feedback": "Đây là biến chính của ván cờ."
+        }
+      ]
+    }
+  },
+  {
+    "id": "91531ba6-0913-5069-a6ee-064d76d39932",
+    "slug": "034-34仙人指路对卒底炮",
+    "title": "034-34仙人指路对卒底炮",
+    "category": "Cạm bẫy khai cuộc",
+    "difficulty": "Trung cấp",
+    "lines": [
+      {
+        "id": "3343479e-c20a-525d-abf4-7772ddf53d6f",
+        "title": "Biến chính",
+        "moves": [
+          {
+            "id": "df1f33ad-b067-5583-8e33-1bd22f48beee",
+            "side": "red",
+            "from": {
+              "file": 2,
+              "rank": 6
+            },
+            "to": {
+              "file": 2,
+              "rank": 5
+            },
+            "comment": ""
+          },
+          {
+            "id": "02061ef7-d704-57a8-a729-6f1438afe57b",
+            "side": "black",
+            "from": {
+              "file": 1,
+              "rank": 2
+            },
+            "to": {
+              "file": 2,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "1ea2b1b0-24c5-5c60-be8f-4b980ec1c4fb",
+            "side": "red",
+            "from": {
+              "file": 6,
+              "rank": 9
+            },
+            "to": {
+              "file": 4,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "fbc1422a-0a18-55cf-883f-0e0a1c7269a2",
+            "side": "black",
+            "from": {
+              "file": 1,
+              "rank": 0
+            },
+            "to": {
+              "file": 0,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "a57e71c6-de4d-5e48-891a-1cf41deb5889",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 9
+            },
+            "to": {
+              "file": 2,
+              "rank": 7
+            },
+            "comment": ""
+          },
+          {
+            "id": "9bfc8eaf-18e9-5186-aaba-a7571749512d",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 0
+            },
+            "to": {
+              "file": 1,
+              "rank": 0
+            },
+            "comment": ""
+          },
+          {
+            "id": "e0795ad7-9957-50fb-a89a-1ee136745374",
+            "side": "red",
+            "from": {
+              "file": 2,
+              "rank": 7
+            },
+            "to": {
+              "file": 3,
+              "rank": 5
+            },
+            "comment": ""
+          },
+          {
+            "id": "ddf5241d-25d8-53bf-9721-82f7f03413c8",
+            "side": "black",
+            "from": {
+              "file": 7,
+              "rank": 0
+            },
+            "to": {
+              "file": 6,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "bf9b7525-beab-5545-b41d-b93db3e07bac",
+            "side": "red",
+            "from": {
+              "file": 0,
+              "rank": 9
+            },
+            "to": {
+              "file": 1,
+              "rank": 9
+            },
+            "comment": ""
+          },
+          {
+            "id": "e4cf0fcb-393f-5a13-bf25-38e623d14f19",
+            "side": "black",
+            "from": {
+              "file": 1,
+              "rank": 0
+            },
+            "to": {
+              "file": 1,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "39f37c8b-ea2d-5b2c-a9ec-d6feee907091",
+            "side": "red",
+            "from": {
+              "file": 2,
+              "rank": 5
+            },
+            "to": {
+              "file": 2,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "7eb291e4-b316-516f-8583-007d66246865",
+            "side": "black",
+            "from": {
+              "file": 1,
+              "rank": 4
+            },
+            "to": {
+              "file": 2,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "3bca225b-f98c-52ed-98ab-6d26f20dd069",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 7
+            },
+            "to": {
+              "file": 1,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "a020980e-d3ce-5b6f-bdfd-7303057b7d98",
+            "side": "black",
+            "from": {
+              "file": 6,
+              "rank": 0
+            },
+            "to": {
+              "file": 4,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "5a07bf95-71ca-5ea2-9c6b-8d679fc6823b",
+            "side": "red",
+            "from": {
+              "file": 3,
+              "rank": 5
+            },
+            "to": {
+              "file": 1,
+              "rank": 4
+            },
+            "comment": ""
+          },
+          {
+            "id": "5149d0bb-7fdc-58bc-88ea-b6b2ea74c44d",
+            "side": "black",
+            "from": {
+              "file": 2,
+              "rank": 2
+            },
+            "to": {
+              "file": 3,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "b24d0445-8706-579b-b8e1-be9b0c0f511d",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 2
+            },
+            "to": {
+              "file": 1,
+              "rank": 1
+            },
+            "comment": ""
+          },
+          {
+            "id": "fc0c3868-86fa-5862-9451-dce4665be898",
+            "side": "black",
+            "from": {
+              "file": 0,
+              "rank": 2
+            },
+            "to": {
+              "file": 2,
+              "rank": 1
+            },
+            "comment": ""
+          },
+          {
+            "id": "dd8ffd05-acf3-5398-8d8c-efa7b92550d3",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 4
+            },
+            "to": {
+              "file": 0,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "0daf25df-2026-58b6-ac3b-9360ae02d5f6",
+            "side": "black",
+            "from": {
+              "file": 3,
+              "rank": 2
+            },
+            "to": {
+              "file": 1,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "2dadefa8-14bd-559a-bffb-a788386cbaa6",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 9
+            },
+            "to": {
+              "file": 1,
+              "rank": 2
+            },
+            "comment": ""
+          },
+          {
+            "id": "cfa0d8cc-85d0-5210-89f9-2529ceb26c5d",
+            "side": "black",
+            "from": {
+              "file": 6,
+              "rank": 2
+            },
+            "to": {
+              "file": 4,
+              "rank": 1
+            },
+            "comment": ""
+          },
+          {
+            "id": "db531459-942a-5942-b918-078854b2b8da",
+            "side": "red",
+            "from": {
+              "file": 1,
+              "rank": 2
+            },
+            "to": {
+              "file": 2,
+              "rank": 2
+            },
+            "comment": "红方车马炮从侧翼切入，迅速构成杀局！"
+          }
+        ]
+      }
+    ],
+    "choice": {
+      "prompt": "Bạn đánh giá nước đi nào tốt nhất trong ván cờ này?",
+      "options": [
+        {
+          "moveId": "df1f33ad-b067-5583-8e33-1bd22f48beee",
+          "label": "Theo biến chính",
+          "verdict": "correct",
+          "feedback": "Đây là biến chính của ván cờ."
+        }
+      ]
+    }
+  }
+]
