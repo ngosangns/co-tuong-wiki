@@ -333,6 +333,22 @@ button {
   width: 100%;
 }
 
+.board-move-comment {
+  width: min(100%, 500px);
+  border: 1px solid color-mix(in srgb, var(--primary) 28%, var(--border));
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--surface-raised) 88%, var(--primary));
+  padding: 11px 13px;
+}
+
+.board-move-comment p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 750;
+  line-height: 1.45;
+}
+
 .board-stage {
   display: flex;
   width: min(100%, 640px);
@@ -682,13 +698,6 @@ button {
   font-size: 15px;
 }
 
-.graph-details p {
-  margin: 0;
-  color: var(--text-muted);
-  font-size: 13px;
-  line-height: 1.45;
-}
-
 .graph-details button {
   justify-self: start;
   border: 1px solid var(--border);
@@ -787,6 +796,11 @@ button {
   content: "";
 }
 
+.board-square.is-preview-from,
+.board-square.is-preview-to {
+  background: color-mix(in srgb, var(--accent) 9%, transparent);
+}
+
 .board-square.is-from,
 .board-square.is-to {
   background: color-mix(in srgb, var(--primary) 18%, transparent);
@@ -836,6 +850,94 @@ button {
 }
 
 .piece.black {
+  color: var(--piece-black);
+}
+
+.board-preview-layer {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  pointer-events: none;
+}
+
+.preview-arrow-layer {
+  position: absolute;
+  inset: 0;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.preview-arrow {
+  stroke: color-mix(in srgb, var(--accent) 74%, var(--primary));
+  stroke-dasharray: 15 9;
+  stroke-linecap: round;
+  stroke-width: 14;
+  opacity: 0.42;
+}
+
+.preview-arrow-head {
+  fill: color-mix(in srgb, var(--accent) 74%, var(--primary));
+  opacity: 0.48;
+}
+
+.preview-source-slot,
+.preview-piece-slot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: grid;
+  width: calc(100% / 9);
+  height: 10%;
+  place-items: center;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  pointer-events: auto;
+}
+
+.preview-source-ring {
+  box-sizing: border-box;
+  width: min(82%, 44px);
+  height: min(82%, 44px);
+  border: 2px dashed color-mix(in srgb, var(--accent) 78%, transparent);
+  border-radius: 999px;
+  opacity: 0.58;
+}
+
+.preview-piece {
+  box-sizing: border-box;
+  display: grid;
+  width: min(62%, 34px);
+  height: min(62%, 34px);
+  place-items: center;
+  border: 2px dashed currentColor;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--piece-bg) 76%, transparent);
+  box-shadow: 0 5px 12px rgb(50 25 10 / 14%);
+  font-size: clamp(12px, 2vw, 17px);
+  font-weight: 900;
+  opacity: 0.48;
+}
+
+.preview-source-slot:hover .preview-source-ring,
+.preview-source-slot:focus-visible .preview-source-ring,
+.preview-piece-slot:hover .preview-piece,
+.preview-piece-slot:focus-visible .preview-piece {
+  opacity: 0.74;
+}
+
+.preview-source-slot:focus-visible,
+.preview-piece-slot:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--accent) 72%, #fff8e7);
+  outline-offset: -5px;
+}
+
+.preview-piece.red {
+  color: var(--accent);
+}
+
+.preview-piece.black {
   color: var(--piece-black);
 }
 
@@ -935,6 +1037,12 @@ button {
   gap: 14px;
 }
 
+.evaluation-panel.compact {
+  width: min(100%, 500px);
+  gap: 8px;
+  padding: 10px 12px;
+}
+
 .evaluation-heading,
 .score-copy,
 .engine-note {
@@ -955,12 +1063,30 @@ button {
   line-height: 1.25;
 }
 
+.evaluation-panel.compact .evaluation-heading {
+  gap: 8px;
+}
+
+.evaluation-panel.compact .evaluation-heading h3 {
+  font-size: 14px;
+}
+
+.evaluation-panel.compact .eyebrow {
+  margin-bottom: 1px;
+  font-size: 10px;
+}
+
 .score-card {
   display: grid;
   gap: 10px;
   border-radius: 8px;
   background: var(--surface-muted);
   padding: 12px;
+}
+
+.evaluation-panel.compact .score-card {
+  gap: 6px;
+  padding: 8px 10px;
 }
 
 .score-card.red {
@@ -978,11 +1104,19 @@ button {
   font-weight: 900;
 }
 
+.evaluation-panel.compact .score-copy {
+  font-size: 12px;
+}
+
 .score-track {
   overflow: hidden;
   height: 9px;
   border-radius: 999px;
   background: color-mix(in srgb, var(--piece-black) 20%, transparent);
+}
+
+.evaluation-panel.compact .score-track {
+  height: 5px;
 }
 
 .score-track span {
@@ -999,6 +1133,11 @@ button {
   gap: 10px;
 }
 
+.evaluation-panel.compact .engine-grid {
+  grid-template-columns: minmax(0, 1fr) 62px;
+  gap: 6px;
+}
+
 .engine-grid div {
   display: grid;
   gap: 4px;
@@ -1008,15 +1147,31 @@ button {
   padding: 10px;
 }
 
+.evaluation-panel.compact .engine-grid div {
+  gap: 2px;
+  padding: 6px 8px;
+}
+
 .engine-grid span {
   color: var(--text-soft);
   font-size: 12px;
   font-weight: 800;
 }
 
+.evaluation-panel.compact .engine-grid span {
+  font-size: 10px;
+}
+
 .engine-grid strong {
   color: var(--text);
   font-size: 15px;
+}
+
+.evaluation-panel.compact .engine-grid strong {
+  overflow: hidden;
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .engine-note {
@@ -1027,6 +1182,11 @@ button {
   padding: 10px;
   color: var(--success);
   line-height: 1.45;
+}
+
+.evaluation-panel.compact .engine-note {
+  padding: 7px 8px;
+  font-size: 12px;
 }
 
 .engine-note.danger {
@@ -1241,7 +1401,7 @@ button {
 .combined-page {
   display: grid;
   min-height: 100svh;
-  grid-template-columns: minmax(340px, 520px) minmax(360px, 1fr) minmax(280px, 360px);
+  grid-template-columns: minmax(340px, 520px) minmax(280px, 360px) minmax(360px, 1fr);
   gap: 18px;
   align-items: start;
   background:
@@ -1250,13 +1410,28 @@ button {
   padding: 24px;
 }
 
+.combined-page .app-status {
+  grid-column: 1 / -1;
+}
+
 .combined-board,
-.combined-graph,
-.combined-engine {
+.combined-inspector,
+.combined-graph {
   min-width: 0;
 }
 
+.combined-board {
+  grid-column: 1;
+}
+
+.combined-inspector {
+  display: grid;
+  grid-column: 2;
+  gap: 14px;
+}
+
 .combined-graph {
+  grid-column: 3;
   min-width: 0;
 }
 
@@ -1311,7 +1486,12 @@ button {
 }
 
 .combined-step-controls {
-  width: min(100%, 500px);
+  width: 100%;
+}
+
+.combined-inspector .evaluation-panel.compact,
+.combined-inspector .board-move-comment {
+  width: 100%;
 }
 
 .combined-board .xiangqi-board-shell {
@@ -1330,11 +1510,6 @@ button {
 
 .combined-graph .graph-canvas {
   min-height: 0;
-}
-
-.combined-engine {
-  position: sticky;
-  top: 24px;
 }
 
 @media (max-width: 1180px) {
@@ -1371,10 +1546,21 @@ button {
     grid-template-columns: minmax(320px, 480px) minmax(360px, 1fr);
   }
 
-  .combined-engine {
-    position: static;
-    grid-column: 1 / -1;
+  .combined-board {
+    grid-column: 1;
+    grid-row: 1;
   }
+
+  .combined-inspector {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .combined-graph {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+  }
+
 }
 
 @media (max-width: 760px) {
@@ -1430,6 +1616,13 @@ button {
     display: grid;
     grid-template-columns: 1fr;
     padding: 18px;
+  }
+
+  .combined-board,
+  .combined-inspector,
+  .combined-graph {
+    grid-column: 1;
+    grid-row: auto;
   }
 
   .combined-graph .graph-layout {

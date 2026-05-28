@@ -403,7 +403,6 @@ onUnmounted(destroyGraph)
         <strong>
           {{ selectedMove ? formatMoveNotation(selectedMove, selectedMoveIndex, selectedBoardBeforeMove) : 'Bắt đầu' }}
         </strong>
-        <p>{{ selectedMove?.comment ?? 'Chọn một node hoặc bấm Nước kế để tải và theo dõi biến hóa.' }}</p>
         <button v-if="selectedLine" type="button" @click="emit('selectLine', selectedLine.id)">
           {{ selectedLine.title }}
         </button>

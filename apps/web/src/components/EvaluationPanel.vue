@@ -12,6 +12,7 @@ const props = defineProps<{
   evaluation: EngineEvaluation | null
   nextMove?: LessonMove
   errorMessage?: string
+  compact?: boolean
 }>()
 
 const pieceNames: Record<PieceKind, string> = {
@@ -125,7 +126,7 @@ const hasEvaluation = computed(() => props.status !== 'error' && !isAnalyzing.va
 </script>
 
 <template>
-  <section class="evaluation-panel" aria-label="Đánh giá nước đi">
+  <section class="evaluation-panel" :class="{ compact }" aria-label="Đánh giá nước đi">
     <div class="evaluation-heading">
       <div>
         <p class="eyebrow">Engine</p>

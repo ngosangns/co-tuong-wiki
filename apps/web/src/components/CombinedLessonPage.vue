@@ -6,6 +6,7 @@ import type { Lesson, LessonLine, LessonPhase } from '../api/types'
 import { useLessonPlayer } from '../composables/useLessonPlayer'
 import { useMoveEvaluation } from '../composables/useMoveEvaluation'
 import type { LessonMove } from '../core/xiangqi'
+import { lineStartKey, moveSignature, nextMoveTargetsForActiveNode } from '../core/movePreview'
 import EvaluationPanel from './EvaluationPanel.vue'
 import MoveGraph from './MoveGraph.vue'
 import XiangqiBoard from './XiangqiBoard.vue'
@@ -57,16 +58,17 @@ const activeNodeLines = computed(() => {
 
   return section.lines.filter((line) => startKeyForLine(line) === activeStartKey.value && lineMatchesActivePrefix(line))
 })
-const nextGraphChoices = computed(() => {
-  const choices = new Set<string>()
-
-  activeNodeLines.value.forEach((line) => {
-    const nextMove = line.moves?.[player.activeMoveIndex.value]
-    if (nextMove) choices.add(moveSignature(nextMove))
-  })
-
-  return choices
-})
+const nextMoveTargets = computed(() =>
+  nextMoveTargetsForActiveNode({
+    lines: activeNodeLines.value,
+    activeLine: player.activeLine.value,
+    activeMoveIndex: player.activeMoveIndex.value,
+    lessonInitialFen: lesson.value.initialFen,
+  }),
+)
+const nextMovePreviews = computed(() => nextMoveTargets.value.map((target) => target.move))
+const nextGraphChoices = computed(() => new Set(nextMovePreviews.value.map(moveSignature)))
+const activeMoveComment = computed(() => player.currentMove.value?.comment ?? '')
 const canGoPrevious = computed(() => player.activeMoveIndex.value > 0)
 const canGoNext = computed(() => !loadingPhases.value[activePhase.value] && nextGraphChoices.value.size === 1)
 
@@ -86,12 +88,8 @@ function linePhase(lineId: string): LessonPhase {
   return lesson.value.lines.find((line) => line.id === lineId)?.phase ?? 'opening'
 }
 
-function moveSignature(move: LessonMove) {
-  return `${move.side}:${move.from.file},${move.from.rank}:${move.to.file},${move.to.rank}`
-}
-
 function startKeyForLine(line: LessonLine) {
-  return (line.initialFen ?? lesson.value.initialFen ?? 'standard').trim()
+  return lineStartKey(line, lesson.value.initialFen)
 }
 
 function lineMatchesActivePrefix(line: LessonLine) {
@@ -145,6 +143,13 @@ async function goToGraphMove(lineId: string, index: number) {
   await ensureActiveNodeMoves(index + 1)
 }
 
+async function goToPreviewMove(move: LessonMove) {
+  const target = nextMoveTargets.value.find((item) => moveSignature(item.move) === moveSignature(move))
+  if (!target) return
+
+  await goToGraphMove(target.lineId, player.activeMoveIndex.value + 1)
+}
+
 async function goToPreviousStep() {
   if (!canGoPrevious.value) return
   player.previous()
@@ -188,33 +193,53 @@ watch(
 
     <section class="combined-board" aria-label="Bàn cờ tổng hợp">
       <div class="combined-board-stage">
-        <XiangqiBoard :board="player.board.value" :current-move="player.currentMove.value" />
-
-        <div class="board-controls combined-step-controls" aria-label="Điều khiển nước đi tổng hợp">
-          <button
-            type="button"
-            class="secondary-action"
-            title="Previous step"
-            aria-label="Previous step"
-            :disabled="!canGoPrevious"
-            @click="goToPreviousStep"
-          >
-            <ChevronLeft :size="22" aria-hidden="true" />
-            Previous step
-          </button>
-          <button
-            type="button"
-            class="primary-action"
-            title="Next step"
-            aria-label="Next step"
-            :disabled="!canGoNext"
-            @click="goToNextStep"
-          >
-            <ChevronRight :size="20" aria-hidden="true" />
-            Next step
-          </button>
-        </div>
+        <XiangqiBoard
+          :board="player.board.value"
+          :current-move="player.currentMove.value"
+          :preview-moves="nextMovePreviews"
+          @select-preview-move="goToPreviewMove"
+        />
       </div>
+    </section>
+
+    <section class="combined-inspector" aria-label="Phân tích và nhận xét">
+      <div class="board-controls combined-step-controls" aria-label="Điều khiển nước đi tổng hợp">
+        <button
+          type="button"
+          class="secondary-action"
+          title="Previous step"
+          aria-label="Previous step"
+          :disabled="!canGoPrevious"
+          @click="goToPreviousStep"
+        >
+          <ChevronLeft :size="22" aria-hidden="true" />
+          Previous step
+        </button>
+        <button
+          type="button"
+          class="primary-action"
+          title="Next step"
+          aria-label="Next step"
+          :disabled="!canGoNext"
+          @click="goToNextStep"
+        >
+          <ChevronRight :size="20" aria-hidden="true" />
+          Next step
+        </button>
+      </div>
+
+      <EvaluationPanel
+        compact
+        :status="moveEvaluation.status.value"
+        :board="player.board.value"
+        :evaluation="moveEvaluation.evaluation.value"
+        :next-move="moveEvaluation.nextMove.value"
+        :error-message="moveEvaluation.errorMessage.value"
+      />
+
+      <section v-if="activeMoveComment" class="board-move-comment" aria-live="polite" aria-label="Nhận xét nước hiện tại">
+        <p>{{ activeMoveComment }}</p>
+      </section>
     </section>
 
     <section class="combined-graph" aria-label="Cây nước đi tổng hợp">
@@ -252,14 +277,5 @@ watch(
       </MoveGraph>
     </section>
 
-    <section class="combined-engine" aria-label="Engine">
-      <EvaluationPanel
-        :status="moveEvaluation.status.value"
-        :board="player.board.value"
-        :evaluation="moveEvaluation.evaluation.value"
-        :next-move="moveEvaluation.nextMove.value"
-        :error-message="moveEvaluation.errorMessage.value"
-      />
-    </section>
   </main>
 </template>

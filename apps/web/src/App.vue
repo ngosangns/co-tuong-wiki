@@ -9,6 +9,8 @@ import { useLessonPlayer } from './composables/useLessonPlayer'
 import { useLessons } from './composables/useLessons'
 import { useMoveEvaluation } from './composables/useMoveEvaluation'
 import { lessonPrincipleGroups } from './content/principles'
+import { moveSignature, nextMoveTargetsForActiveNode } from './core/movePreview'
+import type { LessonMove } from './core/xiangqi'
 import type { Lesson } from './api/types'
 
 const emptyLesson: Lesson = {
@@ -66,12 +68,29 @@ const shouldShowChoice = computed(
   () => lesson.value.choice.prompt && player.activeMoveIndex.value === choicePromptPly.value && visibleChoiceOptions.value.length > 1,
 )
 const choiceFeedback = computed(() => player.selectedChoice.value)
+const activeMoveComment = computed(() => player.currentMove.value?.comment ?? '')
+const nextMoveTargets = computed(() =>
+  nextMoveTargetsForActiveNode({
+    lines: lesson.value.lines,
+    activeLine: player.activeLine.value,
+    activeMoveIndex: player.activeMoveIndex.value,
+    lessonInitialFen: lesson.value.initialFen,
+  }),
+)
+const nextMovePreviews = computed(() => nextMoveTargets.value.map((target) => target.move))
 const canGoPrevious = computed(() => player.activeMoveIndex.value > 0)
 const canGoNext = computed(() => player.activeMoveIndex.value < player.activeMoves.value.length)
 
 function goToGraphMove(lineId: string, index: number) {
   player.setLine(lineId)
   player.goToMove(index)
+}
+
+function goToPreviewMove(move: LessonMove) {
+  const target = nextMoveTargets.value.find((item) => moveSignature(item.move) === moveSignature(move))
+  if (!target) return
+
+  goToGraphMove(target.lineId, player.activeMoveIndex.value + 1)
 }
 
 function lessonsForCategory(category: string) {
@@ -153,7 +172,43 @@ onMounted(() => {
 
       <section class="board-panel" aria-label="Bàn học">
         <section class="board-stage" aria-label="Bàn cờ và các bước nước đi">
-          <XiangqiBoard :board="player.board.value" :current-move="player.currentMove.value" />
+          <XiangqiBoard
+            :board="player.board.value"
+            :current-move="player.currentMove.value"
+            :preview-moves="nextMovePreviews"
+            @select-preview-move="goToPreviewMove"
+          />
+
+          <EvaluationPanel
+            compact
+            :status="moveEvaluation.status.value"
+            :board="player.board.value"
+            :evaluation="moveEvaluation.evaluation.value"
+            :next-move="moveEvaluation.nextMove.value"
+            :error-message="moveEvaluation.errorMessage.value"
+          />
+
+          <section v-if="activeMoveComment" class="board-move-comment" aria-live="polite" aria-label="Nhận xét nước hiện tại">
+            <p>{{ activeMoveComment }}</p>
+          </section>
+
+          <div class="board-controls" aria-label="Điều khiển nước đi">
+            <button
+              type="button"
+              class="secondary-action"
+              title="Nước trước"
+              aria-label="Quay lại nước trước"
+              :disabled="!canGoPrevious"
+              @click="player.previous"
+            >
+              <ChevronLeft :size="22" aria-hidden="true" />
+              Nước trước
+            </button>
+            <button v-if="canGoNext && !shouldShowChoice" type="button" class="primary-action" @click="player.next">
+              <ChevronRight :size="20" aria-hidden="true" />
+              Nước kế
+            </button>
+          </div>
 
           <section v-if="shouldShowChoice" class="choice-box board-question">
             <div class="choice-title">
@@ -190,24 +245,6 @@ onMounted(() => {
         </section>
 
         <section class="board-side-panel" aria-label="Điều khiển và phản hồi bài học">
-          <div class="board-controls" aria-label="Điều khiển nước đi">
-            <button
-              type="button"
-              class="secondary-action"
-              title="Nước trước"
-              aria-label="Quay lại nước trước"
-              :disabled="!canGoPrevious"
-              @click="player.previous"
-            >
-              <ChevronLeft :size="22" aria-hidden="true" />
-              Nước trước
-            </button>
-            <button v-if="canGoNext && !shouldShowChoice" type="button" class="primary-action" @click="player.next">
-              <ChevronRight :size="20" aria-hidden="true" />
-              Nước kế
-            </button>
-          </div>
-
           <MoveGraph
             :lines="lesson.lines"
             :active-line-id="player.activeLineId.value"
@@ -220,14 +257,6 @@ onMounted(() => {
       </section>
 
       <section class="lesson-panel" aria-label="Nội dung bài học">
-        <EvaluationPanel
-          :status="moveEvaluation.status.value"
-          :board="player.board.value"
-          :evaluation="moveEvaluation.evaluation.value"
-          :next-move="moveEvaluation.nextMove.value"
-          :error-message="moveEvaluation.errorMessage.value"
-        />
-
         <section class="principles" :class="{ expanded: isPrinciplesExpanded }">
           <button
             type="button"
