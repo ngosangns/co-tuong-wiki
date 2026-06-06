@@ -41,11 +41,22 @@ tasks:
     desc: Run all automated tests.
     deps:
       - test:api
+      - test:web
 
   test:api:
     desc: Run Go API tests.
     cmds:
       - go test ./apps/api/...
+
+  test:web:
+    desc: Run Vue/Vitest unit tests.
+    cmds:
+      - npm --prefix apps/web test
+
+  test:web:watch:
+    desc: Run Vue/Vitest in watch mode.
+    cmds:
+      - npm --prefix apps/web run test:watch
 
   check:
     desc: Run tests and production builds.
@@ -67,3 +78,8 @@ tasks:
     desc: Validate the combined lesson build without writing output.
     cmds:
       - python3 scripts/build_combined_lesson.py --dry-run
+
+  build:fairy-stockfish:
+    desc: Build Fairy-Stockfish with the Xiangqi ruleset.
+    cmds:
+      - bash scripts/build_fairy_stockfish.sh

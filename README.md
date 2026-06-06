@@ -15,6 +15,7 @@ task install
 task dev
 task build
 task test
+task test:web
 ```
 
 The API defaults to `http://127.0.0.1:8090`. If port `8090` is already in use, run the API with another port and point the web app at it:
@@ -31,8 +32,31 @@ task dev:api
 task dev:web
 task build:web
 task test:api
+task test:web
+task test:web:watch
 task lessons:combined:dry-run
 task lessons:combined
+task build:fairy-stockfish
+```
+
+### Multi-engine analysis
+
+The API defaults to a single engine (Pikafish) for `/api/analyze`. To enable
+Fairy-Stockfish as a secondary engine, build it once with
+`task build:fairy-stockfish ~/path/to/Fairy-Stockfish-src` and point the
+server at the resulting binary:
+
+```sh
+export ENGINE_FAIRY_PATH="$(pwd)/bin/fairy-stockfish"
+task dev:api
+```
+
+With both engines configured, the API can fan out analyses:
+
+```sh
+curl -s -X POST http://127.0.0.1:8090/api/analyze \
+  -H "Content-Type: application/json" \
+  -d '{"fen":"rnbakabnr/9/1c5c1/p1p1p1p1p/9/9/P1P1P1P1P/1C5C1/9/RNBAKABNR w - - 0 1","sideToMove":"red","engines":["pikafish","fairy-stockfish"]}'
 ```
 
 ## Structure
