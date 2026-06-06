@@ -5,6 +5,11 @@ import CombinedLessonPage from './components/CombinedLessonPage.vue'
 import EvaluationPanel from './components/EvaluationPanel.vue'
 import MoveGraph from './components/MoveGraph.vue'
 import XiangqiBoard from './components/XiangqiBoard.vue'
+import Tabs from './components/ui/tabs.vue'
+import TabsList from './components/ui/tabs-list.vue'
+import TabsTrigger from './components/ui/tabs-trigger.vue'
+import TabsContent from './components/ui/tabs-content.vue'
+import Input from './components/ui/input.vue'
 import { useLessonPlayer } from './composables/useLessonPlayer'
 import { useLessons } from './composables/useLessons'
 import { useMoveEvaluation } from './composables/useMoveEvaluation'
@@ -46,6 +51,19 @@ const isPrinciplesExpanded = ref(true)
 const isSidebarOpen = ref(false)
 const isCombinedPage = ref(window.location.pathname.replace(/\/$/, '') === '/combined')
 const principleCount = computed(() => lessonPrincipleGroups.reduce((count, group) => count + group.items.length, 0))
+
+const activeMobileTab = ref<'board' | 'graph' | 'info'>('board')
+const mobileTabs = [
+  { id: 'board' as const, label: 'Bàn cờ' },
+  { id: 'graph' as const, label: 'Biến' },
+  { id: 'info' as const, label: 'Lý thuyết' },
+]
+
+function selectLessonAndResetTab(id: string) {
+  selectLesson(id)
+  isSidebarOpen.value = false
+  activeMobileTab.value = 'board'
+}
 
 const choicePromptPly = computed(() => {
   const choiceMoveIds = new Set(lesson.value.choice.options.map((option) => option.moveId))
@@ -116,18 +134,28 @@ onMounted(() => {
       {{ errorMessage || 'Đang tải dữ liệu bài học...' }}
     </div>
 
-    <div class="app-shell">
-      <button
-        type="button"
-        class="mobile-nav-toggle"
-        aria-label="Mở danh sách bài học"
-        :aria-expanded="isSidebarOpen"
-        @click="toggleSidebar"
-      >
-        <Menu v-if="!isSidebarOpen" :size="20" aria-hidden="true" />
-        <X v-else :size="20" aria-hidden="true" />
-        <span>Danh mục</span>
-      </button>
+    <div
+      class="app-shell"
+      v-motion
+      :initial="{ opacity: 0, y: 8 }"
+      :enter="{ opacity: 1, y: 0, transition: { duration: 500, ease: 'easeOut' } }"
+    >
+      <div v-if="isSidebarOpen" class="sidebar-overlay" @click="isSidebarOpen = false"></div>
+
+      <header class="mobile-header">
+        <button
+          type="button"
+          class="mobile-nav-toggle"
+          aria-label="Mở danh sách bài học"
+          :aria-expanded="isSidebarOpen"
+          @click="toggleSidebar"
+        >
+          <Menu v-if="!isSidebarOpen" :size="20" aria-hidden="true" />
+          <X v-else :size="20" aria-hidden="true" />
+          <span>Danh mục</span>
+        </button>
+        <h2 class="mobile-lesson-title">{{ lesson.title }}</h2>
+      </header>
 
       <aside class="library-panel" :class="{ 'is-open': isSidebarOpen }">
         <div class="brand-lockup">
@@ -138,10 +166,14 @@ onMounted(() => {
           </div>
         </div>
 
-        <label class="search-box">
+        <div class="flex items-center gap-2 rounded-md border border-border bg-panel-strong px-3 py-2.5 text-muted-foreground transition-colors focus-within:border-primary focus-within:ring-2 focus-within:ring-ring">
           <Search :size="18" aria-hidden="true" />
-          <input type="search" placeholder="Tìm khai cuộc, cạm bẫy..." />
-        </label>
+          <Input
+            type="search"
+            placeholder="Tìm khai cuộc, cạm bẫy..."
+            class="border-0 bg-transparent p-0 text-foreground placeholder:text-muted-foreground focus-visible:ring-0 focus-visible:ring-offset-0"
+          />
+        </div>
 
         <a class="combined-nav-link" href="/combined">
           <GitBranch :size="18" aria-hidden="true" />
@@ -169,7 +201,7 @@ onMounted(() => {
                 type="button"
                 class="lesson-child"
                 :class="{ active: activeLessonId === item.id }"
-                @click="selectLesson(item.id); isSidebarOpen = false"
+                @click="selectLessonAndResetTab(item.id)"
               >
                 <small class="lesson-child-index">{{ lessonIndex + 1 }}</small>
                 <span>{{ item.title }}</span>
@@ -184,16 +216,17 @@ onMounted(() => {
           <p class="eyebrow">{{ lesson.category }} · {{ lesson.difficulty }}</p>
           <h2>{{ lesson.title }}</h2>
         </article>
-
       </section>
 
       <section class="board-panel" aria-label="Bàn học">
-        <section class="board-stage" aria-label="Bàn cờ và các bước nước đi">
+        <section v-show="activeMobileTab === 'board'" class="board-stage" aria-label="Bàn cờ và các bước nước đi">
           <XiangqiBoard
             :board="player.board.value"
             :current-move="player.currentMove.value"
             :preview-moves="nextMovePreviews"
             @select-preview-move="goToPreviewMove"
+            @swipe-left="player.next"
+            @swipe-right="player.previous"
           />
 
           <EvaluationPanel
@@ -261,7 +294,7 @@ onMounted(() => {
           </section>
         </section>
 
-        <section class="board-side-panel" aria-label="Điều khiển và phản hồi bài học">
+        <section class="board-side-panel desktop-only" aria-label="Điều khiển và phản hồi bài học">
           <MoveGraph
             :lines="lesson.lines"
             :active-line-id="player.activeLineId.value"
@@ -271,9 +304,65 @@ onMounted(() => {
             @select-move="goToGraphMove"
           />
         </section>
+
+        <!-- Mobile tabs -->
+        <Tabs v-model="activeMobileTab" class="mobile-only">
+          <TabsList class="grid w-full grid-cols-3">
+            <TabsTrigger v-for="tab in mobileTabs" :key="tab.id" :value="tab.id">
+              {{ tab.label }}
+            </TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="graph" class="board-side-panel mobile-tab-panel" aria-label="Điều khiển và phản hồi bài học">
+            <MoveGraph
+              :lines="lesson.lines"
+              :active-line-id="player.activeLineId.value"
+              :active-move-index="player.activeMoveIndex.value"
+              :initial-fen="lesson.initialFen"
+              @select-line="player.setLine"
+              @select-move="goToGraphMove"
+            />
+          </TabsContent>
+
+          <TabsContent value="info" class="lesson-panel mobile-tab-panel" aria-label="Nội dung bài học">
+            <section class="principles" :class="{ expanded: isPrinciplesExpanded }">
+              <button
+                type="button"
+                class="principles-toggle"
+                :aria-expanded="isPrinciplesExpanded"
+                aria-controls="lesson-principles"
+                @click="isPrinciplesExpanded = !isPrinciplesExpanded"
+              >
+                <span class="principles-title">
+                  <Lightbulb :size="18" aria-hidden="true" />
+                  <span>
+                    <span class="principles-eyebrow">Tổng hợp</span>
+                    <strong>Điểm cần nhớ</strong>
+                  </span>
+                </span>
+                <span class="principles-meta">
+                  {{ principleCount }} ý
+                  <ChevronDown :size="18" aria-hidden="true" />
+                </span>
+              </button>
+
+              <div v-show="isPrinciplesExpanded" id="lesson-principles" class="principles-groups">
+                <section v-for="group in lessonPrincipleGroups" :key="group.id" class="principle-group">
+                  <header>
+                    <h3>{{ group.title }}</h3>
+                    <span>{{ group.items.length }}</span>
+                  </header>
+                  <ul class="principles-list">
+                    <li v-for="principle in group.items" :key="principle">{{ principle }}</li>
+                  </ul>
+                </section>
+              </div>
+            </section>
+          </TabsContent>
+        </Tabs>
       </section>
 
-      <section class="lesson-panel" aria-label="Nội dung bài học">
+      <section class="lesson-panel desktop-only" aria-label="Nội dung bài học">
         <section class="principles" :class="{ expanded: isPrinciplesExpanded }">
           <button
             type="button"

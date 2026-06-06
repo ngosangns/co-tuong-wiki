@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import type { BoardState, Coordinate, LessonMove, Piece } from '../core/xiangqi'
 import { sameSquare } from '../core/xiangqi'
 
@@ -11,7 +11,34 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   selectPreviewMove: [move: LessonMove]
+  swipeLeft: []
+  swipeRight: []
 }>()
+
+const touchStartX = ref(0)
+const touchStartY = ref(0)
+const SWIPE_THRESHOLD = 50
+const VERTICAL_TOLERANCE = 80
+
+function onTouchStart(event: TouchEvent) {
+  touchStartX.value = event.changedTouches[0].screenX
+  touchStartY.value = event.changedTouches[0].screenY
+}
+
+function onTouchEnd(event: TouchEvent) {
+  const endX = event.changedTouches[0].screenX
+  const endY = event.changedTouches[0].screenY
+  const deltaX = endX - touchStartX.value
+  const deltaY = endY - touchStartY.value
+
+  if (Math.abs(deltaY) > VERTICAL_TOLERANCE) return
+
+  if (deltaX < -SWIPE_THRESHOLD) {
+    emit('swipeLeft')
+  } else if (deltaX > SWIPE_THRESHOLD) {
+    emit('swipeRight')
+  }
+}
 
 const ranks = Array.from({ length: 10 }, (_, rank) => rank)
 const files = Array.from({ length: 9 }, (_, file) => file)
@@ -101,7 +128,15 @@ function previewArrow(move: LessonMove) {
 </script>
 
 <template>
-  <div class="xiangqi-board-shell" aria-label="Bàn cờ tướng">
+  <div
+    class="xiangqi-board-shell"
+    aria-label="Bàn cờ tướng"
+    v-motion
+    :initial="{ opacity: 0, scale: 0.96 }"
+    :enter="{ opacity: 1, scale: 1, transition: { duration: 600, ease: 'easeOut' } }"
+    @touchstart="onTouchStart"
+    @touchend="onTouchEnd"
+  >
     <div class="board-file-labels board-file-labels-top" aria-label="Cột bên Đen">
       <span v-for="label in blackFileLabels" :key="`black-file-${label}`">{{ label }}</span>
     </div>
