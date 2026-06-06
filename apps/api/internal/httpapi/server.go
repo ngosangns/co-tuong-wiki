@@ -5,12 +5,14 @@ import (
 	"encoding/json"
 	"errors"
 	"net/http"
+	"os"
 	"strconv"
 	"strings"
 	"sync"
 
 	"co-tuong-wiki-api/internal/analysis"
 	"co-tuong-wiki-api/internal/cacheutil"
+	"co-tuong-wiki-api/internal/engine"
 	"co-tuong-wiki-api/internal/lessons"
 )
 
@@ -19,6 +21,7 @@ type Server struct {
 	mux           *http.ServeMux
 	combinedMu    sync.Mutex
 	combinedCache *combinedLessonCache
+	engines       *engine.Registry
 }
 
 type combinedLessonCache struct {
@@ -77,12 +80,55 @@ type combinedNextStepsRequest struct {
 const defaultXiangqiFEN = "rnbakabnr/9/1c5c1/p1p1p1p1p/9/9/P1P1P1P1P/1C5C1/9/RNBAKABNR w - - 0 1"
 
 func NewServer(repository *lessons.Repository) http.Handler {
+	registry := buildEngineRegistry()
 	server := &Server{
 		repository: repository,
 		mux:        http.NewServeMux(),
+		engines:    registry,
 	}
 	server.routes()
 	return server
+}
+
+// buildEngineRegistry builds the engine registry from environment variables.
+// Pikafish is the primary engine; Fairy-Stockfish is registered when its
+// binary path is configured.
+func buildEngineRegistry() *engine.Registry {
+	cfg := analysis.ConfigFromEnv()
+	adapters := []engine.Engine{
+		engine.NewPikafishAdapter(engine.Config{
+			Kind:          cfg.Kind,
+			Path:          cfg.Path,
+			DefaultTimeMS: cfg.DefaultTimeMS,
+			MaxTimeMS:     cfg.MaxTimeMS,
+			DefaultDepth:  cfg.DefaultDepth,
+			MaxDepth:      cfg.MaxDepth,
+			TimeoutSlack:  int(cfg.TimeoutSlack / 1e6),
+		}),
+	}
+	if fairyPath := strings.TrimSpace(getenvDefault("ENGINE_FAIRY_PATH", "")); fairyPath != "" {
+		adapters = append(adapters, engine.NewFairyStockfishAdapter(engine.Config{
+			Kind:          "fairy-stockfish",
+			Path:          fairyPath,
+			DefaultTimeMS: cfg.DefaultTimeMS,
+			MaxTimeMS:     cfg.MaxTimeMS,
+			DefaultDepth:  cfg.DefaultDepth,
+			MaxDepth:      cfg.MaxDepth,
+			TimeoutSlack:  int(cfg.TimeoutSlack / 1e6),
+		}))
+	}
+	return engine.NewRegistry(adapters...)
+}
+
+func getenvDefault(key, fallback string) string {
+	if value := strings.TrimSpace(envValue(key)); value != "" {
+		return value
+	}
+	return fallback
+}
+
+func envValue(key string) string {
+	return os.Getenv(key)
 }
 
 func (s *Server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
@@ -226,27 +272,8 @@ func (s *Server) routes() {
 		writeCacheableJSONBytes(w, r, body, s.repository.Version(), "lesson:"+id, "hit")
 	})
 
-	s.mux.HandleFunc("POST /api/analyze", func(w http.ResponseWriter, r *http.Request) {
-		var request analysis.Request
-		if err := json.NewDecoder(r.Body).Decode(&request); err != nil {
-			writeError(w, http.StatusBadRequest, "invalid analyze request")
-			return
-		}
-		if strings.TrimSpace(request.FEN) == "" {
-			writeError(w, http.StatusBadRequest, "fen is required")
-			return
-		}
-		response, meta, err := analysis.AnalyzeWithMeta(r.Context(), request)
-		if err != nil {
-			status, message := analyzeErrorResponse(err)
-			writeError(w, status, message)
-			return
-		}
-		if meta.CacheStatus != "" {
-			w.Header().Set("X-Cache", meta.CacheStatus)
-		}
-		writeJSON(w, http.StatusOK, response)
-	})
+	s.mux.HandleFunc("POST /api/analyze", s.handleAnalyze)
+	s.mux.HandleFunc("POST /api/line-evaluation", s.handleLineEvaluation)
 }
 
 func (s *Server) loadCombinedLesson() (*combinedLessonCache, error) {
@@ -541,6 +568,181 @@ func analyzeErrorResponse(err error) (int, string) {
 		return http.StatusGatewayTimeout, "Engine phân tích quá lâu, vui lòng thử lại với thời gian hoặc độ sâu thấp hơn."
 	}
 	return http.StatusBadGateway, "Engine không thể phân tích vị trí hiện tại."
+}
+
+type analyzeAPIRequest struct {
+	FEN        string   `json:"fen"`
+	SideToMove string   `json:"sideToMove"`
+	NextMove   *struct {
+		Side string `json:"side"`
+		From struct {
+			File int `json:"file"`
+			Rank int `json:"rank"`
+		} `json:"from"`
+		To struct {
+			File int `json:"file"`
+			Rank int `json:"rank"`
+		} `json:"to"`
+	} `json:"nextMove,omitempty"`
+	TimeMS int      `json:"timeMs,omitempty"`
+	Depth  int      `json:"depth,omitempty"`
+	Engines []string `json:"engines,omitempty"`
+}
+
+type analyzeEngineResult struct {
+	engine.Response
+	CacheStatus string `json:"-"`
+	Error       string `json:"error,omitempty"`
+}
+
+type analyzeAPIResponse struct {
+	Primary   *analyzeEngineResult  `json:"primary,omitempty"`
+	Secondary *analyzeEngineResult  `json:"secondary,omitempty"`
+	Engines   []string              `json:"engines"`
+	Agreement string                `json:"agreement,omitempty"`
+	AgreementMove string            `json:"agreementMove,omitempty"`
+}
+
+func (s *Server) handleAnalyze(w http.ResponseWriter, r *http.Request) {
+	var request analyzeAPIRequest
+	if err := json.NewDecoder(r.Body).Decode(&request); err != nil {
+		writeError(w, http.StatusBadRequest, "invalid analyze request")
+		return
+	}
+	if strings.TrimSpace(request.FEN) == "" {
+		writeError(w, http.StatusBadRequest, "fen is required")
+		return
+	}
+
+	engineRequest := engine.Request{
+		FEN:        request.FEN,
+		SideToMove: request.SideToMove,
+		TimeMS:     request.TimeMS,
+		Depth:      request.Depth,
+	}
+	if request.NextMove != nil {
+		engineRequest.NextMove = &engine.Move{
+			From: engine.Coordinate{File: request.NextMove.From.File, Rank: request.NextMove.From.Rank},
+			To:   engine.Coordinate{File: request.NextMove.To.File, Rank: request.NextMove.To.Rank},
+		}
+	}
+
+	sources := resolveEngineSources(s.engines, request.Engines)
+	if len(sources) == 0 {
+		writeError(w, http.StatusServiceUnavailable, "Engine phân tích chưa được cấu hình.")
+		return
+	}
+
+	results := make(map[engine.Source]analyzeEngineResult)
+	var firstErr error
+	for _, source := range sources {
+		adapter := s.engines.Get(source)
+		if adapter == nil {
+			continue
+		}
+		response, err := adapter.Analyze(r.Context(), engineRequest)
+		result := analyzeEngineResult{Response: response}
+		if err != nil {
+			result.Error = err.Error()
+			if firstErr == nil {
+				firstErr = err
+			}
+		}
+		results[source] = result
+	}
+
+	payload := analyzeAPIResponse{Engines: sourcesToNames(sources)}
+	if primary, ok := results[engine.SourcePikafish]; ok {
+		primaryCopy := primary
+		payload.Primary = &primaryCopy
+	} else if primary, ok := results[sources[0]]; ok {
+		primaryCopy := primary
+		payload.Primary = &primaryCopy
+	}
+	if secondarySource, ok := findSecondary(sources, engine.SourcePikafish); ok {
+		if secondary, ok := results[secondarySource]; ok {
+			secondaryCopy := secondary
+			payload.Secondary = &secondaryCopy
+		}
+	}
+
+	if payload.Primary != nil && payload.Secondary != nil {
+		agreement, move := compareAgreements(payload.Primary.BestMove, payload.Secondary.BestMove)
+		payload.Agreement = agreement
+		payload.AgreementMove = move
+	}
+
+	// When the only engine requested fails, surface the upstream error status
+	// so single-engine callers (and existing tests) keep their previous contract.
+	if firstErr != nil && (payload.Primary == nil || (len(sources) == 1 && payload.Primary.Error != "")) {
+		status, message := analyzeErrorResponse(firstErr)
+		writeError(w, status, message)
+		return
+	}
+
+	if payload.Primary != nil && payload.Primary.Error != "" {
+		w.Header().Set("X-Cache", "miss")
+	}
+
+	writeJSON(w, http.StatusOK, payload)
+}
+
+func resolveEngineSources(registry *engine.Registry, requested []string) []engine.Source {
+	if len(requested) == 0 {
+		// Default: primary only.
+		primary, ok := registry.Primary()
+		if !ok {
+			return nil
+		}
+		return []engine.Source{primary.Source()}
+	}
+	sources := make([]engine.Source, 0, len(requested))
+	for _, name := range requested {
+		source := engine.Source(strings.ToLower(strings.TrimSpace(name)))
+		if registry.Get(source) == nil {
+			continue
+		}
+		sources = append(sources, source)
+	}
+	return sources
+}
+
+func sourcesToNames(sources []engine.Source) []string {
+	names := make([]string, 0, len(sources))
+	for _, source := range sources {
+		names = append(names, string(source))
+	}
+	return names
+}
+
+func findSecondary(sources []engine.Source, primary engine.Source) (engine.Source, bool) {
+	priority := []engine.Source{engine.SourceFairyStockfish, engine.SourcePikafish}
+	for _, candidate := range priority {
+		if candidate == primary {
+			continue
+		}
+		for _, source := range sources {
+			if source == candidate {
+				return candidate, true
+			}
+		}
+	}
+	for _, source := range sources {
+		if source != primary {
+			return source, true
+		}
+	}
+	return "", false
+}
+
+func compareAgreements(primary *engine.Move, secondary *engine.Move) (string, string) {
+	if primary == nil || secondary == nil {
+		return "indeterminate", ""
+	}
+	if primary.Notation == secondary.Notation {
+		return "same", primary.Notation
+	}
+	return "different", ""
 }
 
 func writeJSON(w http.ResponseWriter, status int, value any) {
