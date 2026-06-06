@@ -44,7 +44,7 @@ button {
 .app-shell {
   display: grid;
   grid-template-columns: minmax(300px, 360px) minmax(420px, 1fr) minmax(320px, 430px);
-  grid-template-rows: auto 1fr;
+  grid-template-rows: auto auto 1fr;
   min-height: 100svh;
   background: var(--color-bg);
 }
@@ -448,13 +448,328 @@ button {
 }
 
 /* ================================================================
+   MOVE BREADCRUMB
+   ================================================================ */
+
+.move-breadcrumb {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  padding: 8px 12px;
+  overflow-x: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+}
+
+.move-breadcrumb-list {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  align-items: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.move-breadcrumb-item {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 4px;
+}
+
+.move-breadcrumb-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 28px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-text-muted);
+  padding: 3px 8px;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1;
+  transition: background 120ms var(--ease-out-expo), border-color 120ms var(--ease-out-expo), color 120ms var(--ease-out-expo);
+}
+
+.move-breadcrumb-button:hover {
+  background: var(--color-surface-muted);
+  color: var(--color-text);
+}
+
+.move-breadcrumb-item.is-start .move-breadcrumb-button {
+  color: var(--color-text-soft);
+  font-style: italic;
+}
+
+.move-breadcrumb-item.is-active .move-breadcrumb-button {
+  border-color: color-mix(in srgb, var(--color-accent) 64%, var(--color-border));
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+}
+
+.move-breadcrumb-label {
+  white-space: nowrap;
+}
+
+.move-breadcrumb-separator {
+  color: var(--color-text-soft);
+  flex: 0 0 auto;
+  opacity: 0.6;
+}
+
+/* ================================================================
+   EVAL CHART
+   ================================================================ */
+
+.eval-chart-row {
+  grid-column: 2 / -1;
+}
+
+.eval-chart {
+  display: grid;
+  width: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  padding: 10px 12px 8px;
+  gap: 8px;
+}
+
+.eval-chart-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.eval-chart-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-primary);
+}
+
+.eval-chart-title h4 {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.eval-chart-title p {
+  margin: 1px 0 0;
+  color: var(--color-text-muted);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.eval-chart-title p strong {
+  color: var(--color-text);
+}
+
+.eval-chart-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--color-text-soft);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.eval-chart-canvas {
+  position: relative;
+  width: 100%;
+  min-height: 140px;
+}
+
+.eval-chart-svg {
+  display: block;
+  width: 100%;
+  height: 140px;
+}
+
+.eval-chart-point circle {
+  transition: r 120ms var(--ease-out-expo);
+}
+
+.eval-chart-point.is-active circle {
+  filter: drop-shadow(0 0 4px var(--color-accent));
+}
+
+.eval-chart-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 140px;
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-soft);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.eval-chart-placeholder.error {
+  color: var(--color-accent);
+}
+
+.eval-chart-axis {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 20px;
+  color: var(--color-text-soft);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.eval-chart-score-marker {
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--color-accent);
+  font-size: 11px;
+  font-weight: 800;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.eval-chart-score-marker-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-pill);
+  background: var(--color-accent);
+}
+
+.eval-chart-classification {
+  font-weight: 800;
+  font-size: 11px;
+}
+
+.eval-chart-point.is-blunder circle,
+.eval-chart-point.is-mistake circle {
+  filter: drop-shadow(0 0 3px var(--color-accent));
+}
+
+.eval-chart-point.is-inaccuracy circle {
+  filter: drop-shadow(0 0 2px color-mix(in srgb, var(--color-accent) 60%, transparent));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eval-chart-point circle {
+    transition: none;
+  }
+}
+
+/* ================================================================
+   MOVE MINIMAP
+   ================================================================ */
+
+.move-minimap {
+  display: grid;
+  width: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background:
+    linear-gradient(color-mix(in srgb, var(--color-surface-muted) 60%, transparent), color-mix(in srgb, var(--color-surface-muted) 60%, transparent)),
+    var(--color-surface);
+  padding: 10px 12px 12px;
+  gap: 6px;
+}
+
+.move-minimap-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.move-minimap-header h4 {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.move-minimap-header p {
+  margin: 2px 0 0;
+  color: var(--color-text-soft);
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.move-minimap-open {
+  display: inline-grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-raised);
+  color: var(--color-primary);
+  cursor: pointer;
+  transition: background 120ms var(--ease-out-expo);
+}
+
+.move-minimap-open:hover {
+  background: var(--color-surface-muted);
+}
+
+.move-minimap-canvas {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background:
+    radial-gradient(circle at center, color-mix(in srgb, var(--color-text) 8%, transparent) 1px, transparent 1px),
+    var(--color-surface);
+  background-size: 14px 14px;
+  overflow: hidden;
+}
+
+.move-minimap-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.move-minimap-node {
+  transition: transform 120ms var(--ease-out-expo);
+}
+
+.move-minimap-node.is-active circle {
+  filter: drop-shadow(0 0 4px color-mix(in srgb, var(--color-accent) 80%, transparent));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .move-minimap-node {
+    transition: none;
+  }
+}
+
+/* ================================================================
    BOARD PANEL
    ================================================================ */
 
 .board-panel {
   display: grid;
   grid-column: 2;
-  grid-row: 2;
+  grid-row: 3;
   grid-template-columns: minmax(300px, 1fr) minmax(260px, 340px);
   align-items: start;
   justify-content: center;
@@ -463,6 +778,17 @@ button {
   background:
     linear-gradient(180deg, color-mix(in srgb, var(--color-surface-muted) 68%, transparent), transparent 320px),
     var(--color-bg);
+}
+
+.breadcrumb-row {
+  display: flex;
+  grid-column: 2 / -1;
+  grid-row: 2;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-panel-strong);
+  padding: 10px 24px;
 }
 
 .board-stage {
@@ -1395,6 +1721,22 @@ button {
   border-color: var(--color-border-strong);
 }
 
+.graph-reset-button {
+  border: 1px solid color-mix(in srgb, var(--color-accent) 36%, var(--color-border));
+  border-radius: var(--radius-md);
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+  padding: 7px 10px;
+  font-size: 12px;
+  font-weight: 900;
+  cursor: pointer;
+  transition: background 140ms var(--ease-out-expo), border-color 140ms var(--ease-out-expo);
+}
+
+.graph-reset-button:hover {
+  background: color-mix(in srgb, var(--color-accent) 18%, var(--color-surface-raised));
+}
+
 .graph-map {
   position: relative;
   min-width: 100%;
@@ -1612,12 +1954,24 @@ button {
   display: grid;
   min-height: 100svh;
   grid-template-columns: minmax(340px, 520px) minmax(280px, 360px) minmax(360px, 1fr);
+  grid-template-rows: auto auto 1fr;
   gap: 18px;
   align-items: start;
   background:
     linear-gradient(180deg, color-mix(in srgb, var(--color-surface-muted) 64%, transparent), transparent 360px),
     var(--color-bg);
   padding: 24px;
+}
+
+.combined-breadcrumb-row {
+  display: flex;
+  grid-column: 1 / -1;
+  grid-row: 2;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-panel-strong);
+  padding: 8px 12px;
 }
 
 .combined-page .app-status {
@@ -1735,7 +2089,7 @@ button {
 @media (max-width: 1180px) {
   .app-shell {
     grid-template-columns: 280px 1fr;
-    grid-template-rows: auto 1fr;
+    grid-template-rows: auto auto 1fr;
   }
 
   .library-panel {
@@ -1747,15 +2101,20 @@ button {
     grid-row: 1;
   }
 
+  .breadcrumb-row {
+    grid-column: 2 / -1;
+    grid-row: 2;
+  }
+
   .board-panel {
     grid-column: 2;
-    grid-row: 2;
+    grid-row: 3;
     grid-template-columns: minmax(300px, 1fr) minmax(240px, 320px);
   }
 
   .lesson-panel {
     grid-column: 1 / -1;
-    grid-row: 3;
+    grid-row: 4;
     max-height: none;
     border-top: 1px solid var(--color-border);
     border-left: 0;
@@ -1767,17 +2126,22 @@ button {
 
   .combined-board {
     grid-column: 1;
-    grid-row: 1;
+    grid-row: 2;
   }
 
   .combined-inspector {
     grid-column: 1;
-    grid-row: 2;
+    grid-row: 3;
+  }
+
+  .combined-breadcrumb-row {
+    grid-column: 1 / -1;
+    grid-row: 1;
   }
 
   .combined-graph {
     grid-column: 2;
-    grid-row: 1 / span 2;
+    grid-row: 2 / span 2;
   }
 }
 
@@ -1816,6 +2180,25 @@ button {
 
   .lesson-topbar {
     display: none;
+  }
+
+  .breadcrumb-row {
+    position: sticky;
+    top: 56px;
+    z-index: 15;
+    padding: 6px 12px;
+    background: var(--color-panel);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .breadcrumb-row .move-breadcrumb {
+    padding: 4px 8px;
+  }
+
+  .breadcrumb-row .move-breadcrumb-button {
+    min-height: 26px;
+    font-size: 11px;
+    padding: 2px 6px;
   }
 
   .board-panel {
@@ -1997,6 +2380,61 @@ button {
     padding: 10px;
     padding-top: 66px;
   }
+}
+
+/* ================================================================
+   LESSON MOBILE DOCK
+   ================================================================ */
+
+.lesson-mobile-dock {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 25;
+  gap: 8px;
+  justify-content: space-around;
+  border-top: 1px solid var(--color-border);
+  background: color-mix(in srgb, var(--color-panel) 92%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 8px 12px calc(env(safe-area-inset-bottom, 0) + 8px);
+  box-shadow: 0 -8px 24px rgb(0 0 0 / 18%);
+}
+
+@media (max-width: 760px) {
+  .lesson-mobile-dock.mobile-only {
+    display: flex;
+  }
+}
+
+.lesson-mobile-dock-button {
+  display: inline-flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 40px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-raised);
+  color: var(--color-text-muted);
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 800;
+  transition: background 120ms var(--ease-out-expo), border-color 120ms var(--ease-out-expo), color 120ms var(--ease-out-expo);
+}
+
+.lesson-mobile-dock-button:hover {
+  background: var(--color-surface-muted);
+  color: var(--color-text);
+}
+
+.lesson-mobile-dock-button.active {
+  border-color: color-mix(in srgb, var(--color-accent) 60%, var(--color-border));
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
 }
 
 /* ================================================================

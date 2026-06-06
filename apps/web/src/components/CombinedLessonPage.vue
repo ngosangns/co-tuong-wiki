@@ -8,7 +8,9 @@ import { useMoveEvaluation } from '../composables/useMoveEvaluation'
 import type { LessonMove } from '../core/xiangqi'
 import { lineStartKey, moveSignature, nextMoveTargetsForActiveNode } from '../core/movePreview'
 import EvaluationPanel from './EvaluationPanel.vue'
+import MoveBreadcrumb from './MoveBreadcrumb.vue'
 import MoveGraph from './MoveGraph.vue'
+import MoveMinimap from './MoveMinimap.vue'
 import XiangqiBoard from './XiangqiBoard.vue'
 import Tabs from './ui/tabs.vue'
 import TabsList from './ui/tabs-list.vue'
@@ -211,6 +213,17 @@ watch(
       <h2 class="mobile-lesson-title">{{ lesson.title }}</h2>
     </header>
 
+    <section class="combined-breadcrumb-row" aria-label="Đường đi nước cờ hiện tại">
+      <MoveBreadcrumb
+        v-if="selectedPhaseSection"
+        :lines="selectedPhaseSection.lines"
+        :active-line-id="player.activeLineId.value"
+        :active-move-index="player.activeMoveIndex.value"
+        :initial-fen="lesson.initialFen"
+        @select-move="goToGraphMove"
+      />
+    </section>
+
     <!-- Desktop sections -->
     <section class="combined-board desktop-only" aria-label="Bàn cờ tổng hợp">
       <div class="combined-board-stage">
@@ -266,6 +279,14 @@ watch(
     </section>
 
     <section class="combined-graph desktop-only" aria-label="Cây nước đi tổng hợp">
+      <MoveMinimap
+        v-if="selectedPhaseSection"
+        :lines="selectedPhaseSection.lines"
+        :active-line-id="player.activeLineId.value"
+        :active-move-index="player.activeMoveIndex.value"
+        :initial-fen="lesson.initialFen"
+        @select-move="goToGraphMove"
+      />
       <MoveGraph
         v-if="selectedPhaseSection"
         :title="selectedPhaseSection.title"

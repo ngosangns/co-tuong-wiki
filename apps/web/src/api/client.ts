@@ -5,6 +5,8 @@ import type {
   Lesson,
   LessonPhase,
   LessonSummary,
+  LineEvaluationRequest,
+  LineEvaluationResponse,
 } from './types'
 import type { LessonMove, Side } from '../core/xiangqi'
 import type { EngineEvaluation } from '../engine/types'
@@ -121,5 +123,16 @@ export function analyzePosition(
   }, {
     key: apiCacheKey('POST', path, input),
     ttlMs: analysisCacheTTL,
+  })
+}
+
+export function evaluateLine(request: LineEvaluationRequest) {
+  const path = '/api/line-evaluation'
+  return fetchJSON<LineEvaluationResponse>(path, {
+    method: 'POST',
+    body: JSON.stringify(request),
+  }, {
+    key: apiCacheKey('POST', path, request),
+    ttlMs: 60 * 60 * 1000,
   })
 }

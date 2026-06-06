@@ -60,3 +60,46 @@ export interface CombinedNextStepsRequest {
 export type AnalyzeResponse = EngineEvaluation
 
 export type LessonPhase = 'opening' | 'middlegame' | 'endgame'
+
+export interface LineEvaluationPly {
+  ply: number
+  fen: string
+  sideToMove: 'red' | 'black'
+  nextMove?: LessonMove
+}
+
+export interface LineEvaluationRequest {
+  openingFen?: string
+  engine?: 'pikafish' | 'fairy-stockfish'
+  plies: LineEvaluationPly[]
+}
+
+export type MoveClassification =
+  | 'best'
+  | 'excellent'
+  | 'good'
+  | 'inaccuracy'
+  | 'mistake'
+  | 'blunder'
+  | 'unknown'
+
+export interface LineEvaluationPlyResult {
+  ply: number
+  fen: string
+  sideToMove: 'red' | 'black'
+  cp: number
+  perspective: 'red' | 'black'
+  bestMove?: string
+  bestScore?: number
+  pv: string[]
+  depth: number
+  status: 'ok' | 'error' | 'unavailable'
+  error?: string
+  cpLoss?: number
+  classification?: MoveClassification
+}
+
+export interface LineEvaluationResponse {
+  engine: 'pikafish' | 'fairy-stockfish'
+  plies: LineEvaluationPlyResult[]
+}
