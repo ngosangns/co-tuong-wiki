@@ -52,6 +52,7 @@ const defaultXiangqiFEN = 'rnbakabnr/9/1c5c1/p1p1p1p1p/9/9/P1P1P1P1P/1C5C1/9/RNB
 const graphCanvas = ref<HTMLElement | null>(null)
 const renderer = ref<TreeGraphRenderer | null>(null)
 const selectedNodeId = ref('')
+const isZoomed = ref(false)
 
 const activeLine = computed(() => props.lines.find((item) => item.id === props.activeLineId))
 const activeMove = computed(() => (activeLine.value ? lineMoves(activeLine.value)[props.activeMoveIndex - 1] : undefined))
@@ -340,11 +341,16 @@ function fitGraph() {
   renderer.value?.fit()
 }
 
+function resetGraph() {
+  renderer.value?.reset()
+}
+
 async function renderGraph() {
   await nextTick()
   if (!graphCanvas.value) return
   destroyGraph()
   graphCanvas.value.innerHTML = ''
+  isZoomed.value = false
   renderer.value = renderTreeGraph({
     container: graphCanvas.value,
     graph: graphData.value,
@@ -354,6 +360,9 @@ async function renderGraph() {
     labelColor: '#f5efe2',
     onSelectNode: selectGraphNode,
     onClearSelection: clearSelection,
+    onZoomChange: (zoomed) => {
+      isZoomed.value = zoomed
+    },
   })
   renderer.value.setStates(graphNodeStates.value)
 }
@@ -402,6 +411,9 @@ onUnmounted(destroyGraph)
 
         <button v-if="!isCollapsed" type="button" class="graph-fit-button" title="Canh giữa graph" aria-label="Canh giữa graph" @click="fitGraph">
           Fit
+        </button>
+        <button v-if="!isCollapsed && isZoomed" type="button" class="graph-reset-button" title="Đặt lại zoom" aria-label="Đặt lại zoom" @click="resetGraph">
+          Reset
         </button>
       </slot>
     </header>
