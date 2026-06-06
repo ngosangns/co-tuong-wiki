@@ -215,24 +215,13 @@ const graphData = computed<TreeGraphData>(() => {
         parent.children.set(pathNode.signature, child)
       }
       child.lineIds.add(pathNode.line.id)
-      if (pathNode.line.id === props.activeLineId || !child.lineId) child.lineId = pathNode.line.id
+      if (!child.lineId) child.lineId = pathNode.line.id
       parent = child
     })
   })
 
   function addTrieNode(node: TrieNode, startKey: string, parent?: TrieNode) {
     const lineIds = Array.from(node.lineIds)
-    const containsActiveLine = node.lineIds.has(props.activeLineId)
-    const state =
-      node.moveIndex === undefined
-        ? containsActiveLine && props.activeMoveIndex <= 0
-          ? 'active'
-          : 'start'
-        : containsActiveLine && props.activeMoveIndex === node.moveIndex + 1
-          ? 'active'
-          : containsActiveLine && props.activeMoveIndex > node.moveIndex + 1
-            ? 'past'
-            : 'future'
     const label =
       node.move && node.moveIndex !== undefined
         ? `${formatMoveNotation(node.move, node.moveIndex, node.boardBefore ?? null)}${lineIds.length > 1 ? ` · ${lineIds.length} biến` : ''}`
@@ -244,17 +233,17 @@ const graphData = computed<TreeGraphData>(() => {
       id: node.id,
       label,
       nodeKind: node.move ? 'move' : 'start',
-      lineId: containsActiveLine ? props.activeLineId : node.lineId,
+      lineId: node.lineId,
       lineIds,
       moveIndex: node.moveIndex,
-      state,
+      state: node.move ? 'future' : 'start',
     })
 
     if (parent) {
       links.push({
         source: parent.id,
         target: node.id,
-        type: state === 'active' || state === 'past' ? 'active' : 'next',
+        type: 'next',
       })
     }
 
@@ -269,6 +258,26 @@ const graphData = computed<TreeGraphData>(() => {
 })
 
 const activeNodeId = computed(activeGraphNodeId)
+const graphNodeStates = computed(() =>
+  Object.fromEntries(
+    graphData.value.nodes.map((node) => {
+      const graphNode = node as MoveGraphNode
+      const containsActiveLine = Boolean(graphNode.lineIds?.includes(props.activeLineId))
+      const state =
+        graphNode.moveIndex === undefined
+          ? containsActiveLine && props.activeMoveIndex <= 0
+            ? 'active'
+            : 'start'
+          : containsActiveLine && props.activeMoveIndex === graphNode.moveIndex + 1
+            ? 'active'
+            : containsActiveLine && props.activeMoveIndex > graphNode.moveIndex + 1
+              ? 'past'
+              : 'future'
+
+      return [graphNode.id, state]
+    }),
+  ),
+)
 const activeBoardBeforeMove = computed(() => {
   if (!activeLine.value || props.activeMoveIndex <= 0) return null
   const activePath = graphPaths.value.find((path) => path[0]?.line.id === activeLine.value?.id)
@@ -346,10 +355,12 @@ async function renderGraph() {
     onSelectNode: selectGraphNode,
     onClearSelection: clearSelection,
   })
+  renderer.value.setStates(graphNodeStates.value)
 }
 
 watch(graphData, renderGraph, { immediate: true })
 watch(activeNodeId, (nodeId) => renderer.value?.setSelected(nodeId))
+watch(graphNodeStates, (states) => renderer.value?.setStates(states))
 watch(
   () => props.isCollapsed,
   (isCollapsed) => {

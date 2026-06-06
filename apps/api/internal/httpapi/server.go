@@ -1,6 +1,7 @@
 package httpapi
 
 import (
+	"context"
 	"encoding/json"
 	"errors"
 	"net/http"
@@ -9,15 +10,26 @@ import (
 	"sync"
 
 	"co-tuong-wiki-api/internal/analysis"
+	"co-tuong-wiki-api/internal/cacheutil"
 	"co-tuong-wiki-api/internal/lessons"
 )
 
 type Server struct {
-	repository     *lessons.Repository
-	mux            *http.ServeMux
-	combinedMu     sync.Mutex
-	combinedLesson lessons.Lesson
-	combinedLoaded bool
+	repository    *lessons.Repository
+	mux           *http.ServeMux
+	combinedMu    sync.Mutex
+	combinedCache *combinedLessonCache
+}
+
+type combinedLessonCache struct {
+	lesson        lessons.Lesson
+	version       cacheutil.DataVersion
+	overview      combinedLessonOverview
+	overviewBytes []byte
+	byLineID      map[string]lessons.Line
+	maxMoves      int
+	windowBytes   *cacheutil.ByteCache
+	inFlight      *cacheutil.Group[[]byte]
 }
 
 type combinedLessonOverview struct {
@@ -78,8 +90,9 @@ func (s *Server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if isAllowedDevOrigin(origin) {
 		w.Header().Set("Access-Control-Allow-Origin", origin)
 		w.Header().Set("Vary", "Origin")
-		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, If-None-Match")
 		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+		w.Header().Set("Access-Control-Expose-Headers", "ETag, Last-Modified, X-Cache, X-Data-Version")
 	}
 
 	if r.Method == http.MethodOptions {
@@ -96,38 +109,51 @@ func (s *Server) routes() {
 	})
 
 	s.mux.HandleFunc("GET /api/categories", func(w http.ResponseWriter, r *http.Request) {
-		writeJSON(w, http.StatusOK, s.repository.Categories())
+		writeCacheableJSONBytes(w, r, s.repository.CategoriesBytes(), s.repository.Version(), "categories", "hit")
 	})
 
 	s.mux.HandleFunc("GET /api/lessons", func(w http.ResponseWriter, r *http.Request) {
 		query := r.URL.Query()
-		writeJSON(w, http.StatusOK, s.repository.List(query.Get("category"), query.Get("q"), query.Get("difficulty")))
+		body, err := s.repository.ListBytes(query.Get("category"), query.Get("q"), query.Get("difficulty"))
+		if err != nil {
+			writeError(w, http.StatusInternalServerError, "could not encode lessons")
+			return
+		}
+		writeCacheableJSONBytes(w, r, body, s.repository.Version(), "lessons:"+cacheutil.HashKey(query.Get("category"), query.Get("q"), query.Get("difficulty")), "hit")
 	})
 
 	s.mux.HandleFunc("GET /api/combined-lesson", func(w http.ResponseWriter, r *http.Request) {
-		lesson, err := s.loadCombinedLesson()
+		combined, err := s.loadCombinedLesson()
 		if err != nil {
 			writeError(w, http.StatusNotFound, "combined lesson has not been built")
 			return
 		}
-		writeJSON(w, http.StatusOK, combinedOverview(lesson))
+		writeCacheableJSONBytes(w, r, combined.overviewBytes, combined.version, "combined-overview", "hit")
 	})
 
 	s.mux.HandleFunc("GET /api/combined-lesson/moves", func(w http.ResponseWriter, r *http.Request) {
-		lesson, err := s.loadCombinedLesson()
+		combined, err := s.loadCombinedLesson()
 		if err != nil {
 			writeError(w, http.StatusNotFound, "combined lesson has not been built")
 			return
 		}
 
-		maxMoves := maxCombinedMoveCount(lesson)
-		from := queryInt(r, "from", 0, 0, maxMoves)
+		from := queryInt(r, "from", 0, 0, combined.maxMoves)
 		limit := queryInt(r, "limit", 1, 1, 8)
-		writeJSON(w, http.StatusOK, combinedMoveWindow(lesson, from, limit, r.URL.Query().Get("phase")))
+		phase := r.URL.Query().Get("phase")
+		key := cacheutil.HashKey("combined-moves", phase, strconv.Itoa(from), strconv.Itoa(limit))
+		body, cacheState, err := combined.cachedWindowBytes(r.Context(), key, func() (any, error) {
+			return combinedMoveWindow(combined.lesson, from, limit, phase), nil
+		})
+		if err != nil {
+			writeError(w, http.StatusInternalServerError, "could not encode combined moves")
+			return
+		}
+		writeCacheableJSONBytes(w, r, body, combined.version, "combined-moves:"+key, cacheState)
 	})
 
 	s.mux.HandleFunc("POST /api/combined-lesson/next-steps", func(w http.ResponseWriter, r *http.Request) {
-		lesson, err := s.loadCombinedLesson()
+		combined, err := s.loadCombinedLesson()
 		if err != nil {
 			writeError(w, http.StatusNotFound, "combined lesson has not been built")
 			return
@@ -139,19 +165,27 @@ func (s *Server) routes() {
 			return
 		}
 
-		from := min(max(request.From, 0), maxCombinedMoveCount(lesson))
+		from := min(max(request.From, 0), combined.maxMoves)
 		limit := min(max(request.Limit, 1), 8)
-		writeJSON(w, http.StatusOK, combinedNextStepWindow(lesson, request.Phase, request.InitialFEN, request.Prefix, from, limit))
+		key := combinedNextStepsCacheKey(request, from, limit)
+		body, cacheState, err := combined.cachedWindowBytes(r.Context(), key, func() (any, error) {
+			return combinedNextStepWindow(combined.lesson, request.Phase, request.InitialFEN, request.Prefix, from, limit), nil
+		})
+		if err != nil {
+			writeError(w, http.StatusInternalServerError, "could not encode combined next steps")
+			return
+		}
+		writeVersionedJSONBytes(w, http.StatusOK, body, combined.version, cacheState)
 	})
 
 	s.mux.HandleFunc("GET /api/combined-lesson/lines/{id}/moves", func(w http.ResponseWriter, r *http.Request) {
-		lesson, err := s.loadCombinedLesson()
+		combined, err := s.loadCombinedLesson()
 		if err != nil {
 			writeError(w, http.StatusNotFound, "combined lesson has not been built")
 			return
 		}
 
-		line, ok := findCombinedLine(lesson, r.PathValue("id"))
+		line, ok := combined.byLineID[r.PathValue("id")]
 		if !ok {
 			writeError(w, http.StatusNotFound, "combined lesson line not found")
 			return
@@ -160,23 +194,36 @@ func (s *Server) routes() {
 		from := queryInt(r, "from", 0, 0, len(line.Moves))
 		limit := queryInt(r, "limit", 12, 1, 48)
 		to := min(from+limit, len(line.Moves))
-		writeJSON(w, http.StatusOK, combinedLineMoveWindow{
-			LineID:     line.ID,
-			Phase:      combinedLinePhase(lesson, line),
-			PieceCount: effectiveLinePieceCount(lesson, line),
-			From:       from,
-			Moves:      line.Moves[from:to],
-			TotalMoves: len(line.Moves),
+		key := cacheutil.HashKey("combined-line-moves", line.ID, strconv.Itoa(from), strconv.Itoa(limit))
+		body, cacheState, err := combined.cachedWindowBytes(r.Context(), key, func() (any, error) {
+			return combinedLineMoveWindow{
+				LineID:     line.ID,
+				Phase:      combinedLinePhase(combined.lesson, line),
+				PieceCount: effectiveLinePieceCount(combined.lesson, line),
+				From:       from,
+				Moves:      line.Moves[from:to],
+				TotalMoves: len(line.Moves),
+			}, nil
 		})
+		if err != nil {
+			writeError(w, http.StatusInternalServerError, "could not encode combined line moves")
+			return
+		}
+		writeCacheableJSONBytes(w, r, body, combined.version, "combined-line-moves:"+key, cacheState)
 	})
 
 	s.mux.HandleFunc("GET /api/lessons/{id}", func(w http.ResponseWriter, r *http.Request) {
-		lesson, ok := s.repository.Get(r.PathValue("id"))
+		id := r.PathValue("id")
+		body, ok, err := s.repository.LessonBytes(id)
+		if err != nil {
+			writeError(w, http.StatusInternalServerError, "could not encode lesson")
+			return
+		}
 		if !ok {
 			writeError(w, http.StatusNotFound, "lesson not found")
 			return
 		}
-		writeJSON(w, http.StatusOK, lesson)
+		writeCacheableJSONBytes(w, r, body, s.repository.Version(), "lesson:"+id, "hit")
 	})
 
 	s.mux.HandleFunc("POST /api/analyze", func(w http.ResponseWriter, r *http.Request) {
@@ -189,31 +236,95 @@ func (s *Server) routes() {
 			writeError(w, http.StatusBadRequest, "fen is required")
 			return
 		}
-		response, err := analysis.Analyze(r.Context(), request)
+		response, meta, err := analysis.AnalyzeWithMeta(r.Context(), request)
 		if err != nil {
 			status, message := analyzeErrorResponse(err)
 			writeError(w, status, message)
 			return
 		}
+		if meta.CacheStatus != "" {
+			w.Header().Set("X-Cache", meta.CacheStatus)
+		}
 		writeJSON(w, http.StatusOK, response)
 	})
 }
 
-func (s *Server) loadCombinedLesson() (lessons.Lesson, error) {
+func (s *Server) loadCombinedLesson() (*combinedLessonCache, error) {
 	s.combinedMu.Lock()
 	defer s.combinedMu.Unlock()
 
-	if s.combinedLoaded {
-		return s.combinedLesson, nil
+	if s.combinedCache != nil {
+		return s.combinedCache, nil
 	}
 
-	lesson, err := lessons.LoadLesson(lessons.DefaultCombinedDataPath())
+	lesson, version, err := lessons.LoadLessonWithVersion(lessons.DefaultCombinedDataPath())
 	if err != nil {
-		return lessons.Lesson{}, err
+		return nil, err
 	}
-	s.combinedLesson = lesson
-	s.combinedLoaded = true
-	return lesson, nil
+	cache, err := newCombinedLessonCache(lesson, version)
+	if err != nil {
+		return nil, err
+	}
+	s.combinedCache = cache
+	return s.combinedCache, nil
+}
+
+func newCombinedLessonCache(lesson lessons.Lesson, version cacheutil.DataVersion) (*combinedLessonCache, error) {
+	overview := combinedOverview(lesson)
+	overviewBytes, err := json.Marshal(overview)
+	if err != nil {
+		return nil, err
+	}
+
+	return &combinedLessonCache{
+		lesson:        lesson,
+		version:       version,
+		overview:      overview,
+		overviewBytes: overviewBytes,
+		byLineID:      combinedLineIndex(lesson),
+		maxMoves:      maxCombinedMoveCount(lesson),
+		windowBytes:   cacheutil.NewByteCache(512),
+		inFlight:      cacheutil.NewGroup[[]byte](),
+	}, nil
+}
+
+func (cache *combinedLessonCache) cachedWindowBytes(ctx context.Context, key string, build func() (any, error)) ([]byte, string, error) {
+	if body, ok := cache.windowBytes.Get(key); ok {
+		return body, "hit", nil
+	}
+
+	body, shared, err := cache.inFlight.Do(ctx, key, func() ([]byte, error) {
+		if body, ok := cache.windowBytes.Get(key); ok {
+			return body, nil
+		}
+
+		value, err := build()
+		if err != nil {
+			return nil, err
+		}
+		body, err := json.Marshal(value)
+		if err != nil {
+			return nil, err
+		}
+		cache.windowBytes.Set(key, body)
+		return body, nil
+	})
+	if err != nil {
+		return nil, "miss", err
+	}
+	if shared {
+		return body, "coalesced", nil
+	}
+
+	return body, "miss", nil
+}
+
+func combinedLineIndex(lesson lessons.Lesson) map[string]lessons.Line {
+	byID := make(map[string]lessons.Line, len(lesson.Lines))
+	for _, line := range lesson.Lines {
+		byID[line.ID] = line
+	}
+	return byID
 }
 
 func combinedOverview(lesson lessons.Lesson) combinedLessonOverview {
@@ -238,15 +349,6 @@ func combinedOverview(lesson lessons.Lesson) combinedLessonOverview {
 		Lines:      lines,
 		Choice:     lesson.Choice,
 	}
-}
-
-func findCombinedLine(lesson lessons.Lesson, lineID string) (lessons.Line, bool) {
-	for _, line := range lesson.Lines {
-		if line.ID == lineID {
-			return line, true
-		}
-	}
-	return lessons.Line{}, false
 }
 
 func maxCombinedMoveCount(lesson lessons.Lesson) int {
@@ -294,6 +396,34 @@ func combinedNextStepWindow(lesson lessons.Lesson, phase string, initialFEN stri
 		Limit: limit,
 		Lines: lines,
 	}
+}
+
+func combinedNextStepsCacheKey(request combinedNextStepsRequest, from int, limit int) string {
+	return cacheutil.HashKey(
+		"combined-next-steps",
+		request.Phase,
+		request.InitialFEN,
+		strconv.Itoa(from),
+		strconv.Itoa(limit),
+		movePrefixSignature(request.Prefix),
+	)
+}
+
+func movePrefixSignature(prefix []lessons.Move) string {
+	var builder strings.Builder
+	for _, move := range prefix {
+		builder.WriteString(move.Side)
+		builder.WriteByte(':')
+		builder.WriteString(strconv.Itoa(move.From.File))
+		builder.WriteByte(',')
+		builder.WriteString(strconv.Itoa(move.From.Rank))
+		builder.WriteString(">")
+		builder.WriteString(strconv.Itoa(move.To.File))
+		builder.WriteByte(',')
+		builder.WriteString(strconv.Itoa(move.To.Rank))
+		builder.WriteByte(';')
+	}
+	return builder.String()
 }
 
 func lineHasMovePrefix(line lessons.Line, prefix []lessons.Move) bool {
@@ -417,6 +547,57 @@ func writeJSON(w http.ResponseWriter, status int, value any) {
 	w.Header().Set("Content-Type", "application/json; charset=utf-8")
 	w.WriteHeader(status)
 	_ = json.NewEncoder(w).Encode(value)
+}
+
+func writeCacheableJSONBytes(w http.ResponseWriter, r *http.Request, body []byte, version cacheutil.DataVersion, scope string, cacheStatus string) {
+	w.Header().Set("Content-Type", "application/json; charset=utf-8")
+	w.Header().Set("Cache-Control", "public, max-age=0, must-revalidate")
+	setVersionHeaders(w, version)
+	if cacheStatus != "" {
+		w.Header().Set("X-Cache", cacheStatus)
+	}
+
+	if etag := version.ETag(scope); etag != "" {
+		w.Header().Set("ETag", etag)
+		if matchesETag(r.Header.Get("If-None-Match"), etag) {
+			w.Header().Set("X-Cache", "revalidate")
+			w.WriteHeader(http.StatusNotModified)
+			return
+		}
+	}
+
+	w.WriteHeader(http.StatusOK)
+	_, _ = w.Write(body)
+}
+
+func writeVersionedJSONBytes(w http.ResponseWriter, status int, body []byte, version cacheutil.DataVersion, cacheStatus string) {
+	w.Header().Set("Content-Type", "application/json; charset=utf-8")
+	setVersionHeaders(w, version)
+	if cacheStatus != "" {
+		w.Header().Set("X-Cache", cacheStatus)
+	}
+	w.WriteHeader(status)
+	_, _ = w.Write(body)
+}
+
+func setVersionHeaders(w http.ResponseWriter, version cacheutil.DataVersion) {
+	if version.Value == "" {
+		return
+	}
+	w.Header().Set("X-Data-Version", version.Value)
+	if !version.LastModified.IsZero() {
+		w.Header().Set("Last-Modified", version.LastModified.Format(http.TimeFormat))
+	}
+}
+
+func matchesETag(header string, etag string) bool {
+	for _, value := range strings.Split(header, ",") {
+		value = strings.TrimSpace(value)
+		if value == "*" || value == etag {
+			return true
+		}
+	}
+	return false
 }
 
 func writeError(w http.ResponseWriter, status int, message string) {

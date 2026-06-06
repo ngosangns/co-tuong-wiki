@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	defaultEngineTimeMS = 2000
+	defaultEngineTimeMS = 500
 	maxEngineTimeMS     = 10000
 	engineTimeoutSlack  = 3 * time.Second
 )

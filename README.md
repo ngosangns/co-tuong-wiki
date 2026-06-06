@@ -11,18 +11,28 @@ Trang web học cờ tướng bằng wiki tương tác: bài học, thế cờ, 
 ## Scripts
 
 ```sh
-npm --prefix apps/web install
-npm run dev:api
-npm run dev:web
-npm run build:web
-npm run test:api
+task install
+task dev
+task build
+task test
 ```
 
 The API defaults to `http://127.0.0.1:8090`. If port `8090` is already in use, run the API with another port and point the web app at it:
 
 ```sh
-PORT=8091 npm run dev:api
-VITE_API_URL=http://127.0.0.1:8091 npm run dev:web
+PORT=8091 task dev:api
+VITE_API_URL=http://127.0.0.1:8091 task dev:web
+```
+
+Useful focused tasks:
+
+```sh
+task dev:api
+task dev:web
+task build:web
+task test:api
+task lessons:combined:dry-run
+task lessons:combined
 ```
 
 ## Structure

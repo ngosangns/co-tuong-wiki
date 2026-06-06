@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { BookOpen, ChevronDown, ChevronLeft, ChevronRight, CircleAlert, GitBranch, Lightbulb, Search, ShieldCheck } from '@lucide/vue'
+import { BookOpen, ChevronDown, ChevronLeft, ChevronRight, CircleAlert, GitBranch, Lightbulb, Menu, Search, ShieldCheck, X } from '@lucide/vue'
 import { computed, onMounted, ref } from 'vue'
 import CombinedLessonPage from './components/CombinedLessonPage.vue'
 import EvaluationPanel from './components/EvaluationPanel.vue'
@@ -43,6 +43,7 @@ const lesson = computed(() => activeLesson.value ?? emptyLesson)
 const player = useLessonPlayer(lesson)
 const moveEvaluation = useMoveEvaluation(player)
 const isPrinciplesExpanded = ref(true)
+const isSidebarOpen = ref(false)
 const isCombinedPage = ref(window.location.pathname.replace(/\/$/, '') === '/combined')
 const principleCount = computed(() => lessonPrincipleGroups.reduce((count, group) => count + group.items.length, 0))
 
@@ -97,6 +98,10 @@ function lessonsForCategory(category: string) {
   return summaries.value.filter((item) => item.category === category)
 }
 
+function toggleSidebar() {
+  isSidebarOpen.value = !isSidebarOpen.value
+}
+
 onMounted(() => {
   if (!isCombinedPage.value) {
     loadCatalog()
@@ -112,7 +117,19 @@ onMounted(() => {
     </div>
 
     <div class="app-shell">
-      <aside class="library-panel">
+      <button
+        type="button"
+        class="mobile-nav-toggle"
+        aria-label="Mở danh sách bài học"
+        :aria-expanded="isSidebarOpen"
+        @click="toggleSidebar"
+      >
+        <Menu v-if="!isSidebarOpen" :size="20" aria-hidden="true" />
+        <X v-else :size="20" aria-hidden="true" />
+        <span>Danh mục</span>
+      </button>
+
+      <aside class="library-panel" :class="{ 'is-open': isSidebarOpen }">
         <div class="brand-lockup">
           <div class="brand-mark">象</div>
           <div>
@@ -152,7 +169,7 @@ onMounted(() => {
                 type="button"
                 class="lesson-child"
                 :class="{ active: activeLessonId === item.id }"
-                @click="selectLesson(item.id)"
+                @click="selectLesson(item.id); isSidebarOpen = false"
               >
                 <small class="lesson-child-index">{{ lessonIndex + 1 }}</small>
                 <span>{{ item.title }}</span>

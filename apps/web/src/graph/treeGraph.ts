@@ -22,6 +22,7 @@ export interface TreeGraphRenderer {
   fit(): void
   kill(): void
   setSelected(id: string): void
+  setStates(states: Record<string, string>): void
 }
 
 interface TreeDatum {
@@ -54,6 +55,7 @@ export function renderTreeGraph(options: RenderTreeGraphOptions): TreeGraphRende
   const linkLayer = document.createElementNS('http://www.w3.org/2000/svg', 'g')
   const nodeLayer = document.createElementNS('http://www.w3.org/2000/svg', 'g')
   const nodeElements = new Map<string, SVGGElement>()
+  const nodeData = new Map<string, TreeGraphNode>()
   const linkElements = new Map<string, SVGPathElement>()
   let selectedId = options.selectedId && normalized.nodes.has(options.selectedId) ? options.selectedId : ''
   let disposed = false
@@ -116,6 +118,7 @@ export function renderTreeGraph(options: RenderTreeGraphOptions): TreeGraphRende
     })
     nodeLayer.append(group)
     nodeElements.set(node.id, group)
+    nodeData.set(node.id, node)
   }
 
   svg.addEventListener('click', () => {
@@ -158,6 +161,25 @@ export function renderTreeGraph(options: RenderTreeGraphOptions): TreeGraphRende
     svg.setAttribute('viewBox', `${bounds.minY} ${bounds.minX} ${bounds.width} ${bounds.height}`)
   }
 
+  function setStates(states: Record<string, string>) {
+    if (disposed) return
+    for (const [id, state] of Object.entries(states)) {
+      const node = nodeData.get(id)
+      const element = nodeElements.get(id)
+      const circle = element?.querySelector('circle')
+      if (!node || !circle) continue
+      node.state = state
+      circle.setAttribute('fill', options.nodeColor(node))
+    }
+    for (const [key, element] of linkElements) {
+      const [, target] = key.split('->')
+      const targetState = nodeData.get(target)?.state
+      const relation = targetState === 'active' || targetState === 'past' ? 'active' : 'next'
+      element.setAttribute('stroke', options.edgeColor(relation))
+      element.setAttribute('stroke-width', relation === 'active' ? '2.4' : '1.4')
+    }
+  }
+
   fit()
   updateSelection()
   requestAnimationFrame(() => followSelectedNode('auto'))
@@ -173,6 +195,7 @@ export function renderTreeGraph(options: RenderTreeGraphOptions): TreeGraphRende
       updateSelection()
       followSelectedNode()
     },
+    setStates,
   }
 }
 
