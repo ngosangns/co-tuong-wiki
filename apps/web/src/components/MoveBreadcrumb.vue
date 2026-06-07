@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ChevronRight, Home } from '@lucide/vue'
+import { ChevronRight, Flag } from '@lucide/vue'
 import { computed } from 'vue'
 import type { LessonLine } from '../api/types'
 import {
@@ -87,7 +87,7 @@ function jumpTo(crumb: Crumb) {
           :aria-label="crumb.isStart ? 'Về vị trí bắt đầu' : `Tới nước ${crumb.label}`"
           @click="jumpTo(crumb)"
         >
-          <Home v-if="crumb.isStart" :size="13" aria-hidden="true" />
+          <Flag v-if="crumb.isStart" :size="13" aria-hidden="true" />
           <span class="move-breadcrumb-label">{{ crumb.label }}</span>
         </button>
         <ChevronRight

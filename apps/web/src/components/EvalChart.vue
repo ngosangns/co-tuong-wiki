@@ -273,14 +273,14 @@ const hasResults = computed(() => results.value.length > 0)
 </script>
 
 <template>
-  <section class="eval-chart" aria-label="Biểu đồ đánh giá ván cờ">
+  <section class="eval-chart card card-elevated" aria-label="Biểu đồ đánh giá ván cờ">
     <header class="eval-chart-header">
       <div class="eval-chart-title">
         <Activity :size="16" aria-hidden="true" />
         <div>
           <h4>Đánh giá ván cờ</h4>
           <p v-if="activeBestMoveLabel">
-            Ply {{ activeMoveIndex }}: <strong>{{ activeScoreLabel }}</strong> · Best:
+            Nước {{ activeMoveIndex }}: <strong>{{ activeScoreLabel }}</strong> · Best:
             {{ activeBestMoveLabel }}
             <span
               v-if="activeClassification.label"
@@ -294,7 +294,7 @@ const hasResults = computed(() => results.value.length > 0)
             </span>
           </p>
           <p v-else-if="hasResults">
-            Ply {{ activeMoveIndex }}: <strong>{{ activeScoreLabel }}</strong>
+            Nước {{ activeMoveIndex }}: <strong>{{ activeScoreLabel }}</strong>
             <span
               v-if="activeClassification.label"
               class="eval-chart-classification"

@@ -58,6 +58,13 @@
   --color-panel: #1e1a16;
   --color-panel-strong: #25211b;
   --color-surface: #24201b;
+  /* Move graph node colors (read by MoveGraph.vue via getComputedStyle) */
+  --color-graph-active: #f06c56;
+  --color-graph-past: #70b8a7;
+  --color-graph-start: #d9a441;
+  --color-graph-line: #8d7359;
+  --color-graph-future: #c7bda9;
+  --color-graph-label: #f5efe2;
   --color-surface-raised: #2b2520;
   --color-surface-muted: #302921;
   --color-text: #f5efe2;
@@ -132,5 +139,13 @@
     --shadow-lg: 0 14px 32px rgb(60 50 30 / 14%), 0 0 1px rgb(60 50 30 / 10%);
     --shadow-xl: 0 24px 60px rgb(60 50 30 / 18%), 0 0 1px rgb(60 50 30 / 12%);
     --shadow-inset: inset 0 1px 0 rgb(255 255 255 / 40%);
+
+    /* Move graph node colors (light mode) */
+    --color-graph-active: #c44f3a;
+    --color-graph-past: #3a8a4e;
+    --color-graph-start: #b08847;
+    --color-graph-line: #8a7e70;
+    --color-graph-future: #5c5348;
+    --color-graph-label: #1e1a14;
   }
 }

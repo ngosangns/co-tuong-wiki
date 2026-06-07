@@ -210,12 +210,7 @@ watch(
 </script>
 
 <template>
-  <main
-    class="combined-page"
-    v-motion
-    :initial="{ opacity: 0, y: 12 }"
-    :enter="{ opacity: 1, y: 0, transition: { duration: 500, ease: 'easeOut' } }"
-  >
+  <main class="combined-page">
     <div v-if="errorMessage || isLoading" class="app-status" role="status">
       {{ errorMessage || 'Đang tải lesson tổng hợp...' }}
     </div>

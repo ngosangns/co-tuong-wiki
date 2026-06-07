@@ -62,7 +62,7 @@ const summaryByCategory = computed(() => {
 
   <aside class="library-panel" :class="{ 'is-open': props.isOpen }">
     <div class="brand-lockup">
-      <div class="brand-mark">象</div>
+      <div class="brand-mark">帥</div>
       <div>
         <p class="eyebrow">Cờ Tướng Wiki</p>
         <h1>Học bằng thế cờ thật</h1>
@@ -76,7 +76,7 @@ const summaryByCategory = computed(() => {
       <Input
         type="search"
         placeholder="Tìm khai cuộc, cạm bẫy..."
-        class="border-0 bg-transparent p-0 text-foreground placeholder:text-muted-foreground focus-visible:ring-0 focus-visible:ring-offset-0"
+        class="border-0 bg-transparent p-0 text-foreground placeholder:text-muted-foreground"
       />
     </div>
 

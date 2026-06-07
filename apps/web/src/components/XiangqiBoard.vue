@@ -157,9 +157,6 @@ function previewArrow(move: LessonMove) {
   <div
     class="xiangqi-board-shell"
     aria-label="Bàn cờ tướng"
-    v-motion
-    :initial="{ opacity: 0, scale: 0.96 }"
-    :enter="{ opacity: 1, scale: 1, transition: { duration: 600, ease: 'easeOut' } }"
     @touchstart="onTouchStart"
     @touchend="onTouchEnd"
   >

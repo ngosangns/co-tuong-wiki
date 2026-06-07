@@ -135,17 +135,11 @@ const hasEvaluation = computed(
 </script>
 
 <template>
-  <Card
-    :class="compact ? 'gap-2 p-3' : 'gap-4 p-5'"
-    aria-label="Đánh giá nước đi"
-    v-motion
-    :initial="{ opacity: 0, scale: 0.98 }"
-    :enter="{ opacity: 1, scale: 1, transition: { duration: 400, ease: 'easeOut' } }"
-  >
+  <Card :class="compact ? 'gap-2 p-3' : 'gap-4 p-5'" aria-label="Đánh giá nước đi">
     <CardHeader :class="compact ? 'p-0 pb-1' : 'p-0 pb-2'">
       <div class="flex items-center justify-between">
         <div>
-          <CardDescription class="text-xs font-bold uppercase tracking-wider">Engine</CardDescription>
+          <CardDescription class="text-xs font-bold tracking-wider">Động cơ</CardDescription>
           <CardTitle :class="compact ? 'text-sm' : 'text-base'">{{ statusLabel }}</CardTitle>
         </div>
         <Activity :size="compact ? 16 : 19" class="text-primary" aria-hidden="true" />
@@ -163,7 +157,7 @@ const hasEvaluation = computed(
             <span class="text-sm font-bold">{{ isAnalyzing ? 'Đang phân tích' : scoreLabel }}</span>
           </div>
           <Badge v-if="hasEvaluation" variant="outline" class="text-xs">
-            {{ evaluation?.depth ?? 0 }} ply
+            {{ evaluation?.depth ?? 0 }} nước
           </Badge>
         </div>
         <div v-if="hasEvaluation" class="mt-2 h-2 overflow-hidden rounded-full bg-black/30">

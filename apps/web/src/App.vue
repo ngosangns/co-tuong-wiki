@@ -138,12 +138,7 @@ function playOpeningMove(notation: {
       {{ errorMessage || 'Đang tải dữ liệu bài học...' }}
     </div>
 
-    <div
-      class="app-shell"
-      v-motion
-      :initial="{ opacity: 0, y: 8 }"
-      :enter="{ opacity: 1, y: 0, transition: { duration: 500, ease: 'easeOut' } }"
-    >
+    <div class="app-shell">
       <div v-if="isSidebarOpen" class="sidebar-overlay" @click="isSidebarOpen = false"></div>
 
       <LibraryPanel
