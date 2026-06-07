@@ -10,4 +10,5 @@
 - [Redesign Giao Diện Responsive](plans/redesign-responsive-ui.md)
 - [UI Redesign Plan (Editorial × Dark-tech)](plans/ui-redesign.md)
 - [UI Improvement Plan v2 (screenshot audit)](plans/ui-improvement-v2.md)
+- [UI Audit v3 (taste-skill pass)](plans/ui-audit-v3-taste-skill.md)
 - [Docs Sync State](_sync.md)
