@@ -321,16 +321,24 @@ function moveSideLabel(move?: LessonMove) {
   return move.side === 'red' ? 'Đỏ' : 'Đen'
 }
 
+function readGraphThemeColor(name: string, fallback: string): string {
+  if (typeof window === 'undefined') return fallback
+  const value = getComputedStyle(document.documentElement).getPropertyValue(name).trim()
+  return value || fallback
+}
+
 function nodeColor(node: TreeGraphNode) {
-  if (node.state === 'active') return '#f06c56'
-  if (node.state === 'past') return '#70b8a7'
-  if (node.state === 'start') return '#d9a441'
-  if (node.state === 'line') return '#8d7359'
-  return '#c7bda9'
+  if (node.state === 'active') return readGraphThemeColor('--color-graph-active', '#f06c56')
+  if (node.state === 'past') return readGraphThemeColor('--color-graph-past', '#70b8a7')
+  if (node.state === 'start') return readGraphThemeColor('--color-graph-start', '#d9a441')
+  if (node.state === 'line') return readGraphThemeColor('--color-graph-line', '#8d7359')
+  return readGraphThemeColor('--color-graph-future', '#c7bda9')
 }
 
 function edgeColor(type: string) {
-  return type === 'active' ? '#70b8a7' : '#8d7359'
+  return type === 'active'
+    ? readGraphThemeColor('--color-graph-past', '#70b8a7')
+    : readGraphThemeColor('--color-graph-line', '#8d7359')
 }
 
 function selectGraphNode(node: TreeGraphNode) {
@@ -380,7 +388,7 @@ async function renderGraph() {
     selectedId: activeNodeId.value,
     nodeColor,
     edgeColor,
-    labelColor: '#f5efe2',
+    labelColor: readGraphThemeColor('--color-graph-label', '#f5efe2'),
     onSelectNode: selectGraphNode,
     onClearSelection: clearSelection,
     onZoomChange: (zoomed) => {
