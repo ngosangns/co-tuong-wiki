@@ -103,3 +103,19 @@ export interface LineEvaluationResponse {
   engine: 'pikafish' | 'fairy-stockfish'
   plies: LineEvaluationPlyResult[]
 }
+
+export interface OpeningBookMove {
+  move: string
+  notation: string
+  name: string
+  frequency: number
+  popularity: number
+}
+
+export interface OpeningBookResponse {
+  available: boolean
+  fen: string
+  visits: number
+  moves: OpeningBookMove[]
+  stats?: Record<string, unknown>
+}

@@ -52,8 +52,12 @@ const phaseSections = computed(() =>
     .filter((phase) => phase.lines.length > 0),
 )
 const activePhase = computed(() => linePhase(player.activeLineId.value))
-const selectedPhaseSection = computed(() => phaseSections.value.find((section) => section.id === selectedPhase.value) ?? phaseSections.value[0])
-const activeMovePrefix = computed(() => player.activeMoves.value.slice(0, player.activeMoveIndex.value).map(moveSignature))
+const selectedPhaseSection = computed(
+  () => phaseSections.value.find((section) => section.id === selectedPhase.value) ?? phaseSections.value[0],
+)
+const activeMovePrefix = computed(() =>
+  player.activeMoves.value.slice(0, player.activeMoveIndex.value).map(moveSignature),
+)
 const activeStartKey = computed(() => {
   const activeLine = player.activeLine.value
   return activeLine ? startKeyForLine(activeLine) : ''
@@ -62,7 +66,9 @@ const activeNodeLines = computed(() => {
   const section = phaseSections.value.find((item) => item.id === activePhase.value)
   if (!section || !activeStartKey.value) return []
 
-  return section.lines.filter((line) => startKeyForLine(line) === activeStartKey.value && lineMatchesActivePrefix(line))
+  return section.lines.filter(
+    (line) => startKeyForLine(line) === activeStartKey.value && lineMatchesActivePrefix(line),
+  )
 })
 const nextMoveTargets = computed(() =>
   nextMoveTargetsForActiveNode({
@@ -116,7 +122,12 @@ function lineMatchesActivePrefix(line: LessonLine) {
 async function ensureActiveNodeMoves(count: number) {
   const phase = activePhase.value
   const lines = activeNodeLines.value
-  if (!lines.length || loadingPhases.value[phase] || lines.every((line) => (line.moves?.length ?? 0) >= count)) return
+  if (
+    !lines.length ||
+    loadingPhases.value[phase] ||
+    lines.every((line) => (line.moves?.length ?? 0) >= count)
+  )
+    return
 
   loadingPhases.value = { ...loadingPhases.value, [phase]: true }
   try {
@@ -273,7 +284,12 @@ watch(
         :error-message="moveEvaluation.errorMessage.value"
       />
 
-      <section v-if="activeMoveComment" class="board-move-comment" aria-live="polite" aria-label="Nhận xét nước hiện tại">
+      <section
+        v-if="activeMoveComment"
+        class="board-move-comment"
+        aria-live="polite"
+        aria-label="Nhận xét nước hiện tại"
+      >
         <p>{{ activeMoveComment }}</p>
       </section>
     </section>
@@ -314,7 +330,13 @@ watch(
             </button>
           </div>
 
-          <button type="button" class="graph-fit-button" title="Canh giữa graph" aria-label="Canh giữa graph" @click="fit">
+          <button
+            type="button"
+            class="graph-fit-button"
+            title="Canh giữa graph"
+            aria-label="Canh giữa graph"
+            @click="fit"
+          >
             Fit
           </button>
         </template>
@@ -342,7 +364,11 @@ watch(
         </div>
       </TabsContent>
 
-      <TabsContent value="inspector" class="combined-inspector mobile-tab-panel" aria-label="Phân tích và nhận xét">
+      <TabsContent
+        value="inspector"
+        class="combined-inspector mobile-tab-panel"
+        aria-label="Phân tích và nhận xét"
+      >
         <div class="board-controls combined-step-controls" aria-label="Điều khiển nước đi tổng hợp">
           <button
             type="button"
@@ -377,7 +403,12 @@ watch(
           :error-message="moveEvaluation.errorMessage.value"
         />
 
-        <section v-if="activeMoveComment" class="board-move-comment" aria-live="polite" aria-label="Nhận xét nước hiện tại">
+        <section
+          v-if="activeMoveComment"
+          class="board-move-comment"
+          aria-live="polite"
+          aria-label="Nhận xét nước hiện tại"
+        >
           <p>{{ activeMoveComment }}</p>
         </section>
       </TabsContent>
@@ -410,7 +441,13 @@ watch(
               </button>
             </div>
 
-            <button type="button" class="graph-fit-button" title="Canh giữa graph" aria-label="Canh giữa graph" @click="fit">
+            <button
+              type="button"
+              class="graph-fit-button"
+              title="Canh giữa graph"
+              aria-label="Canh giữa graph"
+              @click="fit"
+            >
               Fit
             </button>
           </template>

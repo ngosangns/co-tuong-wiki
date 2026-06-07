@@ -7,6 +7,7 @@ import type {
   LessonSummary,
   LineEvaluationRequest,
   LineEvaluationResponse,
+  OpeningBookResponse,
 } from './types'
 import type { LessonMove, Side } from '../core/xiangqi'
 import type { EngineEvaluation } from '../engine/types'
@@ -98,13 +99,17 @@ export function fetchCombinedNextSteps(request: CombinedNextStepsRequest) {
     from: Math.max(0, request.from),
     limit: request.limit ?? 1,
   }
-  return fetchJSON<CombinedStepMoveWindow>(path, {
-    method: 'POST',
-    body: JSON.stringify(body),
-  }, {
-    key: apiCacheKey('POST', path, body),
-    ttlMs: combinedCacheTTL,
-  })
+  return fetchJSON<CombinedStepMoveWindow>(
+    path,
+    {
+      method: 'POST',
+      body: JSON.stringify(body),
+    },
+    {
+      key: apiCacheKey('POST', path, body),
+      ttlMs: combinedCacheTTL,
+    },
+  )
 }
 
 export function analyzePosition(
@@ -116,23 +121,39 @@ export function analyzePosition(
   signal?: AbortSignal,
 ) {
   const path = '/api/analyze'
-  return fetchJSON<EngineEvaluation>(path, {
-    method: 'POST',
-    signal,
-    body: JSON.stringify(input),
-  }, {
-    key: apiCacheKey('POST', path, input),
-    ttlMs: analysisCacheTTL,
-  })
+  return fetchJSON<EngineEvaluation>(
+    path,
+    {
+      method: 'POST',
+      signal,
+      body: JSON.stringify(input),
+    },
+    {
+      key: apiCacheKey('POST', path, input),
+      ttlMs: analysisCacheTTL,
+    },
+  )
 }
 
 export function evaluateLine(request: LineEvaluationRequest) {
   const path = '/api/line-evaluation'
-  return fetchJSON<LineEvaluationResponse>(path, {
-    method: 'POST',
-    body: JSON.stringify(request),
-  }, {
-    key: apiCacheKey('POST', path, request),
-    ttlMs: 60 * 60 * 1000,
+  return fetchJSON<LineEvaluationResponse>(
+    path,
+    {
+      method: 'POST',
+      body: JSON.stringify(request),
+    },
+    {
+      key: apiCacheKey('POST', path, request),
+      ttlMs: 60 * 60 * 1000,
+    },
+  )
+}
+
+export function fetchOpeningBook(fen: string) {
+  const path = `/api/opening?fen=${encodeURIComponent(fen)}`
+  return fetchJSON<OpeningBookResponse>(path, undefined, {
+    key: apiCacheKey('GET', path),
+    ttlMs: 24 * 60 * 60 * 1000,
   })
 }

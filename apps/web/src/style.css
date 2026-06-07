@@ -13,6 +13,28 @@
    BASE RESET
    ================================================================ */
 
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 12px;
+  z-index: 200;
+  padding: 8px 14px;
+  border-radius: var(--radius-md);
+  background: var(--color-accent);
+  color: #fff8e7;
+  font-size: 13px;
+  font-weight: 800;
+  text-decoration: none;
+  transition: top 140ms var(--ease-out-expo);
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  top: 12px;
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
 body {
   margin: 0;
   font-family:
@@ -584,6 +606,33 @@ button {
   font-weight: 800;
 }
 
+.eval-chart-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-raised);
+  color: var(--color-text-muted);
+  font-size: 11px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.eval-chart-toggle input {
+  width: 14px;
+  height: 14px;
+  accent-color: var(--color-primary);
+  cursor: pointer;
+}
+
+.eval-chart-toggle:has(input:checked) {
+  border-color: var(--color-primary);
+  background: color-mix(in srgb, var(--color-primary) 12%, var(--color-surface));
+  color: var(--color-primary);
+}
+
 .eval-chart-canvas {
   position: relative;
   width: 100%;
@@ -672,6 +721,145 @@ button {
   .eval-chart-point circle {
     transition: none;
   }
+}
+
+/* ================================================================
+   OPENING SUGGESTIONS
+   ================================================================ */
+
+.opening-suggestions {
+  display: grid;
+  width: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  padding: 10px 12px;
+  gap: 8px;
+}
+
+.opening-suggestions-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.opening-suggestions-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-primary);
+}
+
+.opening-suggestions-title h4 {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.opening-suggestions-title p {
+  margin: 1px 0 0;
+  color: var(--color-text-muted);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.opening-suggestions-stats {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--color-text-soft);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.opening-suggestions-list {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.opening-suggestion-button {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 4px 10px;
+  width: 100%;
+  min-height: 38px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-panel);
+  color: var(--color-text);
+  padding: 6px 10px;
+  text-align: left;
+  cursor: pointer;
+  transition: background 120ms var(--ease-out-expo), border-color 120ms var(--ease-out-expo);
+}
+
+.opening-suggestion-button:hover {
+  background: var(--color-surface-muted);
+  border-color: var(--color-border-strong);
+}
+
+.opening-suggestion.is-popular .opening-suggestion-button {
+  border-color: color-mix(in srgb, var(--color-primary) 60%, var(--color-border));
+  background: color-mix(in srgb, var(--color-primary) 12%, var(--color-surface));
+}
+
+.opening-suggestion-notation {
+  font-weight: 800;
+  font-size: 13px;
+}
+
+.opening-suggestion-name {
+  grid-column: 1 / -1;
+  color: var(--color-text-muted);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.opening-suggestion-bar {
+  position: relative;
+  grid-column: 1 / 2;
+  display: block;
+  width: 100%;
+  height: 4px;
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--color-border) 50%, transparent);
+  overflow: hidden;
+}
+
+.opening-suggestion-bar-fill {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  transform-origin: left;
+}
+
+.opening-suggestion-popularity {
+  grid-column: 2;
+  grid-row: 1;
+  color: var(--color-accent);
+  font-size: 12px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.opening-suggestions-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+  color: var(--color-text-soft);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.opening-suggestions-placeholder.error {
+  color: var(--color-accent);
 }
 
 /* ================================================================
@@ -1061,6 +1249,90 @@ button {
 
 .preview-piece.black {
   color: var(--color-piece-black);
+}
+
+.engine-suggestion-arrow {
+  stroke: var(--color-primary);
+  stroke-dasharray: 4 8;
+  stroke-linecap: round;
+  stroke-width: 14;
+  opacity: 0.78;
+}
+
+.engine-arrow-head {
+  fill: var(--color-primary);
+  opacity: 0.85;
+}
+
+.engine-suggestion-source {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: grid;
+  width: calc(100% / 9);
+  height: 10%;
+  place-items: center;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  pointer-events: auto;
+}
+
+.engine-suggestion-ring {
+  box-sizing: border-box;
+  width: min(74%, 38px);
+  height: min(74%, 38px);
+  border: 2px dashed var(--color-primary);
+  border-radius: var(--radius-pill);
+  opacity: 0.7;
+}
+
+.engine-suggestion-source:hover .engine-suggestion-ring,
+.engine-suggestion-source:focus-visible .engine-suggestion-ring,
+.engine-suggestion-target:hover .engine-suggestion-piece,
+.engine-suggestion-target:focus-visible .engine-suggestion-piece {
+  opacity: 1;
+}
+
+.engine-suggestion-source:focus-visible,
+.engine-suggestion-target:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--color-primary) 72%, var(--color-piece-bg));
+  outline-offset: -5px;
+}
+
+.engine-suggestion-target {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: grid;
+  width: calc(100% / 9);
+  height: 10%;
+  place-items: center;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  pointer-events: auto;
+}
+
+.engine-suggestion-piece {
+  box-sizing: border-box;
+  display: grid;
+  width: min(58%, 32px);
+  height: min(58%, 32px);
+  place-items: center;
+  border: 2px dashed currentColor;
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--color-piece-bg) 70%, transparent);
+  box-shadow: 0 4px 10px rgb(50 25 10 / 12%);
+  font-size: clamp(12px, 1.9vw, 16px);
+  font-weight: 900;
+  opacity: 0.7;
+}
+
+.engine-suggestion-piece.red {
+  color: var(--color-primary);
 }
 
 /* ================================================================

@@ -274,6 +274,7 @@ func (s *Server) routes() {
 
 	s.mux.HandleFunc("POST /api/analyze", s.handleAnalyze)
 	s.mux.HandleFunc("POST /api/line-evaluation", s.handleLineEvaluation)
+	s.mux.HandleFunc("GET /api/opening", s.handleOpeningLookup)
 }
 
 func (s *Server) loadCombinedLesson() (*combinedLessonCache, error) {
