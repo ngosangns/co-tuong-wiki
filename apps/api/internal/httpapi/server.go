@@ -1,23 +1,38 @@
 package httpapi
 
 import (
+	"context"
 	"encoding/json"
 	"errors"
 	"net/http"
+	"os"
 	"strconv"
 	"strings"
 	"sync"
 
 	"co-tuong-wiki-api/internal/analysis"
+	"co-tuong-wiki-api/internal/cacheutil"
+	"co-tuong-wiki-api/internal/engine"
 	"co-tuong-wiki-api/internal/lessons"
 )
 
 type Server struct {
-	repository     *lessons.Repository
-	mux            *http.ServeMux
-	combinedMu     sync.Mutex
-	combinedLesson lessons.Lesson
-	combinedLoaded bool
+	repository    *lessons.Repository
+	mux           *http.ServeMux
+	combinedMu    sync.Mutex
+	combinedCache *combinedLessonCache
+	engines       *engine.Registry
+}
+
+type combinedLessonCache struct {
+	lesson        lessons.Lesson
+	version       cacheutil.DataVersion
+	overview      combinedLessonOverview
+	overviewBytes []byte
+	byLineID      map[string]lessons.Line
+	maxMoves      int
+	windowBytes   *cacheutil.ByteCache
+	inFlight      *cacheutil.Group[[]byte]
 }
 
 type combinedLessonOverview struct {
@@ -65,12 +80,55 @@ type combinedNextStepsRequest struct {
 const defaultXiangqiFEN = "rnbakabnr/9/1c5c1/p1p1p1p1p/9/9/P1P1P1P1P/1C5C1/9/RNBAKABNR w - - 0 1"
 
 func NewServer(repository *lessons.Repository) http.Handler {
+	registry := buildEngineRegistry()
 	server := &Server{
 		repository: repository,
 		mux:        http.NewServeMux(),
+		engines:    registry,
 	}
 	server.routes()
 	return server
+}
+
+// buildEngineRegistry builds the engine registry from environment variables.
+// Pikafish is the primary engine; Fairy-Stockfish is registered when its
+// binary path is configured.
+func buildEngineRegistry() *engine.Registry {
+	cfg := analysis.ConfigFromEnv()
+	adapters := []engine.Engine{
+		engine.NewPikafishAdapter(engine.Config{
+			Kind:          cfg.Kind,
+			Path:          cfg.Path,
+			DefaultTimeMS: cfg.DefaultTimeMS,
+			MaxTimeMS:     cfg.MaxTimeMS,
+			DefaultDepth:  cfg.DefaultDepth,
+			MaxDepth:      cfg.MaxDepth,
+			TimeoutSlack:  int(cfg.TimeoutSlack / 1e6),
+		}),
+	}
+	if fairyPath := strings.TrimSpace(getenvDefault("ENGINE_FAIRY_PATH", "")); fairyPath != "" {
+		adapters = append(adapters, engine.NewFairyStockfishAdapter(engine.Config{
+			Kind:          "fairy-stockfish",
+			Path:          fairyPath,
+			DefaultTimeMS: cfg.DefaultTimeMS,
+			MaxTimeMS:     cfg.MaxTimeMS,
+			DefaultDepth:  cfg.DefaultDepth,
+			MaxDepth:      cfg.MaxDepth,
+			TimeoutSlack:  int(cfg.TimeoutSlack / 1e6),
+		}))
+	}
+	return engine.NewRegistry(adapters...)
+}
+
+func getenvDefault(key, fallback string) string {
+	if value := strings.TrimSpace(envValue(key)); value != "" {
+		return value
+	}
+	return fallback
+}
+
+func envValue(key string) string {
+	return os.Getenv(key)
 }
 
 func (s *Server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
@@ -78,8 +136,9 @@ func (s *Server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if isAllowedDevOrigin(origin) {
 		w.Header().Set("Access-Control-Allow-Origin", origin)
 		w.Header().Set("Vary", "Origin")
-		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, If-None-Match")
 		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+		w.Header().Set("Access-Control-Expose-Headers", "ETag, Last-Modified, X-Cache, X-Data-Version")
 	}
 
 	if r.Method == http.MethodOptions {
@@ -96,38 +155,51 @@ func (s *Server) routes() {
 	})
 
 	s.mux.HandleFunc("GET /api/categories", func(w http.ResponseWriter, r *http.Request) {
-		writeJSON(w, http.StatusOK, s.repository.Categories())
+		writeCacheableJSONBytes(w, r, s.repository.CategoriesBytes(), s.repository.Version(), "categories", "hit")
 	})
 
 	s.mux.HandleFunc("GET /api/lessons", func(w http.ResponseWriter, r *http.Request) {
 		query := r.URL.Query()
-		writeJSON(w, http.StatusOK, s.repository.List(query.Get("category"), query.Get("q"), query.Get("difficulty")))
+		body, err := s.repository.ListBytes(query.Get("category"), query.Get("q"), query.Get("difficulty"))
+		if err != nil {
+			writeError(w, http.StatusInternalServerError, "could not encode lessons")
+			return
+		}
+		writeCacheableJSONBytes(w, r, body, s.repository.Version(), "lessons:"+cacheutil.HashKey(query.Get("category"), query.Get("q"), query.Get("difficulty")), "hit")
 	})
 
 	s.mux.HandleFunc("GET /api/combined-lesson", func(w http.ResponseWriter, r *http.Request) {
-		lesson, err := s.loadCombinedLesson()
+		combined, err := s.loadCombinedLesson()
 		if err != nil {
 			writeError(w, http.StatusNotFound, "combined lesson has not been built")
 			return
 		}
-		writeJSON(w, http.StatusOK, combinedOverview(lesson))
+		writeCacheableJSONBytes(w, r, combined.overviewBytes, combined.version, "combined-overview", "hit")
 	})
 
 	s.mux.HandleFunc("GET /api/combined-lesson/moves", func(w http.ResponseWriter, r *http.Request) {
-		lesson, err := s.loadCombinedLesson()
+		combined, err := s.loadCombinedLesson()
 		if err != nil {
 			writeError(w, http.StatusNotFound, "combined lesson has not been built")
 			return
 		}
 
-		maxMoves := maxCombinedMoveCount(lesson)
-		from := queryInt(r, "from", 0, 0, maxMoves)
+		from := queryInt(r, "from", 0, 0, combined.maxMoves)
 		limit := queryInt(r, "limit", 1, 1, 8)
-		writeJSON(w, http.StatusOK, combinedMoveWindow(lesson, from, limit, r.URL.Query().Get("phase")))
+		phase := r.URL.Query().Get("phase")
+		key := cacheutil.HashKey("combined-moves", phase, strconv.Itoa(from), strconv.Itoa(limit))
+		body, cacheState, err := combined.cachedWindowBytes(r.Context(), key, func() (any, error) {
+			return combinedMoveWindow(combined.lesson, from, limit, phase), nil
+		})
+		if err != nil {
+			writeError(w, http.StatusInternalServerError, "could not encode combined moves")
+			return
+		}
+		writeCacheableJSONBytes(w, r, body, combined.version, "combined-moves:"+key, cacheState)
 	})
 
 	s.mux.HandleFunc("POST /api/combined-lesson/next-steps", func(w http.ResponseWriter, r *http.Request) {
-		lesson, err := s.loadCombinedLesson()
+		combined, err := s.loadCombinedLesson()
 		if err != nil {
 			writeError(w, http.StatusNotFound, "combined lesson has not been built")
 			return
@@ -139,19 +211,27 @@ func (s *Server) routes() {
 			return
 		}
 
-		from := min(max(request.From, 0), maxCombinedMoveCount(lesson))
+		from := min(max(request.From, 0), combined.maxMoves)
 		limit := min(max(request.Limit, 1), 8)
-		writeJSON(w, http.StatusOK, combinedNextStepWindow(lesson, request.Phase, request.InitialFEN, request.Prefix, from, limit))
+		key := combinedNextStepsCacheKey(request, from, limit)
+		body, cacheState, err := combined.cachedWindowBytes(r.Context(), key, func() (any, error) {
+			return combinedNextStepWindow(combined.lesson, request.Phase, request.InitialFEN, request.Prefix, from, limit), nil
+		})
+		if err != nil {
+			writeError(w, http.StatusInternalServerError, "could not encode combined next steps")
+			return
+		}
+		writeVersionedJSONBytes(w, http.StatusOK, body, combined.version, cacheState)
 	})
 
 	s.mux.HandleFunc("GET /api/combined-lesson/lines/{id}/moves", func(w http.ResponseWriter, r *http.Request) {
-		lesson, err := s.loadCombinedLesson()
+		combined, err := s.loadCombinedLesson()
 		if err != nil {
 			writeError(w, http.StatusNotFound, "combined lesson has not been built")
 			return
 		}
 
-		line, ok := findCombinedLine(lesson, r.PathValue("id"))
+		line, ok := combined.byLineID[r.PathValue("id")]
 		if !ok {
 			writeError(w, http.StatusNotFound, "combined lesson line not found")
 			return
@@ -160,60 +240,119 @@ func (s *Server) routes() {
 		from := queryInt(r, "from", 0, 0, len(line.Moves))
 		limit := queryInt(r, "limit", 12, 1, 48)
 		to := min(from+limit, len(line.Moves))
-		writeJSON(w, http.StatusOK, combinedLineMoveWindow{
-			LineID:     line.ID,
-			Phase:      combinedLinePhase(lesson, line),
-			PieceCount: effectiveLinePieceCount(lesson, line),
-			From:       from,
-			Moves:      line.Moves[from:to],
-			TotalMoves: len(line.Moves),
+		key := cacheutil.HashKey("combined-line-moves", line.ID, strconv.Itoa(from), strconv.Itoa(limit))
+		body, cacheState, err := combined.cachedWindowBytes(r.Context(), key, func() (any, error) {
+			return combinedLineMoveWindow{
+				LineID:     line.ID,
+				Phase:      combinedLinePhase(combined.lesson, line),
+				PieceCount: effectiveLinePieceCount(combined.lesson, line),
+				From:       from,
+				Moves:      line.Moves[from:to],
+				TotalMoves: len(line.Moves),
+			}, nil
 		})
+		if err != nil {
+			writeError(w, http.StatusInternalServerError, "could not encode combined line moves")
+			return
+		}
+		writeCacheableJSONBytes(w, r, body, combined.version, "combined-line-moves:"+key, cacheState)
 	})
 
 	s.mux.HandleFunc("GET /api/lessons/{id}", func(w http.ResponseWriter, r *http.Request) {
-		lesson, ok := s.repository.Get(r.PathValue("id"))
+		id := r.PathValue("id")
+		body, ok, err := s.repository.LessonBytes(id)
+		if err != nil {
+			writeError(w, http.StatusInternalServerError, "could not encode lesson")
+			return
+		}
 		if !ok {
 			writeError(w, http.StatusNotFound, "lesson not found")
 			return
 		}
-		writeJSON(w, http.StatusOK, lesson)
+		writeCacheableJSONBytes(w, r, body, s.repository.Version(), "lesson:"+id, "hit")
 	})
 
-	s.mux.HandleFunc("POST /api/analyze", func(w http.ResponseWriter, r *http.Request) {
-		var request analysis.Request
-		if err := json.NewDecoder(r.Body).Decode(&request); err != nil {
-			writeError(w, http.StatusBadRequest, "invalid analyze request")
-			return
-		}
-		if strings.TrimSpace(request.FEN) == "" {
-			writeError(w, http.StatusBadRequest, "fen is required")
-			return
-		}
-		response, err := analysis.Analyze(r.Context(), request)
-		if err != nil {
-			status, message := analyzeErrorResponse(err)
-			writeError(w, status, message)
-			return
-		}
-		writeJSON(w, http.StatusOK, response)
-	})
+	s.mux.HandleFunc("POST /api/analyze", s.handleAnalyze)
+	s.mux.HandleFunc("POST /api/line-evaluation", s.handleLineEvaluation)
+	s.mux.HandleFunc("GET /api/opening", s.handleOpeningLookup)
 }
 
-func (s *Server) loadCombinedLesson() (lessons.Lesson, error) {
+func (s *Server) loadCombinedLesson() (*combinedLessonCache, error) {
 	s.combinedMu.Lock()
 	defer s.combinedMu.Unlock()
 
-	if s.combinedLoaded {
-		return s.combinedLesson, nil
+	if s.combinedCache != nil {
+		return s.combinedCache, nil
 	}
 
-	lesson, err := lessons.LoadLesson(lessons.DefaultCombinedDataPath())
+	lesson, version, err := lessons.LoadLessonWithVersion(lessons.DefaultCombinedDataPath())
 	if err != nil {
-		return lessons.Lesson{}, err
+		return nil, err
 	}
-	s.combinedLesson = lesson
-	s.combinedLoaded = true
-	return lesson, nil
+	cache, err := newCombinedLessonCache(lesson, version)
+	if err != nil {
+		return nil, err
+	}
+	s.combinedCache = cache
+	return s.combinedCache, nil
+}
+
+func newCombinedLessonCache(lesson lessons.Lesson, version cacheutil.DataVersion) (*combinedLessonCache, error) {
+	overview := combinedOverview(lesson)
+	overviewBytes, err := json.Marshal(overview)
+	if err != nil {
+		return nil, err
+	}
+
+	return &combinedLessonCache{
+		lesson:        lesson,
+		version:       version,
+		overview:      overview,
+		overviewBytes: overviewBytes,
+		byLineID:      combinedLineIndex(lesson),
+		maxMoves:      maxCombinedMoveCount(lesson),
+		windowBytes:   cacheutil.NewByteCache(512),
+		inFlight:      cacheutil.NewGroup[[]byte](),
+	}, nil
+}
+
+func (cache *combinedLessonCache) cachedWindowBytes(ctx context.Context, key string, build func() (any, error)) ([]byte, string, error) {
+	if body, ok := cache.windowBytes.Get(key); ok {
+		return body, "hit", nil
+	}
+
+	body, shared, err := cache.inFlight.Do(ctx, key, func() ([]byte, error) {
+		if body, ok := cache.windowBytes.Get(key); ok {
+			return body, nil
+		}
+
+		value, err := build()
+		if err != nil {
+			return nil, err
+		}
+		body, err := json.Marshal(value)
+		if err != nil {
+			return nil, err
+		}
+		cache.windowBytes.Set(key, body)
+		return body, nil
+	})
+	if err != nil {
+		return nil, "miss", err
+	}
+	if shared {
+		return body, "coalesced", nil
+	}
+
+	return body, "miss", nil
+}
+
+func combinedLineIndex(lesson lessons.Lesson) map[string]lessons.Line {
+	byID := make(map[string]lessons.Line, len(lesson.Lines))
+	for _, line := range lesson.Lines {
+		byID[line.ID] = line
+	}
+	return byID
 }
 
 func combinedOverview(lesson lessons.Lesson) combinedLessonOverview {
@@ -238,15 +377,6 @@ func combinedOverview(lesson lessons.Lesson) combinedLessonOverview {
 		Lines:      lines,
 		Choice:     lesson.Choice,
 	}
-}
-
-func findCombinedLine(lesson lessons.Lesson, lineID string) (lessons.Line, bool) {
-	for _, line := range lesson.Lines {
-		if line.ID == lineID {
-			return line, true
-		}
-	}
-	return lessons.Line{}, false
 }
 
 func maxCombinedMoveCount(lesson lessons.Lesson) int {
@@ -294,6 +424,34 @@ func combinedNextStepWindow(lesson lessons.Lesson, phase string, initialFEN stri
 		Limit: limit,
 		Lines: lines,
 	}
+}
+
+func combinedNextStepsCacheKey(request combinedNextStepsRequest, from int, limit int) string {
+	return cacheutil.HashKey(
+		"combined-next-steps",
+		request.Phase,
+		request.InitialFEN,
+		strconv.Itoa(from),
+		strconv.Itoa(limit),
+		movePrefixSignature(request.Prefix),
+	)
+}
+
+func movePrefixSignature(prefix []lessons.Move) string {
+	var builder strings.Builder
+	for _, move := range prefix {
+		builder.WriteString(move.Side)
+		builder.WriteByte(':')
+		builder.WriteString(strconv.Itoa(move.From.File))
+		builder.WriteByte(',')
+		builder.WriteString(strconv.Itoa(move.From.Rank))
+		builder.WriteString(">")
+		builder.WriteString(strconv.Itoa(move.To.File))
+		builder.WriteByte(',')
+		builder.WriteString(strconv.Itoa(move.To.Rank))
+		builder.WriteByte(';')
+	}
+	return builder.String()
 }
 
 func lineHasMovePrefix(line lessons.Line, prefix []lessons.Move) bool {
@@ -413,10 +571,236 @@ func analyzeErrorResponse(err error) (int, string) {
 	return http.StatusBadGateway, "Engine không thể phân tích vị trí hiện tại."
 }
 
+type analyzeAPIRequest struct {
+	FEN        string   `json:"fen"`
+	SideToMove string   `json:"sideToMove"`
+	NextMove   *struct {
+		Side string `json:"side"`
+		From struct {
+			File int `json:"file"`
+			Rank int `json:"rank"`
+		} `json:"from"`
+		To struct {
+			File int `json:"file"`
+			Rank int `json:"rank"`
+		} `json:"to"`
+	} `json:"nextMove,omitempty"`
+	TimeMS int      `json:"timeMs,omitempty"`
+	Depth  int      `json:"depth,omitempty"`
+	Engines []string `json:"engines,omitempty"`
+}
+
+type analyzeEngineResult struct {
+	engine.Response
+	CacheStatus string `json:"-"`
+	Error       string `json:"error,omitempty"`
+}
+
+type analyzeAPIResponse struct {
+	Primary   *analyzeEngineResult  `json:"primary,omitempty"`
+	Secondary *analyzeEngineResult  `json:"secondary,omitempty"`
+	Engines   []string              `json:"engines"`
+	Agreement string                `json:"agreement,omitempty"`
+	AgreementMove string            `json:"agreementMove,omitempty"`
+}
+
+func (s *Server) handleAnalyze(w http.ResponseWriter, r *http.Request) {
+	var request analyzeAPIRequest
+	if err := json.NewDecoder(r.Body).Decode(&request); err != nil {
+		writeError(w, http.StatusBadRequest, "invalid analyze request")
+		return
+	}
+	if strings.TrimSpace(request.FEN) == "" {
+		writeError(w, http.StatusBadRequest, "fen is required")
+		return
+	}
+
+	engineRequest := engine.Request{
+		FEN:        request.FEN,
+		SideToMove: request.SideToMove,
+		TimeMS:     request.TimeMS,
+		Depth:      request.Depth,
+	}
+	if request.NextMove != nil {
+		engineRequest.NextMove = &engine.Move{
+			From: engine.Coordinate{File: request.NextMove.From.File, Rank: request.NextMove.From.Rank},
+			To:   engine.Coordinate{File: request.NextMove.To.File, Rank: request.NextMove.To.Rank},
+		}
+	}
+
+	sources := resolveEngineSources(s.engines, request.Engines)
+	if len(sources) == 0 {
+		writeError(w, http.StatusServiceUnavailable, "Engine phân tích chưa được cấu hình.")
+		return
+	}
+
+	results := make(map[engine.Source]analyzeEngineResult)
+	var firstErr error
+	for _, source := range sources {
+		adapter := s.engines.Get(source)
+		if adapter == nil {
+			continue
+		}
+		response, err := adapter.Analyze(r.Context(), engineRequest)
+		result := analyzeEngineResult{Response: response}
+		if err != nil {
+			result.Error = err.Error()
+			if firstErr == nil {
+				firstErr = err
+			}
+		}
+		results[source] = result
+	}
+
+	payload := analyzeAPIResponse{Engines: sourcesToNames(sources)}
+	if primary, ok := results[engine.SourcePikafish]; ok {
+		primaryCopy := primary
+		payload.Primary = &primaryCopy
+	} else if primary, ok := results[sources[0]]; ok {
+		primaryCopy := primary
+		payload.Primary = &primaryCopy
+	}
+	if secondarySource, ok := findSecondary(sources, engine.SourcePikafish); ok {
+		if secondary, ok := results[secondarySource]; ok {
+			secondaryCopy := secondary
+			payload.Secondary = &secondaryCopy
+		}
+	}
+
+	if payload.Primary != nil && payload.Secondary != nil {
+		agreement, move := compareAgreements(payload.Primary.BestMove, payload.Secondary.BestMove)
+		payload.Agreement = agreement
+		payload.AgreementMove = move
+	}
+
+	// When the only engine requested fails, surface the upstream error status
+	// so single-engine callers (and existing tests) keep their previous contract.
+	if firstErr != nil && (payload.Primary == nil || (len(sources) == 1 && payload.Primary.Error != "")) {
+		status, message := analyzeErrorResponse(firstErr)
+		writeError(w, status, message)
+		return
+	}
+
+	if payload.Primary != nil && payload.Primary.Error != "" {
+		w.Header().Set("X-Cache", "miss")
+	}
+
+	writeJSON(w, http.StatusOK, payload)
+}
+
+func resolveEngineSources(registry *engine.Registry, requested []string) []engine.Source {
+	if len(requested) == 0 {
+		// Default: primary only.
+		primary, ok := registry.Primary()
+		if !ok {
+			return nil
+		}
+		return []engine.Source{primary.Source()}
+	}
+	sources := make([]engine.Source, 0, len(requested))
+	for _, name := range requested {
+		source := engine.Source(strings.ToLower(strings.TrimSpace(name)))
+		if registry.Get(source) == nil {
+			continue
+		}
+		sources = append(sources, source)
+	}
+	return sources
+}
+
+func sourcesToNames(sources []engine.Source) []string {
+	names := make([]string, 0, len(sources))
+	for _, source := range sources {
+		names = append(names, string(source))
+	}
+	return names
+}
+
+func findSecondary(sources []engine.Source, primary engine.Source) (engine.Source, bool) {
+	priority := []engine.Source{engine.SourceFairyStockfish, engine.SourcePikafish}
+	for _, candidate := range priority {
+		if candidate == primary {
+			continue
+		}
+		for _, source := range sources {
+			if source == candidate {
+				return candidate, true
+			}
+		}
+	}
+	for _, source := range sources {
+		if source != primary {
+			return source, true
+		}
+	}
+	return "", false
+}
+
+func compareAgreements(primary *engine.Move, secondary *engine.Move) (string, string) {
+	if primary == nil || secondary == nil {
+		return "indeterminate", ""
+	}
+	if primary.Notation == secondary.Notation {
+		return "same", primary.Notation
+	}
+	return "different", ""
+}
+
 func writeJSON(w http.ResponseWriter, status int, value any) {
 	w.Header().Set("Content-Type", "application/json; charset=utf-8")
 	w.WriteHeader(status)
 	_ = json.NewEncoder(w).Encode(value)
+}
+
+func writeCacheableJSONBytes(w http.ResponseWriter, r *http.Request, body []byte, version cacheutil.DataVersion, scope string, cacheStatus string) {
+	w.Header().Set("Content-Type", "application/json; charset=utf-8")
+	w.Header().Set("Cache-Control", "public, max-age=0, must-revalidate")
+	setVersionHeaders(w, version)
+	if cacheStatus != "" {
+		w.Header().Set("X-Cache", cacheStatus)
+	}
+
+	if etag := version.ETag(scope); etag != "" {
+		w.Header().Set("ETag", etag)
+		if matchesETag(r.Header.Get("If-None-Match"), etag) {
+			w.Header().Set("X-Cache", "revalidate")
+			w.WriteHeader(http.StatusNotModified)
+			return
+		}
+	}
+
+	w.WriteHeader(http.StatusOK)
+	_, _ = w.Write(body)
+}
+
+func writeVersionedJSONBytes(w http.ResponseWriter, status int, body []byte, version cacheutil.DataVersion, cacheStatus string) {
+	w.Header().Set("Content-Type", "application/json; charset=utf-8")
+	setVersionHeaders(w, version)
+	if cacheStatus != "" {
+		w.Header().Set("X-Cache", cacheStatus)
+	}
+	w.WriteHeader(status)
+	_, _ = w.Write(body)
+}
+
+func setVersionHeaders(w http.ResponseWriter, version cacheutil.DataVersion) {
+	if version.Value == "" {
+		return
+	}
+	w.Header().Set("X-Data-Version", version.Value)
+	if !version.LastModified.IsZero() {
+		w.Header().Set("Last-Modified", version.LastModified.Format(http.TimeFormat))
+	}
+}
+
+func matchesETag(header string, etag string) bool {
+	for _, value := range strings.Split(header, ",") {
+		value = strings.TrimSpace(value)
+		if value == "*" || value == etag {
+			return true
+		}
+	}
+	return false
 }
 
 func writeError(w http.ResponseWriter, status int, message string) {

@@ -78,6 +78,55 @@ func TestCombinedLessonEndpointLoadsBuiltArtifact(t *testing.T) {
 	}
 }
 
+func TestCombinedLessonEndpointUsesConditionalCache(t *testing.T) {
+	path := filepath.Join(t.TempDir(), "combined-lesson.json")
+	body := []byte(`{
+		"id": "7d75cc2b-a793-59ec-a71c-26fd9e172372",
+		"title": "Tổng hợp toàn bộ lesson",
+		"category": "Tổng hợp",
+		"difficulty": "Tất cả",
+		"lines": [],
+		"choice": { "prompt": "", "options": [] }
+	}`)
+	if err := os.WriteFile(path, body, 0o644); err != nil {
+		t.Fatalf("write combined lesson: %v", err)
+	}
+	t.Setenv("COMBINED_LESSON_FILE", path)
+
+	server := NewServer(nil)
+	firstRequest := httptest.NewRequest(http.MethodGet, "/api/combined-lesson", nil)
+	firstResponse := httptest.NewRecorder()
+
+	server.ServeHTTP(firstResponse, firstRequest)
+
+	if firstResponse.Code != http.StatusOK {
+		t.Fatalf("first status = %d, want %d; body = %s", firstResponse.Code, http.StatusOK, firstResponse.Body.String())
+	}
+	etag := firstResponse.Header().Get("ETag")
+	if etag == "" {
+		t.Fatal("expected ETag header")
+	}
+	if firstResponse.Header().Get("X-Data-Version") == "" {
+		t.Fatal("expected X-Data-Version header")
+	}
+
+	secondRequest := httptest.NewRequest(http.MethodGet, "/api/combined-lesson", nil)
+	secondRequest.Header.Set("If-None-Match", etag)
+	secondResponse := httptest.NewRecorder()
+
+	server.ServeHTTP(secondResponse, secondRequest)
+
+	if secondResponse.Code != http.StatusNotModified {
+		t.Fatalf("second status = %d, want %d; body = %s", secondResponse.Code, http.StatusNotModified, secondResponse.Body.String())
+	}
+	if secondResponse.Body.Len() != 0 {
+		t.Fatalf("304 response should not include a body: %q", secondResponse.Body.String())
+	}
+	if secondResponse.Header().Get("X-Cache") != "revalidate" {
+		t.Fatalf("X-Cache = %q, want revalidate", secondResponse.Header().Get("X-Cache"))
+	}
+}
+
 func TestCombinedLessonEndpointUsesDefaultFENForOpeningRoot(t *testing.T) {
 	path := filepath.Join(t.TempDir(), "combined-lesson.json")
 	body := []byte(`{

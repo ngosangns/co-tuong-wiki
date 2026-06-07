@@ -7,11 +7,22 @@ import (
 	"path/filepath"
 	"runtime"
 	"strings"
+	"sync"
+
+	"co-tuong-wiki-api/internal/cacheutil"
 )
 
 type Repository struct {
-	lessons []Lesson
-	byID    map[string]Lesson
+	lessons        []Lesson
+	byID           map[string]Lesson
+	summaries      []Summary
+	categories     []string
+	version        cacheutil.DataVersion
+	categoriesJSON []byte
+
+	mu         sync.RWMutex
+	listJSON   map[string][]byte
+	lessonJSON map[string][]byte
 }
 
 func DefaultDataPath() string {
@@ -49,24 +60,29 @@ func defaultLessonsDataPath(fileName string) string {
 }
 
 func LoadLesson(path string) (Lesson, error) {
-	data, err := os.ReadFile(path)
+	lesson, _, err := LoadLessonWithVersion(path)
+	return lesson, err
+}
+
+func LoadLessonWithVersion(path string) (Lesson, cacheutil.DataVersion, error) {
+	data, version, err := cacheutil.ReadFileWithVersion(path)
 	if err != nil {
-		return Lesson{}, err
+		return Lesson{}, cacheutil.DataVersion{}, err
 	}
 
 	var lesson Lesson
 	if err := json.Unmarshal(data, &lesson); err != nil {
-		return Lesson{}, err
+		return Lesson{}, cacheutil.DataVersion{}, err
 	}
 	if lesson.ID == "" {
-		return Lesson{}, errors.New("lesson id is required")
+		return Lesson{}, cacheutil.DataVersion{}, errors.New("lesson id is required")
 	}
 
-	return lesson, nil
+	return lesson, version, nil
 }
 
 func LoadRepository(path string) (*Repository, error) {
-	data, err := os.ReadFile(path)
+	data, version, err := cacheutil.ReadFileWithVersion(path)
 	if err != nil {
 		return nil, err
 	}
@@ -77,10 +93,15 @@ func LoadRepository(path string) (*Repository, error) {
 	}
 
 	repo := &Repository{
-		lessons: loaded,
-		byID:    make(map[string]Lesson, len(loaded)),
+		lessons:    loaded,
+		byID:       make(map[string]Lesson, len(loaded)),
+		summaries:  make([]Summary, 0, len(loaded)),
+		version:    version,
+		listJSON:   map[string][]byte{},
+		lessonJSON: map[string][]byte{},
 	}
 
+	seenCategories := map[string]bool{}
 	for _, lesson := range loaded {
 		if lesson.ID == "" {
 			return nil, errors.New("lesson id is required")
@@ -89,7 +110,23 @@ func LoadRepository(path string) (*Repository, error) {
 			return nil, errors.New("duplicate lesson id: " + lesson.ID)
 		}
 		repo.byID[lesson.ID] = lesson
+		repo.summaries = append(repo.summaries, Summary{
+			ID:         lesson.ID,
+			Title:      lesson.Title,
+			Category:   lesson.Category,
+			Difficulty: lesson.Difficulty,
+		})
+		if !seenCategories[lesson.Category] {
+			seenCategories[lesson.Category] = true
+			repo.categories = append(repo.categories, lesson.Category)
+		}
 	}
+
+	categoriesJSON, err := json.Marshal(repo.categories)
+	if err != nil {
+		return nil, err
+	}
+	repo.categoriesJSON = categoriesJSON
 
 	return repo, nil
 }
@@ -99,23 +136,18 @@ func (r *Repository) List(category string, query string, difficulty string) []Su
 	query = strings.TrimSpace(strings.ToLower(query))
 	difficulty = strings.TrimSpace(strings.ToLower(difficulty))
 
-	summaries := make([]Summary, 0, len(r.lessons))
-	for _, lesson := range r.lessons {
-		if category != "" && strings.ToLower(lesson.Category) != category {
+	summaries := make([]Summary, 0, len(r.summaries))
+	for _, summary := range r.summaries {
+		if category != "" && strings.ToLower(summary.Category) != category {
 			continue
 		}
-		if difficulty != "" && strings.ToLower(lesson.Difficulty) != difficulty {
+		if difficulty != "" && strings.ToLower(summary.Difficulty) != difficulty {
 			continue
 		}
-		if query != "" && !lessonMatchesQuery(lesson, query) {
+		if query != "" && !summaryMatchesQuery(summary, query) {
 			continue
 		}
-		summaries = append(summaries, Summary{
-			ID:         lesson.ID,
-			Title:      lesson.Title,
-			Category:   lesson.Category,
-			Difficulty: lesson.Difficulty,
-		})
+		summaries = append(summaries, summary)
 	}
 
 	return summaries
@@ -127,25 +159,77 @@ func (r *Repository) Get(id string) (Lesson, bool) {
 }
 
 func (r *Repository) Categories() []string {
-	seen := map[string]bool{}
-	categories := make([]string, 0)
-
-	for _, lesson := range r.lessons {
-		if seen[lesson.Category] {
-			continue
-		}
-		seen[lesson.Category] = true
-		categories = append(categories, lesson.Category)
-	}
-
-	return categories
+	return append([]string(nil), r.categories...)
 }
 
-func lessonMatchesQuery(lesson Lesson, query string) bool {
+func (r *Repository) Version() cacheutil.DataVersion {
+	return r.version
+}
+
+func (r *Repository) CategoriesBytes() []byte {
+	return append([]byte(nil), r.categoriesJSON...)
+}
+
+func (r *Repository) ListBytes(category string, query string, difficulty string) ([]byte, error) {
+	key := cacheutil.HashKey(category, query, difficulty)
+
+	r.mu.RLock()
+	if body, ok := r.listJSON[key]; ok {
+		r.mu.RUnlock()
+		return append([]byte(nil), body...), nil
+	}
+	r.mu.RUnlock()
+
+	body, err := json.Marshal(r.List(category, query, difficulty))
+	if err != nil {
+		return nil, err
+	}
+
+	r.mu.Lock()
+	if cached, ok := r.listJSON[key]; ok {
+		r.mu.Unlock()
+		return append([]byte(nil), cached...), nil
+	}
+	r.listJSON[key] = append([]byte(nil), body...)
+	r.mu.Unlock()
+
+	return body, nil
+}
+
+func (r *Repository) LessonBytes(id string) ([]byte, bool, error) {
+	r.mu.RLock()
+	if body, ok := r.lessonJSON[id]; ok {
+		r.mu.RUnlock()
+		return append([]byte(nil), body...), true, nil
+	}
+	r.mu.RUnlock()
+
+	lesson, ok := r.Get(id)
+	if !ok {
+		return nil, false, nil
+	}
+
+	body, err := json.Marshal(lesson)
+	if err != nil {
+		return nil, false, err
+	}
+
+	r.mu.Lock()
+	if cached, ok := r.lessonJSON[id]; ok {
+		r.mu.Unlock()
+		return append([]byte(nil), cached...), true, nil
+	}
+	r.lessonJSON[id] = append([]byte(nil), body...)
+	r.mu.Unlock()
+
+	return body, true, nil
+}
+
+func summaryMatchesQuery(summary Summary, query string) bool {
 	haystack := strings.ToLower(strings.Join([]string{
-		lesson.Title,
-		lesson.Category,
-		lesson.Difficulty,
+		summary.Title,
+		summary.Category,
+		summary.Difficulty,
 	}, " "))
 
 	return strings.Contains(haystack, query)

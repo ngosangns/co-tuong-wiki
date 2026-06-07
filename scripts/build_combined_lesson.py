@@ -66,7 +66,9 @@ def build_combined_lesson(lessons: list[dict[str, Any]], lesson_id: str, title: 
     combined_lines: list[dict[str, Any]] = []
     source_lessons = 0
     source_lines = 0
+    playable_source_lines = 0
     source_moves = 0
+    skipped_empty_lines = 0
     generated_move_ids: set[str] = set()
 
     for lesson_index, lesson in enumerate(lessons, start=1):
@@ -85,10 +87,15 @@ def build_combined_lesson(lessons: list[dict[str, Any]], lesson_id: str, title: 
                 raise SystemExit(2)
 
             line_id_source = require_string(line.get("id"), "id", f"lesson {lesson_id_source} line #{line_index}")
+            source_lines += 1
             moves = line.get("moves")
             if not isinstance(moves, list):
                 print(f"ERROR: lesson {lesson_id_source} line {line_id_source} moves must be an array", file=sys.stderr)
                 raise SystemExit(2)
+            if not moves:
+                # Empty imported lessons are useful in the catalog, but the combined graph only renders playable lines.
+                skipped_empty_lines += 1
+                continue
 
             combined_moves = []
             for move_index, move in enumerate(moves, start=1):
@@ -115,7 +122,7 @@ def build_combined_lesson(lessons: list[dict[str, Any]], lesson_id: str, title: 
                 next_line["initialFen"] = lesson_initial_fen.strip()
 
             combined_lines.append(next_line)
-            source_lines += 1
+            playable_source_lines += 1
             source_moves += len(combined_moves)
 
     combined = {
@@ -133,10 +140,12 @@ def build_combined_lesson(lessons: list[dict[str, Any]], lesson_id: str, title: 
     report = {
         "source_lessons": source_lessons,
         "source_lines": source_lines,
+        "playable_source_lines": playable_source_lines,
         "source_moves": source_moves,
         "combined_lines": len(combined_lines),
         "combined_moves": sum(len(line["moves"]) for line in combined_lines),
         "line_level_initial_fen": sum(1 for line in combined_lines if "initialFen" in line),
+        "skipped_empty_lines": skipped_empty_lines,
     }
     return combined, report
 

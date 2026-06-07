@@ -1,110 +1,137 @@
 <script setup lang="ts">
-import { BookOpen, ChevronDown, ChevronLeft, ChevronRight, CircleAlert, GitBranch, Lightbulb, Search, ShieldCheck } from '@lucide/vue'
-import { computed, onMounted, ref } from 'vue'
+import { ref } from 'vue'
 import CombinedLessonPage from './components/CombinedLessonPage.vue'
-import EvaluationPanel from './components/EvaluationPanel.vue'
+import EvalChart from './components/EvalChart.vue'
+import LibraryPanel from './components/LibraryPanel.vue'
+import LessonBoardStage from './components/LessonBoardStage.vue'
+import LessonInspectorPanel from './components/LessonInspectorPanel.vue'
+import LessonMobileDock from './components/LessonMobileDock.vue'
+import LessonMobileTabs from './components/LessonMobileTabs.vue'
+import LessonTopbar from './components/LessonTopbar.vue'
+import MoveBreadcrumb from './components/MoveBreadcrumb.vue'
 import MoveGraph from './components/MoveGraph.vue'
-import XiangqiBoard from './components/XiangqiBoard.vue'
-import { useLessonPlayer } from './composables/useLessonPlayer'
-import { useLessons } from './composables/useLessons'
-import { useMoveEvaluation } from './composables/useMoveEvaluation'
-import { lessonPrincipleGroups } from './content/principles'
-import { moveSignature, nextMoveTargetsForActiveNode } from './core/movePreview'
+import MoveMinimap from './components/MoveMinimap.vue'
+import { useLessonWorkspace } from './composables/useLessonWorkspace'
 import type { LessonMove } from './core/xiangqi'
-import type { Lesson } from './api/types'
 
-const emptyLesson: Lesson = {
-  id: '',
-  title: 'Đang tải bài học',
-  category: '',
-  difficulty: '',
-  initialFen: undefined,
-  lines: [],
-  choice: {
-    prompt: '',
-    options: [],
-  },
-}
-
+const workspace = useLessonWorkspace()
 const {
   activeCategory,
-  activeLesson,
   activeLessonId,
+  activeMoveComment,
+  activeMobileTab,
+  canGoNext,
+  canGoPrevious,
   categoryStats,
+  choiceFeedback,
   errorMessage,
-  isCategoryExpanded,
+  goToGraphMove,
+  goToPreviewMove,
+  isCombinedPage,
   isLoading,
-  loadCatalog,
-  selectLesson,
+  isPrinciplesExpanded,
+  isSidebarOpen,
+  lesson,
+  mobileTabs,
+  moveEvaluation,
+  nextMovePreviews,
+  player,
+  principleCount,
+  selectLessonAndResetTab,
+  shouldShowChoice,
   summaries,
   toggleCategory,
-} = useLessons()
-const lesson = computed(() => activeLesson.value ?? emptyLesson)
-const player = useLessonPlayer(lesson)
-const moveEvaluation = useMoveEvaluation(player)
-const isPrinciplesExpanded = ref(true)
-const isCombinedPage = ref(window.location.pathname.replace(/\/$/, '') === '/combined')
-const principleCount = computed(() => lessonPrincipleGroups.reduce((count, group) => count + group.items.length, 0))
+  togglePrinciples,
+  toggleSidebar,
+  visibleChoiceOptions,
+} = workspace
 
-const choicePromptPly = computed(() => {
-  const choiceMoveIds = new Set(lesson.value.choice.options.map((option) => option.moveId))
-  const optionIndexes = lesson.value.lines
-    .flatMap((line) => (line.moves ?? []).map((move, index) => (choiceMoveIds.has(move.id) ? index : -1)))
-    .filter((index) => index >= 0)
+const showEngineSuggestion = ref(false)
+const engineBestMove = ref<LessonMove | null>(null)
 
-  return optionIndexes.length ? Math.min(...optionIndexes) : -1
-})
-
-const visibleChoiceOptions = computed(() => {
-  if (choicePromptPly.value < 0) return []
-
-  const moveIdsAtPrompt = new Set(
-    lesson.value.lines.map((line) => line.moves?.[choicePromptPly.value]?.id).filter((moveId): moveId is string => Boolean(moveId)),
-  )
-
-  return lesson.value.choice.options.filter((option) => moveIdsAtPrompt.has(option.moveId))
-})
-const shouldShowChoice = computed(
-  () => lesson.value.choice.prompt && player.activeMoveIndex.value === choicePromptPly.value && visibleChoiceOptions.value.length > 1,
-)
-const choiceFeedback = computed(() => player.selectedChoice.value)
-const activeMoveComment = computed(() => player.currentMove.value?.comment ?? '')
-const nextMoveTargets = computed(() =>
-  nextMoveTargetsForActiveNode({
-    lines: lesson.value.lines,
-    activeLine: player.activeLine.value,
-    activeMoveIndex: player.activeMoveIndex.value,
-    lessonInitialFen: lesson.value.initialFen,
-  }),
-)
-const nextMovePreviews = computed(() => nextMoveTargets.value.map((target) => target.move))
-const canGoPrevious = computed(() => player.activeMoveIndex.value > 0)
-const canGoNext = computed(() => player.activeMoveIndex.value < player.activeMoves.value.length)
-
-function goToGraphMove(lineId: string, index: number) {
-  player.setLine(lineId)
-  player.goToMove(index)
-}
-
-function goToPreviewMove(move: LessonMove) {
-  const target = nextMoveTargets.value.find((item) => moveSignature(item.move) === moveSignature(move))
-  if (!target) return
-
-  goToGraphMove(target.lineId, player.activeMoveIndex.value + 1)
-}
-
-function lessonsForCategory(category: string) {
-  return summaries.value.filter((item) => item.category === category)
-}
-
-onMounted(() => {
-  if (!isCombinedPage.value) {
-    loadCatalog()
+function onEngineBestMove(
+  notation: {
+    from: { file: number; rank: number }
+    to: { file: number; rank: number }
+    side: 'red' | 'black'
+    uci: string
+  } | null,
+) {
+  if (!notation) {
+    engineBestMove.value = null
+    return
   }
-})
+  engineBestMove.value = {
+    id: `engine-${notation.uci}`,
+    side: notation.side,
+    from: notation.from,
+    to: notation.to,
+    comment: 'Engine suggestion (so sánh)',
+  }
+}
+
+function onSelectEngineMove() {
+  const suggestion = engineBestMove.value
+  if (!suggestion) return
+  for (const line of lesson.value.lines) {
+    const moves = line.moves ?? []
+    const next = moves[player.activeMoveIndex.value]
+    if (
+      next &&
+      next.from.file === suggestion.from.file &&
+      next.from.rank === suggestion.from.rank &&
+      next.to.file === suggestion.to.file &&
+      next.to.rank === suggestion.to.rank
+    ) {
+      player.setLine(line.id)
+      player.goToMove(player.activeMoveIndex.value + 1)
+      return
+    }
+  }
+  goToPreviewMove(suggestion)
+}
+
+function openGraph() {
+  activeMobileTab.value = 'graph'
+}
+
+function playOpeningMove(notation: {
+  from: { file: number; rank: number }
+  to: { file: number; rank: number }
+  notation: string
+}) {
+  // Walk any line whose next ply matches the move coordinates.
+  for (const line of lesson.value.lines) {
+    const moves = line.moves ?? []
+    const next = moves[player.activeMoveIndex.value]
+    if (
+      next &&
+      next.from.file === notation.from.file &&
+      next.from.rank === notation.from.rank &&
+      next.to.file === notation.to.file &&
+      next.to.rank === notation.to.rank
+    ) {
+      player.setLine(line.id)
+      player.goToMove(player.activeMoveIndex.value + 1)
+      return
+    }
+  }
+  // Fallback: synthesize a LessonMove from the suggestion and re-use the
+  // existing preview-jump path. This also covers cases where the lesson
+  // does not include the opening move but the user wants to advance the ply.
+  const syntheticMove = {
+    id: `opening-${notation.from.file},${notation.from.rank}-${notation.to.file},${notation.to.rank}`,
+    side: player.activeMoves.value[player.activeMoveIndex.value - 1]?.side === 'red' ? 'black' : 'red',
+    from: notation.from,
+    to: notation.to,
+    comment: '',
+  } as LessonMove
+  goToPreviewMove(syntheticMove)
+}
 </script>
 
 <template>
+  <a class="skip-link" href="#board-stage">Bỏ qua đến bàn cờ</a>
   <CombinedLessonPage v-if="isCombinedPage" />
   <main v-else>
     <div v-if="errorMessage || isLoading" class="app-status" role="status">
@@ -112,139 +139,69 @@ onMounted(() => {
     </div>
 
     <div class="app-shell">
-      <aside class="library-panel">
-        <div class="brand-lockup">
-          <div class="brand-mark">象</div>
-          <div>
-            <p class="eyebrow">Cờ Tướng Wiki</p>
-            <h1>Học bằng thế cờ thật</h1>
-          </div>
-        </div>
+      <div v-if="isSidebarOpen" class="sidebar-overlay" @click="isSidebarOpen = false"></div>
 
-        <label class="search-box">
-          <Search :size="18" aria-hidden="true" />
-          <input type="search" placeholder="Tìm khai cuộc, cạm bẫy..." />
-        </label>
+      <LibraryPanel
+        :is-open="isSidebarOpen"
+        :lesson-title="lesson.title"
+        :category-stats="categoryStats"
+        :active-category="activeCategory"
+        :active-lesson-id="activeLessonId"
+        :summaries="summaries"
+        :is-category-expanded="(category) => workspace.isCategoryExpanded(category)"
+        @toggle="toggleSidebar"
+        @close="isSidebarOpen = false"
+        @select-lesson="selectLessonAndResetTab"
+        @toggle-category="toggleCategory"
+      />
 
-        <a class="combined-nav-link" href="/combined">
-          <GitBranch :size="18" aria-hidden="true" />
-          <span>Tổng hợp toàn bộ lesson</span>
-        </a>
+      <LessonTopbar :title="lesson.title" :category="lesson.category" :difficulty="lesson.difficulty" />
 
-        <section class="topic-list" aria-label="Chủ đề và bài học">
-          <div v-for="category in categoryStats" :key="category.name" class="topic-group">
-            <button
-              class="topic"
-              :class="{ active: activeCategory === category.name, expanded: isCategoryExpanded(category.name) }"
-              type="button"
-              :aria-expanded="isCategoryExpanded(category.name)"
-              @click="toggleCategory(category.name)"
-            >
-              <BookOpen :size="18" aria-hidden="true" />
-              <span>{{ category.name }}</span>
-              <small>{{ category.count }}</small>
-            </button>
-
-            <div v-if="isCategoryExpanded(category.name)" class="lesson-child-list">
-              <button
-                v-for="(item, lessonIndex) in lessonsForCategory(category.name)"
-                :key="item.id"
-                type="button"
-                class="lesson-child"
-                :class="{ active: activeLessonId === item.id }"
-                @click="selectLesson(item.id)"
-              >
-                <small class="lesson-child-index">{{ lessonIndex + 1 }}</small>
-                <span>{{ item.title }}</span>
-              </button>
-            </div>
-          </div>
-        </section>
-      </aside>
-
-      <section class="lesson-topbar" aria-label="Bài học">
-        <article class="wiki-article">
-          <p class="eyebrow">{{ lesson.category }} · {{ lesson.difficulty }}</p>
-          <h2>{{ lesson.title }}</h2>
-        </article>
-
+      <section class="breadcrumb-row" aria-label="Đường đi nước cờ hiện tại">
+        <MoveBreadcrumb
+          :lines="lesson.lines"
+          :active-line-id="player.activeLineId.value"
+          :active-move-index="player.activeMoveIndex.value"
+          :initial-fen="lesson.initialFen"
+          @select-move="goToGraphMove"
+        />
       </section>
 
       <section class="board-panel" aria-label="Bàn học">
-        <section class="board-stage" aria-label="Bàn cờ và các bước nước đi">
-          <XiangqiBoard
-            :board="player.board.value"
-            :current-move="player.currentMove.value"
-            :preview-moves="nextMovePreviews"
-            @select-preview-move="goToPreviewMove"
+        <LessonBoardStage
+          v-show="activeMobileTab === 'board'"
+          :lesson="lesson"
+          :board="player.board.value"
+          :current-move="player.currentMove.value"
+          :next-move-previews="nextMovePreviews"
+          :engine-suggestion="engineBestMove"
+          :move-evaluation="moveEvaluation"
+          :active-move-comment="activeMoveComment"
+          :active-move-index="player.activeMoveIndex.value"
+          :can-go-previous="canGoPrevious"
+          :can-go-next="canGoNext"
+          :should-show-choice="shouldShowChoice"
+          :visible-choice-options="visibleChoiceOptions"
+          :choice-feedback="choiceFeedback"
+          @select-preview-move="goToPreviewMove"
+          @select-engine-move="onSelectEngineMove"
+          @swipe-left="player.next"
+          @swipe-right="player.previous"
+          @previous="player.previous"
+          @next="player.next"
+          @choose-move="player.chooseMove"
+          @play-opening="playOpeningMove"
+        />
+
+        <section class="board-side-panel desktop-only" aria-label="Điều khiển và phản hồi bài học">
+          <MoveMinimap
+            :lines="lesson.lines"
+            :active-line-id="player.activeLineId.value"
+            :active-move-index="player.activeMoveIndex.value"
+            :initial-fen="lesson.initialFen"
+            @select-move="goToGraphMove"
+            @open-graph="openGraph"
           />
-
-          <EvaluationPanel
-            compact
-            :status="moveEvaluation.status.value"
-            :board="player.board.value"
-            :evaluation="moveEvaluation.evaluation.value"
-            :next-move="moveEvaluation.nextMove.value"
-            :error-message="moveEvaluation.errorMessage.value"
-          />
-
-          <section v-if="activeMoveComment" class="board-move-comment" aria-live="polite" aria-label="Nhận xét nước hiện tại">
-            <p>{{ activeMoveComment }}</p>
-          </section>
-
-          <div class="board-controls" aria-label="Điều khiển nước đi">
-            <button
-              type="button"
-              class="secondary-action"
-              title="Nước trước"
-              aria-label="Quay lại nước trước"
-              :disabled="!canGoPrevious"
-              @click="player.previous"
-            >
-              <ChevronLeft :size="22" aria-hidden="true" />
-              Nước trước
-            </button>
-            <button v-if="canGoNext && !shouldShowChoice" type="button" class="primary-action" @click="player.next">
-              <ChevronRight :size="20" aria-hidden="true" />
-              Nước kế
-            </button>
-          </div>
-
-          <section v-if="shouldShowChoice" class="choice-box board-question">
-            <div class="choice-title">
-              <CircleAlert :size="18" aria-hidden="true" />
-              <h3>{{ lesson.choice.prompt }}</h3>
-            </div>
-            <div class="choice-options">
-              <button
-                v-for="option in visibleChoiceOptions"
-                :key="option.moveId"
-                type="button"
-                :class="option.verdict"
-                @click="player.chooseMove(option.moveId)"
-              >
-                {{ option.label }}
-              </button>
-            </div>
-          </section>
-
-          <section
-            v-if="choiceFeedback"
-            class="choice-feedback"
-            :class="choiceFeedback.verdict"
-            aria-live="polite"
-            aria-label="Nhận xét nước đã chọn"
-          >
-            <div class="choice-feedback-title">
-              <ShieldCheck v-if="choiceFeedback.verdict === 'correct'" :size="18" aria-hidden="true" />
-              <CircleAlert v-else :size="18" aria-hidden="true" />
-              <h3>{{ choiceFeedback.verdict === 'correct' ? 'Nhận xét' : 'Cảnh báo' }}</h3>
-            </div>
-            <p>{{ choiceFeedback.feedback }}</p>
-          </section>
-        </section>
-
-        <section class="board-side-panel" aria-label="Điều khiển và phản hồi bài học">
           <MoveGraph
             :lines="lesson.lines"
             :active-line-id="player.activeLineId.value"
@@ -254,43 +211,47 @@ onMounted(() => {
             @select-move="goToGraphMove"
           />
         </section>
+
+        <LessonMobileTabs
+          v-model="activeMobileTab"
+          :lesson="lesson"
+          :active-line-id="player.activeLineId.value"
+          :active-move-index="player.activeMoveIndex.value"
+          :is-principles-expanded="isPrinciplesExpanded"
+          :principle-count="principleCount"
+          :tabs="mobileTabs"
+          @select-line="player.setLine"
+          @select-move="goToGraphMove"
+          @toggle-principles="togglePrinciples"
+        />
+
+        <EvalChart
+          v-if="lesson.lines.length > 0"
+          class="eval-chart-row"
+          :lines="lesson.lines"
+          :active-line-id="player.activeLineId.value"
+          :active-move-index="player.activeMoveIndex.value"
+          :initial-fen="lesson.initialFen"
+          :show-engine-suggestion="showEngineSuggestion"
+          @update:show-engine-suggestion="showEngineSuggestion = $event"
+          @engine-best-move="onEngineBestMove"
+          @select-move="goToGraphMove"
+        />
       </section>
 
-      <section class="lesson-panel" aria-label="Nội dung bài học">
-        <section class="principles" :class="{ expanded: isPrinciplesExpanded }">
-          <button
-            type="button"
-            class="principles-toggle"
-            :aria-expanded="isPrinciplesExpanded"
-            aria-controls="lesson-principles"
-            @click="isPrinciplesExpanded = !isPrinciplesExpanded"
-          >
-            <span class="principles-title">
-              <Lightbulb :size="18" aria-hidden="true" />
-              <span>
-                <span class="principles-eyebrow">Tổng hợp</span>
-                <strong>Điểm cần nhớ</strong>
-              </span>
-            </span>
-            <span class="principles-meta">
-              {{ principleCount }} ý
-              <ChevronDown :size="18" aria-hidden="true" />
-            </span>
-          </button>
-
-          <div v-show="isPrinciplesExpanded" id="lesson-principles" class="principles-groups">
-            <section v-for="group in lessonPrincipleGroups" :key="group.id" class="principle-group">
-              <header>
-                <h3>{{ group.title }}</h3>
-                <span>{{ group.items.length }}</span>
-              </header>
-              <ul class="principles-list">
-                <li v-for="principle in group.items" :key="principle">{{ principle }}</li>
-              </ul>
-            </section>
-          </div>
-        </section>
+      <section class="lesson-panel desktop-only" aria-label="Nội dung bài học">
+        <LessonInspectorPanel
+          :is-expanded="isPrinciplesExpanded"
+          :principle-count="principleCount"
+          @toggle="togglePrinciples"
+        />
       </section>
+
+      <LessonMobileDock
+        class="mobile-only"
+        :active-tab="activeMobileTab"
+        @update:active-tab="activeMobileTab = $event"
+      />
     </div>
   </main>
 </template>

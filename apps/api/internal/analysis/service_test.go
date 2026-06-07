@@ -3,8 +3,10 @@ package analysis
 import (
 	"context"
 	"errors"
+	"fmt"
 	"os"
 	"path/filepath"
+	"sync"
 	"testing"
 	"time"
 )
@@ -19,15 +21,15 @@ func TestAnalyzeRequiresConfiguredUCIEngine(t *testing.T) {
 	}
 }
 
-func TestConfigFromEnvUsesLargerEngineTimeWindow(t *testing.T) {
+func TestConfigFromEnvUsesInteractiveEngineTimeWindow(t *testing.T) {
 	t.Setenv("ENGINE_KIND", "")
 	t.Setenv("ENGINE_PATH", "")
 	t.Setenv("ENGINE_DEFAULT_TIME_MS", "")
 	t.Setenv("ENGINE_MAX_TIME_MS", "")
 
 	config := ConfigFromEnv()
-	if config.DefaultTimeMS != 2000 {
-		t.Fatalf("DefaultTimeMS = %d, want 2000", config.DefaultTimeMS)
+	if config.DefaultTimeMS != 500 {
+		t.Fatalf("DefaultTimeMS = %d, want 500", config.DefaultTimeMS)
 	}
 	if config.MaxTimeMS != 10000 {
 		t.Fatalf("MaxTimeMS = %d, want 10000", config.MaxTimeMS)
@@ -38,6 +40,7 @@ func TestConfigFromEnvUsesLargerEngineTimeWindow(t *testing.T) {
 }
 
 func TestAnalyzeUsesUCIEngineOutput(t *testing.T) {
+	t.Cleanup(func() { sharedEngines.close() })
 	enginePath := writeFakeUCIEngine(t)
 	t.Setenv("ENGINE_KIND", "uci")
 	t.Setenv("ENGINE_PATH", enginePath)
@@ -65,6 +68,88 @@ func TestAnalyzeUsesUCIEngineOutput(t *testing.T) {
 	}
 	if len(response.PrincipalVariation) != 2 {
 		t.Fatalf("pv length = %d, want 2", len(response.PrincipalVariation))
+	}
+}
+
+func TestAnalyzeCachesRepeatedPosition(t *testing.T) {
+	t.Cleanup(func() { sharedEngines.close() })
+	countPath := filepath.Join(t.TempDir(), "go-count.txt")
+	enginePath := writeCountingUCIEngine(t, countPath)
+	t.Setenv("ENGINE_KIND", "uci")
+	t.Setenv("ENGINE_PATH", enginePath)
+
+	request := Request{
+		FEN:        "9/9/9/9/9/9/9/9/9/9 w - - 0 1",
+		SideToMove: "red",
+		TimeMS:     20,
+	}
+	if _, err := Analyze(context.Background(), request); err != nil {
+		t.Fatalf("first Analyze returned error: %v", err)
+	}
+	if _, err := Analyze(context.Background(), request); err != nil {
+		t.Fatalf("second Analyze returned error: %v", err)
+	}
+
+	count, err := os.ReadFile(countPath)
+	if err != nil {
+		t.Fatalf("read go count: %v", err)
+	}
+	if string(count) != "1\n" {
+		t.Fatalf("go count = %q, want one engine search", string(count))
+	}
+}
+
+func TestAnalyzeCoalescesConcurrentPosition(t *testing.T) {
+	t.Cleanup(func() { sharedEngines.close() })
+	countPath := filepath.Join(t.TempDir(), "go-count.txt")
+	enginePath := writeDelayedCountingUCIEngine(t, countPath)
+	t.Setenv("ENGINE_KIND", "uci")
+	t.Setenv("ENGINE_PATH", enginePath)
+
+	request := Request{
+		FEN:        "9/9/9/9/9/9/9/9/9/9 w - - 0 1",
+		SideToMove: "red",
+		TimeMS:     1500,
+	}
+
+	var wg sync.WaitGroup
+	errs := make(chan error, 2)
+	statuses := make(chan string, 2)
+	for range 2 {
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			_, meta, err := AnalyzeWithMeta(context.Background(), request)
+			statuses <- meta.CacheStatus
+			errs <- err
+		}()
+	}
+	wg.Wait()
+	close(errs)
+	close(statuses)
+
+	for err := range errs {
+		if err != nil {
+			t.Fatalf("AnalyzeWithMeta returned error: %v", err)
+		}
+	}
+
+	count, err := os.ReadFile(countPath)
+	if err != nil {
+		t.Fatalf("read go count: %v", err)
+	}
+	if string(count) != "1\n" {
+		t.Fatalf("go count = %q, want one coalesced engine search", string(count))
+	}
+
+	coalesced := false
+	for status := range statuses {
+		if status == "coalesced" {
+			coalesced = true
+		}
+	}
+	if !coalesced {
+		t.Fatal("expected one concurrent AnalyzeWithMeta call to report coalesced")
 	}
 }
 
@@ -114,6 +199,77 @@ done
 
 	if err := os.WriteFile(path, []byte(script), 0o755); err != nil {
 		t.Fatalf("write fake engine: %v", err)
+	}
+	return path
+}
+
+func writeCountingUCIEngine(t *testing.T, countPath string) string {
+	t.Helper()
+
+	path := filepath.Join(t.TempDir(), "counting-uci.sh")
+	script := fmt.Sprintf(`#!/bin/sh
+count_file=%q
+while IFS= read -r line; do
+  case "$line" in
+    uci)
+      echo "id name counting-uci"
+      echo "uciok"
+      ;;
+    isready)
+      echo "readyok"
+      ;;
+    go*)
+      count="$(cat "$count_file" 2>/dev/null || echo 0)"
+      count=$((count + 1))
+      echo "$count" > "$count_file"
+      echo "info depth 7 score cp 86 pv h2e2 h9g7"
+      echo "bestmove h2e2"
+      ;;
+    quit)
+      exit 0
+      ;;
+  esac
+done
+`, countPath)
+
+	if err := os.WriteFile(path, []byte(script), 0o755); err != nil {
+		t.Fatalf("write counting engine: %v", err)
+	}
+	return path
+}
+
+func writeDelayedCountingUCIEngine(t *testing.T, countPath string) string {
+	t.Helper()
+
+	path := filepath.Join(t.TempDir(), "delayed-counting-uci.sh")
+	script := fmt.Sprintf(`#!/bin/sh
+count_file=%q
+while IFS= read -r line; do
+  case "$line" in
+    uci)
+      echo "id name delayed-counting-uci"
+      echo "uciok"
+      ;;
+    isready)
+      echo "readyok"
+      ;;
+    go*)
+      count="$(cat "$count_file" 2>/dev/null || echo 0)"
+      count=$((count + 1))
+      echo "$count" > "$count_file"
+      sleep 1
+      echo "info depth 7 score cp 86 pv h2e2 h9g7"
+      echo "bestmove h2e2"
+      ;;
+    quit)
+      exit 0
+      ;;
+  esac
+done
+`, countPath)
+
+	if err := os.WriteFile(path, []byte(script), 0o755); err != nil {
+		t.Fatalf("write delayed counting engine: %v", err)
 	}
 	return path
 }

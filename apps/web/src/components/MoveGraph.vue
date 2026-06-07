@@ -4,7 +4,12 @@ import type { LessonLine } from '../api/types'
 import { applyMove, initialBoard, pieceAt } from '../core/xiangqi'
 import type { BoardState, LessonMove, PieceKind, Side } from '../core/xiangqi'
 import { boardFromXiangqiFen } from '../engine/fen'
-import { renderTreeGraph, type TreeGraphData, type TreeGraphNode, type TreeGraphRenderer } from '../graph/treeGraph'
+import {
+  renderTreeGraph,
+  type TreeGraphData,
+  type TreeGraphNode,
+  type TreeGraphRenderer,
+} from '../graph/treeGraph'
 
 const props = defineProps<{
   lines: LessonLine[]
@@ -52,9 +57,12 @@ const defaultXiangqiFEN = 'rnbakabnr/9/1c5c1/p1p1p1p1p/9/9/P1P1P1P1P/1C5C1/9/RNB
 const graphCanvas = ref<HTMLElement | null>(null)
 const renderer = ref<TreeGraphRenderer | null>(null)
 const selectedNodeId = ref('')
+const isZoomed = ref(false)
 
 const activeLine = computed(() => props.lines.find((item) => item.id === props.activeLineId))
-const activeMove = computed(() => (activeLine.value ? lineMoves(activeLine.value)[props.activeMoveIndex - 1] : undefined))
+const activeMove = computed(() =>
+  activeLine.value ? lineMoves(activeLine.value)[props.activeMoveIndex - 1] : undefined,
+)
 const totalMoveCount = computed(() => props.lines.reduce((count, line) => count + lineMoveCount(line), 0))
 const graphStats = computed(() => `${props.lines.length} biến, ${totalMoveCount.value} nước`)
 function lineMoves(line: LessonLine) {
@@ -177,16 +185,15 @@ const graphData = computed<TreeGraphData>(() => {
 
   props.lines.forEach((line) => {
     const key = startKeyForFen(lineInitialFen(line))
-    const group =
-      startGroups.get(key) ?? {
-        lines: [],
-        root: {
-          id: startNodeId(key),
-          lineId: '',
-          lineIds: new Set<string>(),
-          children: new Map<string, TrieNode>(),
-        },
-      }
+    const group = startGroups.get(key) ?? {
+      lines: [],
+      root: {
+        id: startNodeId(key),
+        lineId: '',
+        lineIds: new Set<string>(),
+        children: new Map<string, TrieNode>(),
+      },
+    }
     group.lines.push(line)
     group.root.lineIds.add(line.id)
     group.root.lineId = group.root.lineId || line.id
@@ -215,24 +222,13 @@ const graphData = computed<TreeGraphData>(() => {
         parent.children.set(pathNode.signature, child)
       }
       child.lineIds.add(pathNode.line.id)
-      if (pathNode.line.id === props.activeLineId || !child.lineId) child.lineId = pathNode.line.id
+      if (!child.lineId) child.lineId = pathNode.line.id
       parent = child
     })
   })
 
   function addTrieNode(node: TrieNode, startKey: string, parent?: TrieNode) {
     const lineIds = Array.from(node.lineIds)
-    const containsActiveLine = node.lineIds.has(props.activeLineId)
-    const state =
-      node.moveIndex === undefined
-        ? containsActiveLine && props.activeMoveIndex <= 0
-          ? 'active'
-          : 'start'
-        : containsActiveLine && props.activeMoveIndex === node.moveIndex + 1
-          ? 'active'
-          : containsActiveLine && props.activeMoveIndex > node.moveIndex + 1
-            ? 'past'
-            : 'future'
     const label =
       node.move && node.moveIndex !== undefined
         ? `${formatMoveNotation(node.move, node.moveIndex, node.boardBefore ?? null)}${lineIds.length > 1 ? ` · ${lineIds.length} biến` : ''}`
@@ -244,17 +240,17 @@ const graphData = computed<TreeGraphData>(() => {
       id: node.id,
       label,
       nodeKind: node.move ? 'move' : 'start',
-      lineId: containsActiveLine ? props.activeLineId : node.lineId,
+      lineId: node.lineId,
       lineIds,
       moveIndex: node.moveIndex,
-      state,
+      state: node.move ? 'future' : 'start',
     })
 
     if (parent) {
       links.push({
         source: parent.id,
         target: node.id,
-        type: state === 'active' || state === 'past' ? 'active' : 'next',
+        type: 'next',
       })
     }
 
@@ -269,21 +265,51 @@ const graphData = computed<TreeGraphData>(() => {
 })
 
 const activeNodeId = computed(activeGraphNodeId)
+const graphNodeStates = computed(() =>
+  Object.fromEntries(
+    graphData.value.nodes.map((node) => {
+      const graphNode = node as MoveGraphNode
+      const containsActiveLine = Boolean(graphNode.lineIds?.includes(props.activeLineId))
+      const state =
+        graphNode.moveIndex === undefined
+          ? containsActiveLine && props.activeMoveIndex <= 0
+            ? 'active'
+            : 'start'
+          : containsActiveLine && props.activeMoveIndex === graphNode.moveIndex + 1
+            ? 'active'
+            : containsActiveLine && props.activeMoveIndex > graphNode.moveIndex + 1
+              ? 'past'
+              : 'future'
+
+      return [graphNode.id, state]
+    }),
+  ),
+)
 const activeBoardBeforeMove = computed(() => {
   if (!activeLine.value || props.activeMoveIndex <= 0) return null
   const activePath = graphPaths.value.find((path) => path[0]?.line.id === activeLine.value?.id)
   return activePath?.[props.activeMoveIndex - 1]?.boardBefore ?? null
 })
 
-const selectedNode = computed(() => graphData.value.nodes.find((node) => node.id === (selectedNodeId.value || activeNodeId.value)) as MoveGraphNode | undefined)
-const selectedLine = computed(() => props.lines.find((line) => line.id === selectedNode.value?.lineId) ?? activeLine.value)
+const selectedNode = computed(
+  () =>
+    graphData.value.nodes.find((node) => node.id === (selectedNodeId.value || activeNodeId.value)) as
+      | MoveGraphNode
+      | undefined,
+)
+const selectedLine = computed(
+  () => props.lines.find((line) => line.id === selectedNode.value?.lineId) ?? activeLine.value,
+)
+void selectedLine
 const selectedMove = computed(() => {
   const node = selectedNode.value
   if (!node || node.nodeKind !== 'move') return activeMove.value
   const line = props.lines.find((item) => item.id === node.lineId)
   return line ? lineMoves(line)[node.moveIndex ?? -1] : undefined
 })
-const selectedMoveIndex = computed(() => (selectedNode.value?.nodeKind === 'move' ? selectedNode.value.moveIndex ?? -1 : props.activeMoveIndex - 1))
+const selectedMoveIndex = computed(() =>
+  selectedNode.value?.nodeKind === 'move' ? (selectedNode.value.moveIndex ?? -1) : props.activeMoveIndex - 1,
+)
 const selectedBoardBeforeMove = computed(() => {
   const node = selectedNode.value
   if (!node || node.nodeKind !== 'move') return activeBoardBeforeMove.value
@@ -296,26 +322,42 @@ function moveSideLabel(move?: LessonMove) {
   return move.side === 'red' ? 'Đỏ' : 'Đen'
 }
 
+function readGraphThemeColor(name: string, fallback: string): string {
+  if (typeof window === 'undefined') return fallback
+  const value = getComputedStyle(document.documentElement).getPropertyValue(name).trim()
+  return value || fallback
+}
+
 function nodeColor(node: TreeGraphNode) {
-  if (node.state === 'active') return '#f06c56'
-  if (node.state === 'past') return '#70b8a7'
-  if (node.state === 'start') return '#d9a441'
-  if (node.state === 'line') return '#8d7359'
-  return '#c7bda9'
+  if (node.state === 'active') return readGraphThemeColor('--color-graph-active', '#f06c56')
+  if (node.state === 'past') return readGraphThemeColor('--color-graph-past', '#70b8a7')
+  if (node.state === 'start') return readGraphThemeColor('--color-graph-start', '#d9a441')
+  if (node.state === 'line') return readGraphThemeColor('--color-graph-line', '#8d7359')
+  return readGraphThemeColor('--color-graph-future', '#c7bda9')
 }
 
 function edgeColor(type: string) {
-  return type === 'active' ? '#70b8a7' : '#8d7359'
+  return type === 'active'
+    ? readGraphThemeColor('--color-graph-past', '#70b8a7')
+    : readGraphThemeColor('--color-graph-line', '#8d7359')
 }
 
 function selectGraphNode(node: TreeGraphNode) {
   const graphNode = node as MoveGraphNode
   selectedNodeId.value = graphNode.id
   if (graphNode.nodeKind === 'start') {
-    emit('selectMove', graphNode.lineIds?.includes(props.activeLineId) ? props.activeLineId : graphNode.lineId, 0)
+    emit(
+      'selectMove',
+      graphNode.lineIds?.includes(props.activeLineId) ? props.activeLineId : graphNode.lineId,
+      0,
+    )
     return
   }
-  emit('selectMove', graphNode.lineIds?.includes(props.activeLineId) ? props.activeLineId : graphNode.lineId, (graphNode.moveIndex ?? 0) + 1)
+  emit(
+    'selectMove',
+    graphNode.lineIds?.includes(props.activeLineId) ? props.activeLineId : graphNode.lineId,
+    (graphNode.moveIndex ?? 0) + 1,
+  )
 }
 
 function clearSelection() {
@@ -331,25 +373,35 @@ function fitGraph() {
   renderer.value?.fit()
 }
 
+function resetGraph() {
+  renderer.value?.reset()
+}
+
 async function renderGraph() {
   await nextTick()
   if (!graphCanvas.value) return
   destroyGraph()
   graphCanvas.value.innerHTML = ''
+  isZoomed.value = false
   renderer.value = renderTreeGraph({
     container: graphCanvas.value,
     graph: graphData.value,
     selectedId: activeNodeId.value,
     nodeColor,
     edgeColor,
-    labelColor: '#f5efe2',
+    labelColor: readGraphThemeColor('--color-graph-label', '#f5efe2'),
     onSelectNode: selectGraphNode,
     onClearSelection: clearSelection,
+    onZoomChange: (zoomed) => {
+      isZoomed.value = zoomed
+    },
   })
+  renderer.value.setStates(graphNodeStates.value)
 }
 
 watch(graphData, renderGraph, { immediate: true })
 watch(activeNodeId, (nodeId) => renderer.value?.setSelected(nodeId))
+watch(graphNodeStates, (states) => renderer.value?.setStates(states))
 watch(
   () => props.isCollapsed,
   (isCollapsed) => {
@@ -384,29 +436,47 @@ onUnmounted(destroyGraph)
           <span class="graph-collapse-label">{{ isCollapsed ? 'Mở' : 'Đóng' }}</span>
         </button>
 
-        <div v-else>
+        <div v-else class="graph-title-block">
           <h3>{{ title ?? 'Cây nước đi' }}</h3>
-          <p>{{ graphStats }}</p>
+          <p class="graph-position" aria-live="polite">
+            <span class="graph-position-side" :data-side="selectedMove?.side ?? 'start'">
+              {{ moveSideLabel(selectedMove) }}
+            </span>
+            <strong>
+              {{
+                selectedMove
+                  ? formatMoveNotation(selectedMove, selectedMoveIndex, selectedBoardBeforeMove)
+                  : 'Bắt đầu'
+              }}
+            </strong>
+          </p>
         </div>
 
-        <button v-if="!isCollapsed" type="button" class="graph-fit-button" title="Canh giữa graph" aria-label="Canh giữa graph" @click="fitGraph">
+        <button
+          v-if="!isCollapsed"
+          type="button"
+          class="graph-fit-button"
+          title="Canh giữa graph"
+          aria-label="Canh giữa graph"
+          @click="fitGraph"
+        >
           Fit
+        </button>
+        <button
+          v-if="!isCollapsed && isZoomed"
+          type="button"
+          class="graph-reset-button"
+          title="Đặt lại zoom"
+          aria-label="Đặt lại zoom"
+          @click="resetGraph"
+        >
+          Reset
         </button>
       </slot>
     </header>
 
     <div v-if="!isCollapsed" class="graph-layout">
       <div ref="graphCanvas" class="graph-canvas graph-tree-canvas" role="img" aria-label="Move tree"></div>
-
-      <aside class="graph-details">
-        <span>{{ moveSideLabel(selectedMove) }}</span>
-        <strong>
-          {{ selectedMove ? formatMoveNotation(selectedMove, selectedMoveIndex, selectedBoardBeforeMove) : 'Bắt đầu' }}
-        </strong>
-        <button v-if="selectedLine" type="button" @click="emit('selectLine', selectedLine.id)">
-          {{ selectedLine.title }}
-        </button>
-      </aside>
     </div>
   </section>
 </template>

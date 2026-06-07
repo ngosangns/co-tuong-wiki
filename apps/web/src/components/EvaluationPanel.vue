@@ -5,6 +5,12 @@ import { engineNotationToMove } from '../engine/fen'
 import { pieceAt } from '../core/xiangqi'
 import type { BoardState, Coordinate, LessonMove, Piece, PieceKind } from '../core/xiangqi'
 import type { EngineEvaluation, EngineMove, EngineStatus } from '../engine/types'
+import Card from './ui/card.vue'
+import CardHeader from './ui/card-header.vue'
+import CardTitle from './ui/card-title.vue'
+import CardDescription from './ui/card-description.vue'
+import CardContent from './ui/card-content.vue'
+import Badge from './ui/badge.vue'
 
 const props = defineProps<{
   status: EngineStatus
@@ -62,9 +68,10 @@ function moveCandidates(move: EngineMove) {
 function formatXiangqiMove(move: EngineEvaluation['bestMove']) {
   if (!move) return 'Chưa có'
 
-  const candidate = moveCandidates(move)
-    .map((item) => ({ ...item, piece: pieceAt(props.board, item.from) }))
-    .find((item) => item.piece?.side === props.evaluation?.sideToMove) ??
+  const candidate =
+    moveCandidates(move)
+      .map((item) => ({ ...item, piece: pieceAt(props.board, item.from) }))
+      .find((item) => item.piece?.side === props.evaluation?.sideToMove) ??
     moveCandidates(move)
       .map((item) => ({ ...item, piece: pieceAt(props.board, item.from) }))
       .find((item) => item.piece)
@@ -122,40 +129,64 @@ const statusLabel = computed(() => {
 })
 
 const isAnalyzing = computed(() => props.status === 'analyzing')
-const hasEvaluation = computed(() => props.status !== 'error' && !isAnalyzing.value && Boolean(props.evaluation))
+const hasEvaluation = computed(
+  () => props.status !== 'error' && !isAnalyzing.value && Boolean(props.evaluation),
+)
 </script>
 
 <template>
-  <section class="evaluation-panel" :class="{ compact }" aria-label="Đánh giá nước đi">
-    <div class="evaluation-heading">
-      <div>
-        <p class="eyebrow">Engine</p>
-        <h3>{{ statusLabel }}</h3>
+  <Card :class="compact ? 'gap-2 p-3' : 'gap-4 p-5'" aria-label="Đánh giá nước đi">
+    <CardHeader :class="compact ? 'p-0 pb-1' : 'p-0 pb-2'">
+      <div class="flex items-center justify-between">
+        <div>
+          <CardDescription class="text-xs font-bold tracking-wider">Động cơ</CardDescription>
+          <CardTitle :class="compact ? 'text-sm' : 'text-base'">{{ statusLabel }}</CardTitle>
+        </div>
+        <Activity :size="compact ? 16 : 19" class="text-primary" aria-hidden="true" />
       </div>
-      <Activity :size="19" aria-hidden="true" />
-    </div>
+    </CardHeader>
 
-    <div class="score-card" :class="scoreTone">
-      <div class="score-copy">
-        <Gauge :size="18" aria-hidden="true" />
-        <span>{{ isAnalyzing ? 'Đang phân tích' : scoreLabel }}</span>
+    <CardContent :class="compact ? 'p-0' : 'p-0'" class="space-y-3">
+      <div
+        class="rounded-lg p-3"
+        :class="scoreTone === 'equal' ? 'bg-muted' : scoreTone === 'red' ? 'bg-red-950/50' : 'bg-zinc-900/50'"
+      >
+        <div class="flex items-center justify-between gap-2">
+          <div class="flex items-center gap-2">
+            <Gauge :size="compact ? 16 : 18" class="text-primary" aria-hidden="true" />
+            <span class="text-sm font-bold">{{ isAnalyzing ? 'Đang phân tích' : scoreLabel }}</span>
+          </div>
+          <Badge v-if="hasEvaluation" variant="outline" class="text-xs">
+            {{ evaluation?.depth ?? 0 }} nước
+          </Badge>
+        </div>
+        <div v-if="hasEvaluation" class="mt-2 h-2 overflow-hidden rounded-full bg-black/30">
+          <div
+            class="h-full rounded-full bg-gradient-to-r from-zinc-500 to-red-500 transition-all duration-300"
+            :style="{ width: scorePercent }"
+          />
+        </div>
       </div>
-      <div v-if="hasEvaluation" class="score-track" aria-hidden="true">
-        <span :style="{ width: scorePercent }"></span>
-      </div>
-    </div>
 
-    <div v-if="hasEvaluation" class="engine-grid">
-      <div>
-        <span>Best move</span>
-        <strong>{{ bestMoveLabel }}</strong>
+      <div v-if="hasEvaluation" class="grid grid-cols-[1fr_84px] gap-3">
+        <div class="rounded-lg border border-border bg-muted p-2.5">
+          <span class="text-xs font-bold text-muted-foreground">Best move</span>
+          <p class="text-base font-bold text-foreground truncate">{{ bestMoveLabel }}</p>
+        </div>
+        <div class="rounded-lg border border-border bg-muted p-2.5">
+          <span class="text-xs font-bold text-muted-foreground">Depth</span>
+          <p class="text-base font-bold text-foreground">{{ evaluation?.depth ?? 0 }}</p>
+        </div>
       </div>
-      <div>
-        <span>Depth</span>
-        <strong>{{ evaluation?.depth ?? 0 }}</strong>
-      </div>
-    </div>
 
-    <p v-if="status === 'error'" class="engine-note danger">{{ errorMessage }}</p>
-  </section>
+      <div
+        v-if="status === 'error'"
+        class="rounded-lg p-3 text-sm font-medium"
+        :class="compact ? 'text-xs' : 'text-sm'"
+        style="background: var(--color-accent-soft); color: var(--color-accent)"
+      >
+        {{ errorMessage }}
+      </div>
+    </CardContent>
+  </Card>
 </template>

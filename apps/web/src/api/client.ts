@@ -5,64 +5,66 @@ import type {
   Lesson,
   LessonPhase,
   LessonSummary,
+  LineEvaluationRequest,
+  LineEvaluationResponse,
+  OpeningBookResponse,
 } from './types'
 import type { LessonMove, Side } from '../core/xiangqi'
 import type { EngineEvaluation } from '../engine/types'
+import { apiCacheKey, cachedJSON } from './cache'
 
 const apiBaseUrl = import.meta.env.VITE_API_URL ?? 'http://127.0.0.1:8090'
+const catalogCacheTTL = 5 * 60 * 1000
+const combinedCacheTTL = 10 * 60 * 1000
+const analysisCacheTTL = 10 * 60 * 1000
 
-function messageFromErrorBody(body: string, status: number) {
-  if (!body) return `Request failed with ${status}`
-
-  try {
-    const payload = JSON.parse(body) as unknown
-
-    if (payload && typeof payload === 'object') {
-      const record = payload as Record<string, unknown>
-      if (typeof record.error === 'string' && record.error) return record.error
-      if (typeof record.message === 'string' && record.message) return record.message
-    }
-  } catch {
-    // Non-JSON error bodies can be shown as-is.
-  }
-
-  return body
+interface CacheOptions {
+  key?: string
+  ttlMs?: number
+  persist?: boolean
 }
 
-async function fetchJSON<T>(path: string, init?: RequestInit): Promise<T> {
-  const response = await fetch(`${apiBaseUrl}${path}`, {
-    ...init,
-    headers: {
-      'Content-Type': 'application/json',
-      ...init?.headers,
-    },
-  })
-
-  if (!response.ok) {
-    const body = await response.text()
-    throw new Error(messageFromErrorBody(body, response.status))
-  }
-
-  return response.json() as Promise<T>
+async function fetchJSON<T>(path: string, init?: RequestInit, cache?: CacheOptions): Promise<T> {
+  return cachedJSON<T>(`${apiBaseUrl}${path}`, init, cache)
 }
 
 export function fetchCategories() {
-  return fetchJSON<string[]>('/api/categories')
+  const path = '/api/categories'
+  return fetchJSON<string[]>(path, undefined, {
+    key: apiCacheKey('GET', path),
+    ttlMs: catalogCacheTTL,
+    persist: true,
+  })
 }
 
 export function fetchLessons(category?: string) {
   const params = new URLSearchParams()
   if (category) params.set('category', category)
   const suffix = params.toString() ? `?${params.toString()}` : ''
-  return fetchJSON<LessonSummary[]>(`/api/lessons${suffix}`)
+  const path = `/api/lessons${suffix}`
+  return fetchJSON<LessonSummary[]>(path, undefined, {
+    key: apiCacheKey('GET', path),
+    ttlMs: catalogCacheTTL,
+    persist: true,
+  })
 }
 
 export function fetchLesson(id: string) {
-  return fetchJSON<Lesson>(`/api/lessons/${encodeURIComponent(id)}`)
+  const path = `/api/lessons/${encodeURIComponent(id)}`
+  return fetchJSON<Lesson>(path, undefined, {
+    key: apiCacheKey('GET', path),
+    ttlMs: catalogCacheTTL,
+    persist: true,
+  })
 }
 
 export function fetchCombinedLesson() {
-  return fetchJSON<Lesson>('/api/combined-lesson')
+  const path = '/api/combined-lesson'
+  return fetchJSON<Lesson>(path, undefined, {
+    key: apiCacheKey('GET', path),
+    ttlMs: combinedCacheTTL,
+    persist: true,
+  })
 }
 
 export function fetchCombinedLineMoves(lineId: string, from: number, limit = 12) {
@@ -70,7 +72,11 @@ export function fetchCombinedLineMoves(lineId: string, from: number, limit = 12)
     from: String(Math.max(0, from)),
     limit: String(limit),
   })
-  return fetchJSON<CombinedLineMoveWindow>(`/api/combined-lesson/lines/${encodeURIComponent(lineId)}/moves?${params.toString()}`)
+  const path = `/api/combined-lesson/lines/${encodeURIComponent(lineId)}/moves?${params.toString()}`
+  return fetchJSON<CombinedLineMoveWindow>(path, undefined, {
+    key: apiCacheKey('GET', path),
+    ttlMs: combinedCacheTTL,
+  })
 }
 
 export function fetchCombinedStepMoves(from: number, limit = 1, phase?: LessonPhase) {
@@ -79,18 +85,31 @@ export function fetchCombinedStepMoves(from: number, limit = 1, phase?: LessonPh
     limit: String(limit),
   })
   if (phase) params.set('phase', phase)
-  return fetchJSON<CombinedStepMoveWindow>(`/api/combined-lesson/moves?${params.toString()}`)
+  const path = `/api/combined-lesson/moves?${params.toString()}`
+  return fetchJSON<CombinedStepMoveWindow>(path, undefined, {
+    key: apiCacheKey('GET', path),
+    ttlMs: combinedCacheTTL,
+  })
 }
 
 export function fetchCombinedNextSteps(request: CombinedNextStepsRequest) {
-  return fetchJSON<CombinedStepMoveWindow>('/api/combined-lesson/next-steps', {
-    method: 'POST',
-    body: JSON.stringify({
-      ...request,
-      from: Math.max(0, request.from),
-      limit: request.limit ?? 1,
-    }),
-  })
+  const path = '/api/combined-lesson/next-steps'
+  const body = {
+    ...request,
+    from: Math.max(0, request.from),
+    limit: request.limit ?? 1,
+  }
+  return fetchJSON<CombinedStepMoveWindow>(
+    path,
+    {
+      method: 'POST',
+      body: JSON.stringify(body),
+    },
+    {
+      key: apiCacheKey('POST', path, body),
+      ttlMs: combinedCacheTTL,
+    },
+  )
 }
 
 export function analyzePosition(
@@ -101,9 +120,40 @@ export function analyzePosition(
   },
   signal?: AbortSignal,
 ) {
-  return fetchJSON<EngineEvaluation>('/api/analyze', {
-    method: 'POST',
-    signal,
-    body: JSON.stringify(input),
+  const path = '/api/analyze'
+  return fetchJSON<EngineEvaluation>(
+    path,
+    {
+      method: 'POST',
+      signal,
+      body: JSON.stringify(input),
+    },
+    {
+      key: apiCacheKey('POST', path, input),
+      ttlMs: analysisCacheTTL,
+    },
+  )
+}
+
+export function evaluateLine(request: LineEvaluationRequest) {
+  const path = '/api/line-evaluation'
+  return fetchJSON<LineEvaluationResponse>(
+    path,
+    {
+      method: 'POST',
+      body: JSON.stringify(request),
+    },
+    {
+      key: apiCacheKey('POST', path, request),
+      ttlMs: 60 * 60 * 1000,
+    },
+  )
+}
+
+export function fetchOpeningBook(fen: string) {
+  const path = `/api/opening?fen=${encodeURIComponent(fen)}`
+  return fetchJSON<OpeningBookResponse>(path, undefined, {
+    key: apiCacheKey('GET', path),
+    ttlMs: 24 * 60 * 60 * 1000,
   })
 }

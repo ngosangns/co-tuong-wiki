@@ -1,4 +1,6 @@
 import { hierarchy, tree, type HierarchyPointNode } from 'd3-hierarchy'
+import { zoom, zoomIdentity, type D3ZoomEvent, type ZoomBehavior } from 'd3-zoom'
+import { select } from 'd3-selection'
 
 export interface TreeGraphNode {
   id: string
@@ -20,8 +22,11 @@ export interface TreeGraphData {
 
 export interface TreeGraphRenderer {
   fit(): void
+  reset(): void
   kill(): void
   setSelected(id: string): void
+  setStates(states: Record<string, string>): void
+  isZoomed(): boolean
 }
 
 interface TreeDatum {
@@ -39,6 +44,7 @@ interface RenderTreeGraphOptions {
   labelColor?: string
   onSelectNode: (node: TreeGraphNode) => void
   onClearSelection?: () => void
+  onZoomChange?: (isZoomed: boolean) => void
 }
 
 const syntheticRootId = '__tree_root__'
@@ -54,6 +60,7 @@ export function renderTreeGraph(options: RenderTreeGraphOptions): TreeGraphRende
   const linkLayer = document.createElementNS('http://www.w3.org/2000/svg', 'g')
   const nodeLayer = document.createElementNS('http://www.w3.org/2000/svg', 'g')
   const nodeElements = new Map<string, SVGGElement>()
+  const nodeData = new Map<string, TreeGraphNode>()
   const linkElements = new Map<string, SVGPathElement>()
   let selectedId = options.selectedId && normalized.nodes.has(options.selectedId) ? options.selectedId : ''
   let disposed = false
@@ -97,6 +104,7 @@ export function renderTreeGraph(options: RenderTreeGraphOptions): TreeGraphRende
     circle.setAttribute('fill', options.nodeColor(node))
     text.setAttribute('x', '14')
     text.setAttribute('y', '4')
+    text.setAttribute('class', 'tree-graph-label')
     text.setAttribute('fill', options.labelColor || '#f5efe2')
     text.textContent = shortLabel(node.label || node.id)
     title.textContent = node.label || node.id
@@ -114,8 +122,22 @@ export function renderTreeGraph(options: RenderTreeGraphOptions): TreeGraphRende
       updateSelection()
       options.onSelectNode(node)
     })
+    group.addEventListener('keydown', (event: KeyboardEvent) => {
+      if (event.key !== 'ArrowDown' && event.key !== 'ArrowRight') return
+      const ids = Array.from(nodeElements.keys())
+      const idx = ids.indexOf(node.id)
+      if (idx < 0) return
+      const next = ids[idx + 1] ?? ids[0]
+      if (next === node.id) return
+      event.preventDefault()
+      const nextElement = nodeElements.get(next)
+      if (nextElement instanceof HTMLElement || nextElement instanceof SVGElement) {
+        nextElement.focus()
+      }
+    })
     nodeLayer.append(group)
     nodeElements.set(node.id, group)
+    nodeData.set(node.id, node)
   }
 
   svg.addEventListener('click', () => {
@@ -156,6 +178,65 @@ export function renderTreeGraph(options: RenderTreeGraphOptions): TreeGraphRende
     svg.style.width = `${bounds.width}px`
     svg.style.height = `${bounds.height}px`
     svg.setAttribute('viewBox', `${bounds.minY} ${bounds.minX} ${bounds.width} ${bounds.height}`)
+    zoomBehavior.transform(selection, zoomIdentity)
+  }
+
+  function applyZoom(transform: { k: number; x: number; y: number }) {
+    if (disposed) return
+    viewport.setAttribute('transform', `translate(${transform.x}, ${transform.y}) scale(${transform.k})`)
+  }
+
+  function isZoomed() {
+    return currentTransform.k !== 1 || currentTransform.x !== 0 || currentTransform.y !== 0
+  }
+
+  function reset() {
+    if (disposed) return
+    zoomBehavior.transform(selection, zoomIdentity)
+  }
+
+  const selection = select(svg)
+  const currentTransform = { k: 1, x: 0, y: 0 }
+  const zoomBehavior: ZoomBehavior<SVGSVGElement, unknown> = zoom<SVGSVGElement, unknown>()
+    .scaleExtent([0.25, 4])
+    .filter((event: Event) => {
+      if (event.type === 'wheel') return true
+      if (event.type === 'dblclick') return false
+      const target = event.target as Element | null
+      if (!target) return false
+      return !target.closest('.tree-graph-node')
+    })
+    .on('zoom', (event: D3ZoomEvent<SVGSVGElement, unknown>) => {
+      const t = event.transform
+      currentTransform.k = t.k
+      currentTransform.x = t.x
+      currentTransform.y = t.y
+      applyZoom(t)
+      options.onZoomChange?.(t.k !== 1 || t.x !== 0 || t.y !== 0)
+    })
+  selection.call(zoomBehavior)
+  selection.on('dblclick.zoom', null)
+  selection.on('dblclick', () => {
+    zoomBehavior.transform(selection, zoomIdentity)
+  })
+
+  function setStates(states: Record<string, string>) {
+    if (disposed) return
+    for (const [id, state] of Object.entries(states)) {
+      const node = nodeData.get(id)
+      const element = nodeElements.get(id)
+      const circle = element?.querySelector('circle')
+      if (!node || !circle) continue
+      node.state = state
+      circle.setAttribute('fill', options.nodeColor(node))
+    }
+    for (const [key, element] of linkElements) {
+      const [, target] = key.split('->')
+      const targetState = nodeData.get(target)?.state
+      const relation = targetState === 'active' || targetState === 'past' ? 'active' : 'next'
+      element.setAttribute('stroke', options.edgeColor(relation))
+      element.setAttribute('stroke-width', relation === 'active' ? '2.4' : '1.4')
+    }
   }
 
   fit()
@@ -164,8 +245,11 @@ export function renderTreeGraph(options: RenderTreeGraphOptions): TreeGraphRende
 
   return {
     fit,
+    reset,
     kill: () => {
       disposed = true
+      zoomBehavior.on('zoom', null)
+      selection.on('.zoom', null)
       svg.remove()
     },
     setSelected: (id: string) => {
@@ -173,6 +257,8 @@ export function renderTreeGraph(options: RenderTreeGraphOptions): TreeGraphRende
       updateSelection()
       followSelectedNode()
     },
+    setStates,
+    isZoomed,
   }
 }
 

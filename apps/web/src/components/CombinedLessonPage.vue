@@ -8,8 +8,14 @@ import { useMoveEvaluation } from '../composables/useMoveEvaluation'
 import type { LessonMove } from '../core/xiangqi'
 import { lineStartKey, moveSignature, nextMoveTargetsForActiveNode } from '../core/movePreview'
 import EvaluationPanel from './EvaluationPanel.vue'
+import MoveBreadcrumb from './MoveBreadcrumb.vue'
 import MoveGraph from './MoveGraph.vue'
+import MoveMinimap from './MoveMinimap.vue'
 import XiangqiBoard from './XiangqiBoard.vue'
+import Tabs from './ui/tabs.vue'
+import TabsList from './ui/tabs-list.vue'
+import TabsTrigger from './ui/tabs-trigger.vue'
+import TabsContent from './ui/tabs-content.vue'
 
 const emptyLesson: Lesson = {
   id: '',
@@ -46,8 +52,12 @@ const phaseSections = computed(() =>
     .filter((phase) => phase.lines.length > 0),
 )
 const activePhase = computed(() => linePhase(player.activeLineId.value))
-const selectedPhaseSection = computed(() => phaseSections.value.find((section) => section.id === selectedPhase.value) ?? phaseSections.value[0])
-const activeMovePrefix = computed(() => player.activeMoves.value.slice(0, player.activeMoveIndex.value).map(moveSignature))
+const selectedPhaseSection = computed(
+  () => phaseSections.value.find((section) => section.id === selectedPhase.value) ?? phaseSections.value[0],
+)
+const activeMovePrefix = computed(() =>
+  player.activeMoves.value.slice(0, player.activeMoveIndex.value).map(moveSignature),
+)
 const activeStartKey = computed(() => {
   const activeLine = player.activeLine.value
   return activeLine ? startKeyForLine(activeLine) : ''
@@ -56,7 +66,9 @@ const activeNodeLines = computed(() => {
   const section = phaseSections.value.find((item) => item.id === activePhase.value)
   if (!section || !activeStartKey.value) return []
 
-  return section.lines.filter((line) => startKeyForLine(line) === activeStartKey.value && lineMatchesActivePrefix(line))
+  return section.lines.filter(
+    (line) => startKeyForLine(line) === activeStartKey.value && lineMatchesActivePrefix(line),
+  )
 })
 const nextMoveTargets = computed(() =>
   nextMoveTargetsForActiveNode({
@@ -71,6 +83,13 @@ const nextGraphChoices = computed(() => new Set(nextMovePreviews.value.map(moveS
 const activeMoveComment = computed(() => player.currentMove.value?.comment ?? '')
 const canGoPrevious = computed(() => player.activeMoveIndex.value > 0)
 const canGoNext = computed(() => !loadingPhases.value[activePhase.value] && nextGraphChoices.value.size === 1)
+
+const activeMobileTab = ref<'board' | 'inspector' | 'graph'>('board')
+const mobileTabs = [
+  { id: 'board' as const, label: 'Bàn cờ' },
+  { id: 'inspector' as const, label: 'Phân tích' },
+  { id: 'graph' as const, label: 'Biến' },
+]
 
 function updateLineMoves(lineId: string, from: number, moves: LessonMove[], totalMoves: number) {
   const line = lesson.value.lines.find((item) => item.id === lineId)
@@ -103,7 +122,12 @@ function lineMatchesActivePrefix(line: LessonLine) {
 async function ensureActiveNodeMoves(count: number) {
   const phase = activePhase.value
   const lines = activeNodeLines.value
-  if (!lines.length || loadingPhases.value[phase] || lines.every((line) => (line.moves?.length ?? 0) >= count)) return
+  if (
+    !lines.length ||
+    loadingPhases.value[phase] ||
+    lines.every((line) => (line.moves?.length ?? 0) >= count)
+  )
+    return
 
   loadingPhases.value = { ...loadingPhases.value, [phase]: true }
   try {
@@ -191,58 +215,89 @@ watch(
       {{ errorMessage || 'Đang tải lesson tổng hợp...' }}
     </div>
 
-    <section class="combined-board" aria-label="Bàn cờ tổng hợp">
+    <header class="mobile-header combined-mobile-header">
+      <h2 class="mobile-lesson-title">{{ lesson.title }}</h2>
+    </header>
+
+    <section class="combined-breadcrumb-row" aria-label="Đường đi nước cờ hiện tại">
+      <MoveBreadcrumb
+        v-if="selectedPhaseSection"
+        :lines="selectedPhaseSection.lines"
+        :active-line-id="player.activeLineId.value"
+        :active-move-index="player.activeMoveIndex.value"
+        :initial-fen="lesson.initialFen"
+        @select-move="goToGraphMove"
+      />
+    </section>
+
+    <!-- Desktop sections: 2-col board+inspector on left, graph+minimap on right -->
+    <section class="combined-board desktop-only" aria-label="Bàn cờ tổng hợp">
       <div class="combined-board-stage">
         <XiangqiBoard
           :board="player.board.value"
           :current-move="player.currentMove.value"
           :preview-moves="nextMovePreviews"
           @select-preview-move="goToPreviewMove"
+          @swipe-left="goToNextStep"
+          @swipe-right="goToPreviousStep"
         />
       </div>
-    </section>
 
-    <section class="combined-inspector" aria-label="Phân tích và nhận xét">
-      <div class="board-controls combined-step-controls" aria-label="Điều khiển nước đi tổng hợp">
-        <button
-          type="button"
-          class="secondary-action"
-          title="Previous step"
-          aria-label="Previous step"
-          :disabled="!canGoPrevious"
-          @click="goToPreviousStep"
+      <div class="combined-board-controls">
+        <div class="board-controls combined-step-controls" aria-label="Điều khiển nước đi tổng hợp">
+          <button
+            type="button"
+            class="secondary-action"
+            title="Previous step"
+            aria-label="Previous step"
+            :disabled="!canGoPrevious"
+            @click="goToPreviousStep"
+          >
+            <ChevronLeft :size="22" aria-hidden="true" />
+            Previous step
+          </button>
+          <button
+            type="button"
+            class="primary-action"
+            title="Next step"
+            aria-label="Next step"
+            :disabled="!canGoNext"
+            @click="goToNextStep"
+          >
+            <ChevronRight :size="20" aria-hidden="true" />
+            Next step
+          </button>
+        </div>
+
+        <EvaluationPanel
+          compact
+          :status="moveEvaluation.status.value"
+          :board="player.board.value"
+          :evaluation="moveEvaluation.evaluation.value"
+          :next-move="moveEvaluation.nextMove.value"
+          :error-message="moveEvaluation.errorMessage.value"
+        />
+
+        <section
+          v-if="activeMoveComment"
+          class="board-move-comment"
+          aria-live="polite"
+          aria-label="Nhận xét nước hiện tại"
         >
-          <ChevronLeft :size="22" aria-hidden="true" />
-          Previous step
-        </button>
-        <button
-          type="button"
-          class="primary-action"
-          title="Next step"
-          aria-label="Next step"
-          :disabled="!canGoNext"
-          @click="goToNextStep"
-        >
-          <ChevronRight :size="20" aria-hidden="true" />
-          Next step
-        </button>
+          <p>{{ activeMoveComment }}</p>
+        </section>
       </div>
-
-      <EvaluationPanel
-        compact
-        :status="moveEvaluation.status.value"
-        :board="player.board.value"
-        :evaluation="moveEvaluation.evaluation.value"
-        :next-move="moveEvaluation.nextMove.value"
-        :error-message="moveEvaluation.errorMessage.value"
-      />
-
-      <section v-if="activeMoveComment" class="board-move-comment" aria-live="polite" aria-label="Nhận xét nước hiện tại">
-        <p>{{ activeMoveComment }}</p>
-      </section>
     </section>
 
-    <section class="combined-graph" aria-label="Cây nước đi tổng hợp">
+    <section class="combined-graph desktop-only" aria-label="Cây nước đi tổng hợp">
+      <MoveMinimap
+        v-if="selectedPhaseSection"
+        :lines="selectedPhaseSection.lines"
+        :active-line-id="player.activeLineId.value"
+        :active-move-index="player.activeMoveIndex.value"
+        :initial-fen="lesson.initialFen"
+        @select-move="goToGraphMove"
+      />
       <MoveGraph
         v-if="selectedPhaseSection"
         :title="selectedPhaseSection.title"
@@ -270,12 +325,129 @@ watch(
             </button>
           </div>
 
-          <button type="button" class="graph-fit-button" title="Canh giữa graph" aria-label="Canh giữa graph" @click="fit">
+          <button
+            type="button"
+            class="graph-fit-button"
+            title="Canh giữa graph"
+            aria-label="Canh giữa graph"
+            @click="fit"
+          >
             Fit
           </button>
         </template>
       </MoveGraph>
     </section>
 
+    <!-- Mobile tabs -->
+    <Tabs v-model="activeMobileTab" class="mobile-only">
+      <TabsList class="grid w-full grid-cols-3">
+        <TabsTrigger v-for="tab in mobileTabs" :key="tab.id" :value="tab.id">
+          {{ tab.label }}
+        </TabsTrigger>
+      </TabsList>
+
+      <TabsContent value="board" class="combined-board mobile-tab-panel" aria-label="Bàn cờ tổng hợp">
+        <div class="combined-board-stage">
+          <XiangqiBoard
+            :board="player.board.value"
+            :current-move="player.currentMove.value"
+            :preview-moves="nextMovePreviews"
+            @select-preview-move="goToPreviewMove"
+            @swipe-left="goToNextStep"
+            @swipe-right="goToPreviousStep"
+          />
+        </div>
+      </TabsContent>
+
+      <TabsContent
+        value="inspector"
+        class="combined-inspector mobile-tab-panel"
+        aria-label="Phân tích và nhận xét"
+      >
+        <div class="board-controls combined-step-controls" aria-label="Điều khiển nước đi tổng hợp">
+          <button
+            type="button"
+            class="secondary-action"
+            title="Previous step"
+            aria-label="Previous step"
+            :disabled="!canGoPrevious"
+            @click="goToPreviousStep"
+          >
+            <ChevronLeft :size="22" aria-hidden="true" />
+            Previous step
+          </button>
+          <button
+            type="button"
+            class="primary-action"
+            title="Next step"
+            aria-label="Next step"
+            :disabled="!canGoNext"
+            @click="goToNextStep"
+          >
+            <ChevronRight :size="20" aria-hidden="true" />
+            Next step
+          </button>
+        </div>
+
+        <EvaluationPanel
+          compact
+          :status="moveEvaluation.status.value"
+          :board="player.board.value"
+          :evaluation="moveEvaluation.evaluation.value"
+          :next-move="moveEvaluation.nextMove.value"
+          :error-message="moveEvaluation.errorMessage.value"
+        />
+
+        <section
+          v-if="activeMoveComment"
+          class="board-move-comment"
+          aria-live="polite"
+          aria-label="Nhận xét nước hiện tại"
+        >
+          <p>{{ activeMoveComment }}</p>
+        </section>
+      </TabsContent>
+
+      <TabsContent value="graph" class="combined-graph mobile-tab-panel" aria-label="Cây nước đi tổng hợp">
+        <MoveGraph
+          v-if="selectedPhaseSection"
+          :title="selectedPhaseSection.title"
+          :lines="selectedPhaseSection.lines"
+          :active-line-id="player.activeLineId.value"
+          :active-move-index="player.activeMoveIndex.value"
+          :initial-fen="lesson.initialFen"
+          @select-line="selectLine"
+          @select-move="goToGraphMove"
+        >
+          <template #toolbar="{ fit }">
+            <div class="combined-graph-tabs" role="tablist" aria-label="Giai đoạn ván cờ">
+              <button
+                v-for="section in phaseSections"
+                :key="section.id"
+                type="button"
+                class="combined-graph-tab"
+                :class="{ active: selectedPhase === section.id, current: activePhase === section.id }"
+                role="tab"
+                :aria-selected="selectedPhase === section.id"
+                @click="selectPhase(section.id)"
+              >
+                <span>{{ section.title }}</span>
+                <small>{{ section.lines.length }} biến</small>
+              </button>
+            </div>
+
+            <button
+              type="button"
+              class="graph-fit-button"
+              title="Canh giữa graph"
+              aria-label="Canh giữa graph"
+              @click="fit"
+            >
+              Fit
+            </button>
+          </template>
+        </MoveGraph>
+      </TabsContent>
+    </Tabs>
   </main>
 </template>

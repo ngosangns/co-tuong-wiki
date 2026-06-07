@@ -1,0 +1,100 @@
+version: '3'
+
+tasks:
+  default:
+    desc: List available tasks.
+    cmds:
+      - task --list
+
+  install:
+    desc: Install frontend dependencies.
+    cmds:
+      - npm --prefix apps/web install
+
+  dev:
+    desc: Run the API and web dev servers.
+    deps:
+      - dev:api
+      - dev:web
+
+  dev:api:
+    desc: Run the Go API server.
+    cmds:
+      - ENGINE_KIND="${ENGINE_KIND:-uci}" ENGINE_PATH="${ENGINE_PATH:-/Users/ngosangns/Github/Pikafish/src/pikafish}" PORT="${PORT:-8090}" go run ./apps/api/cmd/server
+
+  dev:web:
+    desc: Run the Vite dev server.
+    cmds:
+      - VITE_API_URL="${VITE_API_URL:-http://127.0.0.1:${PORT:-8090}}" npm --prefix apps/web run dev
+
+  build:
+    desc: Build production artifacts.
+    deps:
+      - build:web
+
+  build:web:
+    desc: Type-check and build the Vue app.
+    cmds:
+      - npm --prefix apps/web run build
+
+  test:
+    desc: Run all automated tests.
+    deps:
+      - test:api
+      - test:web
+
+  test:api:
+    desc: Run Go API tests.
+    cmds:
+      - go test ./apps/api/...
+
+  test:web:
+    desc: Run Vue/Vitest unit tests.
+    cmds:
+      - npm --prefix apps/web test
+
+  test:web:watch:
+    desc: Run Vue/Vitest in watch mode.
+    cmds:
+      - npm --prefix apps/web run test:watch
+
+  lint:
+    desc: Run ESLint on the web app.
+    cmds:
+      - npm --prefix apps/web run lint
+
+  format:
+    desc: Verify Prettier formatting on the web app.
+    cmds:
+      - npm --prefix apps/web run format
+
+  format:fix:
+    desc: Apply Prettier formatting on the web app.
+    cmds:
+      - npm --prefix apps/web run format:fix
+
+  check:
+    desc: Run tests and production builds.
+    deps:
+      - test
+      - build
+
+  preview:web:
+    desc: Preview the built Vue app.
+    cmds:
+      - npm --prefix apps/web run preview
+
+  lessons:combined:
+    desc: Rebuild the combined lesson artifact.
+    cmds:
+      - python3 scripts/build_combined_lesson.py
+
+  lessons:combined:dry-run:
+    desc: Validate the combined lesson build without writing output.
+    cmds:
+      - python3 scripts/build_combined_lesson.py --dry-run
+
+  build:fairy-stockfish:
+    desc: Build Fairy-Stockfish with the Xiangqi ruleset.
+    cmds:
+      - bash scripts/build_fairy_stockfish.sh
