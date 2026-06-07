@@ -7,10 +7,12 @@ const props = defineProps<{
   board: BoardState
   currentMove?: LessonMove
   previewMoves?: LessonMove[]
+  engineSuggestion?: LessonMove
 }>()
 
 const emit = defineEmits<{
   selectPreviewMove: [move: LessonMove]
+  selectEngineMove: [move: LessonMove]
   swipeLeft: []
   swipeRight: []
 }>()
@@ -61,8 +63,35 @@ const movePreviews = computed(() => {
     return [{ id: `${key}:${index}`, move, piece, arrow: previewArrow(move) }]
   })
 })
-const previewFromSquares = computed(() => new Set(movePreviews.value.map((preview) => squareKey(preview.move.from))))
-const previewToSquares = computed(() => new Set(movePreviews.value.map((preview) => squareKey(preview.move.to))))
+const previewFromSquares = computed(
+  () => new Set(movePreviews.value.map((preview) => squareKey(preview.move.from))),
+)
+const previewToSquares = computed(
+  () => new Set(movePreviews.value.map((preview) => squareKey(preview.move.to))),
+)
+
+const engineSuggestionPreview = computed(() => {
+  const suggestion = props.engineSuggestion
+  if (!suggestion) return null
+  const piece = props.board.find(
+    (item) => item.side === suggestion.side && sameSquare(item.position, suggestion.from),
+  )
+  if (!piece) return null
+  return {
+    id: 'engine-suggestion',
+    move: suggestion,
+    piece,
+    arrow: previewArrow(suggestion),
+  }
+})
+
+const engineMatchesPlayed = computed(() => {
+  const suggestion = props.engineSuggestion
+  if (!suggestion) return false
+  return movePreviews.value.some(
+    (preview) => sameSquare(preview.move.from, suggestion.from) && sameSquare(preview.move.to, suggestion.to),
+  )
+})
 
 function squareKey(coordinate: Coordinate) {
   return `${coordinate.file}:${coordinate.rank}`
@@ -77,10 +106,7 @@ function squareState(coordinate: Coordinate) {
     isTo,
     isPreviewFrom: previewFromSquares.value.has(squareKey(coordinate)),
     isPreviewTo: previewToSquares.value.has(squareKey(coordinate)),
-    isPalace:
-      coordinate.file >= 3 &&
-      coordinate.file <= 5 &&
-      (coordinate.rank <= 2 || coordinate.rank >= 7),
+    isPalace: coordinate.file >= 3 && coordinate.file <= 5 && (coordinate.rank <= 2 || coordinate.rank >= 7),
     isRiverBorder: coordinate.rank === 4,
   }
 }
@@ -170,8 +196,27 @@ function previewArrow(move: LessonMove) {
       <div v-if="movePreviews.length" class="board-preview-layer" aria-label="Nước tiếp theo">
         <svg class="preview-arrow-layer" viewBox="0 0 900 1000" preserveAspectRatio="none" aria-hidden="true">
           <defs>
-            <marker id="preview-arrow-head" markerWidth="32" markerHeight="32" refX="28" refY="16" orient="auto" markerUnits="userSpaceOnUse">
+            <marker
+              id="preview-arrow-head"
+              markerWidth="32"
+              markerHeight="32"
+              refX="28"
+              refY="16"
+              orient="auto"
+              markerUnits="userSpaceOnUse"
+            >
               <path class="preview-arrow-head" d="M 0 0 L 32 16 L 0 32 z"></path>
+            </marker>
+            <marker
+              id="engine-arrow-head"
+              markerWidth="32"
+              markerHeight="32"
+              refX="28"
+              refY="16"
+              orient="auto"
+              markerUnits="userSpaceOnUse"
+            >
+              <path class="engine-arrow-head" d="M 0 0 L 32 16 L 0 32 z"></path>
             </marker>
           </defs>
           <line
@@ -183,6 +228,16 @@ function previewArrow(move: LessonMove) {
             :x2="preview.arrow.x2"
             :y2="preview.arrow.y2"
             marker-end="url(#preview-arrow-head)"
+          ></line>
+          <line
+            v-if="engineSuggestionPreview && !engineMatchesPlayed"
+            :key="`engine-suggestion:arrow`"
+            class="engine-suggestion-arrow"
+            :x1="engineSuggestionPreview.arrow.x1"
+            :y1="engineSuggestionPreview.arrow.y1"
+            :x2="engineSuggestionPreview.arrow.x2"
+            :y2="engineSuggestionPreview.arrow.y2"
+            marker-end="url(#engine-arrow-head)"
           ></line>
         </svg>
         <button
@@ -209,6 +264,32 @@ function previewArrow(move: LessonMove) {
             {{ preview.piece.label }}
           </span>
         </button>
+        <template v-if="engineSuggestionPreview && !engineMatchesPlayed">
+          <button
+            class="engine-suggestion-source"
+            type="button"
+            :style="coordinateStyle(engineSuggestionPreview.move.from)"
+            :aria-label="`Engine đề xuất từ ${engineSuggestionPreview.move.from.file}-${engineSuggestionPreview.move.from.rank}`"
+            @click="emit('selectEngineMove', engineSuggestionPreview.move)"
+          >
+            <span class="engine-suggestion-ring" aria-hidden="true"></span>
+          </button>
+          <button
+            class="engine-suggestion-target"
+            type="button"
+            :style="coordinateStyle(engineSuggestionPreview.move.to)"
+            :aria-label="`Engine đề xuất đến ${engineSuggestionPreview.move.to.file}-${engineSuggestionPreview.move.to.rank}`"
+            @click="emit('selectEngineMove', engineSuggestionPreview.move)"
+          >
+            <span
+              class="engine-suggestion-piece"
+              :class="engineSuggestionPreview.piece.side"
+              aria-hidden="true"
+            >
+              {{ engineSuggestionPreview.piece.label }}
+            </span>
+          </button>
+        </template>
       </div>
     </div>
     <div class="board-file-labels board-file-labels-bottom" aria-label="Cột bên Đỏ">

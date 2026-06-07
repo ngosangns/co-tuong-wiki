@@ -44,10 +44,20 @@ const props = defineProps<{
   activeLineId: string
   activeMoveIndex: number
   initialFen?: string
+  showEngineSuggestion: boolean
 }>()
 
 const emit = defineEmits<{
   selectMove: [lineId: string, index: number]
+  'update:showEngineSuggestion': [value: boolean]
+  engineBestMove: [
+    notation: {
+      from: { file: number; rank: number }
+      to: { file: number; rank: number }
+      side: 'red' | 'black'
+      uci: string
+    },
+  ]
 }>()
 
 const isLoading = ref(false)
@@ -154,7 +164,10 @@ const linePath = computed(() => {
 const fillPath = computed(() => {
   if (results.value.length === 0) return ''
   const top = results.value
-    .map((result, index) => `${index === 0 ? 'M' : 'L'}${xScale.value(result.ply)},${yScale.value(result.cp ?? 0)}`)
+    .map(
+      (result, index) =>
+        `${index === 0 ? 'M' : 'L'}${xScale.value(result.ply)},${yScale.value(result.cp ?? 0)}`,
+    )
     .join(' ')
   const last = results.value[results.value.length - 1]
   const first = results.value[0]
@@ -185,26 +198,57 @@ const activeClassification = computed<{ label: string; color: string; cpLoss?: n
   }
 })
 
-const activeBestMoveLabel = computed(() => {
+const activeBoardForPly = computed(() => {
+  if (!activeLine.value) return null
+  let b = startingBoard(activeLine.value)
+  for (let i = 0; i < props.activeMoveIndex; i++) {
+    b = applyMove(b, activeLine.value.moves![i])
+  }
+  return b
+})
+
+const activeBestMoveUCI = computed(() => {
   const result = results.value[props.activeMoveIndex]
-  if (!result?.bestMove) return ''
+  return result?.bestMove ?? ''
+})
+
+const activeBestMoveLabel = computed(() => {
+  if (!activeBestMoveUCI.value) return ''
   const ply = buildPliesForLine(activeLine.value!)[props.activeMoveIndex]
-  const board = ply
-    ? (() => {
-        let b = startingBoard(activeLine.value!)
-        for (let i = 0; i < props.activeMoveIndex; i++) {
-          b = applyMove(b, activeLine.value!.moves![i])
-        }
-        return b
-      })()
-    : null
-  const from = parseSquare(result.bestMove.slice(0, 2))
-  const to = parseSquare(result.bestMove.slice(2, 4))
-  if (!from || !to) return result.bestMove
+  if (!ply) return activeBestMoveUCI.value
+  const from = parseSquare(activeBestMoveUCI.value.slice(0, 2))
+  const to = parseSquare(activeBestMoveUCI.value.slice(2, 4))
+  if (!from || !to) return activeBestMoveUCI.value
+  const board = activeBoardForPly.value
   const piece = board ? pieceAt(board, from) : null
-  if (!piece) return result.bestMove
+  if (!piece) return activeBestMoveUCI.value
   return formatParsedMoveNotation({ side: ply.sideToMove, from, to, id: '', comment: '' } as never, board)
 })
+
+const engineBestMove = computed<{
+  from: { file: number; rank: number }
+  to: { file: number; rank: number }
+  side: 'red' | 'black'
+  uci: string
+} | null>(() => {
+  if (!props.showEngineSuggestion) return null
+  const uci = activeBestMoveUCI.value
+  if (!uci || uci.length < 4) return null
+  const from = parseSquare(uci.slice(0, 2))
+  const to = parseSquare(uci.slice(2, 4))
+  if (!from || !to) return null
+  const ply = buildPliesForLine(activeLine.value!)[props.activeMoveIndex]
+  if (!ply) return null
+  return { from, to, side: ply.sideToMove, uci }
+})
+
+watch(
+  engineBestMove,
+  (value) => {
+    emit('engineBestMove', value as never)
+  },
+  { immediate: true },
+)
 
 function parseSquare(square: string) {
   const files = 'abcdefghi'
@@ -236,17 +280,30 @@ const hasResults = computed(() => results.value.length > 0)
         <div>
           <h4>Đánh giá ván cờ</h4>
           <p v-if="activeBestMoveLabel">
-            Ply {{ activeMoveIndex }}: <strong>{{ activeScoreLabel }}</strong> · Best: {{ activeBestMoveLabel }}
-            <span v-if="activeClassification.label" class="eval-chart-classification" :style="{ color: activeClassification.color }">
+            Ply {{ activeMoveIndex }}: <strong>{{ activeScoreLabel }}</strong> · Best:
+            {{ activeBestMoveLabel }}
+            <span
+              v-if="activeClassification.label"
+              class="eval-chart-classification"
+              :style="{ color: activeClassification.color }"
+            >
               · {{ activeClassification.label
-              }}<span v-if="activeClassification.cpLoss !== undefined"> (−{{ activeClassification.cpLoss }}cp)</span>
+              }}<span v-if="activeClassification.cpLoss !== undefined">
+                (−{{ activeClassification.cpLoss }}cp)</span
+              >
             </span>
           </p>
           <p v-else-if="hasResults">
             Ply {{ activeMoveIndex }}: <strong>{{ activeScoreLabel }}</strong>
-            <span v-if="activeClassification.label" class="eval-chart-classification" :style="{ color: activeClassification.color }">
+            <span
+              v-if="activeClassification.label"
+              class="eval-chart-classification"
+              :style="{ color: activeClassification.color }"
+            >
               · {{ activeClassification.label
-              }}<span v-if="activeClassification.cpLoss !== undefined"> (−{{ activeClassification.cpLoss }}cp)</span>
+              }}<span v-if="activeClassification.cpLoss !== undefined">
+                (−{{ activeClassification.cpLoss }}cp)</span
+              >
             </span>
           </p>
           <p v-else>Đang chờ dữ liệu phân tích</p>
@@ -256,6 +313,14 @@ const hasResults = computed(() => results.value.length > 0)
         <Loader2 :size="14" class="animate-spin" aria-hidden="true" />
         Đang phân tích
       </span>
+      <label class="eval-chart-toggle">
+        <input
+          type="checkbox"
+          :checked="props.showEngineSuggestion"
+          @change="emit('update:showEngineSuggestion', ($event.target as HTMLInputElement).checked)"
+        />
+        <span>So sánh với engine</span>
+      </label>
     </header>
 
     <div class="eval-chart-canvas">
@@ -277,7 +342,13 @@ const hasResults = computed(() => results.value.length > 0)
           stroke-dasharray="2 4"
         />
         <path :d="fillPath" fill="var(--color-accent-soft)" opacity="0.4" />
-        <path :d="linePath" stroke="var(--color-accent)" stroke-width="2" fill="none" stroke-linecap="round" />
+        <path
+          :d="linePath"
+          stroke="var(--color-accent)"
+          stroke-width="2"
+          fill="none"
+          stroke-linecap="round"
+        />
         <g class="eval-chart-points">
           <g
             v-for="result in results"
@@ -289,7 +360,11 @@ const hasResults = computed(() => results.value.length > 0)
               'is-past': result.ply < activeMoveIndex,
               [`is-${result.classification ?? 'unknown'}`]: Boolean(result.classification),
             }"
-            :title="result.classification ? `${classificationLabel(result.classification)} (−${result.cpLoss ?? 0}cp)` : ''"
+            :title="
+              result.classification
+                ? `${classificationLabel(result.classification)} (−${result.cpLoss ?? 0}cp)`
+                : ''
+            "
           >
             <circle
               :r="result.ply === activeMoveIndex ? 6 : 3"

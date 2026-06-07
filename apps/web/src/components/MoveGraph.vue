@@ -4,7 +4,12 @@ import type { LessonLine } from '../api/types'
 import { applyMove, initialBoard, pieceAt } from '../core/xiangqi'
 import type { BoardState, LessonMove, PieceKind, Side } from '../core/xiangqi'
 import { boardFromXiangqiFen } from '../engine/fen'
-import { renderTreeGraph, type TreeGraphData, type TreeGraphNode, type TreeGraphRenderer } from '../graph/treeGraph'
+import {
+  renderTreeGraph,
+  type TreeGraphData,
+  type TreeGraphNode,
+  type TreeGraphRenderer,
+} from '../graph/treeGraph'
 
 const props = defineProps<{
   lines: LessonLine[]
@@ -55,7 +60,9 @@ const selectedNodeId = ref('')
 const isZoomed = ref(false)
 
 const activeLine = computed(() => props.lines.find((item) => item.id === props.activeLineId))
-const activeMove = computed(() => (activeLine.value ? lineMoves(activeLine.value)[props.activeMoveIndex - 1] : undefined))
+const activeMove = computed(() =>
+  activeLine.value ? lineMoves(activeLine.value)[props.activeMoveIndex - 1] : undefined,
+)
 const totalMoveCount = computed(() => props.lines.reduce((count, line) => count + lineMoveCount(line), 0))
 const graphStats = computed(() => `${props.lines.length} biến, ${totalMoveCount.value} nước`)
 function lineMoves(line: LessonLine) {
@@ -178,16 +185,15 @@ const graphData = computed<TreeGraphData>(() => {
 
   props.lines.forEach((line) => {
     const key = startKeyForFen(lineInitialFen(line))
-    const group =
-      startGroups.get(key) ?? {
-        lines: [],
-        root: {
-          id: startNodeId(key),
-          lineId: '',
-          lineIds: new Set<string>(),
-          children: new Map<string, TrieNode>(),
-        },
-      }
+    const group = startGroups.get(key) ?? {
+      lines: [],
+      root: {
+        id: startNodeId(key),
+        lineId: '',
+        lineIds: new Set<string>(),
+        children: new Map<string, TrieNode>(),
+      },
+    }
     group.lines.push(line)
     group.root.lineIds.add(line.id)
     group.root.lineId = group.root.lineId || line.id
@@ -285,15 +291,24 @@ const activeBoardBeforeMove = computed(() => {
   return activePath?.[props.activeMoveIndex - 1]?.boardBefore ?? null
 })
 
-const selectedNode = computed(() => graphData.value.nodes.find((node) => node.id === (selectedNodeId.value || activeNodeId.value)) as MoveGraphNode | undefined)
-const selectedLine = computed(() => props.lines.find((line) => line.id === selectedNode.value?.lineId) ?? activeLine.value)
+const selectedNode = computed(
+  () =>
+    graphData.value.nodes.find((node) => node.id === (selectedNodeId.value || activeNodeId.value)) as
+      | MoveGraphNode
+      | undefined,
+)
+const selectedLine = computed(
+  () => props.lines.find((line) => line.id === selectedNode.value?.lineId) ?? activeLine.value,
+)
 const selectedMove = computed(() => {
   const node = selectedNode.value
   if (!node || node.nodeKind !== 'move') return activeMove.value
   const line = props.lines.find((item) => item.id === node.lineId)
   return line ? lineMoves(line)[node.moveIndex ?? -1] : undefined
 })
-const selectedMoveIndex = computed(() => (selectedNode.value?.nodeKind === 'move' ? selectedNode.value.moveIndex ?? -1 : props.activeMoveIndex - 1))
+const selectedMoveIndex = computed(() =>
+  selectedNode.value?.nodeKind === 'move' ? (selectedNode.value.moveIndex ?? -1) : props.activeMoveIndex - 1,
+)
 const selectedBoardBeforeMove = computed(() => {
   const node = selectedNode.value
   if (!node || node.nodeKind !== 'move') return activeBoardBeforeMove.value
@@ -322,10 +337,18 @@ function selectGraphNode(node: TreeGraphNode) {
   const graphNode = node as MoveGraphNode
   selectedNodeId.value = graphNode.id
   if (graphNode.nodeKind === 'start') {
-    emit('selectMove', graphNode.lineIds?.includes(props.activeLineId) ? props.activeLineId : graphNode.lineId, 0)
+    emit(
+      'selectMove',
+      graphNode.lineIds?.includes(props.activeLineId) ? props.activeLineId : graphNode.lineId,
+      0,
+    )
     return
   }
-  emit('selectMove', graphNode.lineIds?.includes(props.activeLineId) ? props.activeLineId : graphNode.lineId, (graphNode.moveIndex ?? 0) + 1)
+  emit(
+    'selectMove',
+    graphNode.lineIds?.includes(props.activeLineId) ? props.activeLineId : graphNode.lineId,
+    (graphNode.moveIndex ?? 0) + 1,
+  )
 }
 
 function clearSelection() {
@@ -409,10 +432,24 @@ onUnmounted(destroyGraph)
           <p>{{ graphStats }}</p>
         </div>
 
-        <button v-if="!isCollapsed" type="button" class="graph-fit-button" title="Canh giữa graph" aria-label="Canh giữa graph" @click="fitGraph">
+        <button
+          v-if="!isCollapsed"
+          type="button"
+          class="graph-fit-button"
+          title="Canh giữa graph"
+          aria-label="Canh giữa graph"
+          @click="fitGraph"
+        >
           Fit
         </button>
-        <button v-if="!isCollapsed && isZoomed" type="button" class="graph-reset-button" title="Đặt lại zoom" aria-label="Đặt lại zoom" @click="resetGraph">
+        <button
+          v-if="!isCollapsed && isZoomed"
+          type="button"
+          class="graph-reset-button"
+          title="Đặt lại zoom"
+          aria-label="Đặt lại zoom"
+          @click="resetGraph"
+        >
           Reset
         </button>
       </slot>
@@ -424,7 +461,11 @@ onUnmounted(destroyGraph)
       <aside class="graph-details">
         <span>{{ moveSideLabel(selectedMove) }}</span>
         <strong>
-          {{ selectedMove ? formatMoveNotation(selectedMove, selectedMoveIndex, selectedBoardBeforeMove) : 'Bắt đầu' }}
+          {{
+            selectedMove
+              ? formatMoveNotation(selectedMove, selectedMoveIndex, selectedBoardBeforeMove)
+              : 'Bắt đầu'
+          }}
         </strong>
         <button v-if="selectedLine" type="button" @click="emit('selectLine', selectedLine.id)">
           {{ selectedLine.title }}
