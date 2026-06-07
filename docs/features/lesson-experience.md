@@ -14,6 +14,7 @@ related:
   - "../specs/planning/combined-lesson-page.md"
   - "../specs/planning/performance-optimization.md"
   - "../specs/planning/smart-cache-strategy.md"
+  - "../plans/ui-redesign.md"
   - "../_sync.md"
 ---
 
@@ -25,7 +26,7 @@ related:
 - Pham vi: Lesson catalog, combined lesson playback, choice feedback, and engine analysis API behavior
 - Nguon code: `apps/api/internal/httpapi/server.go`, `apps/api/internal/cacheutil`, `apps/api/internal/lessons`, `scripts/build_combined_lesson.py`, `apps/web/src`
 - Tuan thu: Khong ap dung
-- Links: [Combined Lesson Page Plan](../specs/planning/combined-lesson-page.md), [Performance Optimization Plan](../specs/planning/performance-optimization.md), [Smart Cache Strategy](../specs/planning/smart-cache-strategy.md), [Docs Sync State](../_sync.md)
+- Links: [Combined Lesson Page Plan](../specs/planning/combined-lesson-page.md), [Performance Optimization Plan](../specs/planning/performance-optimization.md), [Smart Cache Strategy](../specs/planning/smart-cache-strategy.md), [UI Redesign Plan](../plans/ui-redesign.md), [Docs Sync State](../_sync.md)
 
 ## Behavior
 
@@ -54,3 +55,15 @@ Timeouts are mapped through `analysis.ErrEngineTimeout` so the public JSON error
 ## Validation Coverage
 
 Backend tests cover lesson repository loading, UUID and payload-shape constraints, legal replay validation, combined lesson endpoint behavior, conditional cache `304` behavior, UCI timeout classification, analysis coalescing, and HTTP timeout response mapping. The web build validates the current Vue and TypeScript surface.
+
+## Design Language
+
+The lesson view follows the Editorial × Dark-tech language documented in
+`../plans/ui-redesign.md`. The board sits in a two-column bento: the
+playable surface on the left, engine analysis + active comment on the
+right, with the move graph and opening suggestions in a second bento
+band beneath. Reading content (principles, move comments, wiki body)
+uses Noto Serif Vietnamese for editorial weight; chrome (controls,
+labels, eval deltas) keeps Geist. Red marks primary action or threat;
+teal marks engine data. The brand mark is 帥. See the plan for the
+locked three-dial contract and the ban list.

@@ -8,4 +8,5 @@
 - [Chiến Lược Cache Thông Minh](specs/planning/smart-cache-strategy.md)
 - [Local + Global View, AI, Engine Plan](plans/ux-local-global-view.md)
 - [Redesign Giao Diện Responsive](plans/redesign-responsive-ui.md)
+- [UI Redesign Plan (Editorial × Dark-tech)](plans/ui-redesign.md)
 - [Docs Sync State](_sync.md)

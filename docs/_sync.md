@@ -3,13 +3,25 @@
 ## Meta
 
 - Synced commit: `HEAD`
-- Synced at: `2026-06-06T09:30:00Z`
-- Scope: docs index sync, restored 3 specs from commit `8ac0faf` (`combined-lesson-page.md`, `performance-optimization.md`, `smart-cache-strategy.md`), added `plans/ux-local-global-view.md`, removed broken links, 4 open questions resolved
+- Synced at: `2026-06-07T13:35:00Z`
+- Scope: UI redesign plan (`plans/ui-redesign.md`), 12 quick wins
+  (typography, color, brand, motion), Card primitive, bento grid,
+  Editorial typography pass (Noto Serif Vietnamese). See
+  `plans/ui-redesign.md` Phase A→E completion.
 - Status: synced
 
 ## Notes
 
-- 3 deleted specs restored verbatim from `git show 8ac0faf:docs/specs/planning/*` (no edits).
-- `features/lesson-experience.md` already links to the 3 specs via `../specs/planning/...` and is now valid again.
-- New plan `plans/ux-local-global-view.md` covers UX local+global view, AI features, engine expansion, data cleanup, and parallel execution tracks A/B.
-- Resolved 2026-06-06: opening book = WXF + CCRL/Pikafish; Fairy-Stockfish net = default; auth = stateless; execution = parallel tracks.
+- `plans/ui-redesign.md` captures the design-taste-frontend audit and
+  the Editorial × Dark-tech redesign plan (DESIGN VARIANCE 3→6,
+  MOTION_INTENSITY 4→3, VISUAL_DENSITY 7→5).
+- Three dials codified in the style system:
+  - Red = primary/active/danger, teal = secondary/data.
+  - Shape: 6/10/16/pill (no stray rounded-2xl).
+  - Banned: uppercase on Vietnamese, italic body, <11px text,
+    the four-times-repeated entry fade-up.
+- Editorial pass: Noto Serif Vietnamese self-hosted with `font-display:
+  swap` for principle-group h3, board-move-comment, wiki-article
+  h2 + p, and a pull-quote glyph on the move comment.
+- MoveGraph is now theme-aware via `--color-graph-*` CSS variables
+  resolved at render time through `getComputedStyle`.
