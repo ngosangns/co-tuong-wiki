@@ -76,7 +76,7 @@ button {
 .app-shell {
   display: grid;
   grid-template-columns: minmax(280px, 320px) minmax(440px, 1.4fr) minmax(360px, 0.9fr);
-  grid-template-rows: auto auto 1fr;
+  grid-template-rows: auto auto minmax(0, 1fr);
   min-height: 100svh;
   background: var(--color-bg);
 }
@@ -227,6 +227,7 @@ button {
   display: grid;
   width: 48px;
   height: 48px;
+  flex: 0 0 auto;
   place-items: center;
   border-radius: var(--radius-md);
   background: var(--color-accent);
@@ -244,8 +245,8 @@ button {
 }
 
 .brand-lockup h1 {
-  font-size: 22px;
-  line-height: 1.15;
+  font-size: clamp(16px, 1.6vw + 12px, 22px);
+  line-height: 1.2;
   font-weight: 700;
 }
 
@@ -621,7 +622,9 @@ button {
    ================================================================ */
 
 .eval-chart-row {
-  grid-column: 2 / -1;
+  grid-column: 2;
+  width: 100%;
+  min-width: 0;
 }
 
 .eval-chart {
@@ -990,13 +993,13 @@ button {
 .move-minimap-canvas {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 5 / 2;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
   background:
-    radial-gradient(circle at center, color-mix(in srgb, var(--color-text) 8%, transparent) 1px, transparent 1px),
+    radial-gradient(circle at center, color-mix(in srgb, var(--color-text) 4%, transparent) 1px, transparent 1px),
     var(--color-surface);
-  background-size: 14px 14px;
+  background-size: 12px 12px;
   overflow: hidden;
 }
 
@@ -1026,10 +1029,11 @@ button {
 
 .board-panel {
   display: grid;
-  grid-column: 2 / -1;
+  grid-column: 2;
   grid-row: 3;
   grid-template-columns: minmax(440px, 1.55fr) minmax(320px, 1fr);
-  align-items: start;
+  grid-template-rows: minmax(0, 1fr);
+  align-items: stretch;
   justify-content: center;
   gap: 20px;
   padding: 24px 28px 28px;
@@ -1040,9 +1044,10 @@ button {
 
 .board-panel-right {
   display: grid;
-  align-content: start;
+  align-content: stretch;
   gap: 18px;
   min-width: 0;
+  min-height: 0;
 }
 
 .breadcrumb-row {
@@ -1071,8 +1076,10 @@ button {
   width: 100%;
   grid-column: 2;
   grid-row: 1;
+  grid-template-rows: auto auto auto;
   gap: 14px;
   align-self: start;
+  min-height: 0;
 }
 
 .board-controls {
@@ -1499,10 +1506,15 @@ button {
 .lesson-panel {
   display: flex;
   grid-column: 3;
-  grid-row: 1 / -1;
+  grid-row: 3;
   flex-direction: column;
+  align-self: start;
   gap: 18px;
-  overflow: auto;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  max-height: 100svh;
+  position: sticky;
+  top: 0;
   scrollbar-width: thin;
   scrollbar-color: var(--color-border) transparent;
   border-left: 1px solid var(--color-border);
@@ -1961,7 +1973,10 @@ button {
    ================================================================ */
 
 .graph-shell {
+  display: flex;
   overflow: hidden;
+  min-height: 0;
+  flex-direction: column;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   background: var(--color-surface);
@@ -2023,7 +2038,9 @@ button {
 
 .graph-layout {
   display: grid;
-  grid-template-rows: minmax(220px, 30vh) auto;
+  min-height: 0;
+  height: 100%;
+  grid-template-rows: minmax(180px, 38vh) auto;
 }
 
 .graph-canvas {
@@ -2032,8 +2049,8 @@ button {
   overscroll-behavior: contain;
   background:
     linear-gradient(color-mix(in srgb, var(--color-surface-muted) 72%, transparent), color-mix(in srgb, var(--color-surface-muted) 72%, transparent)),
-    radial-gradient(circle at center, color-mix(in srgb, var(--color-text) 10%, transparent) 1px, transparent 1px);
-  background-size: auto, 22px 22px;
+    radial-gradient(circle at center, color-mix(in srgb, var(--color-text) 4%, transparent) 1px, transparent 1px);
+  background-size: auto, 18px 18px;
   padding: 14px;
   scrollbar-width: thin;
 }
@@ -2067,6 +2084,13 @@ button {
   stroke-linejoin: round;
   stroke-width: 4px;
   user-select: none;
+}
+
+.tree-graph-label {
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .tree-graph-node.is-selected circle {
@@ -2332,7 +2356,7 @@ button {
   display: grid;
   min-height: 100svh;
   grid-template-columns: minmax(360px, 1.4fr) minmax(300px, 0.9fr);
-  grid-template-rows: auto auto 1fr;
+  grid-template-rows: auto auto auto;
   gap: 20px;
   align-items: start;
   background:
@@ -2363,12 +2387,16 @@ button {
 }
 
 .combined-board {
+  display: grid;
   grid-column: 1;
+  align-self: start;
+  gap: 14px;
 }
 
 .combined-inspector {
   display: grid;
   grid-column: 2;
+  align-content: start;
   gap: 14px;
 }
 
@@ -2467,7 +2495,7 @@ button {
 @media (max-width: 1180px) {
   .app-shell {
     grid-template-columns: 280px 1fr;
-    grid-template-rows: auto auto 1fr;
+    grid-template-rows: auto auto minmax(0, 1fr);
   }
 
   .library-panel {
@@ -2493,6 +2521,7 @@ button {
   .lesson-panel {
     grid-column: 1 / -1;
     grid-row: 4;
+    position: static;
     max-height: none;
     border-top: 1px solid var(--color-border);
     border-left: 0;
@@ -2523,7 +2552,7 @@ button {
   }
 }
 
-@media (max-width: 760px) {
+@media (max-width: 1024px) {
   .app-shell {
     display: flex;
     flex-direction: column;

@@ -104,6 +104,7 @@ export function renderTreeGraph(options: RenderTreeGraphOptions): TreeGraphRende
     circle.setAttribute('fill', options.nodeColor(node))
     text.setAttribute('x', '14')
     text.setAttribute('y', '4')
+    text.setAttribute('class', 'tree-graph-label')
     text.setAttribute('fill', options.labelColor || '#f5efe2')
     text.textContent = shortLabel(node.label || node.id)
     title.textContent = node.label || node.id

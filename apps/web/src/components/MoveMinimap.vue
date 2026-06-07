@@ -183,9 +183,9 @@ function nodeColor(state: NodeStatePosition['state']): string {
 }
 
 function nodeRadius(state: NodeStatePosition['state']): number {
-  if (state === 'active') return 6
-  if (state === 'past') return 5
-  return 4
+  if (state === 'active') return 4.5
+  if (state === 'past') return 3.5
+  return 2.5
 }
 
 function onNodeClick(node: NodeStatePosition) {
