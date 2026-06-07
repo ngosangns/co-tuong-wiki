@@ -80,7 +80,7 @@ const showHeader = computed(() => props.openingDepth > 0 && props.ply <= props.o
 </script>
 
 <template>
-  <section v-if="showHeader" class="opening-suggestions" aria-label="Gợi ý khai cuộc">
+  <section v-if="showHeader" class="opening-suggestions card card-outlined" aria-label="Gợi ý khai cuộc">
     <header class="opening-suggestions-header">
       <div class="opening-suggestions-title">
         <BookOpen :size="16" aria-hidden="true" />

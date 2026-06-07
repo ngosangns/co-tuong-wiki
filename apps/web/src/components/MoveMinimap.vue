@@ -224,7 +224,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <section class="move-minimap" aria-label="Sơ đồ toàn cảnh nước đi">
+  <section class="move-minimap card card-outlined" aria-label="Sơ đồ toàn cảnh nước đi">
     <header class="move-minimap-header">
       <div>
         <h4>Sơ đồ toàn cảnh</h4>

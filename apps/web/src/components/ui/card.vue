@@ -1,13 +1,23 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { cn } from '@/lib/utils'
 
-const props = defineProps<{
-  class?: string
-}>()
+type CardVariant = 'elevated' | 'flat' | 'outlined'
+
+const props = withDefaults(
+  defineProps<{
+    variant?: CardVariant
+    interactive?: boolean
+    as?: keyof HTMLElementTagNameMap
+  }>(),
+  { variant: 'flat', interactive: false, as: 'section' },
+)
+
+const classes = computed(() => cn('card', `card-${props.variant}`, { 'card-interactive': props.interactive }))
 </script>
 
 <template>
-  <div :class="cn('rounded-lg border bg-card text-card-foreground shadow-sm', props.class)">
+  <component :is="props.as" :class="classes">
     <slot />
-  </div>
+  </component>
 </template>

@@ -12,7 +12,7 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <section class="principles" :class="{ expanded: isExpanded }">
+  <section class="principles card card-outlined" :class="{ expanded: isExpanded }">
     <button
       type="button"
       class="principles-toggle"
