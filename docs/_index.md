@@ -9,4 +9,5 @@
 - [Local + Global View, AI, Engine Plan](plans/ux-local-global-view.md)
 - [Redesign Giao Diện Responsive](plans/redesign-responsive-ui.md)
 - [UI Redesign Plan (Editorial × Dark-tech)](plans/ui-redesign.md)
+- [UI Improvement Plan v2 (screenshot audit)](plans/ui-improvement-v2.md)
 - [Docs Sync State](_sync.md)
