@@ -300,6 +300,7 @@ const selectedNode = computed(
 const selectedLine = computed(
   () => props.lines.find((line) => line.id === selectedNode.value?.lineId) ?? activeLine.value,
 )
+void selectedLine
 const selectedMove = computed(() => {
   const node = selectedNode.value
   if (!node || node.nodeKind !== 'move') return activeMove.value
@@ -435,9 +436,20 @@ onUnmounted(destroyGraph)
           <span class="graph-collapse-label">{{ isCollapsed ? 'Mở' : 'Đóng' }}</span>
         </button>
 
-        <div v-else>
+        <div v-else class="graph-title-block">
           <h3>{{ title ?? 'Cây nước đi' }}</h3>
-          <p>{{ graphStats }}</p>
+          <p class="graph-position" aria-live="polite">
+            <span class="graph-position-side" :data-side="selectedMove?.side ?? 'start'">
+              {{ moveSideLabel(selectedMove) }}
+            </span>
+            <strong>
+              {{
+                selectedMove
+                  ? formatMoveNotation(selectedMove, selectedMoveIndex, selectedBoardBeforeMove)
+                  : 'Bắt đầu'
+              }}
+            </strong>
+          </p>
         </div>
 
         <button
@@ -465,20 +477,6 @@ onUnmounted(destroyGraph)
 
     <div v-if="!isCollapsed" class="graph-layout">
       <div ref="graphCanvas" class="graph-canvas graph-tree-canvas" role="img" aria-label="Move tree"></div>
-
-      <aside class="graph-details">
-        <span>{{ moveSideLabel(selectedMove) }}</span>
-        <strong>
-          {{
-            selectedMove
-              ? formatMoveNotation(selectedMove, selectedMoveIndex, selectedBoardBeforeMove)
-              : 'Bắt đầu'
-          }}
-        </strong>
-        <button v-if="selectedLine" type="button" @click="emit('selectLine', selectedLine.id)">
-          {{ selectedLine.title }}
-        </button>
-      </aside>
     </div>
   </section>
 </template>

@@ -46,6 +46,17 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+:root {
+  --font-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+
+.font-mono,
+.font-tabular {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0;
+}
+
 .font-serif {
   font-family: "Noto Serif", "Noto Serif Display", "Source Serif 4", Georgia, "Times New Roman", serif;
   font-feature-settings: "kern", "liga", "calt";
@@ -118,13 +129,13 @@ button {
   flex: 1;
   align-items: center;
   justify-content: center;
-  min-height: 40px;
+  min-height: 36px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   background: var(--color-surface-raised);
   color: var(--color-text-muted);
-  padding: 0 10px;
-  font-size: 13px;
+  padding: 0 8px;
+  font-size: 12.5px;
   font-weight: 900;
   cursor: pointer;
   transition: background 140ms var(--ease-out-expo), border-color 140ms var(--ease-out-expo), color 140ms var(--ease-out-expo);
@@ -625,14 +636,19 @@ button {
   grid-column: 2;
   width: 100%;
   min-width: 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
 }
 
 .eval-chart {
   display: grid;
   width: 100%;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  background: var(--color-surface);
+  border: 0;
+  border-radius: 0;
+  background: transparent;
   padding: 10px 12px 8px;
   gap: 8px;
 }
@@ -663,6 +679,8 @@ button {
   color: var(--color-text-muted);
   font-size: 11px;
   font-weight: 700;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
 }
 
 .eval-chart-title p strong {
@@ -752,6 +770,7 @@ button {
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.04em;
+  font-family: var(--font-mono);
   font-variant-numeric: tabular-nums;
 }
 
@@ -889,9 +908,26 @@ button {
 
 .opening-suggestion-name {
   grid-column: 1 / -1;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   color: var(--color-text-muted);
   font-size: 11px;
   font-weight: 700;
+}
+
+.opening-suggestion-cjk {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 5px;
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--color-text) 8%, transparent);
+  color: var(--color-text-soft);
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
 }
 
 .opening-suggestion-bar {
@@ -942,11 +978,9 @@ button {
 .move-minimap {
   display: grid;
   width: 100%;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  background:
-    linear-gradient(color-mix(in srgb, var(--color-surface-muted) 60%, transparent), color-mix(in srgb, var(--color-surface-muted) 60%, transparent)),
-    var(--color-surface);
+  border: 0;
+  border-radius: 0;
+  background: transparent;
   padding: 10px 12px 12px;
   gap: 6px;
 }
@@ -1013,6 +1047,10 @@ button {
   transition: transform 120ms var(--ease-out-expo);
 }
 
+.move-minimap-node.is-past circle {
+  filter: drop-shadow(0 0 3px color-mix(in srgb, var(--color-primary) 50%, transparent));
+}
+
 .move-minimap-node.is-active circle {
   filter: drop-shadow(0 0 4px color-mix(in srgb, var(--color-accent) 80%, transparent));
 }
@@ -1076,10 +1114,30 @@ button {
   width: 100%;
   grid-column: 2;
   grid-row: 1;
-  grid-template-rows: auto auto auto;
-  gap: 14px;
-  align-self: start;
+  grid-template-rows: auto 1fr;
+  gap: 0;
+  align-self: stretch;
   min-height: 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.board-side-panel .move-minimap {
+  border: 0;
+  border-bottom: 1px solid var(--color-border);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.board-side-panel .graph-shell {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .board-controls {
@@ -1679,6 +1737,13 @@ button {
 .principles-title {
   min-width: 0;
   gap: 10px;
+  align-items: center;
+}
+
+.principles-title strong {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-text);
 }
 
 .principles-title > svg {
@@ -2030,6 +2095,54 @@ button {
   min-width: 0;
 }
 
+.graph-title-block {
+  display: grid;
+  min-width: 0;
+}
+
+.graph-position {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 2px 0 0;
+  color: var(--color-text-soft);
+  font-size: 12px;
+  font-weight: 700;
+  font-family: var(--font-mono, "Geist Mono", ui-monospace, "SF Mono", monospace);
+}
+
+.graph-position-side {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 1px 6px;
+  border-radius: var(--radius-pill);
+  color: var(--color-text);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.graph-position-side[data-side='red'] {
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+}
+
+.graph-position-side[data-side='black'] {
+  background: var(--color-surface-muted);
+  color: var(--color-text);
+}
+
+.graph-position-side[data-side='start'] {
+  background: color-mix(in srgb, var(--color-primary) 18%, transparent);
+  color: var(--color-primary);
+}
+
+.graph-position strong {
+  color: var(--color-text);
+  font-weight: 700;
+}
+
 .graph-collapse-label {
   color: var(--color-text-soft);
   font-size: 12px;
@@ -2040,7 +2153,7 @@ button {
   display: grid;
   min-height: 0;
   height: 100%;
-  grid-template-rows: minmax(180px, 38vh) auto;
+  grid-template-rows: minmax(0, 1fr);
 }
 
 .graph-canvas {
@@ -2355,7 +2468,7 @@ button {
 .combined-page {
   display: grid;
   min-height: 100svh;
-  grid-template-columns: minmax(360px, 1.4fr) minmax(300px, 0.9fr);
+  grid-template-columns: 1fr 1fr;
   grid-template-rows: auto auto auto;
   gap: 20px;
   align-items: start;
@@ -2390,7 +2503,20 @@ button {
   display: grid;
   grid-column: 1;
   align-self: start;
-  gap: 14px;
+  gap: 16px;
+}
+
+.combined-board-stage {
+  display: block;
+  text-align: center;
+}
+
+.combined-board-controls {
+  display: grid;
+  gap: 12px;
+  max-width: 540px;
+  width: 100%;
+  justify-self: center;
 }
 
 .combined-inspector {
@@ -2401,8 +2527,10 @@ button {
 }
 
 .combined-graph {
-  grid-column: 3;
+  grid-column: 2;
   min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .combined-graph-tabs {
@@ -2472,6 +2600,8 @@ button {
 
 .combined-board .xiangqi-board-shell {
   width: min(100%, 500px);
+  align-self: center;
+  justify-self: center;
 }
 
 .combined-graph .graph-layout {
@@ -2722,12 +2852,12 @@ button {
 
   .combined-mobile-header {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     padding: 0 12px;
   }
 
   .combined-mobile-header .mobile-lesson-title {
-    text-align: center;
+    text-align: left;
     font-size: 14px;
   }
 

@@ -230,7 +230,7 @@ watch(
       />
     </section>
 
-    <!-- Desktop sections -->
+    <!-- Desktop sections: 2-col board+inspector on left, graph+minimap on right -->
     <section class="combined-board desktop-only" aria-label="Bàn cờ tổng hợp">
       <div class="combined-board-stage">
         <XiangqiBoard
@@ -242,51 +242,51 @@ watch(
           @swipe-right="goToPreviousStep"
         />
       </div>
-    </section>
 
-    <section class="combined-inspector desktop-only" aria-label="Phân tích và nhận xét">
-      <div class="board-controls combined-step-controls" aria-label="Điều khiển nước đi tổng hợp">
-        <button
-          type="button"
-          class="secondary-action"
-          title="Previous step"
-          aria-label="Previous step"
-          :disabled="!canGoPrevious"
-          @click="goToPreviousStep"
+      <div class="combined-board-controls">
+        <div class="board-controls combined-step-controls" aria-label="Điều khiển nước đi tổng hợp">
+          <button
+            type="button"
+            class="secondary-action"
+            title="Previous step"
+            aria-label="Previous step"
+            :disabled="!canGoPrevious"
+            @click="goToPreviousStep"
+          >
+            <ChevronLeft :size="22" aria-hidden="true" />
+            Previous step
+          </button>
+          <button
+            type="button"
+            class="primary-action"
+            title="Next step"
+            aria-label="Next step"
+            :disabled="!canGoNext"
+            @click="goToNextStep"
+          >
+            <ChevronRight :size="20" aria-hidden="true" />
+            Next step
+          </button>
+        </div>
+
+        <EvaluationPanel
+          compact
+          :status="moveEvaluation.status.value"
+          :board="player.board.value"
+          :evaluation="moveEvaluation.evaluation.value"
+          :next-move="moveEvaluation.nextMove.value"
+          :error-message="moveEvaluation.errorMessage.value"
+        />
+
+        <section
+          v-if="activeMoveComment"
+          class="board-move-comment"
+          aria-live="polite"
+          aria-label="Nhận xét nước hiện tại"
         >
-          <ChevronLeft :size="22" aria-hidden="true" />
-          Previous step
-        </button>
-        <button
-          type="button"
-          class="primary-action"
-          title="Next step"
-          aria-label="Next step"
-          :disabled="!canGoNext"
-          @click="goToNextStep"
-        >
-          <ChevronRight :size="20" aria-hidden="true" />
-          Next step
-        </button>
+          <p>{{ activeMoveComment }}</p>
+        </section>
       </div>
-
-      <EvaluationPanel
-        compact
-        :status="moveEvaluation.status.value"
-        :board="player.board.value"
-        :evaluation="moveEvaluation.evaluation.value"
-        :next-move="moveEvaluation.nextMove.value"
-        :error-message="moveEvaluation.errorMessage.value"
-      />
-
-      <section
-        v-if="activeMoveComment"
-        class="board-move-comment"
-        aria-live="polite"
-        aria-label="Nhận xét nước hiện tại"
-      >
-        <p>{{ activeMoveComment }}</p>
-      </section>
     </section>
 
     <section class="combined-graph desktop-only" aria-label="Cây nước đi tổng hợp">

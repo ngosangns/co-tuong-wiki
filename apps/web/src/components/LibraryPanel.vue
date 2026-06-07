@@ -99,7 +99,7 @@ const summaryByCategory = computed(() => {
         >
           <BookOpen :size="18" aria-hidden="true" />
           <span>{{ category.name }}</span>
-          <small>{{ category.count }}</small>
+          <small class="font-mono">{{ category.count }}</small>
         </button>
 
         <div v-if="props.isCategoryExpanded(category.name)" class="lesson-child-list">

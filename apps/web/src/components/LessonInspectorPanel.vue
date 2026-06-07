@@ -22,12 +22,9 @@ const emit = defineEmits<{
     >
       <span class="principles-title">
         <Lightbulb :size="18" aria-hidden="true" />
-        <span>
-          <span class="principles-eyebrow">Tổng hợp</span>
-          <strong>Điểm cần nhớ</strong>
-        </span>
+        <strong>Điểm cần nhớ</strong>
       </span>
-      <span class="principles-meta">
+      <span class="principles-meta font-mono">
         {{ principleCount }} ý
         <ChevronDown :size="18" aria-hidden="true" />
       </span>

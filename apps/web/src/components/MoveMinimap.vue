@@ -175,11 +175,21 @@ const activeEdgeDecorations = computed<Array<{ from: PositionedNode; to: Positio
   return edges
 })
 
+function nodeLabel(node: NodeStatePosition): string {
+  const position = positionedLookup.value.get(node.id)
+  if (node.id.startsWith('start:')) {
+    return 'Vị trí chuẩn — nhánh gốc'
+  }
+  if (!position) return node.id
+  const side = position.label.split(' ')[0] ?? ''
+  return `${side} · ${position.longLabel || position.label}`
+}
+
 function nodeColor(state: NodeStatePosition['state']): string {
   if (state === 'active') return 'var(--color-accent)'
-  if (state === 'past') return 'color-mix(in srgb, var(--color-primary) 64%, transparent)'
+  if (state === 'past') return 'var(--color-primary)'
   if (state === 'start') return 'var(--color-accent)'
-  return 'color-mix(in srgb, var(--color-text) 22%, transparent)'
+  return 'color-mix(in srgb, var(--color-text) 18%, transparent)'
 }
 
 function nodeRadius(state: NodeStatePosition['state']): number {
@@ -224,12 +234,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <section class="move-minimap card card-outlined" aria-label="Sơ đồ toàn cảnh nước đi">
+  <section class="move-minimap" aria-label="Sơ đồ toàn cảnh nước đi">
     <header class="move-minimap-header">
-      <div>
-        <h4>Sơ đồ toàn cảnh</h4>
-        <p>{{ stats }}</p>
-      </div>
+      <h4>{{ stats }}</h4>
       <button
         type="button"
         class="move-minimap-open"
@@ -288,7 +295,9 @@ onMounted(() => {
               stroke-width="1"
               style="cursor: pointer"
               @click="onNodeClick(node)"
-            />
+            >
+              <title>{{ nodeLabel(node) }}</title>
+            </circle>
           </g>
         </g>
         <rect

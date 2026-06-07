@@ -77,6 +77,12 @@ function totalGames() {
 }
 
 const showHeader = computed(() => props.openingDepth > 0 && props.ply <= props.openingDepth)
+
+function splitOpeningName(name: string): { vn: string; cjk: string } {
+  const match = name.match(/^(.+?)\s*\(([^)]+)\)\s*$/)
+  if (match) return { vn: match[1].trim(), cjk: match[2].trim() }
+  return { vn: name, cjk: '' }
+}
 </script>
 
 <template>
@@ -92,7 +98,7 @@ const showHeader = computed(() => props.openingDepth > 0 && props.ply <= props.o
           <p v-else>Đang tra cứu…</p>
         </div>
       </div>
-      <span v-if="isAvailable" class="opening-suggestions-stats">
+      <span v-if="isAvailable" class="opening-suggestions-stats font-mono">
         <Sparkles :size="14" aria-hidden="true" />
         {{ totalGames() }} nước đi cùng vị trí
       </span>
@@ -112,14 +118,21 @@ const showHeader = computed(() => props.openingDepth > 0 && props.ply <= props.o
       >
         <button type="button" class="opening-suggestion-button" @click="playMove(move)">
           <span class="opening-suggestion-notation">{{ move.notation }}</span>
-          <span v-if="move.name" class="opening-suggestion-name">{{ move.name }}</span>
+          <span v-if="move.name" class="opening-suggestion-name">
+            {{ splitOpeningName(move.name).vn }}
+            <span v-if="splitOpeningName(move.name).cjk" class="opening-suggestion-cjk">
+              {{ splitOpeningName(move.name).cjk }}
+            </span>
+          </span>
           <span class="opening-suggestion-bar" aria-hidden="true">
             <span
               class="opening-suggestion-bar-fill"
               :style="{ width: `${Math.max(8, move.popularity * 100)}%` }"
             ></span>
           </span>
-          <span class="opening-suggestion-popularity">{{ Math.round(move.popularity * 100) }}%</span>
+          <span class="opening-suggestion-popularity font-mono"
+            >{{ Math.round(move.popularity * 100) }}%</span
+          >
         </button>
       </li>
     </ol>

@@ -273,7 +273,7 @@ const hasResults = computed(() => results.value.length > 0)
 </script>
 
 <template>
-  <section class="eval-chart card card-elevated" aria-label="Biểu đồ đánh giá ván cờ">
+  <section class="eval-chart" aria-label="Biểu đồ đánh giá ván cờ">
     <header class="eval-chart-header">
       <div class="eval-chart-title">
         <Activity :size="16" aria-hidden="true" />
