@@ -121,7 +121,9 @@ export function useLessonWorkspace() {
   }
 
   function goToPreviewMove(move: LessonMove) {
-    const target = nextMoveTargets.value.find((item) => nextMoveSignature(item.move) === nextMoveSignature(move))
+    const target = nextMoveTargets.value.find(
+      (item) => nextMoveSignature(item.move) === nextMoveSignature(move),
+    )
     if (!target) return
     goToGraphMove(target.lineId, player.activeMoveIndex.value + 1)
   }

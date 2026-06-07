@@ -3,7 +3,12 @@ import type { Lesson, LessonLine } from '../api/types'
 import { useLessonPlayer } from './useLessonPlayer'
 import { ref } from 'vue'
 
-const makeMove = (overrides: { id: string; side?: 'red' | 'black'; from: { file: number; rank: number }; to: { file: number; rank: number } }) => ({
+const makeMove = (overrides: {
+  id: string
+  side?: 'red' | 'black'
+  from: { file: number; rank: number }
+  to: { file: number; rank: number }
+}) => ({
   id: overrides.id,
   side: overrides.side ?? 'red',
   from: overrides.from,
@@ -55,14 +60,22 @@ describe('useLessonPlayer', () => {
   })
 
   it('previous does not go below ply 0', () => {
-    const lesson = ref(makeLesson([makeLine('l1', [makeMove({ id: 'm1', from: { file: 4, rank: 9 }, to: { file: 4, rank: 8 } })])]))
+    const lesson = ref(
+      makeLesson([
+        makeLine('l1', [makeMove({ id: 'm1', from: { file: 4, rank: 9 }, to: { file: 4, rank: 8 } })]),
+      ]),
+    )
     const player = useLessonPlayer(lesson)
     player.previous()
     expect(player.activeMoveIndex.value).toBe(0)
   })
 
   it('next does not exceed total moves', () => {
-    const lesson = ref(makeLesson([makeLine('l1', [makeMove({ id: 'm1', from: { file: 4, rank: 9 }, to: { file: 4, rank: 8 } })])]))
+    const lesson = ref(
+      makeLesson([
+        makeLine('l1', [makeMove({ id: 'm1', from: { file: 4, rank: 9 }, to: { file: 4, rank: 8 } })]),
+      ]),
+    )
     const player = useLessonPlayer(lesson)
     player.next()
     player.next()
@@ -71,7 +84,9 @@ describe('useLessonPlayer', () => {
   })
 
   it('setLine switches line and clamps the move index', () => {
-    const lineA = makeLine('a', [makeMove({ id: 'a1', from: { file: 4, rank: 9 }, to: { file: 4, rank: 8 } })])
+    const lineA = makeLine('a', [
+      makeMove({ id: 'a1', from: { file: 4, rank: 9 }, to: { file: 4, rank: 8 } }),
+    ])
     const lineB = makeLine('b', [
       makeMove({ id: 'b1', from: { file: 1, rank: 7 }, to: { file: 1, rank: 4 } }),
       makeMove({ id: 'b2', side: 'black', from: { file: 7, rank: 2 }, to: { file: 7, rank: 5 } }),
@@ -124,7 +139,11 @@ describe('useLessonPlayer', () => {
   })
 
   it('lesson change resets the player to the first line at ply 0', async () => {
-    const lesson = ref(makeLesson([makeLine('a', [makeMove({ id: 'a1', from: { file: 4, rank: 9 }, to: { file: 4, rank: 8 } })])]))
+    const lesson = ref(
+      makeLesson([
+        makeLine('a', [makeMove({ id: 'a1', from: { file: 4, rank: 9 }, to: { file: 4, rank: 8 } })]),
+      ]),
+    )
     const player = useLessonPlayer(lesson)
     player.next()
     expect(player.activeMoveIndex.value).toBe(1)

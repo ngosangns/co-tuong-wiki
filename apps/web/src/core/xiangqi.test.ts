@@ -1,11 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import {
-  applyMove,
-  initialBoard,
-  pieceAt,
-  replayMoves,
-  sameSquare,
-} from './xiangqi'
+import { applyMove, initialBoard, pieceAt, replayMoves, sameSquare } from './xiangqi'
 import type { LessonMove } from './xiangqi'
 
 const makeMove = (overrides: Partial<LessonMove> = {}): LessonMove => ({
@@ -49,8 +43,20 @@ describe('xiangqi core', () => {
 
   it('applyMove captures a target piece', () => {
     const board = [
-      { id: 'a', side: 'red' as const, kind: 'chariot' as const, label: '车', position: { file: 0, rank: 5 } },
-      { id: 'b', side: 'black' as const, kind: 'soldier' as const, label: '卒', position: { file: 0, rank: 4 } },
+      {
+        id: 'a',
+        side: 'red' as const,
+        kind: 'chariot' as const,
+        label: '车',
+        position: { file: 0, rank: 5 },
+      },
+      {
+        id: 'b',
+        side: 'black' as const,
+        kind: 'soldier' as const,
+        label: '卒',
+        position: { file: 0, rank: 4 },
+      },
     ]
     const after = applyMove(board, makeMove({ from: { file: 0, rank: 5 }, to: { file: 0, rank: 4 } }))
     expect(after).toHaveLength(1)
@@ -59,7 +65,9 @@ describe('xiangqi core', () => {
   })
 
   it('applyMove throws when the source square is empty', () => {
-    expect(() => applyMove(initialBoard, makeMove({ from: { file: 0, rank: 4 } }))).toThrow(/Cannot replay move/)
+    expect(() => applyMove(initialBoard, makeMove({ from: { file: 0, rank: 4 } }))).toThrow(
+      /Cannot replay move/,
+    )
   })
 
   it('replayMoves accumulates state across a sequence', () => {

@@ -30,7 +30,11 @@ export function useMoveEvaluation(source: MoveEvaluationSource) {
   const sideToMove = computed(() => inferSideToMove(source.activeMoves.value, source.activeMoveIndex.value))
   const fen = computed(() => {
     if (!sideToMove.value) return ''
-    return boardToXiangqiFen(source.board.value, sideToMove.value, Math.floor(source.activeMoveIndex.value / 2) + 1)
+    return boardToXiangqiFen(
+      source.board.value,
+      sideToMove.value,
+      Math.floor(source.activeMoveIndex.value / 2) + 1,
+    )
   })
 
   watch(

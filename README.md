@@ -34,6 +34,9 @@ task build:web
 task test:api
 task test:web
 task test:web:watch
+task lint
+task format
+task format:fix
 task lessons:combined:dry-run
 task lessons:combined
 task build:fairy-stockfish

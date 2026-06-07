@@ -121,6 +121,19 @@ export function renderTreeGraph(options: RenderTreeGraphOptions): TreeGraphRende
       updateSelection()
       options.onSelectNode(node)
     })
+    group.addEventListener('keydown', (event: KeyboardEvent) => {
+      if (event.key !== 'ArrowDown' && event.key !== 'ArrowRight') return
+      const ids = Array.from(nodeElements.keys())
+      const idx = ids.indexOf(node.id)
+      if (idx < 0) return
+      const next = ids[idx + 1] ?? ids[0]
+      if (next === node.id) return
+      event.preventDefault()
+      const nextElement = nodeElements.get(next)
+      if (nextElement instanceof HTMLElement || nextElement instanceof SVGElement) {
+        nextElement.focus()
+      }
+    })
     nodeLayer.append(group)
     nodeElements.set(node.id, group)
     nodeData.set(node.id, node)

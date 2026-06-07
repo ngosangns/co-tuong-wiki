@@ -12,7 +12,12 @@ import {
   startNodeId,
 } from './useMoveTrie'
 
-const makeMove = (overrides: { id: string; from: { file: number; rank: number }; to: { file: number; rank: number }; side?: 'red' | 'black' }) => ({
+const makeMove = (overrides: {
+  id: string
+  from: { file: number; rank: number }
+  to: { file: number; rank: number }
+  side?: 'red' | 'black'
+}) => ({
   id: overrides.id,
   side: overrides.side ?? 'red',
   from: overrides.from,
@@ -46,7 +51,9 @@ describe('useMoveTrie', () => {
 
   it('startKeyForFen treats empty FEN and standard FEN as "standard"', () => {
     expect(startKeyForFen('')).toBe('standard')
-    expect(startKeyForFen('rnbakabnr/9/1c5c1/p1p1p1p1p/9/9/P1P1P1P1P/1C5C1/9/RNBAKABNR w - - 0 1')).toBe('standard')
+    expect(startKeyForFen('rnbakabnr/9/1c5c1/p1p1p1p1p/9/9/P1P1P1P1P/1C5C1/9/RNBAKABNR w - - 0 1')).toBe(
+      'standard',
+    )
     expect(startKeyForFen('4k4/9/9/9/9/9/9/9/9/4K4 b - - 0 1')).not.toBe('standard')
   })
 
@@ -68,8 +75,14 @@ describe('useMoveTrie', () => {
 
   it('buildMoveTrie merges lines that share a prefix under one start group', () => {
     const shared = makeMove({ id: 'shared', from: { file: 1, rank: 7 }, to: { file: 1, rank: 4 } })
-    const lineA = makeLine('a', [shared, makeMove({ id: 'a2', side: 'black', from: { file: 7, rank: 2 }, to: { file: 7, rank: 5 } })])
-    const lineB = makeLine('b', [shared, makeMove({ id: 'b2', side: 'black', from: { file: 0, rank: 3 }, to: { file: 0, rank: 4 } })])
+    const lineA = makeLine('a', [
+      shared,
+      makeMove({ id: 'a2', side: 'black', from: { file: 7, rank: 2 }, to: { file: 7, rank: 5 } }),
+    ])
+    const lineB = makeLine('b', [
+      shared,
+      makeMove({ id: 'b2', side: 'black', from: { file: 0, rank: 3 }, to: { file: 0, rank: 4 } }),
+    ])
     const trie = buildMoveTrie([lineA, lineB])
     expect(trie.startGroups.size).toBe(1)
     const [, group] = [...trie.startGroups.entries()][0]
@@ -96,7 +109,9 @@ describe('useMoveTrie', () => {
   })
 
   it('buildActiveNodeId returns start node when no moves played', () => {
-    const lineA = makeLine('a', [makeMove({ id: 'a1', from: { file: 1, rank: 7 }, to: { file: 1, rank: 4 } })])
+    const lineA = makeLine('a', [
+      makeMove({ id: 'a1', from: { file: 1, rank: 7 }, to: { file: 1, rank: 4 } }),
+    ])
     expect(buildActiveNodeId([lineA], 'a', 0)).toBe(startNodeId('standard'))
   })
 

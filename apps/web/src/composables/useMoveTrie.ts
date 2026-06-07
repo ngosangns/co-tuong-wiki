@@ -143,7 +143,10 @@ export function buildGraphPaths(lines: LessonLine[], lessonInitialFen?: string):
   })
 }
 
-export function buildMoveTrie(lines: LessonLine[], lessonInitialFen?: string): {
+export function buildMoveTrie(
+  lines: LessonLine[],
+  lessonInitialFen?: string,
+): {
   startGroups: Map<string, { root: MoveTrieNode }>
   totalMoves: number
 } {
@@ -274,10 +277,7 @@ export function buildActiveNodeId(
 
   return lineMoves(line)
     .slice(0, activeMoveIndex)
-    .reduce(
-      (nodeId, move) => moveNodeId(nodeId, moveSignature(move)),
-      startNodeIdForLine(line, initialFen),
-    )
+    .reduce((nodeId, move) => moveNodeId(nodeId, moveSignature(move)), startNodeIdForLine(line, initialFen))
 }
 
 export function findActivePath(

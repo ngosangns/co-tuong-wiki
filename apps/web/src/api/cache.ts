@@ -24,7 +24,11 @@ export function stableJSONStringify(value: unknown): string {
   return JSON.stringify(canonicalize(value))
 }
 
-export async function cachedJSON<T>(url: string, init: RequestInit = {}, options: CachedJSONOptions = {}): Promise<T> {
+export async function cachedJSON<T>(
+  url: string,
+  init: RequestInit = {},
+  options: CachedJSONOptions = {},
+): Promise<T> {
   const key = options.key
   const cached = key ? readCached(key, Boolean(options.persist)) : undefined
   const now = Date.now()

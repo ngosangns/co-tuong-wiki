@@ -69,7 +69,9 @@ const summaryByCategory = computed(() => {
       </div>
     </div>
 
-    <div class="flex items-center gap-2 rounded-md border border-border bg-panel-strong px-3 py-2.5 text-muted-foreground transition-colors focus-within:border-primary focus-within:ring-2 focus-within:ring-ring">
+    <div
+      class="flex items-center gap-2 rounded-md border border-border bg-panel-strong px-3 py-2.5 text-muted-foreground transition-colors focus-within:border-primary focus-within:ring-2 focus-within:ring-ring"
+    >
       <Search :size="18" aria-hidden="true" />
       <Input
         type="search"

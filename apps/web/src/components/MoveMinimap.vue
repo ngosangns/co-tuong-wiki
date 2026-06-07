@@ -3,11 +3,7 @@ import { Maximize2 } from '@lucide/vue'
 import { computed, nextTick, onMounted, watch } from 'vue'
 import { hierarchy, tree } from 'd3-hierarchy'
 import type { LessonLine } from '../api/types'
-import {
-  buildActiveNodeId,
-  useMoveTrie,
-  type SerializedTrieNode,
-} from '../composables/useMoveTrie'
+import { buildActiveNodeId, useMoveTrie, type SerializedTrieNode } from '../composables/useMoveTrie'
 
 const props = defineProps<{
   lines: LessonLine[]

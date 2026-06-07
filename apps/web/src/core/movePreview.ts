@@ -36,7 +36,11 @@ export function nextMoveTargetsForActiveNode(input: {
   const targetsBySignature = new Map<string, NextMoveTarget>()
 
   input.lines.forEach((line) => {
-    if (lineStartKey(line, input.lessonInitialFen) !== activeStartKey || !lineMatchesPrefix(line, activePrefix)) return
+    if (
+      lineStartKey(line, input.lessonInitialFen) !== activeStartKey ||
+      !lineMatchesPrefix(line, activePrefix)
+    )
+      return
 
     const nextMove = line.moves?.[input.activeMoveIndex]
     if (!nextMove) return

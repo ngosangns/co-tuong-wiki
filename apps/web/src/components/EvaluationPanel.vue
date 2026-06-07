@@ -68,9 +68,10 @@ function moveCandidates(move: EngineMove) {
 function formatXiangqiMove(move: EngineEvaluation['bestMove']) {
   if (!move) return 'Chưa có'
 
-  const candidate = moveCandidates(move)
-    .map((item) => ({ ...item, piece: pieceAt(props.board, item.from) }))
-    .find((item) => item.piece?.side === props.evaluation?.sideToMove) ??
+  const candidate =
+    moveCandidates(move)
+      .map((item) => ({ ...item, piece: pieceAt(props.board, item.from) }))
+      .find((item) => item.piece?.side === props.evaluation?.sideToMove) ??
     moveCandidates(move)
       .map((item) => ({ ...item, piece: pieceAt(props.board, item.from) }))
       .find((item) => item.piece)
@@ -128,7 +129,9 @@ const statusLabel = computed(() => {
 })
 
 const isAnalyzing = computed(() => props.status === 'analyzing')
-const hasEvaluation = computed(() => props.status !== 'error' && !isAnalyzing.value && Boolean(props.evaluation))
+const hasEvaluation = computed(
+  () => props.status !== 'error' && !isAnalyzing.value && Boolean(props.evaluation),
+)
 </script>
 
 <template>

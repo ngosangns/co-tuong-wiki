@@ -42,7 +42,11 @@ function onSelectMove(lineId: string, index: number) {
       </TabsTrigger>
     </TabsList>
 
-    <TabsContent value="graph" class="board-side-panel mobile-tab-panel" aria-label="Điều khiển và phản hồi bài học">
+    <TabsContent
+      value="graph"
+      class="board-side-panel mobile-tab-panel"
+      aria-label="Điều khiển và phản hồi bài học"
+    >
       <MoveGraph
         :lines="props.lesson.lines"
         :active-line-id="props.activeLineId"

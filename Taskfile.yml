@@ -58,6 +58,21 @@ tasks:
     cmds:
       - npm --prefix apps/web run test:watch
 
+  lint:
+    desc: Run ESLint on the web app.
+    cmds:
+      - npm --prefix apps/web run lint
+
+  format:
+    desc: Verify Prettier formatting on the web app.
+    cmds:
+      - npm --prefix apps/web run format
+
+  format:fix:
+    desc: Apply Prettier formatting on the web app.
+    cmds:
+      - npm --prefix apps/web run format:fix
+
   check:
     desc: Run tests and production builds.
     deps:

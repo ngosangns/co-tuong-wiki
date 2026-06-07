@@ -2,7 +2,12 @@
 import { ChevronRight, Home } from '@lucide/vue'
 import { computed } from 'vue'
 import type { LessonLine } from '../api/types'
-import { buildActiveNodeId, findActivePath, formatParsedMoveNotation, useMoveTrie } from '../composables/useMoveTrie'
+import {
+  buildActiveNodeId,
+  findActivePath,
+  formatParsedMoveNotation,
+  useMoveTrie,
+} from '../composables/useMoveTrie'
 
 const props = defineProps<{
   lines: LessonLine[]
