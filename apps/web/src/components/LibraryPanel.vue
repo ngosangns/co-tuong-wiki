@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { BookOpen } from '@lucide/vue'
+import { PhBookOpen, PhList, PhMagnifyingGlass, PhX, PhGitBranch } from '@phosphor-icons/vue'
 import { computed } from 'vue'
 import Input from './ui/input.vue'
-import { Menu, Search, X, GitBranch } from '@lucide/vue'
 
 interface CategoryStat {
   name: string
@@ -53,8 +52,8 @@ const summaryByCategory = computed(() => {
       :aria-expanded="props.isOpen"
       @click="emit('toggle')"
     >
-      <Menu v-if="!props.isOpen" :size="20" aria-hidden="true" />
-      <X v-else :size="20" aria-hidden="true" />
+      <PhList v-if="!props.isOpen" :size="20" aria-hidden="true" />
+      <PhX v-else :size="20" aria-hidden="true" />
       <span>Danh mục</span>
     </button>
     <h2 class="mobile-lesson-title">{{ props.lessonTitle }}</h2>
@@ -72,7 +71,7 @@ const summaryByCategory = computed(() => {
     <div
       class="flex items-center gap-2 rounded-md border border-border bg-panel-strong px-3 py-2.5 text-muted-foreground transition-colors focus-within:border-primary focus-within:ring-2 focus-within:ring-ring"
     >
-      <Search :size="18" aria-hidden="true" />
+      <PhMagnifyingGlass :size="18" aria-hidden="true" />
       <Input
         type="search"
         placeholder="Tìm khai cuộc, cạm bẫy..."
@@ -81,7 +80,7 @@ const summaryByCategory = computed(() => {
     </div>
 
     <a class="combined-nav-link" href="/combined">
-      <GitBranch :size="18" aria-hidden="true" />
+      <PhGitBranch :size="18" aria-hidden="true" />
       <span>Tổng hợp toàn bộ lesson</span>
     </a>
 
@@ -97,7 +96,7 @@ const summaryByCategory = computed(() => {
           :aria-expanded="props.isCategoryExpanded(category.name)"
           @click="emit('toggleCategory', category.name)"
         >
-          <BookOpen :size="18" aria-hidden="true" />
+          <PhBookOpen :size="18" aria-hidden="true" />
           <span>{{ category.name }}</span>
           <small class="font-mono">{{ category.count }}</small>
         </button>

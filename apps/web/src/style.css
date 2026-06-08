@@ -80,6 +80,28 @@ button {
   min-height: 100svh;
 }
 
+/* Noise texture overlay to break digital flatness */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* Typography improvements */
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+}
+
+p, li {
+  text-wrap: pretty;
+}
+
 /* ================================================================
    LAYOUT SHELL
    ================================================================ */
@@ -520,8 +542,23 @@ button {
   border-color: var(--color-border-strong);
   border-radius: var(--radius-lg);
   background:
+    radial-gradient(ellipse 80% 50% at 50% -20%, color-mix(in srgb, var(--color-primary) 8%, transparent), transparent),
     linear-gradient(180deg, color-mix(in srgb, var(--color-surface-raised) 92%, transparent), var(--color-surface));
   box-shadow: var(--shadow-md);
+  position: relative;
+}
+
+.card-elevated::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--color-border-strong) 40%, transparent), transparent 60%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
 }
 
 .card-flat {
@@ -538,6 +575,27 @@ button {
   cursor: pointer;
   transition: border-color 140ms var(--ease-out-expo), box-shadow 140ms var(--ease-out-expo),
     background 140ms var(--ease-out-expo);
+  position: relative;
+  overflow: hidden;
+}
+
+.card-interactive::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), color-mix(in srgb, var(--color-primary) 24%, transparent), transparent 40%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 300ms var(--ease-out-expo);
+  pointer-events: none;
+}
+
+.card-interactive:hover::before {
+  opacity: 1;
 }
 
 .card-interactive:hover {
@@ -1076,6 +1134,7 @@ button {
   gap: 20px;
   padding: 24px 28px 28px;
   background:
+    radial-gradient(ellipse 60% 40% at 50% 0%, color-mix(in srgb, var(--color-primary) 6%, transparent), transparent 70%),
     linear-gradient(180deg, color-mix(in srgb, var(--color-surface-muted) 64%, transparent), transparent 360px),
     var(--color-bg);
 }
@@ -2937,7 +2996,7 @@ button {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   padding: 8px 12px calc(env(safe-area-inset-bottom, 0) + 8px);
-  box-shadow: 0 -8px 24px rgb(0 0 0 / 18%);
+  box-shadow: 0 -8px 24px rgb(18 14 10 / 18%);
 }
 
 @media (max-width: 760px) {

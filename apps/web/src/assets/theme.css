@@ -39,7 +39,7 @@
   --card-foreground: 42 43% 92%;
   --popover: 30 12% 10%;
   --popover-foreground: 42 43% 92%;
-  --primary: 165 34% 58%;
+  --primary: 165 18% 52%;
   --primary-foreground: 165 35% 9%;
   --secondary: 30 14% 12%;
   --secondary-foreground: 42 43% 92%;
@@ -51,7 +51,7 @@
   --destructive-foreground: 42 43% 92%;
   --border: 30 16% 25%;
   --input: 30 16% 25%;
-  --ring: 165 34% 58%;
+  --ring: 165 18% 52%;
 
   /* Legacy tokens - Dark (giữ để không break components chưa refactor) */
   --color-bg: #161512;
@@ -60,7 +60,7 @@
   --color-surface: #24201b;
   /* Move graph node colors (read by MoveGraph.vue via getComputedStyle) */
   --color-graph-active: #f06c56;
-  --color-graph-past: #70b8a7;
+  --color-graph-past: #7a9e94;
   --color-graph-start: #d9a441;
   --color-graph-line: #8d7359;
   --color-graph-future: #c7bda9;
@@ -71,20 +71,20 @@
   --color-text-muted: #c7bda9;
   --color-text-soft: #a99d88;
   --color-border-strong: #8d7359;
-  --color-primary-soft: rgba(112, 184, 167, 0.14);
+  --color-primary-soft: rgba(122, 158, 148, 0.14);
   --color-accent-soft: #3d211b;
   --color-accent-glow: rgba(232, 106, 82, 0.18);
   --color-success: #8fd19e;
   --color-success-soft: #1f3528;
   --color-board-bg: #9b642d;
   --color-board-line: rgb(49 28 17 / 70%);
-  --color-board-shadow: 0 24px 50px rgb(0 0 0 / 36%);
+  --color-board-shadow: 0 24px 50px rgb(18 14 10 / 36%);
   --color-piece-bg: #f8ead1;
   --color-piece-black: #101313;
-  --shadow-sm: 0 1px 2px rgb(0 0 0 / 24%), 0 0 1px rgb(0 0 0 / 16%);
-  --shadow-md: 0 4px 12px rgb(0 0 0 / 28%), 0 0 1px rgb(0 0 0 / 20%);
-  --shadow-lg: 0 14px 32px rgb(0 0 0 / 32%), 0 0 1px rgb(0 0 0 / 24%);
-  --shadow-xl: 0 24px 60px rgb(0 0 0 / 40%), 0 0 1px rgb(0 0 0 / 28%);
+  --shadow-sm: 0 1px 2px rgb(18 14 10 / 24%), 0 0 1px rgb(18 14 10 / 16%);
+  --shadow-md: 0 4px 12px rgb(18 14 10 / 28%), 0 0 1px rgb(18 14 10 / 20%);
+  --shadow-lg: 0 14px 32px rgb(18 14 10 / 32%), 0 0 1px rgb(18 14 10 / 24%);
+  --shadow-xl: 0 24px 60px rgb(18 14 10 / 40%), 0 0 1px rgb(18 14 10 / 28%);
   --shadow-inset: inset 0 1px 0 rgb(255 255 255 / 6%);
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -99,7 +99,7 @@
     --card-foreground: 36 16% 10%;
     --popover: 40 22% 90%;
     --popover-foreground: 36 16% 10%;
-    --primary: 165 42% 39%;
+    --primary: 165 28% 38%;
     --primary-foreground: 0 0% 100%;
     --secondary: 40 20% 86%;
     --secondary-foreground: 36 16% 10%;
@@ -111,7 +111,7 @@
     --destructive-foreground: 36 16% 10%;
     --border: 40 18% 74%;
     --input: 40 18% 74%;
-    --ring: 165 42% 39%;
+    --ring: 165 28% 38%;
 
     /* Legacy tokens - Light */
     --color-bg: #f4f0e8;
@@ -124,7 +124,7 @@
     --color-text-muted: #5c5348;
     --color-text-soft: #8a7e70;
     --color-border-strong: #a89880;
-    --color-primary-soft: rgba(58, 143, 124, 0.12);
+    --color-primary-soft: rgba(82, 128, 114, 0.12);
     --color-accent-soft: #f5e0dc;
     --color-accent-glow: rgba(196, 79, 58, 0.14);
     --color-success: #3a8a4e;
@@ -142,7 +142,7 @@
 
     /* Move graph node colors (light mode) */
     --color-graph-active: #c44f3a;
-    --color-graph-past: #3a8a4e;
+    --color-graph-past: #5a8a7a;
     --color-graph-start: #b08847;
     --color-graph-line: #8a7e70;
     --color-graph-future: #5c5348;

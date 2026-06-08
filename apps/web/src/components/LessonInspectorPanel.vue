@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ChevronDown, Lightbulb } from '@lucide/vue'
+import { PhCaretDown, PhLightbulb } from '@phosphor-icons/vue'
 
 defineProps<{
   isExpanded: boolean
@@ -21,12 +21,12 @@ const emit = defineEmits<{
       @click="emit('toggle')"
     >
       <span class="principles-title">
-        <Lightbulb :size="18" aria-hidden="true" />
+        <PhLightbulb :size="18" aria-hidden="true" />
         <strong>Điểm cần nhớ</strong>
       </span>
       <span class="principles-meta font-mono">
         {{ principleCount }} ý
-        <ChevronDown :size="18" aria-hidden="true" />
+        <PhCaretDown :size="18" aria-hidden="true" />
       </span>
     </button>
 

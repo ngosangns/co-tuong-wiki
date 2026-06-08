@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { BookOpen, Sparkles } from '@lucide/vue'
+import { PhBookOpen, PhSparkle } from '@phosphor-icons/vue'
 import { computed, ref, watch } from 'vue'
 import { fetchOpeningBook } from '../api/client'
 import type { OpeningBookResponse } from '../api/types'
@@ -89,7 +89,7 @@ function splitOpeningName(name: string): { vn: string; cjk: string } {
   <section v-if="showHeader" class="opening-suggestions card card-outlined" aria-label="Gợi ý khai cuộc">
     <header class="opening-suggestions-header">
       <div class="opening-suggestions-title">
-        <BookOpen :size="16" aria-hidden="true" />
+        <PhBookOpen :size="16" aria-hidden="true" />
         <div>
           <h4>Opening book</h4>
           <p v-if="book?.visits">
@@ -99,7 +99,7 @@ function splitOpeningName(name: string): { vn: string; cjk: string } {
         </div>
       </div>
       <span v-if="isAvailable" class="opening-suggestions-stats font-mono">
-        <Sparkles :size="14" aria-hidden="true" />
+        <PhSparkle :size="14" aria-hidden="true" />
         {{ totalGames() }} nước đi cùng vị trí
       </span>
     </header>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Activity, Loader2 } from '@lucide/vue'
+import { PhActivity, PhSpinner } from '@phosphor-icons/vue'
 import { computed, ref, watch } from 'vue'
 import type { LessonLine, LineEvaluationPly, MoveClassification } from '../api/types'
 import { evaluateLine } from '../api/client'
@@ -276,7 +276,7 @@ const hasResults = computed(() => results.value.length > 0)
   <section class="eval-chart" aria-label="Biểu đồ đánh giá ván cờ">
     <header class="eval-chart-header">
       <div class="eval-chart-title">
-        <Activity :size="16" aria-hidden="true" />
+        <PhActivity :size="16" aria-hidden="true" />
         <div>
           <h4>Đánh giá ván cờ</h4>
           <p v-if="activeBestMoveLabel">
@@ -310,7 +310,7 @@ const hasResults = computed(() => results.value.length > 0)
         </div>
       </div>
       <span v-if="isLoading" class="eval-chart-status" aria-live="polite">
-        <Loader2 :size="14" class="animate-spin" aria-hidden="true" />
+        <PhSpinner :size="14" class="animate-spin" aria-hidden="true" />
         Đang phân tích
       </span>
       <label class="eval-chart-toggle">
@@ -378,7 +378,7 @@ const hasResults = computed(() => results.value.length > 0)
         </g>
       </svg>
       <div v-else-if="isLoading" class="eval-chart-placeholder">
-        <Loader2 :size="22" class="animate-spin" aria-hidden="true" />
+        <PhSpinner :size="22" class="animate-spin" aria-hidden="true" />
         <span>Đang gọi engine cho {{ activeLine?.moves?.length ?? 0 }} nước…</span>
       </div>
       <div v-else-if="errorMessage" class="eval-chart-placeholder error">

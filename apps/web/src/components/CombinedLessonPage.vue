@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ChevronLeft, ChevronRight } from '@lucide/vue'
+import { PhCaretLeft, PhCaretRight } from '@phosphor-icons/vue'
 import { computed, onMounted, ref, watch } from 'vue'
 import { fetchCombinedLesson, fetchCombinedNextSteps } from '../api/client'
 import type { Lesson, LessonLine, LessonPhase } from '../api/types'
@@ -253,7 +253,7 @@ watch(
             :disabled="!canGoPrevious"
             @click="goToPreviousStep"
           >
-            <ChevronLeft :size="22" aria-hidden="true" />
+            <PhCaretLeft :size="22" aria-hidden="true" />
             Previous step
           </button>
           <button
@@ -264,7 +264,7 @@ watch(
             :disabled="!canGoNext"
             @click="goToNextStep"
           >
-            <ChevronRight :size="20" aria-hidden="true" />
+            <PhCaretRight :size="20" aria-hidden="true" />
             Next step
           </button>
         </div>
@@ -373,7 +373,7 @@ watch(
             :disabled="!canGoPrevious"
             @click="goToPreviousStep"
           >
-            <ChevronLeft :size="22" aria-hidden="true" />
+            <PhCaretLeft :size="22" aria-hidden="true" />
             Previous step
           </button>
           <button
@@ -384,7 +384,7 @@ watch(
             :disabled="!canGoNext"
             @click="goToNextStep"
           >
-            <ChevronRight :size="20" aria-hidden="true" />
+            <PhCaretRight :size="20" aria-hidden="true" />
             Next step
           </button>
         </div>

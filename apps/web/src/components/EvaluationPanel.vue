@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Activity, Gauge } from '@lucide/vue'
+import { PhActivity, PhGauge } from '@phosphor-icons/vue'
 import { computed } from 'vue'
 import { engineNotationToMove } from '../engine/fen'
 import { pieceAt } from '../core/xiangqi'
@@ -142,7 +142,7 @@ const hasEvaluation = computed(
           <CardDescription class="text-xs font-bold tracking-wider">Động cơ</CardDescription>
           <CardTitle :class="compact ? 'text-sm' : 'text-base'">{{ statusLabel }}</CardTitle>
         </div>
-        <Activity :size="compact ? 16 : 19" class="text-primary" aria-hidden="true" />
+        <PhActivity :size="compact ? 16 : 19" class="text-primary" aria-hidden="true" />
       </div>
     </CardHeader>
 
@@ -153,7 +153,7 @@ const hasEvaluation = computed(
       >
         <div class="flex items-center justify-between gap-2">
           <div class="flex items-center gap-2">
-            <Gauge :size="compact ? 16 : 18" class="text-primary" aria-hidden="true" />
+            <PhGauge :size="compact ? 16 : 18" class="text-primary" aria-hidden="true" />
             <span class="text-sm font-bold">{{ isAnalyzing ? 'Đang phân tích' : scoreLabel }}</span>
           </div>
           <Badge v-if="hasEvaluation" variant="outline" class="text-xs">

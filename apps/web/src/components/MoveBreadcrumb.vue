@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ChevronRight, Flag } from '@lucide/vue'
+import { PhCaretRight, PhFlag } from '@phosphor-icons/vue'
 import { computed } from 'vue'
 import type { LessonLine } from '../api/types'
 import {
@@ -87,10 +87,10 @@ function jumpTo(crumb: Crumb) {
           :aria-label="crumb.isStart ? 'Về vị trí bắt đầu' : `Tới nước ${crumb.label}`"
           @click="jumpTo(crumb)"
         >
-          <Flag v-if="crumb.isStart" :size="13" aria-hidden="true" />
+          <PhFlag v-if="crumb.isStart" :size="13" aria-hidden="true" />
           <span class="move-breadcrumb-label">{{ crumb.label }}</span>
         </button>
-        <ChevronRight
+        <PhCaretRight
           v-if="index < crumbs.length - 1"
           :size="14"
           class="move-breadcrumb-separator"

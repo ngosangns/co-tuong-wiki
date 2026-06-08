@@ -15,7 +15,7 @@
     "format:fix": "prettier --write \"src/**/*.{ts,vue}\""
   },
   "dependencies": {
-    "@lucide/vue": "^1.16.0",
+    "@phosphor-icons/vue": "^2.2.1",
     "@tailwindcss/vite": "^4.3.0",
     "@vueuse/motion": "^3.0.3",
     "class-variance-authority": "^0.7.1",

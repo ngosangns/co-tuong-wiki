@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { GitBranch, Gauge } from '@lucide/vue'
+import { PhGitBranch, PhGauge } from '@phosphor-icons/vue'
 import type { LessonMobileTab } from '../composables/useLessonWorkspace'
 
 defineProps<{
@@ -20,7 +20,7 @@ const emit = defineEmits<{
       :aria-pressed="activeTab === 'graph'"
       @click="emit('update:activeTab', 'graph')"
     >
-      <GitBranch :size="16" aria-hidden="true" />
+      <PhGitBranch :size="16" aria-hidden="true" />
       <span>Biến</span>
     </button>
     <button
@@ -30,7 +30,7 @@ const emit = defineEmits<{
       :aria-pressed="activeTab === 'info'"
       @click="emit('update:activeTab', 'info')"
     >
-      <Gauge :size="16" aria-hidden="true" />
+      <PhGauge :size="16" aria-hidden="true" />
       <span>Lý thuyết</span>
     </button>
   </nav>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ChevronLeft, ChevronRight, CircleAlert, ShieldCheck } from '@lucide/vue'
+import { PhCaretLeft, PhCaretRight, PhWarningCircle, PhShieldCheck } from '@phosphor-icons/vue'
 import type { Lesson, LessonChoice } from '../api/types'
 import type { BoardState, LessonMove, Side } from '../core/xiangqi'
 import type { EngineEvaluation, EngineStatus } from '../engine/types'
@@ -94,7 +94,7 @@ const openingDepth = computed(() => props.openingDepth ?? 8)
         :disabled="!props.canGoPrevious"
         @click="emit('previous')"
       >
-        <ChevronLeft :size="22" aria-hidden="true" />
+        <PhCaretLeft :size="22" aria-hidden="true" />
         Nước trước
       </button>
       <button
@@ -103,7 +103,7 @@ const openingDepth = computed(() => props.openingDepth ?? 8)
         class="primary-action"
         @click="emit('next')"
       >
-        <ChevronRight :size="20" aria-hidden="true" />
+        <PhCaretRight :size="20" aria-hidden="true" />
         Nước kế
       </button>
     </div>
@@ -118,7 +118,7 @@ const openingDepth = computed(() => props.openingDepth ?? 8)
 
     <section v-if="props.shouldShowChoice" class="choice-box board-question">
       <div class="choice-title">
-        <CircleAlert :size="18" aria-hidden="true" />
+        <PhWarningCircle :size="18" aria-hidden="true" />
         <h3>{{ props.lesson.choice.prompt }}</h3>
       </div>
       <div class="choice-options">
@@ -142,7 +142,7 @@ const openingDepth = computed(() => props.openingDepth ?? 8)
       aria-label="Nhận xét nước đã chọn"
     >
       <div class="choice-feedback-title">
-        <ShieldCheck v-if="props.choiceFeedback.verdict === 'correct'" :size="18" aria-hidden="true" />
+        <PhShieldCheck v-if="props.choiceFeedback.verdict === 'correct'" :size="18" aria-hidden="true" />
         <CircleAlert v-else :size="18" aria-hidden="true" />
         <h3>{{ props.choiceFeedback.verdict === 'correct' ? 'Nhận xét' : 'Cảnh báo' }}</h3>
       </div>

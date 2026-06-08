@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Maximize2 } from '@lucide/vue'
+import { PhArrowsOutSimple } from '@phosphor-icons/vue'
 import { computed, nextTick, onMounted, watch } from 'vue'
 import { hierarchy, tree } from 'd3-hierarchy'
 import type { LessonLine } from '../api/types'
@@ -244,7 +244,7 @@ onMounted(() => {
         aria-label="Mở graph đầy đủ"
         @click="onOpenGraph"
       >
-        <Maximize2 :size="14" aria-hidden="true" />
+        <PhArrowsOutSimple :size="14" aria-hidden="true" />
       </button>
     </header>
     <div class="move-minimap-canvas">
